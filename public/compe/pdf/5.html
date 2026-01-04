@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - グループおでかけ機能</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 番号付きリストのスタイル */
+        .feature-item {
+            position: relative;
+            padding-left: 3.5rem;
+        }
+        .feature-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            background-color: #3B82F6; /* blue-500 */
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+        }
+
+        /* スマホモックアップ */
+        .phone-mockup {
+            border: 3px solid #1f2937; /* gray-800 */
+            border-radius: 16px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 12px;
+            background: #1f2937;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            z-index: 10;
+        }
+
+        /* 矢印アニメーション（静止画でも動きを感じさせる） */
+        .connection-line {
+            position: absolute;
+            top: 50%;
+            left: 42%;
+            width: 15%;
+            height: 4px;
+            background: repeating-linear-gradient(90deg, #9CA3AF 0, #9CA3AF 10px, transparent 10px, transparent 20px);
+            z-index: 0;
+        }
+        .arrow-head {
+            position: absolute;
+            top: 50%;
+            left: 56%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-12 py-8">
+        
+        <!-- ヘッダー -->
+        <header class="flex justify-between items-end border-b-2 border-gray-100 pb-4 mb-6">
+            <div>
+                <h1 class="text-4xl font-black text-gray-800 tracking-tight">
+                    <span class="text-blue-600 mr-2">特徴</span>
+                    グループおでかけ機能
+                </h1>
+            </div>
+            <div class="text-right">
+                <div class="text-gray-400 text-sm font-bold">都営でGO - Group Feature</div>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="flex flex-1 gap-12 relative">
+            
+            <!-- 左側：説明テキスト -->
+            <div class="w-6/12 flex flex-col pt-2 z-10">
+                
+                <!-- ねらい -->
+                <div class="bg-blue-50 border-l-8 border-blue-500 p-6 rounded-r-xl mb-8">
+                    <h2 class="text-lg font-bold text-blue-800 mb-2 flex items-center">
+                        <i class="fas fa-bullseye mr-2"></i>ねらい
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed font-medium">
+                        デイケアや支援施設の外出では、<br>
+                        複数人の移動を安全に進めることが大切です。<br>
+                        <strong class="text-blue-700">外出の進行管理と見守りをアプリで支援します。</strong>
+                    </p>
+                </div>
+
+                <!-- できることリスト -->
+                <div class="flex flex-col gap-6">
+                    <h3 class="text-xl font-bold text-gray-800 border-b pb-2">できること</h3>
+                    
+                    <div class="feature-item">
+                        <div class="feature-number">1</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-1">行程を共有</h4>
+                        <p class="text-gray-600 text-sm">スケジュールと経路をグループで共有。<br>「次に何をするか」が揃うことで不安が減ります。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-number">2</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-1">スタッフが全体を把握</h4>
+                        <p class="text-gray-600 text-sm">進行状況をまとめて確認。<br>必要に応じてスケジュールを編集できます。</p>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-number">3</div>
+                        <h4 class="text-lg font-bold text-gray-800 mb-1">迷い・トラブルに備える</h4>
+                        <p class="text-gray-600 text-sm">SOSを受け取って状況を把握。<br>外出中の対応がしやすくなります。</p>
+                    </div>
+                </div>
+            </div>
+
+<div class="w-6/12 relative flex items-center justify-center gap-28">
+    
+    <div class="absolute inset-0 bg-gray-50 rounded-2xl border border-gray-100 -z-10"></div>
+
+    <div class="connection-line" style="width: 25%; left: 50%; transform: translateX(-50%);"></div>
+    
+    <div class="arrow-head" style="left: 62%;"><i class="fas fa-caret-right"></i></div>
+    
+    <div class="absolute top-[45%] left-1/2 transform -translate-x-1/2 text-xs font-bold text-gray-500 bg-white px-2 py-1 rounded shadow-sm border border-gray-200">
+        管理・共有
+    </div>
+
+    <div class="phone-mockup w-48 h-[420px] shadow-2xl z-20 mr-12 transform scale-105">
+        <div class="phone-notch"></div>
+        <!-- ヘッダー -->
+        <div class="bg-gray-800 text-white p-3 pt-6 pb-2">
+            <div class="text-[10px] opacity-70">管理者モード</div>
+            <div class="text-sm font-bold flex justify-between items-center">
+                <span>新宿散策グループ</span>
+                <span class="bg-blue-500 text-[10px] px-2 py-0.5 rounded-full">進行中</span>
+            </div>
+        </div>
+        <!-- コンテンツ -->
+        <div class="flex-1 bg-gray-100 p-2 overflow-hidden flex flex-col gap-2">
+            <!-- ステータスバー -->
+            <div class="bg-white p-2 rounded shadow-sm border-l-4 border-green-500">
+                <div class="text-[10px] text-gray-500">現在の工程</div>
+                <div class="text-xs font-bold">地下鉄：本八幡駅 → 新宿駅</div>
+                <div class="mt-1 w-full bg-gray-200 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-green-500 w-2/3 h-full"></div>
+                </div>
+            </div>
+            
+            <!-- メンバーリスト -->
+            <div class="bg-white p-2 rounded shadow-sm">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] font-bold text-gray-700">メンバー状況 (4/5)</span>
+                    <span class="text-[10px] text-blue-500"><i class="fas fa-sync"></i> 更新</span>
+                </div>
+                <div class="space-y-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px]"><i class="fas fa-user"></i></div>
+                        <div class="flex-1 text-[10px]">田中さん</div>
+                        <span class="text-[8px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded">乗車済</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-[10px]"><i class="fas fa-user"></i></div>
+                        <div class="flex-1 text-[10px]">鈴木さん</div>
+                        <span class="text-[8px] bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded">移動中</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center text-[10px] text-red-500"><i class="fas fa-exclamation"></i></div>
+                        <div class="flex-1 text-[10px] font-bold text-red-500">佐藤さん</div>
+                        <span class="text-[8px] bg-red-100 text-red-700 px-1.5 py-0.5 rounded">SOS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- アクションボタン -->
+            <div class="mt-auto grid grid-cols-2 gap-2">
+                <div class="bg-gray-700 text-white text-[10px] py-2 rounded text-center font-bold">
+                    <i class="fas fa-edit mr-1"></i>行程編集
+                </div>
+                <div class="bg-white border border-gray-300 text-gray-700 text-[10px] py-2 rounded text-center font-bold">
+                    <i class="fas fa-file-alt mr-1"></i>報告書
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="phone-mockup w-44 h-[380px] z-10 opacity-90 transform translate-y-4">
+        <div class="phone-notch"></div>
+        <div class="bg-blue-500 h-10 w-full"></div>
+        <div class="flex-1 bg-white p-4 flex flex-col items-center justify-center gap-3">
+            <div class="text-xs font-bold text-gray-600">参加コード入力</div>
+            <!-- QRコード風 -->
+            <div class="w-24 h-24 bg-gray-800 p-1 flex flex-wrap gap-0.5 content-center justify-center rounded-lg">
+                <div class="w-full h-full border-2 border-white border-dashed flex items-center justify-center text-white">
+                    <i class="fas fa-qrcode text-4xl"></i>
+                </div>
+            </div>
+            <div class="text-[10px] text-gray-400 text-center">
+                リーダーの画面を<br>読み取ってください
+            </div>
+            <div class="w-full bg-blue-500 text-white py-1.5 rounded text-center text-xs font-bold mt-2">
+                グループに参加
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+            <!-- つなぎ文 -->
+            <div class="absolute bottom-0 right-0 left-0 text-right pr-4 pb-2">
+                <p class="text-gray-500 text-sm font-medium">
+                    次に、SOSと「おでかけ報告書」について紹介します <i class="fas fa-chevron-right ml-1"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

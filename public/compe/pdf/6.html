@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - SOSと報告書</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* セクションボックス */
+        .section-box {
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* スマホモックアップ（横向きレイアウト用） */
+        .phone-mockup-landscape {
+            border: 3px solid #333;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ねらいカード */
+        .aim-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* SOSチップ */
+        .sos-chip {
+            background-color: #FEF2F2;
+            color: #B91C1C;
+            border: 1px solid #FECACA;
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-12 py-8">
+        
+        <!-- ヘッダー -->
+        <header class="flex justify-between items-end border-b-2 border-gray-100 pb-4 mb-4">
+            <div>
+                <h1 class="text-4xl font-black text-gray-800 tracking-tight">
+                    SOS <span class="text-2xl font-normal text-gray-400 mx-2">と</span> おでかけ報告書
+                </h1>
+            </div>
+            <div class="text-right">
+                <div class="text-gray-400 text-sm font-bold">都営でGO - Safety & Report</div>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="flex flex-col gap-4 flex-1">
+            
+            <!-- 上段：SOS機能 -->
+            <div class="section-box bg-red-50/60 border border-red-100 flex gap-8 items-center h-[220px]">
+                <!-- 左：説明 -->
+                <div class="flex-1">
+                    <h2 class="text-xl font-black text-red-600 mb-2 flex items-center">
+                        <i class="fas fa-exclamation-circle mr-2"></i>SOS機能
+                    </h2>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4 font-medium">
+                        移動中に不安やトラブルがあったとき、メンバーはSOSを送信できます。<br>
+                        スタッフはリーダー画面でSOSをまとめて確認し、対応のきっかけを作れます。
+                    </p>
+                    <div>
+                        <span class="text-xs text-gray-500 font-bold mb-2 block">想定されるSOS：</span>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="sos-chip"><i class="fas fa-map-signs"></i> 迷ってしまった</span>
+                            <span class="sos-chip"><i class="fas fa-heartbeat"></i> 体調が悪い</span>
+                            <span class="sos-chip"><i class="fas fa-users"></i> 人混みが不安</span>
+                            <span class="sos-chip"><i class="fas fa-hand-paper"></i> ちょっと助けて</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右：SOS画面モック -->
+                <div class="w-1/3 flex justify-center">
+                    <div class="phone-mockup-landscape w-48 h-44 shadow-lg transform rotate-2">
+                        <!-- ヘッダー -->
+                        <div class="bg-red-600 text-white p-2 text-[10px] font-bold flex justify-between items-center">
+                            <span>SOS受信中</span>
+                            <span class="animate-pulse">● NOW</span>
+                        </div>
+                        <!-- 通知リスト -->
+                        <div class="p-2 bg-gray-50 flex-1 flex flex-col gap-2">
+                            <div class="bg-white border-l-4 border-red-500 p-2 rounded shadow-sm">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="text-[10px] font-bold text-gray-800">佐藤さん</span>
+                                    <span class="text-[8px] text-gray-400">10:45</span>
+                                </div>
+                                <div class="text-[10px] text-red-600 font-bold bg-red-50 inline-block px-1 rounded">
+                                    <i class="fas fa-map-marker-alt mr-1"></i>迷ってしまった
+                                </div>
+                            </div>
+                            <div class="bg-white border-l-4 border-gray-300 p-2 rounded shadow-sm opacity-60">
+                                <div class="flex justify-between items-start">
+                                    <span class="text-[10px] font-bold text-gray-600">鈴木さん</span>
+                                    <span class="text-[8px] text-gray-400">10:30</span>
+                                </div>
+                                <div class="text-[8px] text-green-600">解決済み</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下段：おでかけ報告書 -->
+            <div class="section-box bg-blue-50/60 border border-blue-100 flex gap-8 items-center h-[220px]">
+                <!-- 左：説明 -->
+                <div class="flex-1">
+                    <h2 class="text-xl font-black text-blue-600 mb-2 flex items-center">
+                        <i class="fas fa-file-alt mr-2"></i>おでかけ報告書
+                    </h2>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-4 font-medium">
+                        外出が終わった後に、必要な情報をまとめて記録できるようにします。<br>
+                        スタッフの記録業務の負担を減らし、次回の改善にもつなげます。
+                    </p>
+                    <div class="bg-white p-3 rounded-lg border border-blue-100">
+                        <span class="text-xs text-gray-500 font-bold block mb-1">報告書に含まれる情報（例）</span>
+                        <ul class="text-xs text-gray-600 grid grid-cols-2 gap-x-4 gap-y-1 list-disc list-inside">
+                            <li>出席者と出欠状況</li>
+                            <li>SOS発生の有無と内容</li>
+                            <li>実施日程と時間</li>
+                            <li>対応メモ</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- 右：報告書画面モック -->
+                <div class="w-1/3 flex justify-center">
+                    <div class="phone-mockup-landscape w-56 h-40 shadow-lg bg-gray-50 border-gray-200 transform -rotate-1">
+                        <div class="bg-gray-800 h-6 w-full mb-2 flex items-center px-2">
+                             <div class="w-2 h-2 rounded-full bg-red-400 mr-1"></div>
+                             <div class="w-2 h-2 rounded-full bg-yellow-400 mr-1"></div>
+                             <div class="w-2 h-2 rounded-full bg-green-400"></div>
+                        </div>
+                        <div class="px-4 py-2 bg-white m-2 mt-0 shadow-sm border border-gray-100 flex-1">
+                            <div class="text-[10px] text-center font-bold text-gray-800 border-b border-gray-200 pb-1 mb-2">おでかけ実施報告書</div>
+                            <div class="space-y-1.5">
+                                <div class="flex text-[8px]">
+                                    <div class="w-12 bg-gray-100 p-0.5 text-gray-500">日時</div>
+                                    <div class="flex-1 p-0.5 ml-1 border-b border-gray-100">2026年1月15日</div>
+                                </div>
+                                <div class="flex text-[8px]">
+                                    <div class="w-12 bg-gray-100 p-0.5 text-gray-500">参加者</div>
+                                    <div class="flex-1 p-0.5 ml-1 border-b border-gray-100">4名 (欠席なし)</div>
+                                </div>
+                                <div class="flex text-[8px]">
+                                    <div class="w-12 bg-red-50 p-0.5 text-red-500 font-bold">SOS</div>
+                                    <div class="flex-1 p-0.5 ml-1 border-b border-gray-100 text-red-500">あり (迷い:1件)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ねらい（3カラム） -->
+            <div class="mt-auto pt-2">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-sm font-bold text-gray-500 bg-gray-200 px-2 py-0.5 rounded">ねらい</span>
+                </div>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="aim-card border-b-4 border-blue-500">
+                        <div class="text-sm font-bold text-gray-700">利用者の<span class="text-xl font-black text-blue-600">安心</span></div>
+                        <div class="text-xs text-gray-500 mt-1">困ったらすぐ伝えられる</div>
+                    </div>
+                    <div class="aim-card border-b-4 border-green-500">
+                        <div class="text-sm font-bold text-gray-700">スタッフの安心</div>
+                        <div class="text-xs text-gray-500 mt-1">全体状況が見える</div>
+                    </div>
+                    <div class="aim-card border-b-4 border-gray-500">
+                        <div class="text-sm font-bold text-gray-700">外出の振り返りと改善</div>
+                        <div class="text-xs text-gray-500 mt-1">記録が次に活きる</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッターつなぎ -->
+        <div class="mt-3 text-right">
+            <p class="text-gray-500 text-sm font-medium">
+                最後に、公共交通オープンデータの活用について紹介します <i class="fas fa-chevron-right ml-1"></i>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

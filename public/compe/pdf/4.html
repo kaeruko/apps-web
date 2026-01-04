@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - 主要機能</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 機能カードのスタイル */
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f3f4f6;
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        
+        /* 番号バッジ */
+        .num-badge {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        /* エリアの背景装飾 */
+        .area-label {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 999px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-12 py-8">
+        
+        <!-- ヘッダー -->
+        <header class="flex justify-between items-end border-b-2 border-gray-100 pb-4 mb-6">
+            <div>
+                <h1 class="text-4xl font-black text-gray-800 tracking-tight">主要機能</h1>
+            </div>
+            <div class="text-right">
+                <div class="text-gray-400 text-sm font-bold">都営でGO - Main Features</div>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="flex flex-1 gap-8">
+            
+            <!-- 左側：個人向け機能（1〜3） -->
+            <div class="w-1/2 flex flex-col relative bg-green-50/50 rounded-2xl border border-green-100 p-6 pt-8">
+                <div class="area-label bg-green-100 text-green-700">
+                    <i class="fas fa-user mr-1"></i> 個人向け
+                </div>
+
+                <div class="flex flex-col gap-4 h-full">
+                    <!-- 機能1 -->
+                    <div class="feature-card flex gap-4 items-start">
+                        <div class="num-badge bg-green-500 text-white">1</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center">
+                                一本で行ける場所を探す
+                                <i class="fas fa-map-marked-alt text-green-400 ml-2"></i>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                現在地から乗り換えなしで行ける駅・バス停を一覧表示。<br>
+                                行き先の雰囲気を写真で確認し、そのまま出発できます。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 機能2 -->
+                    <div class="feature-card flex gap-4 items-start">
+                        <div class="num-badge bg-green-500 text-white">2</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center">
+                                経路案内（バス・地下鉄・徒歩）
+                                <i class="fas fa-route text-green-400 ml-2"></i>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                都営交通を中心に、移動手段を統合して案内。<br>
+                                出発から到着までの流れを分かりやすく表示します。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 機能3 -->
+                    <div class="feature-card flex gap-4 items-start">
+                        <div class="num-badge bg-green-500 text-white">3</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center">
+                                移動中サポート
+                                <i class="fas fa-walking text-green-400 ml-2"></i>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                いま何をしているか（徒歩／乗車／乗換）を表示。<br>
+                                降車タイミングの通知で迷いを減らします。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：スタッフ向け機能（4〜5） -->
+            <div class="w-1/2 flex flex-col relative bg-blue-50/50 rounded-2xl border border-blue-100 p-6 pt-8">
+                <div class="area-label bg-blue-100 text-blue-700">
+                    <i class="fas fa-users-cog mr-1"></i> スタッフ・グループ向け
+                </div>
+
+                <div class="flex flex-col gap-4 h-full">
+                    <!-- 機能4 -->
+                    <div class="feature-card flex gap-4 items-start border-l-4 border-blue-500">
+                        <div class="num-badge bg-blue-600 text-white">4</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center">
+                                グループおでかけ
+                                <i class="fas fa-users text-blue-400 ml-2"></i>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                参加コードでメンバーをまとめて管理。<br>
+                                進行状況の共有、見守りを支援します。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 機能5 -->
+                    <div class="feature-card flex gap-4 items-start border-l-4 border-blue-500">
+                        <div class="num-badge bg-blue-600 text-white">5</div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 flex items-center">
+                                SOSと報告書
+                                <i class="fas fa-file-contract text-blue-400 ml-2"></i>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                メンバーからのSOSを集約し、対応のきっかけを作る。<br>
+                                外出後に参加者・日程・SOS履歴をまとめた<br>
+                                「おでかけ報告書」を出力します。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- スタッフ向け注釈 -->
+                    <div class="mt-auto text-right">
+                        <span class="text-xs font-bold text-gray-400 bg-white px-3 py-1 rounded-full border border-gray-200">
+                            ※ スタッフ向け機能は設定から有効化
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッターつなぎ -->
+        <div class="mt-4 text-right">
+            <p class="text-gray-500 text-sm font-medium">
+                次に、特徴的な「グループおでかけ機能」を紹介します <i class="fas fa-chevron-right ml-1"></i>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>

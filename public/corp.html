@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cloxs合同会社 (YOKOTA GODO KAISHA)</title>
+    <!-- Tailwind CSS (スタイリング用) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts (Noto Sans JP) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons (アイコン用) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md fixed w-full top-0 z-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo Area -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-bold text-slate-900 tracking-tighter flex items-center gap-2">
+                        <i data-lucide="layers" class="w-8 h-8 text-blue-600"></i>
+                        <!-- ★★★ 法人名変更ポイント 1 ★★★ -->
+                        <!-- 登記変更後はここを 'cloxs Inc.' などに変更 -->
+                        cloxs
+                    </span>
+                </div>
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#products" class="text-slate-600 hover:text-blue-600 transition-colors">Products</a>
+                    <a href="#company" class="text-slate-600 hover:text-blue-600 transition-colors">Company</a>
+                    <a href="#contact" class="text-slate-600 hover:text-blue-600 transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
+        <div class="max-w-5xl mx-auto text-center fade-in" style="animation-delay: 0.1s;">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
+                Creating New Value<br>
+                <span class="text-blue-600">with Technology</span>
+            </h1>
+            <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto mb-10">
+                日常の「めんどくさい」をテクノロジーで解決し、<br class="hidden sm:inline">
+                新しい体験を提供するアプリケーション開発企業です。
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#products" class="px-8 py-3 bg-blue-600 text-white font-medium rounded-full shadow-lg hover:bg-blue-700 transition-all hover:shadow-xl transform hover:-translate-y-1">
+                    View Apps
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-3xl font-bold text-slate-900">Developed Applications</h2>
+                <p class="mt-4 text-slate-600">当社が開発・運営する主要なモバイルアプリケーション</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <!-- App 1: 都営でGO -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="train-front" class="w-8 h-8 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">都営でGO</h3>
+                            <p class="text-sm text-green-600 font-medium mb-2">Transportation Utility</p>
+                            <p class="text-slate-600 mb-4">
+                                都営地下鉄ユーザーのための移動支援アプリ。
+                                次の電車のスケジュール確認や、スムーズな乗り換えをサポートします。
+                            </p>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs text-slate-500">Android</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs text-slate-500">iOS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- App 2: がるなび -->
+                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-sm hover:shadow-md transition-shadow fade-in" style="animation-delay: 0.3s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-pink-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="message-circle" class="w-8 h-8 text-pink-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">がるなび</h3>
+                            <p class="text-sm text-pink-600 font-medium mb-2">Community Viewer</p>
+                            <p class="text-slate-600 mb-4">
+                                女性向け匿名掲示板「ガールズちゃんねる」の閲覧専用アプリ。
+                                人気トピックのチェックや、スムーズな閲覧体験を提供します。
+                            </p>
+                            <div class="flex gap-2">
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs text-slate-500">Android</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs text-slate-500">iOS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Section (最重要：審査対策) -->
+    <section id="company" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl font-bold text-slate-900">Company Profile</h2>
+                <p class="mt-4 text-slate-600">会社概要</p>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-2xl overflow-hidden border border-slate-100 fade-in" style="animation-delay: 0.4s;">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <tbody class="divide-y divide-slate-200">
+                        <tr>
+                            <th class="px-6 py-4 bg-slate-50 text-left text-sm font-semibold text-slate-700 w-1/3">会社名</th>
+                            <td class="px-6 py-4 text-sm text-slate-900">
+                                <!-- ★★★ 法人名変更ポイント 2 ★★★ -->
+                                <!-- 登記完了までは以下のように併記しておくと無難です -->
+                                横田合同会社<br>
+                                <span class="text-slate-500 text-xs">(英語表記: YOKOTA GODO KAISHA)</span>
+                                <br>
+                                <span class="text-blue-600 text-xs mt-1 block">※ cloxs合同会社へ商号変更予定</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="px-6 py-4 bg-slate-50 text-left text-sm font-semibold text-slate-700">代表者</th>
+                            <td class="px-6 py-4 text-sm text-slate-900">代表社員　横田 里奈子</td>
+                        </tr>
+                        <tr>
+                            <th class="px-6 py-4 bg-slate-50 text-left text-sm font-semibold text-slate-700">所在地</th>
+                            <td class="px-6 py-4 text-sm text-slate-900">
+                                〒190-0003<br>
+                                東京都立川市栄町1-10-49
+                            </td>
+                        </tr>
+                        <tr>
+                            <th class="px-6 py-4 bg-slate-50 text-left text-sm font-semibold text-slate-700">設立</th>
+                            <td class="px-6 py-4 text-sm text-slate-900">2015年 (平成27年)</td>
+                        </tr>
+                        <tr>
+                            <th class="px-6 py-4 bg-slate-50 text-left text-sm font-semibold text-slate-700">事業内容</th>
+                            <td class="px-6 py-4 text-sm text-slate-900">
+                                スマートフォンアプリケーションの企画・開発・運営<br>
+                                インターネットサービスの開発・運営
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-slate-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <span class="text-xl font-bold tracking-tighter flex items-center gap-2 mb-4">
+                        <i data-lucide="layers" class="w-6 h-6 text-blue-400"></i>
+                        cloxs
+                    </span>
+                    <p class="text-slate-400 text-sm">
+                        Technology for your daily life.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-slate-200">Contact</h4>
+                    <p class="text-slate-400 text-sm mb-2">お問い合わせは以下までお願いします。</p>
+                    <a href="mailto:info@example.com" class="text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2">
+                        <i data-lucide="mail" class="w-4 h-4"></i> info@example.com
+                    </a>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-slate-200">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <!-- プライバシーポリシーのリンクは重要 -->
+                        <li><a href="#" class="hover:text-white transition-colors">プライバシーポリシー</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">特定商取引法に基づく表記</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center text-sm text-slate-500">
+                &copy; 2025 cloxs LLC. (YOKOTA GODO KAISHA) All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - まとめ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            background-image: linear-gradient(to bottom, #ffffff, #f0f9ff);
+        }
+
+        /* ロゴ風タイトル */
+        .logo-text {
+            background: linear-gradient(135deg, #00B894 0%, #0984e3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* 価値カード */
+        .value-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: transform 0.2s;
+            height: 100%;
+        }
+
+        /* キャラクターアイコンのアニメーション */
+        .walking-icon {
+            display: inline-block;
+            animation: bounce 2s infinite ease-in-out;
+        }
+        .walking-icon:nth-child(2) { animation-delay: 0.2s; }
+        .walking-icon:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* 今後の展開リスト */
+        .future-item {
+            position: relative;
+            padding-left: 1.5em;
+        }
+        .future-item::before {
+            content: '\f138'; /* chevron-circle-right */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #3B82F6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-16 py-12 flex flex-col items-center text-center">
+        
+        <!-- ロゴエリア -->
+        <div class="mb-8">
+            <h1 class="text-6xl font-black logo-text tracking-tight mb-2">都営でGO</h1>
+            <p class="text-gray-500 font-bold tracking-widest text-sm">TOEI DE GO - ACCESSIBLE NAVI</p>
+        </div>
+
+        <!-- メインメッセージ -->
+        <div class="mb-12 max-w-4xl">
+            <h2 class="text-3xl font-bold text-gray-800 leading-normal">
+                公共交通を「使える」から<br>
+                <span class="text-5xl text-blue-600 font-black relative inline-block mt-2">
+                    「安心して使える」体験へ
+                    <svg class="absolute w-full h-3 -bottom-1 left-0 text-yellow-300 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" opacity="0.6"/>
+                    </svg>
+                </span>
+            </h2>
+            <p class="text-gray-600 mt-6 text-lg font-medium">
+                シニア・障害者手帳利用者と、その移動を支える人のための<br>おでかけ支援アプリ
+            </p>
+        </div>
+
+        <!-- 提供価値（3つの柱） -->
+        <div class="grid grid-cols-3 gap-8 w-full max-w-5xl mb-10">
+            <!-- 価値1 -->
+            <div class="value-card border-t-4 border-green-500">
+                <div class="text-green-500 text-3xl mb-3"><i class="fas fa-smile"></i></div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">不安を減らす</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    乗り換えや移動中の不安を解消し、<br>外出のきっかけを増やします
+                </p>
+            </div>
+            <!-- 価値2 -->
+            <div class="value-card border-t-4 border-blue-500">
+                <div class="text-blue-500 text-3xl mb-3"><i class="fas fa-hands-helping"></i></div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">現場を支える</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    グループ外出の管理を支援し、<br>スタッフの負担を軽くします
+                </p>
+            </div>
+            <!-- 価値3 -->
+            <div class="value-card border-t-4 border-orange-500">
+                <div class="text-orange-500 text-3xl mb-3"><i class="fas fa-database"></i></div>
+                <h3 class="text-lg font-bold text-gray-800 mb-2">現実を反映</h3>
+                <p class="text-sm text-gray-600 leading-relaxed">
+                    オープンデータを活用し、<br>実際の状況に近い案内を実現します
+                </p>
+            </div>
+        </div>
+
+        <!-- 歩く3人のビジュアル & 今後の展開 -->
+        <div class="flex items-center justify-between w-full max-w-4xl mt-auto bg-white/50 rounded-2xl p-6 border border-gray-100 backdrop-blur-sm">
+            
+            <!-- 左：歩く人々（アイコンで表現） -->
+            <div class="flex gap-4 text-gray-400 text-4xl px-8 border-r border-gray-200">
+                <i class="fas fa-user-nurse walking-icon text-blue-400"></i>
+                <i class="fas fa-wheelchair walking-icon text-green-500 text-5xl"></i>
+                <i class="fas fa-user walking-icon text-orange-400"></i>
+            </div>
+
+            <!-- 右：今後の展開 -->
+            <div class="text-left flex-1 pl-8">
+                <p class="text-xs font-bold text-gray-400 mb-2 uppercase">Next Phase</p>
+                <div class="flex gap-6 text-sm font-bold text-gray-600">
+                    <span class="future-item">報告書のPDF出力</span>
+                    <span class="future-item">施設運用での改善</span>
+                    <span class="future-item">対象エリア拡張</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer class="w-full mt-6 pt-4 border-t border-gray-200 flex justify-between items-end text-gray-400">
+            <div>
+                <p class="text-xs font-bold">公共交通オープンデータチャレンジ2025 応募作品</p>
+            </div>
+            <div class="text-right">
+                <p class="text-xs font-bold text-orange-400 mb-1">※ 本作品は現在クローズドテスト段階です</p>
+                <p class="text-[10px]">紹介動画・紹介ページにて動作を確認できます</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>

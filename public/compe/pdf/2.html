@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - 背景と課題</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 課題カードのスタイル */
+        .problem-card {
+            transition: transform 0.2s;
+        }
+        
+        /* 抽象的な路線図風背景 */
+        .map-line {
+            position: absolute;
+            height: 8px;
+            border-radius: 4px;
+            opacity: 0.2;
+        }
+        .map-station {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #ccc;
+            opacity: 0.5;
+        }
+        
+        .highlight-text {
+            background: linear-gradient(transparent 60%, #fee2e2 60%);
+            font-weight: 700;
+            color: #b91c1c;
+        }
+
+        .arrow-box {
+            position: relative;
+            background: #f8fafc;
+            border: 2px dashed #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-12 py-6">
+    
+    <header class="flex justify-between items-end border-b-2 border-gray-100 pb-4 mb-2">
+        <div>
+            <h1 class="text-4xl font-black text-gray-800 tracking-tight">背景と課題</h1>
+        </div>
+        <div class="text-right">
+            <div class="text-gray-400 text-sm font-bold">都営でGO - Project Outline</div>
+        </div>
+    </header>
+
+    <div class="flex flex-1 gap-12 relative">
+        
+        <div class="w-7/12 flex flex-col z-10">
+            
+            <div class="mb-4">
+                <p class="text-xl text-gray-700 leading-relaxed font-medium">
+                    東京都では公共交通網が充実していますが、<br>
+                    高齢者や障害のある方にとっては<br>
+                    <span class="text-2xl font-bold text-gray-900 bg-gray-100 px-2 py-1 rounded inline-block mt-1">「使えるけれど不安が残る」</span>
+                    場面が少なくありません。
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-2 mb-2">
+                <div class="problem-card bg-white border-l-8 border-orange-400 pl-4 py-2 shadow-sm flex items-start gap-4">
+                    <div class="mt-1 text-orange-400 text-2xl w-8 text-center"><i class="fas fa-route"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-1">課題① 乗り換え・経路の分かりにくさ</h3>
+                        <ul class="text-gray-600 text-base space-y-1 list-disc list-inside">
+                            <li>路線や系統が多く、目的地までの<span class="highlight-text">見通し</span>が立てにくい</li>
+                            <li>乗り換えがあると心理的なハードルが高くなる</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="problem-card bg-white border-l-8 border-orange-400 pl-4 py-2 shadow-sm flex items-start gap-4">
+                    <div class="mt-1 text-orange-400 text-2xl w-8 text-center"><i class="fas fa-bus-alt"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-1">課題② 移動中の不安</h3>
+                        <ul class="text-gray-600 text-base space-y-1 list-disc list-inside">
+                            <li>今どこを走っているのか分からない・<span class="highlight-text">不安</span></li>
+                            <li>降りるタイミングを逃してしまう不安</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="problem-card bg-white border-l-8 border-orange-400 pl-4 py-2 shadow-sm flex items-start gap-4">
+                    <div class="mt-1 text-orange-400 text-2xl w-8 text-center"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 mb-1">課題③ グループ外出を支える負担</h3>
+                        <ul class="text-gray-600 text-base space-y-1 list-disc list-inside">
+                            <li>複数人を同時に見守る必要がある</li>
+                            <li>外出中の状況把握や、終了後の記録作成が<span class="highlight-text">負担</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+                <!-- 結果まとめ -->
+                <div class="mt-auto arrow-box p-4 rounded-xl text-center">
+                    <p class="text-xl text-gray-800 font-bold">
+                        公共交通は整っていても、<br>
+                        「安心して使える」と感じられず、<span class="text-red-600 text-2xl border-b-4 border-red-200">外出自体を控えてしまう</span>
+                    </p>
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-white px-2 text-gray-400 text-sm">
+                        <i class="fas fa-arrow-down"></i> この結果
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：ビジュアル (抽象的な不安イメージ) -->
+            <div class="w-5/12 relative bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
+                <!-- 複雑な路線図風アート -->
+                <div class="absolute top-10 left-0 w-full h-2 bg-green-200 transform rotate-12"></div>
+                <div class="absolute top-20 right-0 w-full h-2 bg-blue-200 transform -rotate-6"></div>
+                <div class="absolute bottom-10 left-0 w-full h-2 bg-purple-200 transform -rotate-12"></div>
+                <div class="absolute top-0 bottom-0 left-1/3 w-2 bg-orange-200 transform skew-x-12"></div>
+                
+                <!-- 駅 -->
+                <div class="map-station" style="top: 25%; left: 35%;"></div>
+                <div class="map-station" style="top: 50%; left: 60%;"></div>
+                <div class="map-station" style="top: 70%; left: 20%;"></div>
+
+                <!-- 不安の象徴 -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center gap-6 z-10">
+                    <div class="bg-white/90 p-6 rounded-2xl shadow-lg text-center backdrop-blur-sm border border-gray-200 max-w-xs">
+                        <div class="text-6xl text-gray-300 mb-4 relative h-16 w-full">
+                            <i class="fas fa-map-marked-alt absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-300"></i>
+                            <i class="fas fa-question absolute top-0 right-10 text-orange-500 animate-bounce text-4xl"></i>
+                        </div>
+                        <p class="text-gray-600 font-bold mb-1">「今どこ...？」</p>
+                        <p class="text-gray-500 text-sm">複雑な路線網</p>
+                    </div>
+
+                    <div class="bg-white/90 p-6 rounded-2xl shadow-lg text-center backdrop-blur-sm border border-gray-200 max-w-xs translate-x-8">
+                        <div class="text-5xl text-gray-300 mb-2 relative h-12 w-full">
+                            <i class="fas fa-clipboard-list absolute top-0 left-1/2 transform -translate-x-1/2 text-gray-300"></i>
+                            <i class="fas fa-exclamation absolute top-0 right-12 text-red-500 text-3xl"></i>
+                        </div>
+                        <p class="text-gray-600 font-bold mb-1">「記録が大変...」</p>
+                        <p class="text-gray-500 text-sm">支援スタッフの負担</p>
+                    </div>
+                </div>
+
+                <!-- 右下のつなぎ文 -->
+                <div class="absolute bottom-0 right-0 left-0 bg-gradient-to-t from-blue-900/90 to-blue-900/0 pt-20 pb-6 px-6 text-right">
+                    <p class="text-white text-lg font-bold drop-shadow-md">
+                        都営でGOは、これらの課題を<br>
+                        <span class="text-yellow-300">公共交通オープンデータ</span>の力で解決します。
+                        <i class="fas fa-arrow-circle-right ml-2"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

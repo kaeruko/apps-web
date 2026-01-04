@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - オープンデータ活用</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* データソースボックス */
+        .data-source-box {
+            background: #EFF6FF; /* blue-50 */
+            border: 2px solid #3B82F6; /* blue-500 */
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+        }
+
+        /* 価値ボックス */
+        .value-box {
+            background: linear-gradient(135deg, #ECFDF5 0%, #F0F9FF 100%);
+            border-radius: 12px;
+            border-left: 6px solid #10B981; /* green-500 */
+            padding: 1.5rem;
+        }
+
+        /* フロー図のパーツ */
+        .flow-node {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #4B5563;
+        }
+        .flow-node.highlight {
+            border-color: #3B82F6;
+            color: #1D4ED8;
+            background: #EFF6FF;
+        }
+        
+        /* 接続線 */
+        .connector-v {
+            position: absolute;
+            width: 2px;
+            background-color: #CBD5E1;
+            z-index: 0;
+        }
+        .connector-h {
+            position: absolute;
+            height: 2px;
+            background-color: #CBD5E1;
+            z-index: 0;
+        }
+        .arrow-down {
+            position: absolute;
+            color: #94A3B8;
+            font-size: 14px;
+            z-index: 1;
+            transform: translateX(-50%);
+        }
+
+        /* 背景のグリッド */
+        .bg-grid {
+            background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container px-12 py-8">
+        
+        <!-- ヘッダー -->
+        <header class="flex justify-between items-end border-b-2 border-gray-100 pb-4 mb-6">
+            <div>
+                <h1 class="text-4xl font-black text-gray-800 tracking-tight">
+                    公共交通オープンデータの活用
+                </h1>
+            </div>
+            <div class="text-right">
+                <div class="text-gray-400 text-sm font-bold">都営でGO - Open Data Usage</div>
+            </div>
+        </header>
+
+        <!-- メインコンテンツ -->
+        <div class="flex flex-1 gap-12">
+            
+            <!-- 左側：文章説明 -->
+            <div class="w-6/12 flex flex-col justify-center gap-8">
+                
+                <!-- 活用方針 -->
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800 mb-2 border-b-2 border-green-500 inline-block">活用方針</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed font-medium">
+                        都営でGOは、公共交通オープンデータを活用して、<br>
+                        <span class="bg-yellow-100 px-1">「移動の見通し」</span>と<span class="bg-yellow-100 px-1">「移動中の安心」</span>を<br>
+                        支える表示を実現します。
+                    </p>
+                </div>
+
+                <!-- 使用データリスト -->
+                <div>
+                    <h3 class="text-lg font-bold text-gray-700 mb-2 flex items-center">
+                        <i class="fas fa-database text-blue-500 mr-2"></i>使用データ (ODPT)
+                    </h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded shadow-sm">
+                            <span class="text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded text-sm">バス</span>
+                            <span class="text-gray-700 font-medium">東京都交通局 都営バス GTFS / GTFS-RT</span>
+                        </li>
+                        <li class="flex items-center gap-3 bg-white border border-gray-200 p-3 rounded shadow-sm">
+                            <span class="text-green-600 font-bold bg-green-50 px-2 py-0.5 rounded text-sm">地下鉄</span>
+                            <span class="text-gray-700 font-medium">都営地下鉄 関連データ</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 価値 -->
+                <div class="value-box mt-auto">
+                    <h3 class="text-lg font-bold text-green-800 mb-2">Value</h3>
+                    <p class="text-gray-700 leading-relaxed text-sm font-medium">
+                        オープンデータがあることで、机上の時刻表だけではなく、
+                        <strong class="text-green-700 text-base">実際の移動に近い体験</strong>を作ることができます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- 右側：システム図解 (CSS描画) -->
+            <div class="w-6/12 relative bg-gray-50 rounded-2xl border border-gray-100 bg-grid p-8 flex flex-col items-center">
+                
+                <!-- データソース層 -->
+                <div class="w-full mb-12 relative z-10">
+                    <div class="data-source-box text-center">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-4 py-1 rounded-full text-xs font-bold shadow">
+                            DATA SOURCE
+                        </div>
+                        <h3 class="text-xl font-black text-blue-900 mb-1">
+                            公共交通オープンデータセンター
+                        </h3>
+                        <p class="text-blue-500 text-xs font-mono font-bold">ckan.odpt.org</p>
+                    </div>
+                </div>
+
+                <!-- 矢印 (Data to Logic) -->
+                <div class="connector-v h-8" style="top: 100px;"></div>
+                <i class="fas fa-chevron-down arrow-down" style="top: 125px; left: 50%;"></i>
+
+                <!-- ロジック層 -->
+                <div class="w-full flex justify-center gap-4 mb-12 relative z-10">
+                    <!-- 左ルート -->
+                    <div class="flow-node w-40 highlight">
+                        <i class="fas fa-route text-2xl mb-2 text-blue-500"></i><br>
+                        バス・地下鉄・徒歩<br>統合経路案内
+                    </div>
+                    <!-- 右ルート -->
+                    <div class="flow-node w-40 highlight">
+                        <i class="fas fa-clock text-2xl mb-2 text-green-500"></i><br>
+                        運行状況反映<br>リアルタイム表示
+                    </div>
+                </div>
+
+                <!-- 結合線 -->
+                <div class="connector-v h-8" style="top: 210px; left: 34%;"></div> <!-- 左線 -->
+                <div class="connector-v h-8" style="top: 210px; left: 66%;"></div> <!-- 右線 -->
+                
+                <!-- 合流線 -->
+                <div class="connector-h w-1/3" style="top: 242px;"></div> <!-- 横棒 -->
+                <div class="connector-v h-6" style="top: 242px; left: 50%;"></div> <!-- 中央下ろし -->
+                <i class="fas fa-chevron-down arrow-down" style="top: 260px; left: 50%;"></i>
+
+                <!-- アプリ価値層 -->
+                <div class="w-full relative z-10">
+                    <div class="bg-white border-2 border-orange-200 rounded-xl p-4 shadow-md text-center">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-orange-100 text-orange-600 px-3 py-0.5 rounded text-xs font-bold border border-orange-200">
+                            都営でGO
+                        </div>
+                        <div class="flex items-center justify-center gap-6 mt-2">
+                            <div class="text-center">
+                                <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-users text-blue-600"></i>
+                                </div>
+                                <span class="text-xs font-bold text-gray-600">グループ<br>おでかけ</span>
+                            </div>
+                            <div class="text-2xl text-gray-300">+</div>
+                            <div class="text-center">
+                                <div class="bg-gray-100 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-1">
+                                    <i class="fas fa-file-alt text-gray-600"></i>
+                                </div>
+                                <span class="text-xs font-bold text-gray-600">おでかけ<br>報告書</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-gray-100">
+                            <p class="text-sm font-bold text-orange-500">
+                                <i class="fas fa-check-circle mr-1"></i>現場で使える運用支援
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- フッター -->
+        <footer class="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center text-gray-500">
+            <div class="text-xs">
+                Data Source: <a href="https://ckan.odpt.org/" class="text-blue-500 underline">ckan.odpt.org</a> (Association for Open Data of Public Transportation)
+            </div>
+            <div class="text-sm font-bold text-gray-500">
+                まとめ：都営でGOが目指す未来 <i class="fas fa-chevron-right ml-1"></i>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

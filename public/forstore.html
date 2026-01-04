@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO チラシ案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .a4-container {
+            width: 100%;
+            max-width: 210mm; /* A4 width approx */
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        .bg-streetview {
+            /* 東京の街並みイメージ */
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=2694&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .toei-green { color: #00BA89; } /* 都営交通イメージカラー風 */
+        .bg-toei-green { background-color: #00BA89; }
+        .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+        
+        /* 印刷用調整 */
+        @media print {
+            body { background: none; }
+            .a4-container { box-shadow: none; max-width: 100%; margin: 0; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body class="py-8 min-h-screen">
+
+    <!-- 印刷ボタンなど（画面表示のみ） -->
+    <div class="max-w-[210mm] mx-auto mb-4 flex justify-end no-print px-4 md:px-0">
+        <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded shadow hover:bg-gray-700 transition flex items-center gap-2">
+            <i class="fas fa-print"></i> 印刷 / PDF保存
+        </button>
+    </div>
+
+    <!-- チラシ面 -->
+    <div class="a4-container flex flex-col">
+        
+        <!-- ① ヘッダー -->
+        <header class="relative h-64 md:h-80 bg-streetview flex flex-col justify-center items-center text-center text-white p-6">
+            <div class="absolute inset-0 bg-black/30"></div> <!-- 半透明帯の代わり（全体にかけるパターン） -->
+            
+            <div class="relative z-10 w-full">
+                <div class="bg-white/90 text-gray-800 py-1 px-4 inline-block transform -skew-x-12 mb-4">
+                    <span class="block transform skew-x-12 font-bold text-sm md:text-base tracking-wider">都営交通だけで行ける東京の名所案内</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-2 text-shadow">
+                    この景色まで、<br class="md:hidden">一本で。
+                </h1>
+                <div class="mt-4 inline-flex items-center gap-2 bg-toei-green px-6 py-2 rounded-full shadow-lg">
+                    <i class="fas fa-subway text-xl"></i>
+                    <span class="text-2xl font-bold tracking-widest">都営でGO</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ② メインコピー -->
+        <section class="py-8 px-8 text-center bg-white">
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 leading-relaxed">
+                乗り換えなしで、<br>ここまで行ける。
+            </h2>
+            <p class="text-gray-600 leading-7">
+                都営バス・都営地下鉄だけを使って、<br>
+                東京の名所やお出かけスポットを<br>
+                かんたんに探せます。
+            </p>
+        </section>
+
+        <!-- ③ 機能ブロック（2×2） -->
+        <section class="px-6 pb-8">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2 text-xl">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">都営経路探索</h3>
+                    <p class="text-xs text-gray-500">都営だけのルートを表示</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center mb-2 text-xl">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">グループお出かけ</h3>
+                    <p class="text-xs text-gray-500">みんなで待ち合わせ</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2 text-xl">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">スケジュール編集</h3>
+                    <p class="text-xs text-gray-500">集合・出発・到着を管理</p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100 flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-2 text-xl">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 mb-1">降車お知らせ</h3>
+                    <p class="text-xs text-gray-500">降りる前に音でお知らせ</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ④ こんな方に & ⑤ 使い方 -->
+        <div class="grid md:grid-cols-2 gap-0 border-t border-b border-gray-200">
+            <!-- こんな方に -->
+            <section class="bg-green-50 p-6">
+                <h3 class="text-lg font-bold text-green-800 mb-4 border-b-2 border-green-200 inline-block pb-1">
+                    こんな方に
+                </h3>
+                <ul class="space-y-3">
+                    <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <span class="text-gray-700 font-medium">東京の名所を巡りたい</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <span class="text-gray-700 font-medium">迷わず行きたい</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <span class="text-gray-700 font-medium">家族や友だちと出かけたい</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-green-600 mt-1"></i>
+                        <span class="text-gray-700 font-medium">シルバーパスでお得に</span>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 使い方 3ステップ -->
+            <section class="bg-white p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4 border-b-2 border-gray-200 inline-block pb-1">
+                    かんたん3ステップ
+                </h3>
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold flex-shrink-0">1</div>
+                        <p class="text-gray-700 font-medium">現在地を設定</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold flex-shrink-0">2</div>
+                        <p class="text-gray-700 font-medium">行きたい場所を選ぶ</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gray-800 text-white flex items-center justify-center font-bold flex-shrink-0">3</div>
+                        <p class="text-gray-700 font-medium">案内どおり乗るだけ</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ⑥ お店・施設の方へ（B2Bエリア） -->
+        <section class="bg-gray-800 text-white p-8 relative overflow-hidden">
+            <!-- 装飾 -->
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gray-700 rounded-full mix-blend-overlay filter blur-xl transform translate-x-1/2 -translate-y-1/2"></div>
+            
+            <div class="relative z-10">
+                <div class="text-center mb-6">
+                    <span class="bg-yellow-500 text-gray-900 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">お店・施設の方へ</span>
+                    <h2 class="text-xl md:text-2xl font-bold">ストリートビュー広告で、<br>"行きたい"をつくる。</h2>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <div class="space-y-3 text-sm text-gray-300">
+                        <p>アプリ内のストビュー画像をあなたの店舗前に差し替え。「このお店まで都営でGOで一本！」で来店導線を表示します。</p>
+                        <p>地元のお客様・シルバーパス世代にしっかり届く、新しい広告のカタチです。</p>
+                    </div>
+                    
+                    <div class="bg-gray-700/50 p-4 rounded-lg border border-gray-600">
+                        <h4 class="text-yellow-400 font-bold text-sm mb-2">こんな方におすすめ</h4>
+                        <ul class="space-y-1 text-xs md:text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> 来店客を増やしたい飲食店さま</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> 地域の施設・クリニック・教室さま</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> 商店街・観光スポットの運営者さま</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑦ ダウンロード -->
+        <section class="p-8 bg-gradient-to-br from-green-50 to-blue-50 text-center flex-grow flex flex-col justify-center">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">今すぐ無料でダウンロード</h2>
+            <p class="text-gray-500 mb-6">iPhone / Android 対応</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                <!-- QRコード（ダミー） -->
+                <div class="bg-white p-2 rounded shadow-md">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https://example.com" alt="QRコード" class="w-28 h-28">
+                </div>
+                
+                <!-- ストアボタン風 -->
+                <div class="flex flex-col gap-3 w-40">
+                    <button class="bg-black text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:opacity-80 transition">
+                        <i class="fab fa-apple text-xl"></i>
+                        <div class="text-left leading-none">
+                            <div class="text-[0.6rem]">Download on the</div>
+                            <div class="text-sm font-bold">App Store</div>
+                        </div>
+                    </button>
+                    <button class="bg-black text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 hover:opacity-80 transition">
+                        <i class="fab fa-google-play text-xl"></i>
+                        <div class="text-left leading-none">
+                            <div class="text-[0.6rem]">GET IT ON</div>
+                            <div class="text-sm font-bold">Google Play</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ⑦ フッター -->
+        <footer class="bg-white border-t-4 border-toei-green p-6 text-center text-sm">
+            <!-- スポンサー枠 -->
+            <div class="mb-6 p-4 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                <p class="text-xs text-gray-500 font-bold mb-2">【今月のおすすめ】この場所まで、都営でGOで一本。</p>
+                <div class="flex flex-wrap justify-center gap-4 text-gray-700 font-medium">
+                    <span>〇〇食堂</span>
+                    <span class="text-gray-300">|</span>
+                    <span>△△クリニック</span>
+                    <span class="text-gray-300">|</span>
+                    <span>□□ギャラリー</span>
+                </div>
+            </div>
+
+            <!-- 掲載募集CTA -->
+            <div class="flex items-center justify-center gap-4 mb-4">
+                <div class="text-left">
+                    <p class="font-bold text-gray-800">掲載募集</p>
+                    <p class="text-xs text-gray-500">アプリ内ストリートビュー広告に<br>ご興味のある方はこちら</p>
+                </div>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=60x60&data=https://example.com/ad" alt="広告募集QR" class="w-12 h-12">
+            </div>
+
+            <div class="mt-4 pt-4 border-t border-gray-100 text-gray-400 text-xs">
+                <p class="font-bold text-lg text-gray-800 mb-1">都営でGO</p>
+                <p>地元のお出かけを、もっと楽しく。</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
