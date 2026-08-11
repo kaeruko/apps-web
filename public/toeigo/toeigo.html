@@ -1,256 +1,468 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>都営でGO チラシ案（シニア向け）</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f3f4f6; /* print preview bg */
-            -webkit-print-color-adjust: exact;
-        }
-        .a4-container {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 20px auto;
-            background: white;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        @media screen and (max-width: 210mm) {
-            .a4-container {
-                width: 100%;
-                min-height: auto;
-                margin: 0;
-                box-shadow: none;
-            }
-        }
-        /* 印刷用スタイル */
-        @media print {
-            body {
-                background: none;
-                margin: 0;
-            }
-            .a4-container {
-                width: 100%;
-                margin: 0;
-                box-shadow: none;
-                page-break-after: always;
-            }
-            .no-print {
-                display: none;
-            }
-        }
-        .text-toei-green {
-            color: #00b36e;
-        }
-        .bg-toei-green {
-            background-color: #00b36e;
-        }
-        .border-toei-green {
-            border-color: #00b36e;
-        }
-        .text-warm-orange {
-            color: #ed8936;
-        }
-        .bg-warm-orange {
-            background-color: #ed8936;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="都営交通だけで、迷わずおでかけ。都営バス・都営地下鉄を中心に、ルート検索、乗車中案内、みんなでおでかけ、一本で行ける場所探しをサポートします。">
+  <meta property="og:title" content="都営でGO｜都営交通だけで、迷わずおでかけ。">
+  <meta property="og:description" content="都営交通中心のルート検索から、乗車中の案内、グループのおでかけ、近場の行き先探しまで。">
+  <meta property="og:type" content="website">
+  <title>都営でGO｜都営交通だけで、迷わずおでかけ。</title>
+  <style>
+    :root {
+      --ink:#15171c;
+      --muted:#626874;
+      --line:#e7e8ed;
+      --panel:#f7f8fb;
+      --blue:#087cff;
+      --blue-soft:#eaf4ff;
+      --green:#45b354;
+      --green-soft:#ebf8ee;
+      --orange:#ff9a20;
+      --orange-soft:#fff4e3;
+      --coral:#ff765b;
+      --shadow:0 18px 55px rgba(29, 39, 58, .10);
+      --radius:28px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:#fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+      line-height:1.75;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .nav{
+      position:sticky;top:0;z-index:20;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(231,232,237,.9);
+    }
+    .nav-inner{
+      min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px
+    }
+    .brand{font-weight:900;letter-spacing:.02em;font-size:20px;text-decoration:none}
+    .nav-links{display:flex;align-items:center;gap:18px;font-size:14px;color:var(--muted)}
+    .nav-links a{text-decoration:none}
+    .cta{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:48px;padding:0 20px;border-radius:999px;
+      background:var(--blue);color:#fff;font-weight:800;text-decoration:none;
+      box-shadow:0 8px 24px rgba(8,124,255,.20);
+    }
+    .hero{
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 14% 16%, rgba(8,124,255,.12), transparent 28%),
+        radial-gradient(circle at 89% 15%, rgba(255,154,32,.14), transparent 28%),
+        linear-gradient(180deg,#fff 0%,#fbfcff 100%);
+    }
+    .hero-grid{
+      min-height:700px;
+      display:grid;grid-template-columns:1.02fr .98fr;gap:70px;align-items:center;
+      padding:78px 0 86px;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 12px;border-radius:999px;background:var(--blue-soft);
+      color:#0566d5;font-size:13px;font-weight:800;
+    }
+    h1{font-size:clamp(42px,6.1vw,76px);line-height:1.12;letter-spacing:-.045em;margin:22px 0 24px}
+    .hero-copy{font-size:clamp(17px,2vw,21px);color:#454b56;max-width:640px;margin:0}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .secondary{
+      display:inline-flex;align-items:center;justify-content:center;
+      min-height:48px;padding:0 20px;border-radius:999px;border:1px solid #cfd3db;
+      background:#fff;font-weight:800;text-decoration:none;
+    }
+    .hero-note{font-size:12px;color:#7a808a;margin-top:13px}
+    .phones{
+      position:relative;min-height:610px;
+    }
+    .phone{
+      position:absolute;width:min(58%,330px);border-radius:30px;overflow:hidden;
+      background:#fff;border:1px solid #dfe2e8;box-shadow:var(--shadow);
+    }
+    .phone img{width:100%;height:auto}
+    .phone.a{left:1%;top:10%;transform:rotate(-4deg)}
+    .phone.b{right:1%;top:0;transform:rotate(4deg)}
+    .phone.c{right:19%;bottom:0;width:min(47%,270px);transform:rotate(-1deg)}
+    section{padding:96px 0}
+    .section-head{max-width:760px;margin-bottom:44px}
+    .kicker{font-weight:900;color:var(--blue);font-size:13px;letter-spacing:.08em}
+    h2{font-size:clamp(32px,4.5vw,50px);line-height:1.22;letter-spacing:-.035em;margin:8px 0 16px}
+    .lead{font-size:18px;color:var(--muted);margin:0}
+    .feature{
+      display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px;
+    }
+    .feature + .feature{margin-top:110px}
+    .feature.reverse .feature-copy{order:2}
+    .feature.reverse .visual{order:1}
+    .feature-copy h3{font-size:clamp(27px,3vw,38px);line-height:1.3;margin:0 0 16px}
+    .feature-copy p{font-size:17px;color:var(--muted);margin:0 0 18px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+    .chip{padding:7px 11px;border-radius:999px;background:var(--panel);font-size:13px;font-weight:800}
+    .visual{
+      border-radius:var(--radius);padding:28px;min-height:500px;
+      display:flex;align-items:center;justify-content:center;
+      background:var(--panel);overflow:hidden;
+    }
+    .visual.blue{background:var(--blue-soft)}
+    .visual.green{background:var(--green-soft)}
+    .visual.orange{background:var(--orange-soft)}
+    .screen-row{display:flex;align-items:flex-end;justify-content:center;gap:18px;width:100%}
+    .screen{
+      width:min(47%,290px);border-radius:22px;overflow:hidden;background:#fff;
+      border:1px solid rgba(0,0,0,.07);box-shadow:0 14px 36px rgba(33,43,62,.12);
+    }
+    .screen.single{width:min(62%,340px)}
+    .screen.small{width:min(39%,240px)}
+    .screen img{width:100%}
+    .discover{
+      background:linear-gradient(180deg,#fbfcff 0,#fff 100%);
+    }
+    .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
+    .mini{
+      border:1px solid var(--line);border-radius:22px;padding:22px;background:#fff;
+    }
+    .mini strong{display:block;font-size:17px;margin-bottom:6px}
+    .mini span{color:var(--muted);font-size:14px}
+    .gallery{
+      display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start;
+    }
+    .gallery figure{margin:0}
+    .gallery img{
+      width:100%;border-radius:18px;border:1px solid var(--line);
+      box-shadow:0 12px 30px rgba(33,43,62,.08);
+    }
+    .gallery figcaption{font-size:12px;color:var(--muted);margin-top:8px}
+    .audience{
+      background:#17191f;color:#fff;
+    }
+    .audience .lead{color:#c7cad1}
+    .audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+    .audience-card{border:1px solid #333741;border-radius:20px;padding:22px;background:#20232a}
+    .audience-card strong{display:block;font-size:18px;margin-bottom:8px}
+    .audience-card p{margin:0;color:#c7cad1;font-size:14px}
+    .official{
+      background:#f6f7f9;
+    }
+    .notice{
+      border:1px solid #dadde4;border-radius:22px;padding:28px;background:#fff;
+    }
+    .notice h3{margin:0 0 12px;font-size:22px}
+    .notice p{margin:0 0 16px;color:#545b66}
+    .sources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+    .source{
+      display:block;padding:16px;border-radius:16px;border:1px solid var(--line);
+      background:#fff;text-decoration:none;font-weight:800;
+    }
+    .source small{display:block;color:var(--muted);font-weight:500;margin-top:5px}
+    .final{
+      padding:92px 0;text-align:center;
+      background:
+        radial-gradient(circle at 50% 0, rgba(8,124,255,.16), transparent 42%),
+        #fff;
+    }
+    .final p{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto 28px}
+    footer{padding:28px 0 44px;border-top:1px solid var(--line);font-size:12px;color:#7a808a}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media (max-width:900px){
+      .nav-links a:not(.cta){display:none}
+      .hero-grid{grid-template-columns:1fr;gap:20px;padding:58px 0 44px}
+      .phones{min-height:520px;max-width:560px;width:100%;margin:0 auto}
+      .feature,.feature.reverse{grid-template-columns:1fr;gap:34px}
+      .feature.reverse .feature-copy,.feature.reverse .visual{order:initial}
+      .feature + .feature{margin-top:84px}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+      .audience-grid,.sources{grid-template-columns:1fr}
+      .mini-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav-inner{min-height:60px}
+      .hero-grid{padding-top:42px}
+      h1{font-size:44px}
+      .hero-copy{font-size:17px}
+      .phones{min-height:430px}
+      .phone{border-radius:21px}
+      section{padding:72px 0}
+      .visual{min-height:390px;padding:18px;border-radius:22px}
+      .screen-row{gap:10px}
+      .screen{border-radius:15px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .gallery figure:last-child{display:none}
+      .hero-actions .cta,.hero-actions .secondary{width:100%}
+    }
+  </style>
 </head>
 <body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#">都営でGO</a>
+      <nav class="nav-links" aria-label="メインナビゲーション">
+        <a href="#features">できること</a>
+        <a href="#discover">行き先探し</a>
+        <a href="#official">公式情報源</a>
+        <a class="cta" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Play</a>
+      </nav>
+    </div>
+  </header>
 
-    <div class="a4-container">
-        <!-- ヘッダーエリア -->
-        <header class="bg-white p-6 border-b-4 border-toei-green flex flex-col md:flex-row items-center justify-between gap-4">
-            <!-- ロゴ画像 -->
-            <div class="flex-shrink-0">
-                <img src="logo.png" alt="都営でGO ロゴ" class="h-16 object-contain" onerror="this.src='https://placehold.co/200x80?text=都営でGO+ロゴ'">
-            </div>
-            <!-- キャッチコピー -->
-            <h1 class="text-xl md:text-2xl font-bold text-gray-800 text-center md:text-right leading-tight">
-                シルバーパスのお出かけが、<br>
-                もっと<span class="text-toei-green">楽しく</span>、もっと<span class="text-warm-orange">安心</span>に
-            </h1>
-        </header>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">🚌 都営交通のおでかけナビ</span>
+          <h1>都営交通だけで、<br>迷わずおでかけ。</h1>
+          <p class="hero-copy">
+            都営バス・都営地下鉄を中心に、JRや私鉄を使わないルートを探せるおでかけアプリ。
+            検索だけでなく、乗車中の案内、みんなでのおでかけ、近場の行き先探しまでサポートします。
+          </p>
+          <div class="hero-actions">
+            <a class="cta" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
+            <a class="secondary" href="#features">できることを見る</a>
+          </div>
+          <div class="hero-note">※ 本アプリは東京都・東京都交通局等が提供する公式アプリではありません。</div>
+        </div>
+        <div class="phones" aria-label="都営でGOの画面例">
+          <div class="phone a"><img src="assets/screenshots/route-search.png" alt="都営交通中心のルート検索結果"></div>
+          <div class="phone b"><img src="assets/screenshots/ride-next-stop.png" alt="乗車中に次降りますと大きく表示する画面"></div>
+          <div class="phone c"><img src="assets/screenshots/group-meeting.png" alt="グループおでかけの集合画面"></div>
+        </div>
+      </div>
+    </section>
 
-        <!-- メインビジュアル -->
-        <div class="relative h-64 md:h-80 overflow-hidden group">
-            <!-- シニアがお出かけしているようなイメージ画像 -->
-            <img src="b.png" 
-                 alt="Senior couple traveling" 
-                 class="w-full h-full object-cover object-center opacity-90"
-                 onerror="this.src='https://placehold.co/800x400?text=シニアの方のお出かけ写真'">
-            
-            <!-- 写真上のコピー -->
-            <div class="absolute bottom-6 right-0 bg-white/95 px-8 py-4 rounded-l-full shadow-lg border-r-8 border-toei-green">
-                <p class="text-2xl md:text-3xl font-bold text-gray-800">
-                    「うちから一本で、<br>こんなに行けるのね」
-                </p>
-            </div>
+    <section id="features">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">ROUTE & NAVIGATION</div>
+          <h2>調べるだけじゃない。<br>乗ってからも、次がわかる。</h2>
+          <p class="lead">検索から降車まで、おでかけの流れに沿って「次に何をするか」をわかりやすく表示します。</p>
         </div>
 
-        <!-- メインコンテンツ -->
-        <main class="flex-grow px-8 py-6 flex flex-col gap-8">
-            
-            <!-- 機能紹介 4ブロック -->
-            <section>
-                <h2 class="text-center text-2xl font-bold text-gray-800 mb-6 flex items-center justify-center gap-3">
-                    <span class="bg-toei-green text-white px-3 py-1 rounded-full text-sm align-middle">機能</span>
-                    都営でGOでできること
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- 経路探索 -->
-                    <div class="bg-green-50 rounded-xl p-4 flex items-start gap-4 border border-green-200">
-                        <div class="bg-white p-3 rounded-full shrink-0 shadow-sm text-toei-green">
-                            <i data-lucide="bus" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">経路探索</h3>
-                            <p class="font-bold text-toei-green mb-1">都営交通だけで、かんたん検索</p>
-                            <p class="text-gray-600 text-base leading-snug">バスも地下鉄もまとめて案内します。</p>
-                        </div>
-                    </div>
+        <article class="feature">
+          <div class="feature-copy">
+            <h3>都営交通中心のルートを見つける</h3>
+            <p>
+              現在地や出発地から目的地までを検索。所要時間、乗換回数、徒歩距離、待ち時間、
+              乗車区間を見ながら、都営交通を中心としたルートを選べます。
+            </p>
+            <div class="chips">
+              <span class="chip">ルート候補を比較</span>
+              <span class="chip">地図で確認</span>
+              <span class="chip">徒歩・待ち時間も表示</span>
+            </div>
+          </div>
+          <div class="visual blue">
+            <div class="screen-row">
+              <div class="screen"><img src="assets/screenshots/route-search.png" alt="ルート検索画面" loading="lazy"></div>
+              <div class="screen"><img src="assets/screenshots/route-detail.png" alt="地図付きルート詳細画面" loading="lazy"></div>
+            </div>
+          </div>
+        </article>
 
-                    <!-- グループお出かけ -->
-                    <div class="bg-orange-50 rounded-xl p-4 flex items-start gap-4 border border-orange-200">
-                        <div class="bg-white p-3 rounded-full shrink-0 shadow-sm text-warm-orange">
-                            <i data-lucide="users" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">グループお出かけ</h3>
-                            <p class="font-bold text-warm-orange mb-1">みんなで待ち合わせ</p>
-                            <p class="text-gray-600 text-base leading-snug">友達やご近所さんと一緒に安心して出発。</p>
-                        </div>
-                    </div>
+        <article class="feature reverse">
+          <div class="feature-copy">
+            <h3>降りるタイミングを、大きく案内</h3>
+            <p>
+              乗車中は「あと何回停車」「次降ります」など、降りるタイミングがわかる表示に。
+              初めての場所でも、路線図と合わせて現在の区間を確認できます。
+            </p>
+            <div class="chips">
+              <span class="chip">次降ります</span>
+              <span class="chip">残り停車回数</span>
+              <span class="chip">停留所一覧</span>
+            </div>
+          </div>
+          <div class="visual orange">
+            <div class="screen-row">
+              <div class="screen"><img src="assets/screenshots/ride-next-stop.png" alt="次降りますの乗車案内" loading="lazy"></div>
+              <div class="screen"><img src="assets/screenshots/bus-stops.png" alt="バス停留所一覧" loading="lazy"></div>
+            </div>
+          </div>
+        </article>
 
-                    <!-- スケジュール編集 -->
-                    <div class="bg-blue-50 rounded-xl p-4 flex items-start gap-4 border border-blue-200">
-                        <div class="bg-white p-3 rounded-full shrink-0 shadow-sm text-blue-600">
-                            <i data-lucide="clipboard-edit" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">スケジュール編集</h3>
-                            <p class="font-bold text-blue-600 mb-1">予定を自分好みに</p>
-                            <p class="text-gray-600 text-base leading-snug">集合時間や寄り道もかんたん調整。</p>
-                        </div>
-                    </div>
+        <article class="feature">
+          <div class="feature-copy">
+            <h3>みんなで出かける日の予定も、ひとつに</h3>
+            <p>
+              集合、徒歩、乗車、到着までを「今日の予定」として共有。
+              参加コード付きのしおりで、同行者と同じ行程を確認できます。
+              必要に応じて予定を追加したり、帰りの時間を調整したりできます。
+            </p>
+            <div class="chips">
+              <span class="chip">集合</span>
+              <span class="chip">参加コード</span>
+              <span class="chip">たびのしおり</span>
+              <span class="chip">予定を追加</span>
+            </div>
+          </div>
+          <div class="visual green">
+            <div class="screen-row">
+              <div class="screen"><img src="assets/screenshots/group-meeting.png" alt="現在地集合のグループ画面" loading="lazy"></div>
+              <div class="screen"><img src="assets/screenshots/trip-guide.png" alt="おでかけのしおり" loading="lazy"></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-                    <!-- 降車お知らせ -->
-                    <div class="bg-red-50 rounded-xl p-4 flex items-start gap-4 border border-red-200">
-                        <div class="bg-white p-3 rounded-full shrink-0 shadow-sm text-red-500">
-                            <i data-lucide="bell-ring" class="w-8 h-8"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800 mb-1">降車お知らせ</h3>
-                            <p class="font-bold text-red-500 mb-1">降りる前にお知らせ</p>
-                            <p class="text-gray-600 text-base leading-snug">乗り過ごしの心配がありません。</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <section id="discover" class="discover">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">DISCOVER</div>
+          <h2>目的地が決まっていなくても、<br>おでかけは始められる。</h2>
+          <p class="lead">「都営交通でどこへ行こう？」から探せる機能も用意しています。</p>
+        </div>
 
-            <!-- ターゲット & 使い方（左右分割） -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- こんな方におすすめ -->
-                <div class="bg-gray-50 rounded-xl p-6 border-t-4 border-gray-400">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">こんな方におすすめ</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-toei-green shrink-0"></i>
-                            <span class="text-lg font-medium text-gray-700">シルバーパスをお持ちの方</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-toei-green shrink-0"></i>
-                            <span class="text-lg font-medium text-gray-700">バスや地下鉄でよくお出かけする方</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-toei-green shrink-0"></i>
-                            <span class="text-lg font-medium text-gray-700">乗り換えや降りる場所が不安な方</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <i data-lucide="check-circle-2" class="w-6 h-6 text-toei-green shrink-0"></i>
-                            <span class="text-lg font-medium text-gray-700">友達と一緒に出かけたい方</span>
-                        </li>
-                    </ul>
-                </div>
+        <article class="feature reverse">
+          <div class="feature-copy">
+            <h3>一本で行ける場所を探す</h3>
+            <p>
+              現在地の近くから、乗り換えなしで行ける駅やバス停を一覧表示。
+              行き先を決めてから経路検索するだけでなく、行ける場所の中からおでかけ先を見つけられます。
+            </p>
+            <div class="chips">
+              <span class="chip">乗り換えなし</span>
+              <span class="chip">近くの駅・バス停</span>
+              <span class="chip">写真付き</span>
+            </div>
+          </div>
+          <div class="visual blue">
+            <div class="screen-row">
+              <div class="screen single"><img src="assets/screenshots/one-ride-discovery.png" alt="一本で行ける場所を探す画面" loading="lazy"></div>
+            </div>
+          </div>
+        </article>
 
-                <!-- 使い方はかんたん -->
-                <div class="flex flex-col justify-between">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">使い方はかんたん</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4 bg-white p-3 rounded-lg border shadow-sm">
-                            <div class="bg-gray-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shrink-0">1</div>
-                            <span class="text-xl font-bold text-gray-800">行き先を選ぶ</span>
-                        </div>
-                        <div class="flex justify-center -my-2"><i data-lucide="arrow-down" class="text-gray-300"></i></div>
-                        <div class="flex items-center gap-4 bg-white p-3 rounded-lg border shadow-sm">
-                            <div class="bg-gray-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shrink-0">2</div>
-                            <span class="text-xl font-bold text-gray-800">経路を見る</span>
-                        </div>
-                        <div class="flex justify-center -my-2"><i data-lucide="arrow-down" class="text-gray-300"></i></div>
-                        <div class="flex items-center gap-4 bg-white p-3 rounded-lg border shadow-sm">
-                            <div class="bg-gray-800 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg shrink-0">3</div>
-                            <span class="text-xl font-bold text-gray-800">案内どおりに乗る</span>
-                        </div>
-                    </div>
-                    <p class="text-center text-sm text-gray-600 mt-3 font-medium">
-                        大きな文字で、スマホが苦手でも安心です。
-                    </p>
-                </div>
-            </section>
+        <article class="feature">
+          <div class="feature-copy">
+            <h3>周辺のようすを見て、行き先を選ぶ</h3>
+            <p>
+              駅やバス停の周辺写真や特徴を見ながら、気になる場所をチェック。
+              地図だけではわかりにくい「どんな場所？」をイメージしやすくします。
+            </p>
+            <div class="chips">
+              <span class="chip">周辺写真</span>
+              <span class="chip">散歩</span>
+              <span class="chip">公園・歴史など</span>
+            </div>
+          </div>
+          <div class="visual green">
+            <div class="screen-row">
+              <div class="screen single"><img src="assets/screenshots/nearby-detail.png" alt="駅やバス停周辺の詳細画面" loading="lazy"></div>
+            </div>
+          </div>
+        </article>
 
-            <!-- ダウンロードエリア -->
-            <section class="mt-auto bg-toei-green text-white rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-32 bg-white/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
-                
-                <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
-                    <div class="text-center md:text-left flex-grow">
-                        <h2 class="text-2xl md:text-3xl font-black mb-2">無料ダウンロードはこちら</h2>
-                        <p class="text-green-50 font-bold mb-4">ご家族の方のサポートもおすすめです。</p>
-                        
-                        <div class="flex gap-3 justify-center md:justify-start">
-                            <!-- Store Badges -->
-                            <div class="bg-black/20 border border-white/40 rounded-lg px-4 py-2 flex items-center gap-2 hover:bg-black/30 transition">
-                                <i data-lucide="apple" class="w-6 h-6"></i>
-                                <div class="text-left">
-                                    <div class="text-[10px] leading-none opacity-80">Download on the</div>
-                                    <div class="text-sm font-bold leading-none">App Store</div>
-                                </div>
-                            </div>
-                            <div class="bg-black/20 border border-white/40 rounded-lg px-4 py-2 flex items-center gap-2 hover:bg-black/30 transition">
-                                <i data-lucide="play" class="w-6 h-6"></i>
-                                <div class="text-left">
-                                    <div class="text-[10px] leading-none opacity-80">GET IT ON</div>
-                                    <div class="text-sm font-bold leading-none">Google Play</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <div class="mini-grid">
+          <div class="mini"><strong>🧭 検索</strong><span>出発地・目的地からルート候補を確認。</span></div>
+          <div class="mini"><strong>🚌 乗車中</strong><span>次に降りるタイミングを大きく案内。</span></div>
+          <div class="mini"><strong>👥 グループ</strong><span>集合から到着まで同じ予定を共有。</span></div>
+        </div>
+      </div>
+    </section>
 
-                    <!-- QRコード -->
-                    <div class="bg-white p-3 rounded-xl shadow-lg shrink-0">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://example.com" 
-                             alt="ダウンロードQRコード" 
-                             class="w-32 h-32 md:w-40 md:h-40">
-                        <p class="text-black text-xs text-center font-bold mt-1">スマホで読み取る</p>
-                    </div>
-                </div>
-            </section>
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">SCREENSHOTS</div>
+          <h2>都営でGOの画面</h2>
+          <p class="lead">検索、乗車案内、おでかけの共有、行き先探しまで、一つのアプリでつながります。</p>
+        </div>
+        <div class="gallery">
+          <figure><img src="assets/screenshots/route-search.png" alt="検索結果" loading="lazy"><figcaption>ルート検索</figcaption></figure>
+          <figure><img src="assets/screenshots/route-detail.png" alt="ルート詳細" loading="lazy"><figcaption>地図付きルート詳細</figcaption></figure>
+          <figure><img src="assets/screenshots/ride-next-stop.png" alt="乗車中案内" loading="lazy"><figcaption>乗車中案内</figcaption></figure>
+          <figure><img src="assets/screenshots/group-meeting.png" alt="集合画面" loading="lazy"><figcaption>みんなでおでかけ</figcaption></figure>
+          <figure><img src="assets/screenshots/trip-guide.png" alt="おでかけのしおり" loading="lazy"><figcaption>おでかけのしおり</figcaption></figure>
+          <figure><img src="assets/screenshots/one-ride-discovery.png" alt="一本で行ける場所" loading="lazy"><figcaption>一本で行ける場所</figcaption></figure>
+          <figure><img src="assets/screenshots/nearby-detail.png" alt="周辺詳細" loading="lazy"><figcaption>周辺のようす</figcaption></figure>
+          <figure><img src="assets/screenshots/trip-edit.png" alt="おでかけ編集" loading="lazy"><figcaption>おでかけ編集</figcaption></figure>
+          <figure><img src="assets/screenshots/schedule-add.png" alt="予定追加" loading="lazy"><figcaption>予定を追加</figcaption></figure>
+          <figure><img src="assets/screenshots/bus-stops.png" alt="停留所一覧" loading="lazy"><figcaption>停留所一覧</figcaption></figure>
+        </div>
+      </div>
+    </section>
 
-        </main>
+    <section class="audience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" style="color:#8ec8ff">FOR YOUR TRIP</div>
+          <h2>都営交通を使って出かけたい人へ。</h2>
+          <p class="lead">
+            いつもの移動にも、ちょっと知らない場所へのおでかけにも。
+            精神障害者都営交通乗車証や東京都シルバーパスなどを利用して、
+            都営交通で移動したい方にも使いやすいナビを目指しています。
+          </p>
+        </div>
+        <div class="audience-grid">
+          <div class="audience-card"><strong>都営交通中心で移動したい</strong><p>JR・私鉄を使わない移動を考えたいときに。</p></div>
+          <div class="audience-card"><strong>降りる場所が不安</strong><p>乗車中に、次に何をするか確認したいときに。</p></div>
+          <div class="audience-card"><strong>同行者と予定を共有したい</strong><p>集合から到着まで、同じ行程を見ながら動きたいときに。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="official" class="official">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">IMPORTANT INFORMATION</div>
+          <h2>制度に関する情報は、公式情報をご確認ください。</h2>
+        </div>
+        <div class="notice">
+          <h3>本アプリは非公式アプリです</h3>
+          <p>
+            本アプリは個人が開発・提供する非公式アプリです。
+            東京都、東京都交通局、東京都福祉局その他の行政機関を代表するものではなく、
+            これらの機関による承認、提携、運営を受けているものではありません。
+          </p>
+          <p>
+            制度の対象者、利用条件、利用可能な交通機関などは変更される場合があります。
+            精神障害者都営交通乗車証、東京都シルバーパス、都営交通無料乗車券などの
+            最新かつ正確な情報は、以下の公式情報をご確認ください。
+          </p>
+          <div class="sources">
+            <a class="source" href="https://www.fukushi.metro.tokyo.lg.jp/shougai/nichijo/jousyasyo" target="_blank" rel="noopener">
+              精神障害者都営交通乗車証
+              <small>東京都福祉局 公式サイト ↗</small>
+            </a>
+            <a class="source" href="https://www.fukushi.metro.tokyo.lg.jp/kourei/shakai_shien/s_pass/hakkou" target="_blank" rel="noopener">
+              東京都シルバーパス
+              <small>東京都福祉局 公式サイト ↗</small>
+            </a>
+            <a class="source" href="https://www.kotsu.metro.tokyo.jp/other/kanren/fare/free.html" target="_blank" rel="noopener">
+              都営交通無料乗車券
+              <small>東京都交通局 公式サイト ↗</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap">
+        <div class="kicker">TOEI DE GO</div>
+        <h2>都営交通で行ける東京を、<br>もっと見つけやすく。</h2>
+        <p>検索から乗車中の案内、みんなでのおでかけ共有まで。都営でGOで、次のおでかけを始めてみませんか。</p>
+        <a class="cta" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 都営でGO</div>
+      <div>非公式アプリ / 東京都・東京都交通局等とは関係ありません。</div>
     </div>
-
-    <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
-    </script>
+  </footer>
 </body>
 </html>
