@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>おくちのくちゃいぽめちゃん</title>
+<style>
+  /* 画用紙のような温かみのある背景 */
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background-color: #fdf6e9; /* 少しオレンジがかったクリーム色 */
+    background-image: radial-gradient(#ebd9c8 1px, transparent 1px); /* うっすらとしたドットで画用紙の質感を表現 */
+    background-size: 12px 12px;
+    font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Rounded M+ 1c', sans-serif;
+    color: #4a3320; /* 文字色も真っ黒ではなく、絵に合わせた焦げ茶色 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* ページごとの枠の設定（手描き風） */
+  .page {
+    width: 100%;
+    max-width: 800px; 
+    margin-bottom: 50px;
+    background-color: #fffdfa;
+    /* 絵柄に合わせた焦げ茶色の太めの枠線 */
+    border: 3px solid #5a3d2b; 
+    /* 少し歪みを持たせた角丸で手描き感を出す */
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    overflow: hidden;
+    /* 影も少し茶色っぽくふんわりと */
+    box-shadow: 4px 6px 0px rgba(90, 61, 43, 0.15);
+  }
+
+  /* 画像自体の設定 */
+  .page img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* 画像の下部とキャプションの間に線を引く */
+    border-top: 3px dashed #dca58c; /* 絵のチークの色のようなコーラル系の点線 */
+  }
+
+  /* キャプション（文章）の設定 */
+  .caption {
+    padding: 30px 40px;
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold; /* 絵本の文字っぽく少し太めに */
+    line-height: 2;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+
+  /* セリフなどの改行をきれいにするため */
+  .caption span {
+    display: block;
+    margin-bottom: 8px;
+  }
+  .caption span:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* スマートフォンなどの小さな画面向けの設定 */
+  @media (max-width: 600px) {
+    body {
+      padding: 20px 15px;
+    }
+    .page {
+      border-width: 2px;
+    }
+    .caption {
+      font-size: 16px;
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="page">
+    <img src="0.jpeg" alt="1ページ目">
+  </div>
+
+  <div class="page">
+    <p class="caption">
+      <span>おくちのくちゃいぽめちゃんがいました。</span>
+      <span>おともだちがきても、ぷ〜ん。</span>
+    </p>
+    <img src="1.png" alt="1ページ目">
+  </div>
+
+  <div class="page">
+    <p class="caption">
+      <span>「ぽめちゃん、はみがきするわん！」</span>
+      <span>しばちゃんが言っても、ぽめちゃんはいやいや</span>
+    </p>
+    <img src="2.png" alt="2ページ目">
+  </div>
+
+  <div class="page">
+    <p class="caption">
+      <span>「ぽめちゃん、どうしてはみがきいやわん？」</span>
+      <span>「あわあわをごっくんするのがきもちわるいもふ」</span>
+    </p>
+    <img src="3.png" alt="3ページ目">
+  </div>
+
+  <div class="page">
+    <p class="caption">
+      <span>「ごっくんしなくていいわん</span>
+      <span>ガーゼでふきふきするわん」</span>
+      <span>「これならだいじょうぶもふ！」</span>
+    </p>
+    <img src="4.png" alt="4ページ目">
+    <p class="caption">
+      <span>ぽめちゃん、おくちきれいになってよかったね。</span>
+    </p>
+  </div>
+
+</body>
+</html>

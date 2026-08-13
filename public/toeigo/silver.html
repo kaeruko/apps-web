@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - シルバーパスのお出かけがもっと楽しく</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa; /* やや明るめのグレーで優しい印象に */
+            color: #333;
+        }
+        /* カスタムカラーの設定 */
+        :root {
+            --primary-green: #009955; /* 都営カラーの緑 */
+            --accent-orange: #f26f21;
+        }
+    </style>
+</head>
+<body class="antialiased max-w-2xl mx-auto bg-white shadow-lg relative pb-10">
+
+    <!-- ヘッダー -->
+    <header class="flex justify-between items-center px-4 py-3 bg-white border-b border-gray-200">
+<a href="#" class="flex items-center gap-2">
+    <!-- w-20 h-20（80px）で大きめに表示 -->
+    <img src="assets/logo.png" alt="都営でGOロゴ" class="w-20 h-20 object-contain">
+</a>
+        <div class="text-right">
+            <p class="text-sm font-medium text-gray-800 leading-tight">
+                シルバーパスのお出かけが、<br>
+                もっと<span class="text-[#009955] font-bold">楽しく</span>、もっと<span class="text-orange-500 font-bold">安心</span>に
+            </p>
+        </div>
+    </header>
+
+    <!-- メインビジュアル -->
+    <section class="relative">
+        <img src="silver_main.png" alt="笑顔でスマートフォンを見るシニア夫婦" class="w-full h-auto object-cover max-h-[300px]">
+        
+        <!-- キャッチコピーの吹き出し風 -->
+        <div class="absolute bottom-[-20px] right-4 bg-white rounded-tl-2xl rounded-tr-2xl rounded-bl-2xl shadow-md p-4 max-w-[80%] border-l-4 border-[#009955]">
+            <p class="text-lg font-bold text-gray-800 leading-snug">
+                「うちから一本で、<br>
+                こんなに行けるのね」
+            </p>
+        </div>
+    </section>
+
+    <!-- メインビジュアル下の余白調整 -->
+    <div class="h-10"></div>
+
+    <!-- 機能紹介 -->
+    <section class="px-5 py-6">
+        <div class="flex items-center justify-center gap-2 mb-6">
+            <span class="bg-[#009955] text-white text-xs font-bold px-2 py-1 rounded-full">機能</span>
+            <h2 class="text-xl font-bold text-center">都営でGOでできること</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- 機能1 -->
+            <div class="bg-green-50 border border-green-100 rounded-xl p-4 flex gap-4 shadow-sm">
+                <div class="flex-shrink-0 mt-1">
+                    <!-- 電車/バスアイコンSVG -->
+                    <svg class="w-8 h-8 text-[#009955]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-1">経路探索</h3>
+                    <p class="text-sm font-bold text-[#009955] mb-1">都営交通だけで、かんたん検索</p>
+                    <p class="text-xs text-gray-600 leading-relaxed">バスも地下鉄もまとめて案内します。</p>
+                </div>
+            </div>
+
+            <!-- 機能2 -->
+            <div class="bg-orange-50 border border-orange-100 rounded-xl p-4 flex gap-4 shadow-sm">
+                <div class="flex-shrink-0 mt-1">
+                    <!-- 人アイコンSVG -->
+                    <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-1">グループお出かけ</h3>
+                    <p class="text-sm font-bold text-orange-500 mb-1">みんなで待ち合わせ</p>
+                    <p class="text-xs text-gray-600 leading-relaxed">友達やご近所さんと一緒に安心して出発。</p>
+                </div>
+            </div>
+
+            <!-- 機能3 -->
+            <div class="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-4 shadow-sm">
+                <div class="flex-shrink-0 mt-1">
+                    <!-- カレンダー/予定アイコンSVG -->
+                    <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-1">スケジュール編集</h3>
+                    <p class="text-sm font-bold text-blue-500 mb-1">予定を自分好みに</p>
+                    <p class="text-xs text-gray-600 leading-relaxed">集合時間や寄り道もかんたん調整。</p>
+                </div>
+            </div>
+
+            <!-- 機能4 -->
+            <div class="bg-red-50 border border-red-100 rounded-xl p-4 flex gap-4 shadow-sm">
+                <div class="flex-shrink-0 mt-1">
+                    <!-- ベル/お知らせアイコンSVG -->
+                    <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+                </div>
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-1">降車お知らせ</h3>
+                    <p class="text-sm font-bold text-red-500 mb-1">降りる前にお知らせ</p>
+                    <p class="text-xs text-gray-600 leading-relaxed">乗り過ごしの心配がありません。</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- おすすめな人と使い方セクション (横並び) -->
+    <section class="px-5 py-2 flex flex-col md:flex-row gap-6">
+        
+        <!-- こんな方におすすめ -->
+        <div class="bg-gray-50 rounded-xl p-5 md:w-1/2 border border-gray-100">
+            <h3 class="text-center font-bold mb-4 text-gray-800 border-b border-gray-200 pb-2">こんな方におすすめ</h3>
+            <ul class="space-y-3">
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-[#009955] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm font-medium text-gray-700">シルバーパスをお持ちの方</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-[#009955] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm font-medium text-gray-700">バスや地下鉄でよくお出かけする方</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-[#009955] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm font-medium text-gray-700">乗り換えや降りる場所が不安な方</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <svg class="w-5 h-5 text-[#009955] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="text-sm font-medium text-gray-700">友達と一緒に出かけたい方</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- 使い方はかんたん -->
+        <div class="md:w-1/2 flex flex-col items-center">
+            <h3 class="text-center font-bold mb-4 text-gray-800">使い方はかんたん</h3>
+            
+            <div class="w-full space-y-2 relative">
+                <!-- ステップ1 -->
+                <div class="border border-gray-300 rounded-lg p-3 flex items-center gap-3 bg-white shadow-sm z-10 relative">
+                    <div class="bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">1</div>
+                    <span class="font-bold text-gray-800">行き先を選ぶ</span>
+                </div>
+                
+                <div class="flex justify-center -my-2 text-gray-300 z-0 relative">
+                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+
+                <!-- ステップ2 -->
+                <div class="border border-gray-300 rounded-lg p-3 flex items-center gap-3 bg-white shadow-sm z-10 relative">
+                    <div class="bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">2</div>
+                    <span class="font-bold text-gray-800">経路を見る</span>
+                </div>
+                
+                <div class="flex justify-center -my-2 text-gray-300 z-0 relative">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+               </div>
+
+                <!-- ステップ3 -->
+                <div class="border border-gray-300 rounded-lg p-3 flex items-center gap-3 bg-white shadow-sm z-10 relative">
+                    <div class="bg-gray-800 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0">3</div>
+                    <span class="font-bold text-gray-800">案内どおりに乗る</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-4 text-center">大きな文字で、スマホが苦手でも安心です。</p>
+        </div>
+    </section>
+
+    <!-- ダウンロード案内 -->
+    <section class="mx-5 mt-8 mb-5 bg-[#009955] rounded-xl p-5 text-white flex flex-col md:flex-row items-center justify-between relative overflow-hidden">
+        <!-- 背景の装飾的な図形 -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10"></div>
+        <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-8 -mb-8"></div>
+
+        <div class="z-10 md:w-2/3">
+            <h2 class="text-2xl font-bold mb-2 tracking-wide">無料ダウンロードはこちら</h2>
+            <p class="text-sm font-medium mb-4">ご家族の方のサポートもおすすめです。</p>
+            
+            <div class="flex gap-3">
+                <!-- App Store風ボタン
+                <button class="flex items-center gap-2 border border-white rounded-md px-3 py-1.5 hover:bg-white hover:text-[#009955] transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.365 17.078c-.752.122-1.464-.325-2.072-.882-.693-.637-1.353-1.618-1.527-2.585-.173-.966.192-1.92.812-2.58.744-.79 1.83-1.218 2.894-1.218h.273c.159 1.157-.272 2.37-.98 3.193-.664.767-1.636 1.173-2.617 1.173h-.173c.09.43.342.825.708 1.127.354.293.794.463 1.25.463.367 0 .726-.1 1.037-.29l.73 1.256c-.66.425-1.436.657-2.335.343zm1.613-6.666c-1.393-.11-2.734.577-3.418 1.62-.68-1.01-1.948-1.632-3.328-1.543-1.874.122-3.614 1.41-4.482 3.23-1.848 3.864-.39 9.387 2.327 13.064 1.272 1.733 2.805 3.655 4.795 3.606 1.874-.047 2.62-.132 4.67-.132 1.996 0 2.628.1 4.717.13 1.997.03 3.32-1.782 4.542-3.498 1.47-2.062 2.06-4.062 2.096-4.17-.046-.017-3.83-1.425-3.92-5.717-.075-3.52 2.92-5.185 3.056-5.26-1.562-2.186-3.843-2.457-4.66-2.502L16.365 17.078h1.613v-6.666zM13.82 5.093c.96-1.128 1.626-2.695 1.45-4.242-1.397.056-2.98.895-3.974 2.064-.882 1.042-1.666 2.665-1.464 4.187 1.516.11 3.01-.762 3.988-2.01z"/></svg>
+                    <div class="text-left flex flex-col justify-center">
+                        <span class="text-[0.5rem] leading-none mb-0.5">Download on the</span>
+                        <span class="text-xs font-bold leading-none">App Store</span>
+                    </div>
+                </button> -->
+                <!-- Google Play風ボタン -->
+                <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 border border-white rounded-md px-3 py-1.5 hover:bg-white hover:text-[#009955] transition-colors">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.243 2.115c-.218.232-.34.582-.34 1.022v17.728c0 .44.12.79.34 1.02l.035.034 9.932-9.934v-.072L3.277 2.08l-.034.035zM14.28 13.916l-1.07-1.07v-.07l1.07-1.07 3.35 1.905c.96.54.96 1.432 0 1.977l-3.35 1.905-.002-.002zM13.21 12.846L3.896 22.16c-.346.347-.905.347-1.252 0-.346-.346-.346-.906 0-1.252l9.314-9.314v-.002l1.253 1.254zm0-1.073L3.896 2.46c-.346-.346-.905-.346-1.252 0-.346.347-.346.906 0 1.252l9.314 9.314v.002l1.253-1.254z"/></svg>
+                    <div class="text-left flex flex-col justify-center">
+                        <span class="text-[0.5rem] leading-none mb-0.5">GET IT ON</span>
+                        <span class="text-xs font-bold leading-none">Google Play</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- QRコードエリア -->
+        <div class="z-10 mt-4 md:mt-0 bg-white p-2 rounded-lg text-center shadow-md">
+            <!-- QRコード画像を読み込む -->
+            <img src="assets/qr.png" alt="ダウンロード用QRコード" class="w-24 h-24 mx-auto mb-1 object-contain">
+            
+            <span class="text-[10px] text-gray-800 font-bold block">スマホで読み取る</span>
+        </div>
+    </section>
+
+</body>
+</html>

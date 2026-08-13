@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>がるなび - クローズドテスト参加者募集</title>
+
+
+  <link rel="canonical" href="https://example.com/android.html">
+
+  <meta property="og:url" content="https://example.com/android.html">
+  <meta property="og:site_name" content="がるなび">
+  <meta property="og:image" content="https://example.com/assets/ogp.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="がるなび - テスター募集中">
+  <meta name="twitter:description" content="Android版リリースのため、テストにご協力いただける方を募集しています。">
+  <meta name="twitter:image" content="https://example.com/assets/ogp.png">
+
+  <meta name="robots" content="index,follow">
+
+
+  <meta property="og:title" content="がるなび - テスター募集中">
+  <meta property="og:description" content="Android版リリースのため、テストにご協力いただける方を募集しています（Google Play経由）。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/ogp.png">
+  <meta name="theme-color" content="#4caf50">
+  <link rel="icon" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    /* カルーセル全体の余白調整 */
+    .swiper {
+      width: 100%;
+      padding-bottom: 50px;
+    }
+    
+    /* スライド（カード）の見た目 */
+    .swiper-slide {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px; /* 余白を少し調整 */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid #eee;
+      text-align: center;
+      box-sizing: border-box;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* --- ★ここから画像用スタイル --- */
+    .feature-img-box {
+      width: 100%;
+      height: 350px; /* スマホの縦長スクショが入る高さを確保 */
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fafafa; /* 画像がない時の背景色 */
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .feature-img-box img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain; /* 画像をトリミングせず全体を表示 */
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); /* 画像に影をつけて浮き出させる */
+    }
+    /* --- ここまで --- */
+
+    .feature-title { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; color: #333; }
+    .feature-desc { font-size: 0.95rem; color: #666; line-height: 1.6; }
+
+    /* ナビゲーションの色 */
+    .swiper-pagination-bullet-active { background-color: #4caf50 !important; }
+    .swiper-button-next, .swiper-button-prev { color: #4caf50 !important; transform: scale(0.7); }
+
+    /* 重要事項の強調 */
+    .important-note {
+        background-color: #fff3cd;
+        border: 1px solid #ffeeba;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 15px;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <div id="ua-warning" class="note" style="display:none; margin: 1em;">
+    このページはアプリ内ブラウザでは正しく表示されない場合があります。<br>
+    <strong>右上のメニューから「Chromeで開く」または「外部ブラウザで開く」を選んでください。</strong>
+  </div>
+
+  <script>
+    const ua = navigator.userAgent.toLowerCase();
+    const inAppBrowser = ua.includes('line') || ua.includes('twitter');
+    if (inAppBrowser) {
+      document.getElementById('ua-warning').style.display = 'block';
+    }
+  </script>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <span class="brand-ja">がるなび</span><span class="brand-en">girl-navi</span>
+      </a>
+      <nav class="nav">
+        <a href="#join">テスター参加</a>
+        <a href="#flow">参加の流れ</a>
+        <a href="#features">機能</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1 class="hero-title">がるなび for Android</h1>
+        <p class="hero-sub">
+          Google Play リリースに向けた<br>
+          <span style="color: #4caf50; font-weight:bold;">クローズドテスト参加者募集中！</span>
+        </p>
+        <div class="cta" id="join">
+          <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSf6qqZmksuX0UlXgtMHkYOkaPZt7O_nXAiw30Flam1G3ucZnw/viewform" target="_blank" rel="noopener">
+            <span class="btn-badge">募集中</span> テスターに参加する
+          </a>
+          <p class="cta-meta">
+            Google フォームへ移動します<br>
+            ※Gmailアドレスが必要です
+          </p>
+        </div>
+        
+        <div class="important-note">
+            <strong>🙏 開発者からのお願い</strong><br>
+            Google Playへの正式リリースには「12名以上のテスターが14日間アプリを維持すること」が必要です。<br>
+            インストール後、<strong>2週間はアンインストールせずに</strong>置いておいていただけると大変助かります！
+        </div>
+
+      </div>
+      <div class="hero-art">
+        <div class="card shadow">
+          <img src="assets/ss_android.png" alt="Android 版スクリーンショット">
+        </div>
+      </div>
+    </div>
+    <div class="tabs-like">
+      <div class="tab tab-hot active">Android版</div>
+      <div class="tab tab-new">テスター募集</div>
+    </div>
+  </section>
+
+  <section class="container" id="features">
+    <h2 class="section-title">主な機能</h2>
+    
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        
+        <div class="swiper-slide feature">
+          <div class="feature-img-box">
+            <img src="assets/01_topic_detail.png" alt="スクロール画面">
+          </div>
+          <h3 class="feature-title">爆速スクロール</h3>
+          <p class="feature-desc">長文トピでもストレスフリー。<br>コメント番号ジャンプも搭載。</p>
+        </div>
+
+        <div class="swiper-slide feature">
+          <div class="feature-img-box">
+            <img src="assets/02_topic_list.png" alt="オフライン機能">
+          </div>
+          <h3 class="feature-title">キャッシュ保存</h3>
+          <p class="feature-desc">一度読み込めばオフラインでも閲覧可能。<br>通信量を節約できます。</p>
+        </div>
+
+        <div class="swiper-slide feature">
+          <div class="feature-img-box">
+            <img src="assets/03_clip_list.png" alt="クリップ機能">
+          </div>
+          <h3 class="feature-title">クリップ＆保存</h3>
+          <p class="feature-desc">気になったコメントをワンタップで保存。<br>ラベルやメモをつけてわかりやすく。</p>
+        </div>
+
+        <div class="swiper-slide feature">
+          <div class="feature-img-box">
+            <img src="assets/05_draft.png" alt="検索機能">
+          </div>
+          <h3 class="feature-title">下書き機能</h3>
+          <p class="feature-desc">コメントを下書き保存。<br>アク禁のとき大活躍！</p>
+        </div>
+
+      </div>
+      
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper(".mySwiper", {
+      slidesPerView: 1, // スマホでは1枚表示
+      spaceBetween: 20, // スライド間の余白
+      loop: true,       // 無限ループ
+      autoplay: {
+        delay: 8000,    // 自動切り替え
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+        // 640px以上（タブレット〜PC）では3枚表示にする
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+        },
+      },
+    });
+  </script>
+
+
+  <section class="strip">
+    <div class="container strip-inner">
+        <div class="download-card">
+            <h2 class="download-title">募集要項</h2>
+            <dl class="kv">
+              <dt>対象OS</dt><dd>Android 8.0 以降</dd>
+              <dt>必要なもの</dt><dd>Google アカウント（Gmail）</dd>
+              <dt>期間</dt><dd>インストールから14日間以上</dd>
+              <dt>費用</dt><dd>無料</dd>
+            </dl>
+            <p class="note">
+              ※iOS版の募集は現在行っておりません。<br>
+              ※いただいたメールアドレスはテスト招待の送信のみに使用します。
+            </p>
+          </div>
+    </div>
+  </section>
+
+  <section class="container" id="flow">
+    <h2 class="section-title">参加の流れ</h2>
+    <ol class="req-list">
+      <li>ページ上部の<strong>「テスターに参加する」</strong>ボタンから、Googleフォームでメールアドレスを登録してください。</li>
+      <li>開発者がGoogle Play Consoleにお客様のアドレスを登録します（これには最大で数日かかる場合があります）。</li>
+      <li>登録完了後、Google Playの<strong>「テストへの招待リンク」</strong>を記載したメールをお送りします。</li>
+      <li>リンクを開いて「テスターになる」をタップすると、Google Play ストアからアプリをインストールできるようになります。</li>
+      <li><strong>14日間アプリを維持</strong>していただければ任務完了です！（もちろんそのまま使っていただいてOKです）</li>
+    </ol>
+  </section>
+
+  <section class="container" id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <details class="faq">
+      <summary>「アイテムは見つかりませんでした」と出る</summary>
+      <p>開発者側での登録が完了していないか、Google Playの反映待ちの状態です。登録完了メールが届くまでもう少々お待ち下さい。</p>
+    </details>
+    <details class="faq">
+        <summary>何かフィードバックが必要ですか？</summary>
+        <p>バグを見つけたり要望があれば、X（Twitter）などで教えていただけると嬉しいですが、基本的には「インストールして維持」していただくだけでも十分大きな貢献になります！</p>
+      </details>
+    <details class="faq">
+      <summary>正式リリース後はどうなりますか？</summary>
+      <p>そのまま製品版としてアップデートできるようになります。アプリを削除する必要はありません。</p>
+    </details>
+    <details class="faq">
+      <summary>問い合わせ</summary>
+      <p>不具合や要望は <a href="https://x.com/chibikuromoka">https://x.com/chibikuromoka</a> まで。</p>
+    </details>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© 2025 がるなび</small>
+      <nav class="footer-nav">
+        <a href="#join">参加する</a>
+        <a href="#flow">参加の流れ</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

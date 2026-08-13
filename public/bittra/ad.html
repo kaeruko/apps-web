@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>びっとら - まちなかアドバタイジング</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans JP', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#ffb347',
+                            DEFAULT: '#ff7b00',
+                            dark: '#cc6200',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .phone-mockup {
+            border: 12px solid #1f2937;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            position: relative;
+            background: #f3f4f6;
+        }
+        .notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40%;
+            height: 25px;
+            background-color: #1f2937;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            z-index: 10;
+        }
+        .blob {
+            position: absolute;
+            filter: blur(40px);
+            z-index: -1;
+            opacity: 0.4;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-slate-50 overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <img src="logo.png" alt="びっとらロゴ" class="w-10 h-10 object-contain">
+                <span class="font-black text-xl tracking-tight text-gray-900">びっとら</span>
+            </div>
+            <nav class="hidden md:flex gap-6 font-bold text-sm text-gray-600">
+                <a href="#how-it-works" class="hover:text-brand transition">仕組み</a>
+                <a href="#use-cases" class="hover:text-brand transition">活用シーン</a>
+                <a href="#concept" class="hover:text-brand transition">開発思想</a>
+            </nav>
+        <div>
+            <span class="bg-gray-300 text-gray-500 px-5 py-2 rounded-full text-sm font-bold cursor-not-allowed select-none">リリース準備中</span>
+        </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative">
+        <div class="blob bg-brand-light w-96 h-96 rounded-full top-0 left-0 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="blob bg-blue-300 w-96 h-96 rounded-full bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="flex-1 text-center lg:text-left z-10">
+                <div class="inline-block bg-brand/10 text-brand font-bold px-4 py-1.5 rounded-full text-sm mb-6 border border-brand/20">
+                    <i class="fa-brands fa-bluetooth-b mr-1"></i> インターネット不要の超局地ネットワーク
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-gray-900 mb-6 tracking-tight">
+                    すれちがいを<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-light">出会いに</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    「びっとら」は、Bluetoothの電波に乗せて「8文字の短句」を周囲に流す、全く新しい宣伝アプリ。<br>
+                    同人イベントでの見本誌アピールから、路上ライブ、飲食店のランチクーポンまで。今、その場にいる人にだけ、あなたの熱量を直接届けます。
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <button disabled class="bg-gray-400 text-white px-8 py-4 rounded-2xl font-bold text-lg cursor-not-allowed flex items-center justify-center gap-3 opacity-80">
+                        <i class="fa-brands fa-apple text-2xl"></i> App Store (準備中)
+                    </button>
+                    <button disabled class="bg-gray-100 text-gray-400 border-2 border-gray-200 px-8 py-4 rounded-2xl font-bold text-lg cursor-not-allowed flex items-center justify-center gap-3 opacity-80">
+                        <i class="fa-brands fa-google-play text-xl"></i> Google Play (準備中)
+                    </button>
+                </div>
+                </div>
+
+            <!-- Phone Mockup -->
+            <div class="w-full max-w-[320px] lg:max-w-[360px] relative z-10 shrink-0 perspective-1000">
+                <div class="phone-mockup aspect-[9/19.5] w-full flex flex-col bg-white">
+                    <div class="notch"></div>
+                    <!-- App UI -->
+                    <div class="bg-brand text-white pt-12 pb-4 px-4 shadow-md">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-black text-lg">びっとら</span>
+                            <div class="flex gap-2">
+                                <i class="fa-solid fa-satellite-dish"></i>
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                        </div>
+                        <div class="bg-white/20 rounded-lg p-2 text-xs font-bold flex justify-between items-center">
+                            <span>📡 会場モード ON</span>
+                            <span class="bg-white text-brand px-2 py-0.5 rounded-full">スキャン中</span>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-gray-50 p-3 space-y-3 overflow-y-auto">
+                        <!-- Stream Item 1 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between animate-pulse">
+                            <div>
+                                <h3 class="font-black text-xl tracking-wider text-gray-800">五夏ハピエン神本</h3>
+                                <p class="text-xs text-gray-400 mt-1">いま受信 • ×3</p>
+                            </div>
+                            <button class="bg-blue-50 text-blue-600 font-bold text-sm px-3 py-2 rounded-xl">全文</button>
+                        </div>
+                        <!-- Stream Item 2 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between">
+                            <div>
+                                <h3 class="font-black text-xl tracking-wider text-gray-800">路上ライブ配信中</h3>
+                                <p class="text-xs text-gray-400 mt-1">1分前 • ×1</p>
+                            </div>
+                            <button class="bg-blue-50 text-blue-600 font-bold text-sm px-3 py-2 rounded-xl">全文</button>
+                        </div>
+                        <!-- Stream Item 3 -->
+                        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex items-center justify-between opacity-75">
+                            <div>
+                                <h3 class="font-black text-xl tracking-wider text-gray-800">ランチ百円引！</h3>
+                                <p class="text-xs text-gray-400 mt-1">5分前 • ×12</p>
+                            </div>
+                            <button class="bg-blue-50 text-blue-600 font-bold text-sm px-3 py-2 rounded-xl">全文</button>
+                        </div>
+                    </div>
+                    <!-- Bottom Nav -->
+                    <div class="bg-white border-t border-gray-200 p-4 flex justify-around text-gray-400 text-xs font-bold">
+                        <div class="flex flex-col items-center gap-1 text-brand"><i class="fa-solid fa-water text-xl"></i>ストリーム</div>
+                        <div class="flex flex-col items-center gap-1"><i class="fa-solid fa-pen-to-square text-xl"></i>投稿</div>
+                        <div class="flex flex-col items-center gap-1"><i class="fa-solid fa-clock-rotate-left text-xl"></i>履歴</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="machinaka" class="py-20 bg-white">
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+            <div class="flex-1 bg-slate-800 rounded-3xl p-8 border border-slate-700 relative">
+                <div class="mb-8 rounded-2xl overflow-hidden shadow-2xl border border-slate-600">
+                    <img src="machinaka.png" alt="まちなかでの利用シーン" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black text-gray-900 mb-4">たったの3ステップで繋がる</h2>
+                <p class="text-gray-600 font-medium">ペアリング不要。すれ違うだけで情報が行き交う、究極にシンプルな仕組み。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 relative overflow-hidden group hover:border-brand/30 transition">
+                    <div class="absolute top-0 right-0 bg-brand text-white font-black text-6xl opacity-10 p-4 rounded-bl-3xl">1</div>
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-brand text-2xl mb-6">
+                        <i class="fa-solid fa-broadcast-tower"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">8文字の「短句」を流す</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Bluetoothの広告パケットに乗るギリギリのサイズ、8文字。発信者はこの8文字にすべてを懸けて、周囲に電波を流します。
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 relative overflow-hidden group hover:border-blue-500/30 transition">
+                    <div class="absolute top-0 right-0 bg-blue-500 text-white font-black text-6xl opacity-10 p-4 rounded-bl-3xl">2</div>
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-blue-500 text-2xl mb-6">
+                        <i class="fa-solid fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">気になったら「全文」要求</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        受信者のストリームに短句が流れてきます。気になったらタップ。その瞬間だけ相手の端末と直接繋がり、最大300文字の「本文」を引き出します。
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-slate-50 rounded-3xl p-8 border border-gray-100 relative overflow-hidden group hover:border-green-500/30 transition">
+                    <div class="absolute top-0 right-0 bg-green-500 text-white font-black text-6xl opacity-10 p-4 rounded-bl-3xl">3</div>
+                    <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center text-green-500 text-2xl mb-6">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">URLからリッチなWebへ</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        引き出した本文にはURLを記載可能。細いBLEの土管から、インターネットの太い土管へ。作品サンプルやクーポン券、予約フォームへ直接誘導できます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases" class="py-20 bg-slate-900 text-white overflow-hidden relative">
+        <div class="blob bg-brand/20 w-full h-full absolute top-0 left-0"></div>
+        
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl font-black mb-4">こんなシーンで、熱量が加速する。</h2>
+                <p class="text-gray-400 font-medium">SNSのアルゴリズムでは届かない、「今、ここにいる人」へのダイレクト・アプローチ。</p>
+            </div>
+
+            <!-- Case 1 -->
+            <div class="flex flex-col lg:flex-row items-center gap-12 mb-24">
+                <div class="flex-1 bg-slate-800 rounded-3xl p-8 border border-slate-700 relative">
+                    <!-- Comic style visual representation -->
+                    <div class="absolute -top-6 -left-6 bg-brand text-white font-black px-4 py-2 rounded-xl transform -rotate-6 shadow-xl">
+                        Case.01
+                    </div>
+                    <div class="text-6xl text-center mb-6 opacity-80">📖 ✨ 📱</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">同人イベントの「未知の神本」発掘</h3>
+                    <p class="text-gray-300 mb-6 text-sm leading-relaxed">
+                        「SNSに情報がない島中サークル…表紙は好みだけど展開が読めない…」<br>
+                        そんな時、すれ違った誰かの「五夏ハピエン神本」という短句を受信！全文には「極上の甘やかしハッピーエンドでした！」の文字。<br>
+                        その場の熱量が、購入の背中を強烈に押します。
+                    </p>
+                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-700 text-xs text-gray-400">
+                        <i class="fa-solid fa-triangle-exclamation text-yellow-500 mr-2"></i>
+                        コミケ等の激混みでスマホの4G/5G電波が死んでいても、Bluetooth単体で機能するため確実に見本誌のアピールが可能です。
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-xl font-bold mb-4 text-brand-light"><i class="fa-solid fa-bullhorn mr-2"></i>売り手側のアピールにも最適</h4>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand mt-1"></i>
+                            <div>
+                                <span class="font-bold text-white">見本誌代わりに空中へ頒布</span>
+                                <p class="text-sm mt-1">短句「新刊あらすじ」＋本文に冒頭の小話を乗せて送信。通りすがりの人を直接掴みます。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-brand mt-1"></i>
+                            <div>
+                                <span class="font-bold text-white">Pixivサンプルへの最強の導線</span>
+                                <p class="text-sm mt-1">本文の最後に「サンプルはこちら [URL]」と貼るだけ。気になった人だけをWebへ誘導。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+                <div class="flex-1 bg-slate-800 rounded-3xl p-8 border border-slate-700 relative">
+                    <div class="absolute -top-6 -right-6 bg-blue-500 text-white font-black px-4 py-2 rounded-xl transform rotate-6 shadow-xl">
+                        Case.02
+                    </div>
+                    <div class="text-6xl text-center mb-6 opacity-80">🎸 🍔 🎟️</div>
+                    <h3 class="text-2xl font-black mb-4 text-center">まちなかの「ゲリラ広告」</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        ストリートミュージシャン、客引きに苦労する居酒屋、お笑い芸人。<br>
+                        「路上ライブ配信中」「ランチ百円引！」「爆笑ライブ予約」といった短句を流しっぱなしにするだけで、近くを歩く人のスマホが自動でキャッチ。<br>
+                        看板を持たずに、半径数メートルの通行人全員にダイレクトマーケティング。
+                    </p>
+                </div>
+                <div class="flex-1">
+                    <h4 class="text-xl font-bold mb-4 text-blue-400"><i class="fa-solid fa-store mr-2"></i>ローカルビジネスの強い味方</h4>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-blue-400 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-white">URLで詳細情報へ飛ばす</span>
+                                <p class="text-sm mt-1">「本日の日替わりメニューはこちら [URL]」「MVのフル視聴 [URL]」など、ネットの力とシームレスに連携。</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-blue-400 mt-1"></i>
+                            <div>
+                                <span class="font-bold text-white">履歴に残るから後で読める</span>
+                                <p class="text-sm mt-1">立ち止まれなくても大丈夫。すれ違った記録は履歴に無期限保存されるため、電車の中でゆっくりチェックできます。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Concept -->
+    <section id="concept" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-gray-100">
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center text-white text-xl">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h2 class="text-2xl font-black">開発者の思想：維持費0円の哲学</h2>
+                </div>
+                <div class="prose prose-gray max-w-none text-gray-600 leading-loose">
+                    <p class="mb-4">
+                        「びっとら」は、中央集権的なサーバーを一切持たない<b>完全なサーバーレス・アプリ</b>です。<br>
+                        マッチングも、メッセージのやり取りも、すべてユーザーのスマホ同士が直接Bluetooth(GATT通信)で完結させています。
+                    </p>
+                    <p class="mb-4">
+                        なぜWebRTCなどのモダンな通信網を使わないのか？理由はシンプルです。<br>
+                        コミケのような超密集地帯では、キャリアの電波もWi-Fiも完全に死ぬからです。<br>
+                        「びっとら」のBLEパケットは、ノイズだらけの電波の隙間を縫って、確実に相手に「8文字」を突き刺します。
+                    </p>
+                    <p class="mb-6">
+                        そしてもう一つ。サーバーがないということは、<b>運営側の維持費が永久に0円</b>ということです。<br>
+                        だからこそ、このアプリは完全に無料で提供し続けられます。ただし、本文のURLをタップして先のWebサイトを見る通信料だけは、各自の回線でどうにかしてくださいね（笑）。
+                    </p>
+                    <div class="bg-brand/10 p-4 rounded-xl border border-brand/20">
+                        <p class="text-brand-dark font-bold text-sm m-0">
+                            「すれ違い通信の楽しさを、もう一度現代のスマホに。」<br>
+                            そんな思いで生まれた、ちょっと泥臭くて、最高にしぶとい超軽量ネットワークです。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download CTA -->
+    <section id="download" class="py-24 bg-brand text-white text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-4xl font-black mb-6">まちなかアドバタイジング</h2>
+            <p class="text-xl mb-10 opacity-90 font-medium">アカウント登録不要。インストールして「会場モード」をONにするだけ。</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <button disabled class="bg-gray-600/50 text-gray-300 px-8 py-4 rounded-2xl font-bold text-lg cursor-not-allowed flex items-center justify-center gap-3">
+        <i class="fa-brands fa-apple text-2xl"></i> App Store (準備中)
+    </button>
+    <button disabled class="bg-white/50 text-gray-500 px-8 py-4 rounded-2xl font-bold text-lg cursor-not-allowed flex items-center justify-center gap-3">
+        <i class="fa-brands fa-google-play text-xl"></i> Google Play (準備中)
+    </button>
+</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm font-medium">
+        <p>&copy; 2026 Bittora Project. No servers were harmed in the making of this app.</p>
+    </footer>
+
+</body>
+</html>

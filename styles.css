@@ -1,0 +1,90 @@
+:root{
+  --pink:#f58ea8;           /* 主色（見出しやボタン） */
+  --pink-strong:#ef6d8e;    /* 主色の強調 */
+  --pink-light:#ffd7e1;     /* タブやBadgeの背景 */
+  --cream:#fff7f2;          /* ページの地色 */
+  --ink:#523f44;            /* 文字色（落ち着いた茶） */
+  --muted:#8b757b;          /* 補助テキスト */
+  --card:#ffffff;           /* カード背景 */
+  --shadow:0 10px 24px rgba(245,142,168,.18);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",Meiryo,sans-serif;color:var(--ink);background:var(--cream);}
+
+.container{width:min(1100px,92%);margin-inline:auto}
+.section-title{font-size:1.6rem;margin:2.5rem 0 1rem;font-weight:700;color:var(--ink)}
+
+/* Header */
+.site-header{background:linear-gradient(180deg,var(--pink) 0%,#ffa8ba 100%);color:#fff;position:sticky;top:0;z-index:10}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand{color:#fff;text-decoration:none;font-size:1.6rem;font-weight:800;letter-spacing:.5px}
+.brand-ja{opacity:.95}
+.brand-en{opacity:.9;margin-left:.25rem}
+.nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600;opacity:.95}
+.nav a:hover{opacity:1}
+
+/* Hero */
+.hero{padding:40px 0 24px;background:linear-gradient(180deg,#ffe9ef 0%,var(--cream) 60%)}
+.hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.hero-title{font-size:2.1rem;margin:0 0 .5rem}
+.hero-sub{margin:.25rem 0 1rem;color:var(--muted)}
+.cta .btn{display:inline-flex;align-items:center;gap:.6rem;padding:14px 18px;border-radius:14px;text-decoration:none;font-weight:800}
+.btn-primary{background:var(--pink);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{background:var(--pink-strong)}
+.btn-badge{background:var(--pink-light);color:#a33c57;padding:4px 8px;border-radius:999px;font-size:.8rem}
+.cta-meta{margin:.6rem 0 0;color:var(--muted);font-size:.9rem}
+.hero-art .card{border-radius:18px;background:var(--card);box-shadow:var(--shadow);overflow:hidden}
+.hero-art img{display:block;width:100%;height:auto}
+
+.tabs-like{display:flex;gap:16px;justify-content:center;margin-top:24px}
+.tab{background:#e8f0f2;color:#8aa; padding:10px 16px;border-radius:12px;font-weight:700}
+.tab-hot{background:var(--pink);color:#fff;position:relative}
+.tab-hot::before{content:"";position:absolute;bottom:-8px;left:22px;border:10px solid transparent;border-top-color:var(--pink)}
+.tab-new{background:#eaeff7;color:#7a9}
+
+/* Features */
+.feature-grid{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.feature{background:var(--card);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.feature-emoji{font-size:1.6rem}
+.feature-title{margin:.4rem 0 .25rem;font-size:1.1rem}
+.feature-desc{color:var(--muted);margin:0}
+
+/* Download strip */
+.strip{background:#fff;border-top:1px dashed #f3c7d3;border-bottom:1px dashed #f3c7d3;padding:26px 0;margin:34px 0}
+.strip-inner{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.download-card,.changelog{background:var(--card);border-radius:16px;padding:18px;box-shadow:var(--shadow)}
+.download-title{margin:.25rem 0 1rem;font-size:1.2rem}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:10px;margin:0}
+.kv dt{font-weight:700}
+.kv dd{margin:0}
+code{background:#fff3f7;padding:.25rem .5rem;border-radius:8px;display:inline-block}
+.btn-copy{margin-left:8px;padding:6px 10px;border-radius:10px;border:1px solid #f0b6c7;background:#fff;cursor:pointer}
+.btn-copy:hover{background:#fff7fb}
+.list{margin:0;padding-left:1.2rem}
+.list li{margin:.35rem 0}
+
+/* Requirements */
+.req-list{margin:.2rem 0 0;padding-left:1.2rem}
+.note{color:var(--muted);margin-top:.6rem}
+
+/* FAQ */
+.faq{background:var(--card);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow);margin:10px 0}
+.faq summary{cursor:pointer;font-weight:700}
+.faq p{margin:.6rem 0 0}
+
+/* Footer */
+.site-footer{background:#ffe9ef;padding:16px 0;margin-top:40px}
+.footer-inner{display:flex;align-items:center;justify-content:space-between}
+.footer-nav a{color:#a33c57;text-decoration:none;margin-left:16px}
+
+/* Responsive */
+@media (max-width: 900px){
+  .hero-inner{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr 1fr}
+  .strip-inner{grid-template-columns:1fr}
+}
+@media (max-width: 560px){
+  .feature-grid{grid-template-columns:1fr}
+  .nav{display:none}
+}

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>のりかえ39（サンキュー）— 座席ゆずりあいマッチング</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Kosugi+Maru&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #f97316;
+  --orange-soft: #fb923c;
+  --orange-pale: #fff7ed;
+  --orange-glow: rgba(249,115,22,0.12);
+  --green: #22c55e;
+  --green-soft: #86efac;
+  --green-pale: #f0fdf4;
+  --sky: #38bdf8;
+  --sky-pale: #f0f9ff;
+  --pink: #f472b6;
+  --pink-pale: #fdf2f8;
+  --warm-bg: #fffbf5;
+  --cream: #fef9f0;
+  --text: #3f3a36;
+  --text-sub: #8c8278;
+  --text-light: #b5aca3;
+  --white: #ffffff;
+  --border: #f0e8df;
+  --shadow-soft: 0 2px 16px rgba(180,140,80,0.06);
+  --shadow-card: 0 4px 24px rgba(180,140,80,0.08);
+  --radius: 20px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Zen Maru Gothic', 'Kosugi Maru', sans-serif;
+  color: var(--text);
+  background: var(--warm-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== HEADER NAV ===== */
+.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,251,245,0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+}
+
+.topnav-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.topnav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.topnav-logo .num {
+  background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.topnav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.topnav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.topnav-links a:hover { color: var(--orange); }
+
+@media (max-width: 600px) {
+  .topnav-links { display: none; }
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px 60px;
+}
+
+/* floating seat emojis */
+.float-emoji {
+  position: absolute;
+  font-size: 32px;
+  opacity: 0.12;
+  animation: float-around 12s ease-in-out infinite;
+}
+
+.float-emoji:nth-child(1) { top: 15%; left: 8%; animation-delay: 0s; font-size: 28px; }
+.float-emoji:nth-child(2) { top: 25%; right: 10%; animation-delay: -3s; font-size: 36px; }
+.float-emoji:nth-child(3) { bottom: 30%; left: 12%; animation-delay: -6s; font-size: 24px; }
+.float-emoji:nth-child(4) { bottom: 20%; right: 15%; animation-delay: -9s; font-size: 30px; }
+.float-emoji:nth-child(5) { top: 50%; left: 3%; animation-delay: -2s; font-size: 20px; }
+.float-emoji:nth-child(6) { top: 40%; right: 5%; animation-delay: -7s; font-size: 26px; }
+
+@keyframes float-around {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-18px) rotate(5deg); }
+  66% { transform: translateY(10px) rotate(-3deg); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+}
+
+.hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, var(--orange-pale), #fff);
+  border: 2px solid var(--border);
+  font-size: 40px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+  animation: hero-pop 0.6s 0.2s ease both;
+}
+
+@keyframes hero-pop {
+  from { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+  to { opacity: 1; transform: scale(1) rotate(0); }
+}
+
+.hero-name {
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 4px;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+.hero-name .num {
+  color: var(--orange);
+}
+
+.hero-reading {
+  font-size: 14px;
+  color: var(--text-light);
+  font-weight: 500;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+
+.hero-catch {
+  font-size: clamp(16px, 3vw, 22px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  animation: fadeUp 0.7s 0.5s ease both;
+}
+
+.hero-catch em {
+  font-style: normal;
+  background: linear-gradient(transparent 60%, rgba(249,115,22,0.18) 60%);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.6s ease both;
+}
+
+.hero-badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+  animation: fadeUp 0.7s 0.65s ease both;
+}
+
+.hero-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero-badge-item.b1 { background: var(--orange-pale); color: #c2410c; }
+.hero-badge-item.b2 { background: var(--green-pale); color: #16a34a; }
+.hero-badge-item.b3 { background: var(--sky-pale); color: #0284c7; }
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.7s ease both;
+}
+
+.btn-main {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, var(--orange), var(--orange-soft));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(249,115,22,0.25);
+}
+
+.btn-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(249,115,22,0.3);
+}
+
+.btn-sub {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-sub:hover {
+  border-color: var(--orange-soft);
+  background: var(--orange-pale);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== SECTION COMMON ===== */
+section { padding: 80px 24px; }
+
+.container { max-width: 960px; margin: 0 auto; }
+
+.sec-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+  background: var(--orange-pale);
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.sec-title {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 900;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+
+.sec-desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 1.8;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ===== HOW TO ===== */
+.howto-bg { background: var(--white); border-radius: 32px; margin: 0 16px; }
+
+.howto-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* vertical line */
+.howto-steps::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 36px;
+  bottom: 36px;
+  width: 3px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border) 0px,
+    var(--border) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  border-radius: 2px;
+}
+
+.howto-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 24px 0;
+  position: relative;
+}
+
+.howto-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.howto-num.n1 { background: var(--orange-pale); }
+.howto-num.n2 { background: var(--green-pale); }
+.howto-num.n3 { background: var(--sky-pale); }
+.howto-num.n4 { background: var(--pink-pale); }
+
+.howto-body h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  padding-top: 4px;
+}
+
+.howto-body p {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+
+.howto-body .auto-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--green-pale);
+  color: #16a34a;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+/* ===== MARKERS ===== */
+.markers-section { background: var(--cream); border-radius: 32px; margin: 0 16px; }
+
+.markers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.marker-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.25s;
+  cursor: default;
+}
+
+.marker-tag:hover {
+  border-color: var(--orange-soft);
+  transform: translateY(-3px) rotate(-1deg);
+  box-shadow: var(--shadow-card);
+}
+
+.marker-tag span:first-child { font-size: 20px; }
+
+.markers-note {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* ===== FEATURES ===== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 640px) {
+  .features-grid { grid-template-columns: 1fr; }
+}
+
+.feat-card {
+  padding: 28px;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.3s;
+}
+
+.feat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--orange-soft);
+}
+
+.feat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.feat-card:nth-child(1) .feat-icon { background: var(--orange-pale); }
+.feat-card:nth-child(2) .feat-icon { background: var(--green-pale); }
+.feat-card:nth-child(3) .feat-icon { background: var(--sky-pale); }
+.feat-card:nth-child(4) .feat-icon { background: var(--pink-pale); }
+
+.feat-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.feat-card p {
+  font-size: 12px;
+  color: var(--text-sub);
+  line-height: 1.7;
+}
+
+/* ===== SAFETY ===== */
+.safety-bg { background: var(--white); border-radius: 32px; margin: 0 16px; }
+
+.safety-banner {
+  max-width: 600px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #fef2f2, #fff1f2);
+  border: 2px solid #fecdd3;
+  border-radius: var(--radius);
+  padding: 28px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.safety-banner-icon {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.safety-banner h3 {
+  font-size: 16px;
+  font-weight: 900;
+  color: #be123c;
+  margin-bottom: 6px;
+}
+
+.safety-banner p {
+  font-size: 12px;
+  color: #9f1239;
+  line-height: 1.7;
+  opacity: 0.8;
+}
+
+.safety-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .safety-items { grid-template-columns: 1fr; }
+}
+
+.safety-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px;
+  background: var(--warm-bg);
+  border-radius: 14px;
+}
+
+.safety-item-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--green-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.safety-item h4 {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.safety-item p {
+  font-size: 11px;
+  color: var(--text-sub);
+  line-height: 1.6;
+}
+
+/* ===== CTA ===== */
+.cta-section {
+  text-align: center;
+  padding: 80px 24px 100px;
+}
+
+.cta-card {
+  max-width: 560px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--orange-pale), #fff);
+  border: 2px solid var(--border);
+  border-radius: 28px;
+  padding: 48px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: '🚃';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 80px;
+  opacity: 0.06;
+  transform: rotate(12deg);
+}
+
+.cta-emoji {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.cta-title {
+  font-size: clamp(20px, 4vw, 28px);
+  font-weight: 900;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.cta-desc {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.store-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.store-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 24px;
+  background: var(--text);
+  color: #fff;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.store-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.store-link-icon { font-size: 22px; }
+
+.store-link-text small {
+  display: block;
+  font-size: 9px;
+  opacity: 0.6;
+  margin-bottom: 1px;
+}
+
+.store-link-text strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 15px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.footer-logo .num { color: var(--orange); }
+
+.footer-sub {
+  font-size: 10px;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.footer-nav a {
+  font-size: 11px;
+  color: var(--text-sub);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-nav a:hover { color: var(--orange); }
+
+.footer-copy {
+  font-size: 10px;
+  color: var(--text-light);
+}
+
+/* ===== SCROLL REVEAL ===== */
+.rv {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.rv.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv-d1 { transition-delay: 0.08s; }
+.rv-d2 { transition-delay: 0.16s; }
+.rv-d3 { transition-delay: 0.24s; }
+.rv-d4 { transition-delay: 0.32s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a href="#" class="topnav-logo">のりかえ<span class="num">39</span></a>
+    <div class="topnav-links">
+      <a href="#howto">つかいかた</a>
+      <a href="#features">きのう</a>
+      <a href="#safety">あんしん</a>
+      <a href="#download">ダウンロード</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="float-emoji">💺</div>
+  <div class="float-emoji">🚃</div>
+  <div class="float-emoji">🙌</div>
+  <div class="float-emoji">💺</div>
+  <div class="float-emoji">🎒</div>
+  <div class="float-emoji">🚉</div>
+
+  <div class="hero-inner">
+    <div class="hero-icon">🚃</div>
+    <h1 class="hero-name">のりかえ<span class="num">39</span></h1>
+    <p class="hero-reading">— サンキュー —</p>
+    <p class="hero-catch">
+      降りる人の「<em>どうぞ</em>」と、<br>
+      乗る人の「<em>ありがとう</em>」をつなぐ。
+    </p>
+    <p class="hero-sub">
+      通勤電車で「あの人降りそうだな」と思ったこと、ありませんか？<br>
+      のりかえ39は、座席のゆずりあいをかんたんにマッチングするアプリです。
+    </p>
+    <div class="hero-badges">
+      <span class="hero-badge-item b1">📱 iOS / Android</span>
+      <span class="hero-badge-item b2">🆓 無料で利用</span>
+      <span class="hero-badge-item b3">🔒 安心設計</span>
+    </div>
+    <div class="hero-ctas">
+      <a href="#howto" class="btn-main">つかいかたを見る ↓</a>
+      <a href="#download" class="btn-sub">事前登録する</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<section id="howto" class="howto-bg">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag rv">🚉 つかいかた</div>
+      <h2 class="sec-title rv">かんたん4ステップ</h2>
+      <p class="sec-desc rv">むずかしい操作はなし。<br>駅と時間をえらぶだけで、座席がマッチングされます。</p>
+    </div>
+
+    <div class="howto-steps">
+      <div class="howto-step rv rv-d1">
+        <div class="howto-num n1">🚉</div>
+        <div class="howto-body">
+          <h3>乗る駅・降りる駅・時間を登録</h3>
+          <p>座席をゆずりたい人は、自分の乗車駅と降車駅、乗車時間を入力します。</p>
+          <div class="auto-tag">⚡ 降車時刻は自動で計算されます</div>
+        </div>
+      </div>
+
+      <div class="howto-step rv rv-d2">
+        <div class="howto-num n2">🎯</div>
+        <div class="howto-body">
+          <h3>号車と目印をえらぶ</h3>
+          <p>何号車に座っているかと、あらかじめ用意された目印リストから自分に合うものをタップ。</p>
+        </div>
+      </div>
+
+      <div class="howto-step rv rv-d3">
+        <div class="howto-num n3">🤝</div>
+        <div class="howto-body">
+          <h3>自動マッチング</h3>
+          <p>同じ駅・同じ時間帯で座りたい人と自動でマッチング。お互いに通知が届きます。</p>
+        </div>
+      </div>
+
+      <div class="howto-step rv rv-d4">
+        <div class="howto-num n4">💺</div>
+        <div class="howto-body">
+          <h3>座席をゆずりあい、サンキュー！</h3>
+          <p>号車と目印をたよりに座席を受け渡し。メッセージ不要で、その場でかんたんに完了します。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKERS -->
+<section class="markers-section" id="markers">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag rv">🏷️ めじるし</div>
+      <h2 class="sec-title rv">えらぶだけ。入力いらず。</h2>
+      <p class="sec-desc rv">あなたを見つけてもらうための目印は、<br>リストからタップするだけ。自由入力は使いません。</p>
+    </div>
+
+    <div class="markers-grid rv">
+      <div class="marker-tag"><span>🔴</span> 赤いバッグ</div>
+      <div class="marker-tag"><span>🔵</span> 青いバッグ</div>
+      <div class="marker-tag"><span>🟡</span> 黄色いバッグ</div>
+      <div class="marker-tag"><span>🟢</span> 緑のバッグ</div>
+      <div class="marker-tag"><span>🎧</span> 白いヘッドホン</div>
+      <div class="marker-tag"><span>🎧</span> 黒いヘッドホン</div>
+      <div class="marker-tag"><span>🧢</span> 赤い帽子</div>
+      <div class="marker-tag"><span>📖</span> 本を読んでいる</div>
+      <div class="marker-tag"><span>📱</span> タブレット使用中</div>
+      <div class="marker-tag"><span>☂️</span> 黄色い傘</div>
+      <div class="marker-tag"><span>👜</span> トートバッグ</div>
+      <div class="marker-tag"><span>🎒</span> リュックサック</div>
+    </div>
+
+    <p class="markers-note rv">
+      ※ 目印は今後も追加予定です。<br>
+      個人を特定できるような情報は表示されません。
+    </p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag rv">✨ きのう</div>
+      <h2 class="sec-title rv">シンプルだけど、ちゃんと便利</h2>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat-card rv rv-d1">
+        <div class="feat-icon">🕐</div>
+        <h3>降車時刻を自動計算</h3>
+        <p>駅と乗車時間を入れるだけ。交通APIで到着時刻が自動でセットされるので、入力の手間がありません。</p>
+      </div>
+      <div class="feat-card rv rv-d2">
+        <div class="feat-icon">🔔</div>
+        <h3>プッシュ通知でお知らせ</h3>
+        <p>マッチングが成立したら即通知。降車が近づいたらリマインドも届くので、見逃しません。</p>
+      </div>
+      <div class="feat-card rv rv-d3">
+        <div class="feat-icon">🚃</div>
+        <h3>号車でピンポイント</h3>
+        <p>何号車に座っているかが分かるから、ホームで迷う心配なし。目印と合わせてスムーズに受け渡し。</p>
+      </div>
+      <div class="feat-card rv rv-d4">
+        <div class="feat-icon">💬</div>
+        <h3>会話ゼロで完結</h3>
+        <p>メッセージ機能はあえてナシ。号車と目印だけで成り立つ設計なので、コミュ不要で安心です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety" class="safety-bg">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-tag rv">🛡️ あんしん</div>
+      <h2 class="sec-title rv">出会い系にはさせません</h2>
+      <p class="sec-desc rv">のりかえ39は座席のゆずりあい専用アプリです。<br>構造そのもので、目的外利用を防ぎます。</p>
+    </div>
+
+    <div class="safety-banner rv">
+      <div class="safety-banner-icon">🚫</div>
+      <h3>出会い目的の利用は固くお断りします</h3>
+      <p>プロフィール・メッセージ・履歴追跡を一切排除した設計で、<br>「出会えない構造」そのものがポリシーです。</p>
+    </div>
+
+    <div class="safety-items">
+      <div class="safety-item rv rv-d1">
+        <div class="safety-item-icon">💬</div>
+        <div>
+          <h4>メッセージ機能なし</h4>
+          <p>ユーザー同士のやりとり手段がそもそも存在しません。</p>
+        </div>
+      </div>
+      <div class="safety-item rv rv-d2">
+        <div class="safety-item-icon">👤</div>
+        <div>
+          <h4>プロフィール非公開</h4>
+          <p>名前・年齢・性別・写真は一切表示されません。</p>
+        </div>
+      </div>
+      <div class="safety-item rv rv-d3">
+        <div class="safety-item-icon">🏷️</div>
+        <div>
+          <h4>選択式の目印のみ</h4>
+          <p>自由テキスト入力を排除。不適切な内容が入る余地ゼロ。</p>
+        </div>
+      </div>
+      <div class="safety-item rv rv-d4">
+        <div class="safety-item-icon">🔄</div>
+        <div>
+          <h4>使い切りマッチング</h4>
+          <p>毎回リセット。特定ユーザーの追跡は不可能です。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="download" class="cta-section">
+  <div class="cta-card rv">
+    <div class="cta-emoji">🙌</div>
+    <h2 class="cta-title">通勤が、ちょっと<br>やさしくなる。</h2>
+    <p class="cta-desc">まもなくリリース予定。<br>事前登録で最新情報をお届けします。</p>
+    <div class="store-row">
+      <a href="#" class="store-link">
+        <span class="store-link-icon">🍎</span>
+        <div class="store-link-text">
+          <small>Download on the</small>
+          <strong>App Store</strong>
+        </div>
+      </a>
+      <a href="#" class="store-link">
+        <span class="store-link-icon">▶️</span>
+        <div class="store-link-text">
+          <small>GET IT ON</small>
+          <strong>Google Play</strong>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">のりかえ<span class="num">39</span></div>
+  <div class="footer-sub">座席ゆずりあいマッチング</div>
+  <nav class="footer-nav">
+    <a href="#">利用規約</a>
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">お問い合わせ</a>
+    <a href="#">運営情報</a>
+  </nav>
+  <p class="footer-copy">© 2026 のりかえ39. All rights reserved.</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
