@@ -113,9 +113,18 @@
     .hero-actions {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      align-items: flex-start;
+      gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 50px;
+      max-width: 780px;
+      margin: 0 auto 50px;
+    }
+    .action-item {
+      flex: 1 1 220px;
+      max-width: 245px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
     }
 
     .btn {
@@ -123,10 +132,11 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 16px 32px;
+      padding: 16px 24px;
       border-radius: 50px;
       font-weight: bold;
-      min-width: 200px;
+      width: 100%;
+      min-width: 0;
       text-align: center;
       transition: transform 0.2s, box-shadow 0.2s;
     }
@@ -150,8 +160,18 @@
       margin-bottom: 2px;
       display: block;
     }
-    .btn-label { font-size: 1.1rem; }
-    .meta-text { font-size: 0.8rem; color: #999; margin-top: 8px; }
+    .btn-label { font-size: 1.05rem; }
+    .meta-text {
+      min-height: 2.8em;
+      font-size: 0.8rem;
+      color: #999;
+      margin: 8px 0 0;
+      line-height: 1.4;
+    }
+    .meta-text.caution {
+      color: #bf5a75;
+      font-weight: 600;
+    }
 
     .hero-art {
       margin-top: 20px;
@@ -424,6 +444,7 @@
       .header-inner { flex-direction: column; gap: 10px; }
       .nav a { margin: 0 8px; }
       .hero-actions { flex-direction: column; align-items: center; }
+      .action-item { width: 100%; max-width: 320px; }
       .section-title { margin-top: 55px; }
       .feature-visual { min-height: 320px; border-radius: 22px; }
       .screens { gap: 10px; }
@@ -457,16 +478,16 @@
         <h1 class="hero-title">がるなび<br><span style="font-size: 0.6em; font-weight: normal; display:inline-block; margin-top:5px;">（がるちゃん専ブラ）</span></h1>
         <p class="hero-sub">女子の好きな話題を毎日おしゃべり♪</p>
         <p class="hero-desc-long">
-          がるなび は、ガールズちゃんねる（がるちゃん）のスレッドや画像をPCの大画面で快適に閲覧できる無料アプリです。トピックやコメントを保存しカテゴリ分け、メモまでつけられる。
+          がるなび は、ガールズちゃんねる（がるちゃん）のスレッドや画像をAndroidスマホやPCで快適に閲覧できる無料アプリです。トピックやコメントを保存し、カテゴリ分けやメモもできます。
         </p>
 
         <div class="hero-actions" id="download">
           <div class="action-item">
             <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=jp.cloxs.girlschan_app" target="_blank" rel="noopener noreferrer">
               <span class="btn-badge">Android 版</span>
-              <span class="btn-label">で入手</span>
+              <span class="btn-label">Google Playで入手</span>
             </a>
-            <p class="meta-text"></p>
+            <p class="meta-text caution">Android対応 / iPhone版は未対応です</p>
           </div>
 
           <div class="action-item">
@@ -476,7 +497,6 @@
             </a>
             <p class="meta-text">Windows 10/11 (64bit) 対応</p>
           </div>
-
 
           <div class="action-item">
             <a class="btn btn-secondary" href="" download>
