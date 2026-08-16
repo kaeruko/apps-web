@@ -7,7 +7,7 @@ if ($LASTEXITCODE -ne 0) {
 
 aws cloudfront create-invalidation `
   --distribution-id E159EOKK4P9F3D `
-  --paths "/garunavi/*" "/sitemap.xml"
+  --paths "/" "/index.html" "/garunavi/*" "/sitemap.xml"
 
 if ($LASTEXITCODE -ne 0) {
     throw "CloudFront invalidation failed"
