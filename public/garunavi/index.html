@@ -50,6 +50,7 @@
       background-color: var(--bg-white);
       line-height: 1.7;
     }
+    body.lightbox-open { overflow: hidden; }
 
     a { text-decoration: none; color: inherit; transition: opacity 0.2s; }
     a:hover { opacity: 0.8; }
@@ -187,10 +188,7 @@
       color: var(--text-light);
     }
 
-    /* カルーセルではなく、機能ごとに文章とAndroid実画面を並べる */
-    .feature-list {
-      padding-bottom: 80px;
-    }
+    .feature-list { padding-bottom: 80px; }
     .feature-row {
       display: grid;
       grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
@@ -198,9 +196,7 @@
       align-items: center;
       padding: 46px 0;
     }
-    .feature-row + .feature-row {
-      border-top: 1px solid var(--line);
-    }
+    .feature-row + .feature-row { border-top: 1px solid var(--line); }
     .feature-row.reverse .feature-copy { order: 2; }
     .feature-row.reverse .feature-visual { order: 1; }
     .feature-copy { text-align: left; }
@@ -255,10 +251,75 @@
       background: #fff;
       border: 1px solid rgba(0,0,0,0.06);
       box-shadow: var(--shadow);
+      cursor: zoom-in;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .phone-shot:hover,
+    .phone-shot:focus-visible {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 38px rgba(30, 38, 58, 0.18);
+      outline: 3px solid rgba(245, 142, 168, 0.28);
+      outline-offset: 3px;
     }
     .phone-shot.single {
       width: min(68%, 320px);
       max-height: 430px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(14, 16, 22, 0.90);
+      cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-image {
+      max-width: min(94vw, 1100px);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 28px 80px rgba(0,0,0,0.42);
+      cursor: zoom-out;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: max(18px, env(safe-area-inset-top));
+      right: max(18px, env(safe-area-inset-right));
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.94);
+      color: #333;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .lightbox-close:focus-visible {
+      outline: 3px solid var(--primary);
+      outline-offset: 3px;
+    }
+    .lightbox-hint {
+      position: fixed;
+      left: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      transform: translateX(-50%);
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #fff;
+      background: rgba(0,0,0,0.45);
+      font-size: 0.82rem;
+      pointer-events: none;
+      white-space: nowrap;
     }
 
     .strip {
@@ -350,9 +411,7 @@
         padding: 36px 0;
       }
       .feature-row.reverse .feature-copy,
-      .feature-row.reverse .feature-visual {
-        order: initial;
-      }
+      .feature-row.reverse .feature-visual { order: initial; }
       .feature-copy { text-align: center; }
       .feature-visual { min-height: 390px; padding: 20px; }
       .phone-shot { max-height: 350px; }
@@ -370,6 +429,9 @@
       .screens { gap: 10px; }
       .phone-shot { width: 48%; max-height: 300px; border-radius: 13px; }
       .phone-shot.single { width: 72%; max-height: 320px; }
+      .lightbox { padding: 12px; }
+      .lightbox-image { max-width: 96vw; max-height: 88vh; border-radius: 10px; }
+      .lightbox-hint { font-size: 0.75rem; }
     }
   </style>
 </head>
@@ -566,5 +628,79 @@
       </nav>
     </div>
   </footer>
+
+  <div class="lightbox" id="screenshot-lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="スクリーンショット拡大表示">
+    <button class="lightbox-close" type="button" aria-label="拡大表示を閉じる">×</button>
+    <img class="lightbox-image" src="" alt="">
+    <div class="lightbox-hint">画像・背景・× で閉じる</div>
+  </div>
+
+  <script>
+    (() => {
+      const lightbox = document.getElementById('screenshot-lightbox');
+      const lightboxImage = lightbox?.querySelector('.lightbox-image');
+      const closeButton = lightbox?.querySelector('.lightbox-close');
+      const screenshots = [...document.querySelectorAll('.phone-shot')];
+
+      if (!lightbox || !lightboxImage || !closeButton) {
+        throw new Error('スクリーンショット拡大表示に必要な要素が見つかりません。');
+      }
+      if (screenshots.length === 0) {
+        throw new Error('拡大対象の .phone-shot が見つかりません。');
+      }
+
+      let returnFocus = null;
+
+      const openLightbox = (shot) => {
+        const src = shot.currentSrc || shot.src;
+        if (!src) {
+          throw new Error('拡大対象スクリーンショットの画像URLが空です。');
+        }
+        returnFocus = shot;
+        lightboxImage.src = src;
+        lightboxImage.alt = shot.alt || 'スクリーンショット拡大表示';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('lightbox-open');
+        closeButton.focus();
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox.classList.contains('open')) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('lightbox-open');
+        lightboxImage.removeAttribute('src');
+        lightboxImage.alt = '';
+        if (returnFocus instanceof HTMLElement) {
+          returnFocus.focus();
+        }
+        returnFocus = null;
+      };
+
+      screenshots.forEach((shot) => {
+        shot.tabIndex = 0;
+        shot.setAttribute('role', 'button');
+        shot.setAttribute('aria-label', `${shot.alt || 'スクリーンショット'}を拡大表示`);
+        shot.addEventListener('click', () => openLightbox(shot));
+        shot.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(shot);
+          }
+        });
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', closeLightbox);
+      lightboxImage.addEventListener('click', closeLightbox);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
