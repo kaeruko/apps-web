@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - 作ったアプリを、みんなで使おう。 | CLOXS LLC</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        toy: {
+                            red: '#FF5C5C',
+                            blue: '#4DA8DA',
+                            yellow: '#FFD166',
+                            green: '#54C286',
+                            light: '#FDFBF7',
+                            dark: '#2D3748'
+                        }
+                    },
+                    boxShadow: {
+                        'pop': '6px 6px 0px 0px rgba(45,55,72,1)',
+                        'pop-sm': '3px 3px 0px 0px rgba(45,55,72,1)',
+                        'pop-lg': '12px 12px 0px 0px rgba(45,55,72,1)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(#4DA8DA 2px, transparent 2px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float-delay {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float-delay {
+            animation: float-delay 3.5s ease-in-out infinite 1s;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .animate-wiggle {
+            animation: wiggle 2s ease-in-out infinite;
+        }
+        /* セクション境界の波 */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+        .wave-divider .shape-fill {
+            fill: #FFFFFF;
+        }
+    </style>
+</head>
+<body class="text-toy-dark font-sans antialiased overflow-x-hidden selection:bg-toy-yellow selection:text-toy-dark pt-20">
+
+    <header class="fixed w-full top-0 z-50 p-4 transition-all duration-300">
+        <div class="max-w-6xl mx-auto bg-white border-4 border-toy-dark rounded-full shadow-pop flex items-center justify-between px-6 py-3">
+            <a href="/index.html" class="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                <i class="ph-fill ph-caret-left text-2xl text-toy-dark"></i>
+                <h1 class="text-2xl font-black tracking-wider flex">
+                    <span class="text-toy-blue">C</span>
+                    <span class="text-toy-red">L</span>
+                    <span class="text-toy-yellow">O</span>
+                    <span class="text-toy-green">X</span>
+                    <span class="text-toy-dark">S</span>
+                </h1>
+            </a>
+            <a href="#contact" class="bg-toy-red text-white font-black px-6 py-2 rounded-full border-4 border-toy-dark shadow-pop-sm hover:translate-y-1 hover:shadow-none transition-all hidden sm:block">
+                導入のご相談
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section class="max-w-6xl mx-auto px-4 pt-12 pb-24 md:pt-20 md:pb-32 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Left: Copy & CTA -->
+                <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left relative">
+                    <!-- Badge -->
+                    <div class="inline-block bg-white text-toy-blue font-black px-4 py-2 rounded-full border-4 border-toy-dark shadow-pop-sm transform -rotate-3 animate-wiggle">
+                        学校・プログラミング教室向け
+                    </div>
+                    
+                    <h2 class="text-5xl md:text-6xl font-black leading-tight">
+                        作ったアプリを、<br>
+                        <span class="text-toy-red relative inline-block">
+                            <span class="relative z-10">みんな</span>
+                            <span class="absolute bottom-1 left-0 w-full h-4 bg-toy-yellow -z-10 -rotate-2"></span>
+                        </span>
+                        で使おう。
+                    </h2>
+                    
+                    <p class="text-xl font-bold bg-white inline-block border-4 border-toy-dark p-6 rounded-3xl shadow-pop">
+                        「みんアプ」は、子どもが作ったWebアプリを、<br class="hidden md:block">
+                        先生の承認で安全にクラス内共有できるサービス。<br>
+                        <span class="text-toy-red">個人情報も、クラウド契約も不要です。</span>
+                    </p>
+                    
+                    <div class="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="w-full sm:w-auto text-center bg-toy-blue text-white border-4 border-toy-dark font-black py-4 px-8 rounded-full shadow-pop hover:translate-y-1 hover:shadow-pop-sm transition-all text-xl flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-paper-plane-tilt text-2xl"></i> お問い合わせ
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto text-center bg-white text-toy-dark border-4 border-toy-dark font-black py-4 px-8 rounded-full shadow-pop hover:translate-y-1 hover:shadow-pop-sm transition-all text-xl">
+                            詳しく見る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Visual (Placeholder for now, using icons) -->
+                <div class="w-full lg:w-1/2 relative h-[400px] flex justify-center items-center">
+                    <!-- Decorative background elements -->
+                    <div class="absolute inset-0 bg-toy-yellow border-4 border-toy-dark rounded-[3rem] transform rotate-3 shadow-pop-lg opacity-50"></div>
+                    
+                    <!-- Main visual box -->
+                    <div class="relative z-10 w-4/5 h-4/5 bg-white border-4 border-toy-dark rounded-[2.5rem] shadow-pop flex flex-col items-center justify-center p-6 animate-float">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-16 h-16 bg-toy-light border-4 border-toy-dark rounded-full flex items-center justify-center shadow-sm">
+                                <i class="ph-fill ph-code text-3xl text-toy-blue"></i>
+                            </div>
+                            <i class="ph-bold ph-arrow-right text-3xl text-toy-dark"></i>
+                            <div class="w-16 h-16 bg-toy-light border-4 border-toy-dark rounded-full flex items-center justify-center shadow-sm">
+                                <i class="ph-fill ph-check-circle text-3xl text-toy-green"></i>
+                            </div>
+                            <i class="ph-bold ph-arrow-right text-3xl text-toy-dark"></i>
+                            <div class="w-16 h-16 bg-toy-light border-4 border-toy-dark rounded-full flex items-center justify-center shadow-sm">
+                                <i class="ph-fill ph-users-three text-3xl text-toy-red"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-black text-center mb-2">つくる楽しさを、<br>使ってもらう楽しさへ。</h3>
+                        <p class="font-bold text-gray-500 text-center text-sm">HTML/CSS/JSで作った作品が、<br>クラスみんなのスマホに届きます。</p>
+                        
+                        <!-- Floating elements around -->
+                        <div class="absolute -top-6 -left-6 bg-toy-red border-4 border-toy-dark rounded-xl p-3 shadow-pop animate-float-delay transform -rotate-12">
+                            <i class="ph-bold ph-device-mobile text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-toy-green border-4 border-toy-dark rounded-xl p-3 shadow-pop animate-float-delay transform rotate-12" style="animation-delay: 1.5s;">
+                            <i class="ph-bold ph-laptop text-white text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-toy-dark text-white py-24 relative overflow-hidden">
+            <!-- Decorative Gears -->
+            <i class="ph-fill ph-gear text-toy-dark opacity-50 text-[10rem] absolute -top-10 -left-10 animate-[spin-slow_20s_linear_infinite]"></i>
+            <i class="ph-fill ph-gear text-toy-dark opacity-50 text-[15rem] absolute -bottom-20 -right-20 animate-[spin-slow_20s_linear_infinite_reverse]"></i>
+            
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                <h3 class="text-3xl md:text-4xl font-black mb-12 leading-tight">
+                    プログラミング教育の現場で、<br>
+                    <span class="text-toy-yellow">こんなお悩みありませんか？</span>
+                </h3>
+                
+                <div class="space-y-6 text-left">
+                    <div class="bg-white/10 border-4 border-toy-dark/30 rounded-2xl p-6 flex items-start gap-4 transform transition-transform hover:scale-105">
+                        <i class="ph-fill ph-smiley-sad text-4xl text-toy-red flex-shrink-0 mt-1"></i>
+                        <p class="font-bold text-lg md:text-xl leading-relaxed">
+                            「せっかくアプリを作っても、<span class="text-toy-yellow">自分のPCの中で動かして終わり</span>になってしまう。発表する場がない…」
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/10 border-4 border-toy-dark/30 rounded-2xl p-6 flex items-start gap-4 transform transition-transform hover:scale-105">
+                        <i class="ph-fill ph-warning-circle text-4xl text-toy-red flex-shrink-0 mt-1"></i>
+                        <p class="font-bold text-lg md:text-xl leading-relaxed">
+                            「Google Play等に公開させたいけど、<span class="text-toy-yellow">審査やクレジットカード登録、個人情報のハードル</span>が高すぎる…」
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/10 border-4 border-toy-dark/30 rounded-2xl p-6 flex items-start gap-4 transform transition-transform hover:scale-105">
+                        <i class="ph-fill ph-lock-key text-4xl text-toy-red flex-shrink-0 mt-1"></i>
+                        <p class="font-bold text-lg md:text-xl leading-relaxed">
+                            「子どもが作ったアプリを自由に共有させると、<span class="text-toy-yellow">セキュリティや不適切コンテンツ</span>が心配…」
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 inline-block bg-toy-yellow text-toy-dark border-4 border-toy-dark rounded-full px-8 py-4 font-black text-2xl shadow-[6px_6px_0px_0px_#FFFFFF] transform rotate-2">
+                    そのお悩み、「みんアプ」が解決します！
+                </div>
+            </div>
+            
+            <div class="wave-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,137.47,105.85,207,89.51Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <section id="features" class="bg-white py-24 relative">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h3 class="text-4xl md:text-5xl font-black inline-block relative">
+                        <span class="relative z-10">みんアプの３つの特徴</span>
+                        <div class="absolute bottom-2 left-0 w-full h-6 bg-toy-green opacity-30 -z-10 -rotate-1"></div>
+                    </h3>
+                </div>
+
+                <!-- Feature 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-12 mb-24">
+                    <div class="w-full md:w-1/2">
+                         <div class="bg-toy-light border-4 border-toy-dark rounded-3xl p-4 shadow-pop relative overflow-hidden aspect-video flex items-center justify-center">
+                            <!-- Placeholder for Student UI Image -->
+                             <div class="absolute inset-0 bg-gray-100 flex items-center justify-center flex-col text-gray-400">
+                                 <i class="ph-bold ph-upload-simple text-6xl mb-2"></i>
+                                 <span class="font-bold">生徒用ポータル画面イメージ</span>
+                             </div>
+                             <!-- Decorative elements -->
+                             <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-toy-blue rounded-full border-4 border-toy-dark opacity-20"></div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="inline-block bg-toy-blue text-white font-black px-4 py-1 rounded-full border-2 border-toy-dark text-lg shadow-sm">
+                            特徴 1
+                        </div>
+                        <h4 class="text-3xl font-black">ZIPで固めてポン！<br>かんたんアップロード</h4>
+                        <p class="font-bold text-lg leading-relaxed text-gray-700">
+                            生徒はブラウザから専用ポータルにログイン。作ったHTML/CSS/JavaScriptをZIPにしてアップロードし、「公開申請」ボタンを押すだけです。面倒なサーバー構築や複雑なデプロイ作業は一切必要ありません。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 mb-24">
+                    <div class="w-full md:w-1/2">
+                         <div class="bg-toy-light border-4 border-toy-dark rounded-3xl p-4 shadow-pop relative overflow-hidden aspect-video flex items-center justify-center">
+                             <!-- Placeholder for Teacher UI Image -->
+                             <div class="absolute inset-0 bg-gray-100 flex items-center justify-center flex-col text-gray-400">
+                                 <i class="ph-bold ph-eye text-6xl mb-2"></i>
+                                 <span class="font-bold">先生用プレビュー・承認画面イメージ</span>
+                             </div>
+                             <!-- Decorative elements -->
+                             <div class="absolute -left-4 -top-4 w-24 h-24 bg-toy-red rounded-full border-4 border-toy-dark opacity-20"></div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="inline-block bg-toy-red text-white font-black px-4 py-1 rounded-full border-2 border-toy-dark text-lg shadow-sm">
+                            特徴 2
+                        </div>
+                        <h4 class="text-3xl font-black">先生がプレビュー＆<br>承認するから安心</h4>
+                        <p class="font-bold text-lg leading-relaxed text-gray-700">
+                            申請されたアプリは、先生が安全に隔離されたプレビュー環境で確認します。問題がなければ「承認」をポチッとするだけで、クラス全員に配信されます。<br>
+                            一度承認された内容は後から書き換えられない（Immutable）ため、「確認後にこっそり不正なコードに変更される」心配もありません。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2">
+                        <div class="bg-toy-light border-4 border-toy-dark rounded-3xl p-4 shadow-pop relative overflow-hidden aspect-square max-w-sm mx-auto flex items-center justify-center">
+                             <!-- Placeholder for Mobile UI Image -->
+                             <div class="absolute inset-0 bg-gray-100 flex items-center justify-center flex-col text-gray-400">
+                                 <i class="ph-bold ph-device-mobile-speaker text-6xl mb-2"></i>
+                                 <span class="font-bold text-center px-4">Android版「みんアプ」<br>ホーム画面イメージ</span>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-6">
+                        <div class="inline-block bg-toy-yellow text-toy-dark font-black px-4 py-1 rounded-full border-2 border-toy-dark text-lg shadow-sm">
+                            特徴 3
+                        </div>
+                        <h4 class="text-3xl font-black">メアド不要。<br>外部通信もシャットアウト</h4>
+                        <p class="font-bold text-lg leading-relaxed text-gray-700">
+                            生徒のアカウントは「IDとパスワード」のみ。メールアドレス等の個人情報は不要です。<br>
+                            さらに、生徒のアプリ内から外部サイトへの不正な通信や、カメラ・位置情報・ファイルへのアクセスはシステム層で強力にブロック（CSP等による制限）。子どもたちを危険から守る仕組みが徹底されています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-toy-light py-24 relative border-y-8 border-toy-dark">
+             <!-- Background pattern -->
+             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#2D3748 2px, transparent 2px); background-size: 20px 20px;"></div>
+             
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl md:text-5xl font-black inline-block relative">
+                        <span class="relative z-10 bg-white px-6 py-2 border-4 border-toy-dark rounded-full shadow-pop transform -rotate-1 inline-block">
+                            どんなアプリが作れるの？
+                        </span>
+                    </h3>
+                    <p class="font-bold text-xl mt-8 text-gray-700">静的Webアプリ（HTML/CSS/JS）ならアイデア次第！</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Case 1 -->
+                    <div class="bg-white border-4 border-toy-dark rounded-3xl p-8 shadow-pop hover:-translate-y-2 transition-transform duration-300 relative">
+                        <div class="absolute -top-5 -left-5 w-12 h-12 bg-toy-red rounded-full border-4 border-toy-dark flex items-center justify-center shadow-sm">
+                            <i class="ph-bold ph-chalkboard-teacher text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4 mt-2">学校の授業で</h4>
+                        <ul class="space-y-3 font-bold text-gray-700">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                クラス専用・動く時間割アプリ
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                文化祭の出し物・模擬店マップ
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                スマホで見られる修学旅行のしおり
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Case 2 -->
+                    <div class="bg-white border-4 border-toy-dark rounded-3xl p-8 shadow-pop hover:-translate-y-2 transition-transform duration-300 relative">
+                        <div class="absolute -top-5 -left-5 w-12 h-12 bg-toy-blue rounded-full border-4 border-toy-dark flex items-center justify-center shadow-sm">
+                            <i class="ph-bold ph-desktop text-white text-xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4 mt-2">パソコン教室で</h4>
+                        <ul class="space-y-3 font-bold text-gray-700">
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                友達に出題！オリジナルクイズ
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                クリックして遊ぶ簡単なミニゲーム
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="ph-bold ph-check text-toy-green mt-1"></i>
+                                おこづかい帳・おみくじアプリ
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Case 3 -->
+                    <div class="bg-white border-4 border-toy-dark rounded-3xl p-8 shadow-pop hover:-translate-y-2 transition-transform duration-300 relative">
+                        <div class="absolute -top-5 -left-5 w-12 h-12 bg-toy-yellow rounded-full border-4 border-toy-dark flex items-center justify-center shadow-sm">
+                            <i class="ph-bold ph-robot text-toy-dark text-xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-black mb-4 mt-2">AIとの協働学習にも</h4>
+                        <p class="font-bold text-gray-700 leading-relaxed mb-4">
+                            ChatGPTなどの生成AIにコードを書かせて、それを「みんアプ」で動かす。AIを使ったプログラミング学習の「安全な発表の場」としても最適です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 bg-white relative">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h3 class="text-4xl font-black inline-block relative">
+                        <span class="relative z-10">安心の導入支援サポート</span>
+                        <div class="absolute bottom-1 left-0 w-full h-4 bg-toy-blue opacity-50 -z-10 rotate-1"></div>
+                    </h3>
+                    <p class="font-bold text-xl mt-6 text-gray-700">新しいシステムの導入も、私たちが全力でサポートします！</p>
+                </div>
+
+                <div class="bg-toy-light border-4 border-toy-dark rounded-[2.5rem] p-8 md:p-12 shadow-pop relative">
+                    <!-- Decor -->
+                    <div class="absolute -right-4 -top-4 bg-toy-red text-white font-black px-4 py-2 rounded-xl border-4 border-toy-dark shadow-sm transform rotate-12">
+                        お気軽にご相談を！
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-toy-yellow rounded-full border-4 border-toy-dark flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ph-bold ph-wrench text-xl text-toy-dark"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black mb-2">環境構築はお任せください</h4>
+                                <p class="font-bold text-gray-700">AWSを用いたセキュアな専用環境のセットアップや、最初の先生アカウントの発行など、初期設定はすべて代行いたします。月額課金額にリミットをつけることも可能です。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-toy-green rounded-full border-4 border-toy-dark flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ph-bold ph-video-camera text-xl text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black mb-2">先生向けレクチャー</h4>
+                                <p class="font-bold text-gray-700">Webポータルの使い方、生徒アカウントの管理方法、安全な運用ルールについて、オンラインで丁寧にご説明します。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-toy-blue rounded-full border-4 border-toy-dark flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="ph-bold ph-books text-xl text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black mb-2">カリキュラム相談・受託開発</h4>
+                                <p class="font-bold text-gray-700">「みんアプを使った全4回の授業案」などの指導案づくりのお手伝いや、「こんな機能のアプリを教材として用意してほしい」という受託開発の個別ご要望にも対応いたします。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 p-6 bg-white border-4 border-toy-dark rounded-2xl text-center shadow-sm">
+                        <h5 class="text-xl font-black mb-2">ご利用料金について</h5>
+                        <p class="font-bold text-gray-700 mb-4">
+                            生徒数に応じた定額プランなど、教室の規模やご予算に合わせた柔軟なプランをご提案可能です。まずは無料デモ環境をお試しいただくこともできます。
+                        </p>
+                        <p class="font-bold text-toy-red">※現在はβ版として、特別モニター価格でご案内中です！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="py-24 bg-toy-dark text-white text-center relative overflow-hidden">
+            <div class="max-w-3xl mx-auto px-4 relative z-10">
+                <h2 class="text-4xl md:text-5xl font-black mb-6">
+                    まずは、お気軽に<br>お問い合わせください
+                </h2>
+                <p class="text-xl font-bold mb-12 opacity-90">
+                    無料デモ環境のご案内や、詳しい資料をお送りします。
+                </p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-toy-yellow text-toy-dark border-4 border-toy-dark font-black py-5 px-12 rounded-full shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transition-all text-2xl group">
+                    <i class="ph-bold ph-paper-plane-tilt transform group-hover:rotate-12 transition-transform"></i> 
+                    お問い合わせフォームを開く
+                </a>
+                <p class="mt-8 text-sm font-bold opacity-70">※Googleフォームへ移動します</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-toy-dark text-white py-12 border-t-8 border-toy-yellow relative z-20">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <a href="index.html" class="inline-block hover:opacity-80 transition-opacity">
+                <h2 class="text-3xl font-black tracking-wider mb-6 flex justify-center">
+                    <span class="text-toy-blue">c</span>
+                    <span class="text-toy-red">l</span>
+                    <span class="text-toy-yellow">o</span>
+                    <span class="text-toy-green">x</span>
+                    <span class="text-white">s</span>
+                </h2>
+            </a>
+            <p class="font-bold text-sm text-gray-400 mt-4">&copy; 2015-2026 cloxs LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
