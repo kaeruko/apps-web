@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLOXS LLC</title>
+    <title>cloxs合同会社 - おもちゃ箱のようなアイデアを。</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: 丸ゴシックでポップな印象に -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap" rel="stylesheet">
-    <!-- Phosphor Icons (歯車などのアイコン用) -->
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
@@ -42,8 +42,6 @@
             background-image: radial-gradient(#FFD166 2px, transparent 2px);
             background-size: 30px 30px;
         }
-
-        /* 歯車がゆっくり回るアニメーション */
         @keyframes spin-slow {
             100% { transform: rotate(360deg); }
         }
@@ -53,8 +51,6 @@
         .gear-spin-reverse {
             animation: spin-slow 15s linear infinite reverse;
         }
-
-        /* ふわふわ浮くアニメーション */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -63,11 +59,9 @@
         .animate-float {
             animation: float 3s ease-in-out infinite;
         }
-
-        /* おもちゃの時計の針の基点 */
         .clock-hand {
             transform-origin: bottom center;
-            transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44); /* コチコチ感を強調 */
+            transition: transform 0.1s cubic-bezier(0.4, 2.08, 0.55, 0.44);
         }
     </style>
 </head>
@@ -78,74 +72,63 @@
             <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <i class="ph-fill ph-clock text-4xl text-toy-red animate-pulse"></i>
                 <h1 class="text-3xl font-black tracking-wider flex">
-                    <span class="text-toy-blue">C</span>
-                    <span class="text-toy-red">L</span>
-                    <span class="text-toy-yellow">O</span>
-                    <span class="text-toy-green">X</span>
-                    <span class="text-toy-dark">S</span>
+                    <span class="text-toy-blue">c</span>
+                    <span class="text-toy-red">l</span>
+                    <span class="text-toy-yellow">o</span>
+                    <span class="text-toy-green">x</span>
+                    <span class="text-toy-dark">s</span>
                 </h1>
             </div>
             <nav class="hidden md:flex gap-6 font-bold text-lg">
                 <a href="#about" class="hover:text-toy-blue hover:-translate-y-1 transition-transform">会社概要</a>
                 <a href="#services" class="hover:text-toy-red hover:-translate-y-1 transition-transform">事業内容</a>
+                <a href="#apps" class="hover:text-toy-green hover:-translate-y-1 transition-transform">アプリ</a>
+                <a href="#education" class="hover:text-toy-yellow hover:-translate-y-1 transition-transform">教育・受託</a>
+                <a href="#contact" class="hover:text-toy-blue hover:-translate-y-1 transition-transform">お問い合わせ</a>
             </nav>
-            <!-- Mobile Menu Button -->
             <button class="md:hidden text-toy-dark text-3xl hover:text-toy-red" id="mobile-menu-btn">
                 <i class="ph-bold ph-list"></i>
             </button>
         </div>
-        <!-- Mobile Nav -->
         <div id="mobile-nav" class="hidden absolute top-20 left-4 right-4 bg-white border-4 border-toy-dark rounded-3xl shadow-pop flex flex-col items-center py-4 gap-4 font-bold text-lg md:hidden">
             <a href="#about" class="mobile-link">会社概要</a>
             <a href="#services" class="mobile-link">事業内容</a>
+            <a href="#apps" class="mobile-link">アプリ</a>
+            <a href="#education" class="mobile-link">教育・受託</a>
+            <a href="#contact" class="mobile-link">お問い合わせ</a>
         </div>
     </header>
 
     <main class="pt-32">
         <section class="max-w-6xl mx-auto px-4 py-12 md:py-20 flex flex-col lg:flex-row items-center gap-12">
-            <!-- Left: Text -->
             <div class="w-full lg:w-1/2 space-y-8 relative z-10 text-center lg:text-left">
-              <h2 class="text-4xl md:text-6xl font-black leading-tight">
-                  時間を楽しむ、<br>
-                  <span class="text-toy-red inline-block -rotate-2">サ</span>
-                  <span class="text-toy-blue inline-block rotate-3">ー</span>
-                  <span class="text-toy-green inline-block -rotate-1">ビ</span>
-                  <span class="text-toy-yellow inline-block rotate-2">ス</span>
-                  <!-- ↓ここを span で囲み inline-block を追加 -->
-                  <span class="inline-block">を創る。</span>
-              </h2>
+                <h2 class="text-4xl md:text-5xl font-black leading-tight">
+                    時間を楽しむ、<br>
+                    <span class="text-toy-red inline-block -rotate-2">サ</span>
+                    <span class="text-toy-blue inline-block rotate-3">ー</span>
+                    <span class="text-toy-green inline-block -rotate-1">ビ</span>
+                    <span class="text-toy-yellow inline-block rotate-2">ス</span>
+                    <span class="inline-block">を創る。</span>
+                </h2>
                 <p class="text-xl font-bold bg-white inline-block border-2 border-toy-dark p-4 rounded-xl shadow-pop-sm rotate-1">
-                    CLOXS LLCは、<br class="hidden md:block">
+                    cloxs合同会社は、おもちゃ箱を開けた時のような<br class="hidden md:block">
                     ワクワクするITサービスを世界に届けます。
                 </p>
             </div>
 
-            <!-- Right: Toy Clock Graphic -->
             <div class="w-full lg:w-1/2 flex justify-center relative">
-                <!-- Decorative Gears -->
                 <i class="ph-fill ph-gear text-toy-yellow text-6xl absolute top-0 left-10 gear-spin opacity-80 -z-10"></i>
                 <i class="ph-fill ph-gear text-toy-blue text-8xl absolute bottom-0 right-10 gear-spin-reverse opacity-80 -z-10"></i>
 
-                <!-- The Clock -->
                 <div class="relative w-72 h-72 md:w-96 md:h-96 bg-white border-8 border-toy-dark rounded-full shadow-pop flex items-center justify-center animate-float">
-                    <!-- Outer Ring Colors -->
                     <div class="absolute inset-2 border-[12px] border-toy-red rounded-full opacity-20"></div>
                     <div class="absolute inset-6 border-[12px] border-toy-blue rounded-full opacity-20"></div>
-                    
-                    <!-- Clock Center Dot -->
                     <div class="absolute w-6 h-6 bg-toy-dark rounded-full z-20 shadow-sm border-2 border-white"></div>
-                    
-                    <!-- Hour Hand -->
                     <div id="hour-hand" class="clock-hand absolute w-2.5 h-20 bg-toy-dark rounded-t-full bottom-1/2 shadow-sm border border-white"></div>
-                    <!-- Minute Hand -->
                     <div id="min-hand" class="clock-hand absolute w-2 h-28 bg-toy-blue rounded-t-full bottom-1/2 shadow-sm border border-white"></div>
-                    <!-- Second Hand -->
                     <div id="sec-hand" class="clock-hand absolute w-1 h-36 bg-toy-red rounded-t-full bottom-1/2 shadow-sm">
-                        <!-- Circle on second hand -->
                         <div class="absolute -top-3 -left-2 w-5 h-5 border-4 border-toy-red rounded-full bg-white"></div>
                     </div>
-
-                    <!-- Clock Numbers -->
                     <span class="absolute top-4 font-black text-2xl text-toy-dark">12</span>
                     <span class="absolute right-4 font-black text-2xl text-toy-dark">3</span>
                     <span class="absolute bottom-4 font-black text-2xl text-toy-dark">6</span>
@@ -163,164 +146,184 @@
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Service 1 -->
                 <div class="bg-toy-blue border-4 border-toy-dark rounded-3xl p-8 shadow-pop transform hover:-translate-y-2 transition-transform duration-300 text-white relative overflow-hidden group">
                     <i class="ph-fill ph-device-mobile text-8xl absolute -bottom-4 -right-4 opacity-20 group-hover:rotate-12 transition-transform"></i>
                     <div class="bg-white text-toy-dark w-16 h-16 rounded-full flex items-center justify-center text-3xl border-4 border-toy-dark mb-6 shadow-pop-sm">
                         <i class="ph-bold ph-app-window"></i>
                     </div>
                     <h4 class="text-2xl font-black mb-4">スマートフォンアプリケーションの<br>企画・開発・運営</h4>
-                    <p class="font-bold text-lg">
-                        ユーザーの日常に時計のように自然に溶け込み、毎日触りたくなるようなアプリを企画から運営までワンストップで提供します。
-                    </p>
+                    <p class="font-bold text-lg">ユーザーの日常に時計のように自然に溶け込み、毎日触りたくなるようなアプリを企画から運営までワンストップで提供します。</p>
                 </div>
 
-                <!-- Service 2 -->
                 <div class="bg-toy-green border-4 border-toy-dark rounded-3xl p-8 shadow-pop transform hover:-translate-y-2 transition-transform duration-300 text-white relative overflow-hidden group">
                     <i class="ph-fill ph-globe-hemisphere text-8xl absolute -bottom-4 -right-4 opacity-20 group-hover:rotate-12 transition-transform"></i>
                     <div class="bg-white text-toy-dark w-16 h-16 rounded-full flex items-center justify-center text-3xl border-4 border-toy-dark mb-6 shadow-pop-sm">
                         <i class="ph-bold ph-browsers"></i>
                     </div>
                     <h4 class="text-2xl font-black mb-4">インターネットサービスの<br>開発・運営</h4>
-                    <p class="font-bold text-lg">
-                        歯車が噛み合うように、社会のニーズとテクノロジーを繋ぐ革新的なWebサービスの開発と持続的な運営を行っています。
-                    </p>
+                    <p class="font-bold text-lg">歯車が噛み合うように、社会のニーズとテクノロジーを繋ぐ革新的なWebサービスの開発と持続的な運営を行っています。</p>
                 </div>
             </div>
         </section>
 
-        <!-- 新しく追加するアプリケーションセクション -->
-        <section id="apps" class="max-w-7xl mx-auto px-4 py-20 relative">
+        <section id="apps" class="max-w-6xl mx-auto px-4 py-20 relative">
             <div class="text-center mb-16">
                 <h3 class="text-4xl font-black inline-block relative">
                     <span class="relative z-10">私たちのアプリケーション</span>
-                    <div class="absolute bottom-1 left-0 w-full h-4 bg-toy-green opacity-50 -z-10 rotate-1"></div>
+                    <div class="absolute bottom-1 left-0 w-full h-4 bg-toy-green -z-10 rotate-1"></div>
                 </h3>
             </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 apps">
-                <!-- App 1: がるなび -->
-                <article class="app-card garunavi bg-[#FDE8E8] border-4 border-toy-dark rounded-3xl shadow-pop flex flex-col overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="visual bg-pink-100 h-48 flex items-center justify-center p-4 border-b-4 border-toy-dark relative overflow-hidden">
-                        <!-- 代替画像としてプレースホルダーを設定 -->
-                        <img src="/garunavi/assets/android/new.png" alt="がるなび Android版の画面" 
-                             class="h-full object-contain drop-shadow-md z-10"
-                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/FBCFE8/2D3748?text=がるなび\nScreen'; this.classList.add('w-full', 'object-cover');">
-                        <!-- 装飾 -->
-                        <div class="absolute top-0 right-0 w-32 h-32 bg-pink-200 rounded-full -mr-16 -mt-16 opacity-50"></div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- がるなび -->
+                <article class="bg-[#FCE7F3] border-4 border-toy-dark rounded-3xl overflow-hidden shadow-pop flex flex-col">
+                    <div class="p-6 flex justify-center bg-white border-b-4 border-toy-dark h-48 relative overflow-hidden">
+                        <img src="/garunavi/assets/android/new.png" onerror="this.src='https://placehold.co/400x300/FCE7F3/2D3748?text=Garunavi&font=montserrat'" alt="がるなび Android版の画面" class="h-full object-cover">
                     </div>
-                    <div class="body p-6 flex-grow flex flex-col bg-white">
-                        <div class="badges flex flex-wrap gap-2 mb-4">
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">Android</span>
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">Windows</span>
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">macOS</span>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">Android</span>
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">Windows</span>
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">macOS</span>
                         </div>
                         <h3 class="text-2xl font-black mb-3">がるなび</h3>
-                        <p class="font-bold text-gray-600 mb-6 flex-grow">
-                            ガールズちゃんねるを快適に読むための、がるちゃんブラウザ・専ブラ。検索、クリップ、下書きなどに対応しています。
-                        </p>
-                        <a class="go block w-full text-center bg-pink-200 hover:bg-pink-300 text-toy-dark font-black py-3 px-6 rounded-xl border-2 border-toy-dark shadow-pop-sm transition-colors flex justify-between items-center" href="/garunavi/index.html" aria-label="がるなびのページを見る">
-                            <span>がるなびを見る</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                        <p class="font-bold text-sm mb-6 flex-1 text-gray-700">ガールズちゃんねるを快適に読むための、がるちゃんブラウザ・専ブラ。検索、クリップ、下書きなどに対応しています。</p>
+                        <a href="/garunavi/index.html" class="flex items-center justify-between bg-white border-2 border-toy-dark rounded-xl px-4 py-3 font-black hover:bg-[#FBCFE8] transition-colors shadow-pop-sm">
+                            <span>がるなびを見る</span><i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- App 2: びっとら -->
-                <article class="app-card bittra bg-[#E0F2FE] border-4 border-toy-dark rounded-3xl shadow-pop flex flex-col overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="visual bg-blue-100 h-48 flex items-center justify-center p-6 border-b-4 border-toy-dark relative overflow-hidden">
-                         <!-- 代替画像としてプレースホルダーを設定 -->
-                        <img src="/bittra/icon.png" alt="びっとら アプリアイコン" 
-                             class="h-full max-h-32 object-contain drop-shadow-md z-10 rounded-2xl"
-                             onerror="this.onerror=null; this.src='https://placehold.co/200x200/BAE6FD/2D3748?text=びっとら\nIcon'; this.classList.add('w-auto', 'rounded-2xl');">
-                         <!-- 装飾 -->
-                         <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-200 rounded-full -ml-16 -mb-16 opacity-50"></div>
+                <!-- びっとら -->
+                <article class="bg-[#E0F2FE] border-4 border-toy-dark rounded-3xl overflow-hidden shadow-pop flex flex-col">
+                    <div class="p-6 flex justify-center items-center bg-white border-b-4 border-toy-dark h-48 relative overflow-hidden">
+                        <img src="/bittra/icon.png" onerror="this.src='https://placehold.co/200x200/E0F2FE/2D3748?text=Bittra&font=montserrat'" alt="びっとら アプリアイコン" class="w-32 h-32 object-contain">
                     </div>
-                    <div class="body p-6 flex-grow flex flex-col bg-white">
-                        <div class="badges flex flex-wrap gap-2 mb-4">
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">Android</span>
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">Bluetooth</span>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">Android</span>
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">Bluetooth</span>
                         </div>
                         <h3 class="text-2xl font-black mb-3">びっとら</h3>
-                        <p class="font-bold text-gray-600 mb-6 flex-grow">
-                            同人イベント会場でBluetoothのすれ違い通信を使い、その場にいる人の口コミや感想を受け取れるアプリです。
-                        </p>
-                        <a class="go block w-full text-center bg-blue-200 hover:bg-blue-300 text-toy-dark font-black py-3 px-6 rounded-xl border-2 border-toy-dark shadow-pop-sm transition-colors flex justify-between items-center" href="/bittra/index.html" aria-label="びっとらのページを見る">
-                            <span>びっとらを見る</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                        <p class="font-bold text-sm mb-6 flex-1 text-gray-700">同人イベント会場でBluetoothのすれ違い通信を使い、その場にいる人の口コミや感想を受け取れるアプリです。</p>
+                        <a href="/bittra/index.html" class="flex items-center justify-between bg-white border-2 border-toy-dark rounded-xl px-4 py-3 font-black hover:bg-[#BAE6FD] transition-colors shadow-pop-sm">
+                            <span>びっとらを見る</span><i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
-                <!-- App 3: 都営でGO -->
-                <article class="app-card toeigo bg-[#FEF3C7] border-4 border-toy-dark rounded-3xl shadow-pop flex flex-col overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                    <div class="visual bg-yellow-100 h-48 flex items-center justify-center p-6 border-b-4 border-toy-dark relative overflow-hidden">
-                        <!-- 代替画像としてプレースホルダーを設定 -->
-                        <img src="/toeigo/assets/toeigo_logo.png" alt="都営でGO ロゴ" 
-                             class="w-full max-w-[200px] object-contain drop-shadow-sm z-10"
-                             onerror="this.onerror=null; this.src='https://placehold.co/400x250/FDE68A/2D3748?text=都営でGO\nLogo'; this.classList.add('h-full', 'w-auto', 'object-cover');">
-                        <!-- 装飾 -->
-                        <div class="absolute top-1/2 right-1/2 w-48 h-48 bg-yellow-200 rounded-full -mr-24 -mt-24 opacity-30"></div>
+                <!-- 都営でGO -->
+                <article class="bg-[#FEF08A] border-4 border-toy-dark rounded-3xl overflow-hidden shadow-pop flex flex-col">
+                    <div class="p-6 flex justify-center items-center bg-white border-b-4 border-toy-dark h-48 relative overflow-hidden">
+                        <img src="./toeigo/assets/toeigo_logo.png" onerror="this.src='https://placehold.co/300x200/FEF08A/2D3748?text=Toei+de+GO&font=montserrat'" alt="都営でGO ロゴ" class="h-full object-contain">
                     </div>
-                    <div class="body p-6 flex-grow flex flex-col bg-white">
-                        <div class="badges flex flex-wrap gap-2 mb-4">
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">Android</span>
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">都営バス</span>
-                            <span class="badge bg-gray-100 text-toy-dark px-3 py-1 rounded-full text-sm font-bold border-2 border-toy-dark">都営地下鉄</span>
+                    <div class="p-6 flex-1 flex flex-col">
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">Android</span>
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">都営バス</span>
+                            <span class="bg-toy-dark text-white text-xs font-bold px-3 py-1 rounded-full">都営地下鉄</span>
                         </div>
                         <h3 class="text-2xl font-black mb-3">都営でGO</h3>
-                        <p class="font-bold text-gray-600 mb-6 flex-grow">
-                            都営交通を中心に、JRや私鉄を使わないルートを探せるおでかけナビ。乗車中の案内や行き先探しもサポートします。
-                        </p>
-                        <a class="go block w-full text-center bg-yellow-200 hover:bg-yellow-300 text-toy-dark font-black py-3 px-6 rounded-xl border-2 border-toy-dark shadow-pop-sm transition-colors flex justify-between items-center" href="/toeigo/toeigo.html" aria-label="都営でGOのページを見る">
-                            <span>都営でGOを見る</span>
-                            <i class="ph-bold ph-arrow-right"></i>
+                        <p class="font-bold text-sm mb-6 flex-1 text-gray-700">都営交通を中心に、JRや私鉄を使わないルートを探せるおでかけナビ。乗車中の案内や行き先探しもサポートします。</p>
+                        <a href="./toeigo/toeigo.html" class="flex items-center justify-between bg-white border-2 border-toy-dark rounded-xl px-4 py-3 font-black hover:bg-[#FDE047] transition-colors shadow-pop-sm">
+                            <span>都営でGOを見る</span><i class="ph-bold ph-arrow-right"></i>
                         </a>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <!-- 教育・受託 (みんアプ) -->
+        <section id="education" class="max-w-6xl mx-auto px-4 py-20 relative">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-black inline-block relative">
+                    <span class="relative z-10">学校・パソコン教室の皆さまへ</span>
+                    <div class="absolute bottom-1 left-0 w-full h-4 bg-toy-blue -z-10 -rotate-1"></div>
+                </h3>
+            </div>
+            
+            <div class="bg-white border-4 border-toy-dark rounded-3xl shadow-pop overflow-hidden flex flex-col lg:flex-row relative">
+                <!-- 飾り -->
+                <i class="ph-fill ph-student text-toy-yellow text-6xl absolute top-4 right-4 opacity-50 z-0"></i>
+                
+                <div class="p-8 lg:p-12 w-full lg:w-2/3 relative z-10">
+                    <div class="inline-block bg-toy-red text-white font-black px-4 py-1 rounded-full border-2 border-toy-dark mb-4 transform -rotate-2">
+                        受託開発・導入支援
+                    </div>
+                    <h4 class="text-3xl md:text-4xl font-black mb-6 leading-tight">
+                        「作ったアプリを、<br><span class="text-toy-blue">みんな</span>で使おう。」
+                    </h4>
+                    <p class="font-bold text-lg mb-6 leading-relaxed">
+                        <span class="bg-toy-yellow px-1">みんアプ</span>は、学校やプログラミング教室で作ったWebアプリを、かんたん・安全にみんなで共有できるサービスです。
+                    </p>
+                    <p class="font-bold text-gray-700 mb-4 leading-relaxed">
+                        子ども一人ひとりがGoogle Play Consoleやクラウドの契約を用意する必要はありません。HTML・CSS・JavaScriptで作った作品をアップロードして、先生が確認・承認すれば、同じクラスや教室のみんなの「みんアプ」に届きます。
+                    </p>
+                    <p class="font-bold text-gray-700 mb-8 leading-relaxed">
+                        時間割、文化祭マップ、クイズ、学習ツール。AIで作ったアプリも、自分で書いたアプリも、「作って終わり」ではなく、本当に誰かに使ってもらえる体験へ。<br>
+                        <span class="text-toy-red">つくる楽しさを、使ってもらう楽しさへ。</span>
+                    </p>
+                    
+                    <div class="bg-toy-light border-2 border-dashed border-toy-dark p-4 rounded-xl mb-8">
+                        <p class="font-black text-center">
+                            「学校や教室で作ったWebアプリを、<br class="md:hidden">先生の承認後にみんなで安全に共有できるアプリ。」
+                        </p>
+                    </div>
+
+                    <div class="text-center lg:text-left">
+                        <p class="font-bold mb-4 text-toy-dark">みんアプの導入や、教育現場向けオリジナルアプリの開発をご希望の方へ</p>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-toy-blue text-white border-4 border-toy-dark font-black py-4 px-8 rounded-full shadow-pop hover:translate-y-1 hover:shadow-pop-sm transition-all text-xl">
+                            <i class="ph-bold ph-paper-plane-tilt"></i> 開発・導入の相談をする
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/3 bg-toy-yellow border-t-4 lg:border-t-0 lg:border-l-4 border-toy-dark p-8 flex flex-col justify-center items-center">
+                    <div class="bg-white w-48 h-48 rounded-full border-4 border-toy-dark shadow-pop-sm flex items-center justify-center mb-6 relative animate-float">
+                        <i class="ph-fill ph-users-three text-6xl text-toy-blue"></i>
+                        <div class="absolute -bottom-2 -right-2 bg-toy-green w-16 h-16 rounded-full border-4 border-toy-dark flex items-center justify-center">
+                            <i class="ph-bold ph-check text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="text-center font-black text-xl bg-white border-2 border-toy-dark rounded-xl px-4 py-2 transform rotate-3 shadow-sm">
+                        先生が承認！<br>だから安心。
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="about" class="max-w-4xl mx-auto px-4 py-20">
             <div class="bg-white border-4 border-toy-dark rounded-3xl shadow-pop p-8 md:p-12 relative">
-                <!-- Decorative element -->
                 <div class="absolute -top-6 -left-6 bg-toy-red text-white font-black text-xl py-2 px-6 border-4 border-toy-dark rounded-xl shadow-pop-sm rotate-[-10deg]">
                     Company Profile
                 </div>
-
                 <div class="text-center mb-12 mt-4">
                     <h3 class="text-4xl font-black inline-block relative">
                         <span class="relative z-10">会社概要</span>
                         <div class="absolute bottom-1 left-0 w-full h-4 bg-toy-blue opacity-50 -z-10 rotate-1"></div>
                     </h3>
                 </div>
-
                 <div class="space-y-4">
-                    <!-- Row -->
                     <div class="flex flex-col md:flex-row border-b-2 border-dashed border-gray-200 py-4 items-start md:items-center">
                         <div class="w-full md:w-1/3 font-black text-xl text-toy-dark flex items-center gap-2 mb-2 md:mb-0">
                             <i class="ph-fill ph-buildings text-toy-blue"></i> 会社名
                         </div>
                         <div class="w-full md:w-2/3 font-bold text-lg">CLOXS LLC</div>
                     </div>
-                    <!-- Row -->
                     <div class="flex flex-col md:flex-row border-b-2 border-dashed border-gray-200 py-4 items-start md:items-center">
                         <div class="w-full md:w-1/3 font-black text-xl text-toy-dark flex items-center gap-2 mb-2 md:mb-0">
                             <i class="ph-fill ph-user-circle text-toy-red"></i> 代表者
                         </div>
                         <div class="w-full md:w-2/3 font-bold text-lg">代表社員　横田 里奈子</div>
                     </div>
-                    <!-- Row -->
                     <div class="flex flex-col md:flex-row border-b-2 border-dashed border-gray-200 py-4 items-start md:items-center">
                         <div class="w-full md:w-1/3 font-black text-xl text-toy-dark flex items-center gap-2 mb-2 md:mb-0">
                             <i class="ph-fill ph-map-pin text-toy-green"></i> 所在地
                         </div>
                         <div class="w-full md:w-2/3 font-bold text-lg">
-                            〒190-0003<br>
-                            東京都立川市栄町1-10-49
+                            〒132-0035<br>
+                            東京都江戸川区平井7-20-8 メゾンスギヤマ 202
                         </div>
                     </div>
-                    <!-- Row -->
                     <div class="flex flex-col md:flex-row py-4 items-start md:items-center">
                         <div class="w-full md:w-1/3 font-black text-xl text-toy-dark flex items-center gap-2 mb-2 md:mb-0">
                             <i class="ph-fill ph-calendar-blank text-toy-yellow"></i> 設立
@@ -330,6 +333,15 @@
                 </div>
             </div>
         </section>
+
+        <div class="text-center">
+         <p class="font-bold mb-6">お問い合わせは以下の専用フォームからお願いします</p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="bg-toy-yellow text-toy-dark border-4 border-toy-dark font-black py-4 px-12 rounded-full shadow-pop hover:translate-y-1 hover:shadow-pop-sm transition-all text-xl inline-block">
+            お問い合わせフォームを開く
+          </a>
+        </div>
+
+
     </main>
 
     <footer class="bg-toy-dark text-white py-12 mt-12 border-t-8 border-toy-yellow">
@@ -354,43 +366,45 @@
     </footer>
 
     <script>
-        // リアルタイム時計のロジック
         function updateClock() {
             const now = new Date();
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const seconds = now.getSeconds();
-
-            // 角度の計算 (360度 / 分割数)
             const secDeg = (seconds / 60) * 360;
             const minDeg = ((minutes + seconds / 60) / 60) * 360;
             const hourDeg = ((hours % 12 + minutes / 60) / 12) * 360;
-
-            // DOM要素の取得と適用
             document.getElementById('sec-hand').style.transform = `rotate(${secDeg}deg)`;
             document.getElementById('min-hand').style.transform = `rotate(${minDeg}deg)`;
             document.getElementById('hour-hand').style.transform = `rotate(${hourDeg}deg)`;
         }
-
-        // 初期実行と1秒ごとの更新
         updateClock();
         setInterval(updateClock, 1000);
 
-        // モバイルメニューのトグル
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileNav = document.getElementById('mobile-nav');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-
         mobileMenuBtn.addEventListener('click', () => {
             mobileNav.classList.toggle('hidden');
         });
-
-        // モバイルリンクをクリックしたらメニューを閉じる
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileNav.classList.add('hidden');
             });
         });
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            document.getElementById('contact-form').classList.add('hidden');
+            document.getElementById('success-message').classList.remove('hidden');
+            document.getElementById('contact-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function resetForm() {
+            document.getElementById('contact-form').reset();
+            document.getElementById('contact-form').classList.remove('hidden');
+            document.getElementById('success-message').classList.add('hidden');
+        }
     </script>
 </body>
 </html>
