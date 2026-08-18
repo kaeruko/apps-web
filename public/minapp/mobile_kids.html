@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - UIプロトタイプ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            dark: '#1E3A8A',
+                            light: '#EFF6FF',
+                            accent: '#F59E0B',
+                            gray: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #E2E8F0; /* デバイスの背景として少し暗く */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* スマートフォンのモックアップフレーム */
+        .device-frame {
+            width: 375px;
+            height: 812px;
+            background-color: #F8FAFC;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border: 12px solid #1E293B;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 上部のノッチ風デザイン */
+        .device-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 25px;
+            background-color: #1E293B;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            z-index: 50;
+        }
+
+        /* スクロールバー非表示 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 押しやすい立体的なボタン */
+        .btn-pressable {
+            transition: all 0.1s ease;
+            box-shadow: 0 6px 0 0 #1E3A8A; /* 濃いブルーの影 */
+        }
+        .btn-pressable:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 0 #1E3A8A;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Device 1: アプリ一覧（カタログ）画面 -->
+    <div class="device-frame mx-4">
+        <div class="device-notch"></div>
+        
+        <!-- App Header -->
+        <div class="bg-brand-blue pt-12 pb-4 px-6 text-white shadow-md relative z-10">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h1 class="text-sm font-bold opacity-80">火曜・午前クラス</h1>
+                    <h2 class="text-2xl font-black">みんアプ</h2>
+                </div>
+                <button class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <i class="ph-bold ph-list text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- 検索 / 絞り込みバー (押しやすく大きく) -->
+            <div class="bg-white rounded-xl p-2 flex items-center shadow-inner">
+                <i class="ph-bold ph-magnifying-glass text-gray-400 text-xl ml-2"></i>
+                <input type="text" placeholder="アプリを探す..." class="w-full bg-transparent border-none focus:outline-none px-3 text-gray-700 font-bold placeholder-gray-400">
+            </div>
+        </div>
+
+        <!-- App Content (Scrollable) -->
+        <div class="flex-1 overflow-y-auto hide-scrollbar p-6 pb-24 bg-brand-gray relative">
+            <h3 class="text-lg font-black text-brand-dark mb-4 border-b-2 border-brand-blue/20 pb-2 inline-block">
+                クラスの公開アプリ (12)
+            </h3>
+
+            <div class="space-y-4">
+                <!-- App Card 1 -->
+                <div class="bg-white rounded-2xl p-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-blue-200">
+                        <i class="ph-fill ph-calendar-check text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-black text-gray-800 mb-1">モンスター討伐タイマー</h4>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                            <i class="ph-fill ph-user-circle"></i>
+                            <span>ゆうき くん (小5)</span>
+                            <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full font-bold ml-auto">NEW</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-300 text-xl"></i>
+                </div>
+
+                <!-- App Card 2 -->
+                <div class="bg-white rounded-2xl p-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 bg-orange-100 text-brand-accent rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-orange-200">
+                        <i class="ph-fill ph-brain text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-black text-gray-800 mb-1">ふしぎなお絵かきツール</h4>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                            <i class="ph-fill ph-user-circle"></i>
+                            <span>さくら ちゃん (小4)</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-300 text-xl"></i>
+                </div>
+
+                <!-- App Card 3 -->
+                <div class="bg-white rounded-2xl p-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                    <div class="w-16 h-16 bg-green-100 text-green-600 rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-green-200">
+                        <i class="ph-fill ph-heartbeat text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-black text-gray-800 mb-1">九九マスター道場</h4>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                            <i class="ph-fill ph-user-circle"></i>
+                            <span>けんた くん (小3)</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-300 text-xl"></i>
+                </div>
+                
+                 <!-- App Card 4 -->
+                <div class="bg-white rounded-2xl p-4 shadow-[0_4px_10px_rgba(0,0,0,0.05)] border border-gray-100 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors opacity-70">
+                    <div class="w-16 h-16 bg-gray-100 text-gray-500 rounded-xl flex items-center justify-center flex-shrink-0 border-2 border-gray-200">
+                        <i class="ph-fill ph-calculator text-3xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-lg font-black text-gray-800 mb-1">今日の運勢ガチャ</h4>
+                        <div class="flex items-center gap-2 text-sm text-gray-500 font-medium">
+                            <i class="ph-fill ph-user-circle"></i>
+                            <span>あおい ちゃん (小6)</span>
+                        </div>
+                    </div>
+                    <i class="ph-bold ph-caret-right text-gray-300 text-xl"></i>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                 <p class="text-gray-400 font-bold text-sm">すべてのアプリを表示しました</p>
+            </div>
+        </div>
+
+        <!-- Floating Action Button (リロード用など) -->
+        <div class="absolute bottom-6 right-6 z-20">
+            <button class="w-14 h-14 bg-brand-accent text-white rounded-full shadow-[0_4px_15px_rgba(245,158,11,0.5)] flex items-center justify-center btn-pressable" style="box-shadow: 0 4px 0 0 #B45309;">
+                <i class="ph-bold ph-arrows-clockwise text-2xl"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Device 2: アプリ起動前の詳細確認画面 -->
+    <div class="device-frame mx-4 hidden md:flex">
+        <div class="device-notch"></div>
+        
+        <!-- Top bar -->
+        <div class="pt-12 px-4 pb-2 bg-white flex items-center relative z-10 border-b border-gray-100">
+            <button class="p-2 text-brand-blue hover:bg-brand-light rounded-full transition-colors flex items-center font-bold">
+                <i class="ph-bold ph-caret-left text-2xl mr-1"></i> 戻る
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto bg-white flex flex-col">
+            <!-- App Details -->
+            <div class="p-8 flex flex-col items-center text-center">
+                <div class="w-28 h-28 bg-orange-100 text-brand-accent rounded-3xl flex items-center justify-center border-4 border-orange-200 shadow-sm mb-6">
+                    <i class="ph-fill ph-brain text-6xl"></i>
+                </div>
+                
+                <h2 class="text-3xl font-black text-brand-dark mb-2">モンスター討伐タイマー</h2>
+                
+                <div class="inline-flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-full text-gray-600 font-bold mb-6">
+                    <i class="ph-fill ph-user-circle text-xl"></i>
+                    <span>作成者：ゆうき くん (小5)</span>
+                </div>
+                
+                <div class="bg-brand-light rounded-2xl p-6 text-left w-full border border-blue-100">
+                    <h3 class="font-black text-brand-blue mb-2 flex items-center gap-2">
+                        <i class="ph-bold ph-info"></i> アプリの説明
+                    </h3>
+                    <p class="text-gray-700 font-medium leading-relaxed">
+                        先生、宿題をがんばるためのタイマーができました！時間がくるとモンスターをたおすアニメーションが出ます。かくにんお願いします。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Spacer -->
+            <div class="flex-1"></div>
+
+            <!-- Bottom Action Area -->
+            <div class="p-6 bg-white border-t border-gray-100 pb-10">
+                <button class="w-full bg-brand-blue text-white font-black text-xl py-5 rounded-2xl btn-pressable flex items-center justify-center gap-3">
+                    <i class="ph-bold ph-play-circle text-2xl"></i>
+                    このアプリを開く
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

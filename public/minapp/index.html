@@ -12,6 +12,40 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <script>
+// 画像モーダルを開く
+        function openImageModal(src) {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            modalImg.src = src;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // 少し遅らせてopacityを1にする（フェードイン効果）
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            }, 10);
+            
+            // 背面のスクロールを禁止
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 画像モーダルを閉じる
+        function closeImageModal() {
+            const modal = document.getElementById('image-modal');
+            
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            
+            // アニメーションが終わってから非表示にする
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 300);
+        }
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -199,7 +233,7 @@
                     <div class="bg-white/10 border-4 border-toy-dark/30 rounded-2xl p-6 flex items-start gap-4 transform transition-transform hover:scale-105">
                         <i class="ph-fill ph-warning-circle text-4xl text-toy-red flex-shrink-0 mt-1"></i>
                         <p class="font-bold text-lg md:text-xl leading-relaxed">
-                            「Google Play等に公開させたいけど、<span class="text-toy-yellow">審査やクレジットカード登録、個人情報のハードル</span>が高すぎる…」
+                            「App StoreやGoogle Playに公開させたいけど、<span class="text-toy-yellow">クレジットカード登録や</span>インフラ代がこわい…」
                         </p>
                     </div>
                     
@@ -242,7 +276,7 @@
                                  <span class="font-bold">生徒用ポータル画面イメージ</span>
                              </div>
                              <!-- Decorative elements -->
-                             <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-toy-blue rounded-full border-4 border-toy-dark opacity-20"></div>
+                            <img src="./assets/upload.png" alt="生徒用ポータル画面イメージ" class="absolute inset-0 w-full h-full object-cover z-10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 space-y-6">
@@ -266,7 +300,7 @@
                                  <span class="font-bold">先生用プレビュー・承認画面イメージ</span>
                              </div>
                              <!-- Decorative elements -->
-                             <div class="absolute -left-4 -top-4 w-24 h-24 bg-toy-red rounded-full border-4 border-toy-dark opacity-20"></div>
+                            <img src="./assets/kids_admin.png" alt="先生用プレビュー画面" class="absolute inset-0 w-full h-full object-cover z-10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 space-y-6">
@@ -286,10 +320,9 @@
                     <div class="w-full md:w-1/2">
                         <div class="bg-toy-light border-4 border-toy-dark rounded-3xl p-4 shadow-pop relative overflow-hidden aspect-square max-w-sm mx-auto flex items-center justify-center">
                              <!-- Placeholder for Mobile UI Image -->
-                             <div class="absolute inset-0 bg-gray-100 flex items-center justify-center flex-col text-gray-400">
-                                 <i class="ph-bold ph-device-mobile-speaker text-6xl mb-2"></i>
-                                 <span class="font-bold text-center px-4">Android版「みんアプ」<br>ホーム画面イメージ</span>
-                             </div>
+                            <img src="./assets/mobile_kids.png" alt="モバイル画面" class="absolute inset-0 w-full h-full object-cover z-10 cursor-pointer hover:opacity-80 transition-opacity" onclick="openImageModal(this.src)">
+
+
                         </div>
                     </div>
                     <div class="w-full md:w-1/2 space-y-6">
@@ -461,16 +494,26 @@
         <div class="max-w-6xl mx-auto px-4 text-center">
             <a href="index.html" class="inline-block hover:opacity-80 transition-opacity">
                 <h2 class="text-3xl font-black tracking-wider mb-6 flex justify-center">
-                    <span class="text-toy-blue">c</span>
-                    <span class="text-toy-red">l</span>
-                    <span class="text-toy-yellow">o</span>
-                    <span class="text-toy-green">x</span>
-                    <span class="text-white">s</span>
+                    <span class="text-toy-blue">C</span>
+                    <span class="text-toy-red">L</span>
+                    <span class="text-toy-yellow">O</span>
+                    <span class="text-toy-green">X</span>
+                    <span class="text-white">S</span>
                 </h2>
             </a>
             <p class="font-bold text-sm text-gray-400 mt-4">&copy; 2015-2026 cloxs LLC. All rights reserved.</p>
         </div>
     </footer>
-
+<!-- 画像拡大用モーダル -->
+    <div id="image-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-brand-dark/80 backdrop-blur-sm opacity-0 transition-opacity duration-300" onclick="closeImageModal()">
+        <!-- 閉じるボタン -->
+        <button class="absolute top-6 right-6 text-white hover:text-gray-300 transition-colors z-50">
+            <i class="ph-bold ph-x text-4xl"></i>
+        </button>
+        <!-- 拡大画像 -->
+        <div class="relative max-w-5xl w-full max-h-[90vh] p-4 flex justify-center" onclick="event.stopPropagation()">
+            <img id="modal-image" src="" alt="拡大画像" class="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl">
+        </div>
+    </div>
 </body>
 </html>

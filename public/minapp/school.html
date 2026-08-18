@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - ChatGPTで作ったアプリを、みんなで使おう。 | CLOXS LLC</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            dark: '#1E3A8A',
+                            light: '#EFF6FF',
+                            accent: '#F59E0B',
+                            gray: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+        }
+    </style>
+</head>
+<body class="text-gray-800 font-sans antialiased overflow-x-hidden pt-20">
+
+    <!-- Header -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 transition-all duration-300">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+            <a href="#" class="flex items-center gap-2 hover:opacity-80 transition-opacity text-brand-dark">
+                <i class="ph-fill ph-users-three text-3xl text-brand-blue"></i>
+                <h1 class="text-2xl font-bold tracking-wider">
+                    みんアプ
+                </h1>
+            </a>
+            <div class="flex items-center gap-6">
+                <span class="text-sm font-medium text-gray-500 hidden sm:block">by CLOXS LLC</span>
+                <a href="#contact" class="bg-brand-blue text-white font-bold px-6 py-2 rounded-full hover:bg-blue-700 transition-colors shadow-sm">
+                    導入のご相談
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="max-w-6xl mx-auto px-4 pt-16 pb-20 md:pt-24 md:pb-32 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Left: Copy & CTA -->
+                <div class="w-full lg:w-1/2 space-y-8 text-center lg:text-left relative">
+                    <div class="inline-flex items-center gap-2 bg-brand-light text-brand-blue font-bold px-4 py-2 rounded-full border border-blue-200 text-sm">
+                        <i class="ph-fill ph-check-circle"></i> パソコン教室・プログラミングスクール向け
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight text-brand-dark">
+                        <span class="text-brand-blue">ChatGPT</span>で作ったアプリを、<br>
+                        みんなで使おう。
+                    </h2>
+                    
+                    <p class="text-lg md:text-xl font-medium text-gray-600 leading-relaxed">
+                        「みんアプ」は、受講生が作ったWebアプリを、先生の承認で安全にクラス内共有できるサービス。<br>
+                        App StoreやGoogle Play等での審査や、面倒なクラウド契約・クレジットカードの登録は一切不要です。
+                    </p>
+                    
+                    <div class="pt-4 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                        <a href="#contact" class="w-full sm:w-auto text-center bg-brand-blue text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all text-lg flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-paper-plane-tilt text-xl"></i> お問い合わせ
+                        </a>
+                        <a href="#features" class="w-full sm:w-auto text-center bg-white text-gray-700 border border-gray-300 font-bold py-4 px-8 rounded-full shadow-sm hover:bg-gray-50 transition-all text-lg">
+                            詳しく見る
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Visual -->
+                <div class="w-full lg:w-1/2 relative flex justify-center items-center">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-light to-blue-50 rounded-3xl transform rotate-3"></div>
+                    <div class="relative z-10 w-full bg-white border border-gray-200 rounded-3xl shadow-xl flex flex-col p-8 m-4">
+                        <div class="flex items-center justify-center gap-4 mb-8 text-gray-400">
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center">
+                                    <i class="ph-fill ph-robot text-3xl text-brand-blue"></i>
+                                </div>
+                                <span class="text-xs font-bold">ChatGPTで作成</span>
+                            </div>
+                            <i class="ph-bold ph-arrow-right text-2xl"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center">
+                                    <i class="ph-fill ph-check-circle text-3xl text-green-500"></i>
+                                </div>
+                                <span class="text-xs font-bold">先生が承認</span>
+                            </div>
+                            <i class="ph-bold ph-arrow-right text-2xl"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <div class="w-16 h-16 bg-orange-50 rounded-full flex items-center justify-center">
+                                    <i class="ph-fill ph-device-mobile text-3xl text-brand-accent"></i>
+                                </div>
+                                <span class="text-xs font-bold">スマホで共有</span>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-center mb-4 text-brand-dark">「作って終わり」にしない。</h3>
+                        <p class="text-gray-500 text-center text-sm leading-relaxed">
+                            ChatGPTのプロンプトで簡単にアプリが作れる時代。<br>
+                            「自分のアプリを誰かに使ってもらう」という<br>最高の感動体験を提供します。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="bg-brand-dark text-white py-20 relative overflow-hidden">
+            <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+                <h3 class="text-3xl md:text-4xl font-bold mb-12 leading-tight">
+                    パソコン教室の運営で、<br>
+                    こんなお悩みありませんか？
+                </h3>
+                
+                <div class="space-y-6 text-left">
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 flex items-start gap-4">
+                        <i class="ph-fill ph-robot text-3xl text-brand-accent flex-shrink-0 mt-1"></i>
+                        <p class="font-medium text-lg leading-relaxed">
+                            「ChatGPTを使えば受講生でもアプリのコードは作れるけれど、<span class="text-brand-accent font-bold">実際に動かして他の人に使ってもらう方法が難しくて教えられない…</span>」
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 flex items-start gap-4">
+                        <i class="ph-fill ph-warning-circle text-3xl text-brand-accent flex-shrink-0 mt-1"></i>
+                        <p class="font-medium text-lg leading-relaxed">
+                            「App StoreやGoogle Play等に公開させたいけれど、<span class="text-brand-accent font-bold">審査やクラウドの費用、クレジットカード登録などのハードル</span>が高すぎる…」
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 flex items-start gap-4">
+                        <i class="ph-fill ph-shield-warning text-3xl text-brand-accent flex-shrink-0 mt-1"></i>
+                        <p class="font-medium text-lg leading-relaxed">
+                            「受講生が作ったアプリを自由に共有させると、<span class="text-brand-accent font-bold">セキュリティ事故や不適切な内容が含まれないか心配…</span>」
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-16 inline-block bg-brand-blue text-white font-bold text-2xl px-10 py-5 rounded-full shadow-lg">
+                    そのお悩み、「みんアプ」が解決します！
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="bg-white py-24 relative">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-20">
+                    <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                        みんアプの３つの特徴
+                    </h3>
+                    <p class="text-gray-500">安全に、そして簡単にアプリを共有できる仕組みを備えています。</p>
+                </div>
+
+                <!-- Feature 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-12 mb-20">
+                    <div class="w-full md:w-1/2">
+                         <div class="bg-gray-50 border border-gray-200 rounded-3xl p-4 relative overflow-hidden aspect-video flex items-center justify-center">
+                             <div class="text-center text-gray-400">
+                                 <i class="ph-fill ph-file-zip text-6xl mb-2 text-brand-blue"></i>
+                                 <p class="font-medium">受講生用ポータル画面イメージ</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="inline-block text-brand-blue font-bold text-sm uppercase tracking-widest mb-2">Feature 01</div>
+                        <h4 class="text-2xl md:text-3xl font-bold text-brand-dark leading-tight">ZIPで固めてポン！<br>かんたんアップロード</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            受講生はブラウザから専用ポータルにログイン。ChatGPT等で作成したHTML/CSS/JavaScriptをZIPにしてアップロードし、「公開申請」ボタンを押すだけです。面倒なサーバー構築や複雑なデプロイ作業は一切必要ありません。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 mb-20">
+                    <div class="w-full md:w-1/2">
+                         <div class="bg-gray-50 border border-gray-200 rounded-3xl p-4 relative overflow-hidden aspect-video flex items-center justify-center">
+                             <div class="text-center text-gray-400">
+                                 <i class="ph-fill ph-check-shield text-6xl mb-2 text-green-500"></i>
+                                 <p class="font-medium">先生用プレビュー・承認画面イメージ</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="inline-block text-brand-blue font-bold text-sm uppercase tracking-widest mb-2">Feature 02</div>
+                        <h4 class="text-2xl md:text-3xl font-bold text-brand-dark leading-tight">先生がプレビュー＆<br>承認するから安心</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            申請されたアプリは、先生が安全に隔離されたプレビュー環境で確認します。問題がなければ「承認」をポチッとするだけで、クラス全員に配信されます。<br>
+                            一度承認された内容は後から書き換えられないため、「確認後にこっそり不正なコードに変更される」心配もありません。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="w-full md:w-1/2">
+                        <div class="bg-gray-50 border border-gray-200 rounded-3xl p-4 relative overflow-hidden aspect-square max-w-sm mx-auto flex items-center justify-center">
+                             <div class="text-center text-gray-400">
+                                 <i class="ph-fill ph-device-mobile text-6xl mb-2 text-brand-accent"></i>
+                                 <p class="font-medium px-4">専用アプリ「みんアプ」<br>(iOS / Android対応予定)</p>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-4">
+                        <div class="inline-block text-brand-blue font-bold text-sm uppercase tracking-widest mb-2">Feature 03</div>
+                        <h4 class="text-2xl md:text-3xl font-bold text-brand-dark leading-tight">クレカ・メアド不要。<br>外部通信もシャットアウト</h4>
+                        <p class="text-gray-600 leading-relaxed">
+                            受講生のアカウントは「IDとパスワード」のみ。メールアドレスやクレジットカード等の個人情報は不要です。<br>
+                            さらに、受講生のアプリ内から外部サイトへの不正な通信や、カメラ・位置情報・ファイルへのアクセスはシステム層で強力にブロック。受講生を危険から守る仕組みが徹底されています。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section class="bg-brand-gray py-24 relative border-t border-gray-200">
+            <div class="max-w-6xl mx-auto px-4 relative z-10">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                        ChatGPT × みんアプ で広がる可能性
+                    </h3>
+                    <p class="text-gray-600 text-lg">プロンプト次第で、誰でもアイデアを形にできます。</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Case 1 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-blue-100 text-brand-blue rounded-xl flex items-center justify-center mb-6">
+                            <i class="ph-fill ph-brain text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-brand-dark">オリジナルクイズ・脳トレ</h4>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            「昭和の出来事クイズをHTMLとJavaScriptで書いて」とChatGPTに指示するだけ。教室の仲間同士でクイズを出し合って楽しむことができます。
+                        </p>
+                    </div>
+
+                    <!-- Case 2 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center mb-6">
+                            <i class="ph-fill ph-heartbeat text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-brand-dark">健康管理・お薬メモ</h4>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            「毎日の血圧と歩数を記録するアプリを作って」と指示。自分自身の生活に役立つ実用的なツールを自作し、スマホで持ち歩けます。
+                        </p>
+                    </div>
+
+                    <!-- Case 3 -->
+                    <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 bg-orange-100 text-brand-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="ph-fill ph-camera text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-4 text-brand-dark">旅行のしおり・アルバム</h4>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">
+                            旅行の日程表や思い出の写真をまとめたWebページを作成。みんアプを通して、教室の友人や家族に安全に見てもらうことができます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing / Support Section -->
+        <section class="py-24 bg-white relative">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                        安心の導入支援サポート
+                    </h3>
+                    <p class="text-gray-600 text-lg">新しいシステムの導入も、私たちが全力でサポートします。</p>
+                </div>
+
+                <div class="bg-brand-gray border border-gray-200 rounded-3xl p-8 md:p-12">
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <i class="ph-fill ph-wrench text-xl text-brand-blue"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 text-brand-dark">環境構築はお任せください</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">セキュアな専用環境のセットアップや、最初の先生アカウントの発行など、面倒な初期設定はすべて代行いたします。</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <i class="ph-fill ph-video-camera text-xl text-brand-blue"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 text-brand-dark">先生向けオンラインレクチャー</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">Webポータルの使い方、受講生アカウントの管理方法、安全な運用ルールについて、丁寧にご説明します。</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm">
+                                <i class="ph-fill ph-books text-xl text-brand-blue"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2 text-brand-dark">カリキュラム相談</h4>
+                                <p class="text-gray-600 text-sm leading-relaxed">「ChatGPTを活用したアプリ作成講座」など、指導案づくりのお手伝いやご相談にも対応いたします。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 p-6 bg-brand-light border border-blue-100 rounded-2xl text-center">
+                        <h5 class="text-lg font-bold mb-2 text-brand-dark">ご利用料金について</h5>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+                            受講生数に応じた定額プランなど、教室の規模やご予算に合わせた柔軟なプランをご提案可能です。まずは無料デモ環境をお試しいただくこともできます。
+                        </p>
+                        <p class="font-bold text-brand-blue">※現在はβ版として、特別モニター価格でご案内中です！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section id="contact" class="py-24 bg-brand-dark text-white text-center relative overflow-hidden">
+            <div class="max-w-3xl mx-auto px-4 relative z-10">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                    まずは、お気軽に<br>お問い合わせください
+                </h2>
+                <p class="text-lg text-gray-300 mb-12">
+                    無料デモ環境のご案内や、詳しい資料をお送りします。
+                </p>
+                
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-brand-dark font-bold py-4 px-10 rounded-full shadow-lg hover:bg-gray-50 hover:scale-105 transition-all text-xl">
+                    <i class="ph-bold ph-paper-plane-tilt"></i> 
+                    お問い合わせフォームを開く
+                </a>
+                <p class="mt-6 text-sm text-gray-400">※Googleフォームへ移動します</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-xl font-bold tracking-wider mb-4 text-white">
+                CLOXS LLC
+            </h2>
+            <p class="text-sm">&copy; 2015 CLOXS LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

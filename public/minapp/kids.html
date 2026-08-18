@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - 先生用ポータル</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#2563EB',
+                            dark: '#1E3A8A',
+                            light: '#EFF6FF',
+                            accent: '#F59E0B',
+                            gray: '#F8FAFC',
+                            green: '#10B981',
+                            red: '#EF4444'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+        }
+
+        /* スクロールバーのデザイン */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+
+        /* 押しやすい立体的なボタン */
+        .btn-pressable {
+            transition: all 0.1s ease;
+            position: relative;
+        }
+        .btn-pressable:active {
+            transform: translateY(4px);
+        }
+        .btn-shadow-blue { box-shadow: 0 4px 0 0 #1E3A8A; }
+        .btn-shadow-blue:active { box-shadow: 0 0px 0 0 #1E3A8A; }
+        
+        .btn-shadow-green { box-shadow: 0 4px 0 0 #047857; }
+        .btn-shadow-green:active { box-shadow: 0 0px 0 0 #047857; }
+        
+        .btn-shadow-gray { box-shadow: 0 4px 0 0 #94A3B8; }
+        .btn-shadow-gray:active { box-shadow: 0 0px 0 0 #94A3B8; }
+
+        /* スマホプレビュー用フレーム */
+        .preview-frame {
+            width: 320px;
+            height: 600px;
+            border: 12px solid #1E293B;
+            border-radius: 36px;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-gray-800 font-sans">
+
+    <!-- サイドバー -->
+    <aside class="w-64 bg-brand-dark text-white flex flex-col shadow-xl z-20">
+        <!-- ロゴエリア -->
+        <div class="h-20 flex items-center px-6 border-b border-white/10">
+            <i class="ph-fill ph-users-three text-3xl text-brand-accent mr-3"></i>
+            <div>
+                <h1 class="text-xl font-black tracking-wider">みんアプ</h1>
+                <p class="text-[10px] font-bold opacity-70">先生用ポータル</p>
+            </div>
+        </div>
+
+        <!-- ナビゲーションメニュー -->
+        <nav class="flex-1 py-6 px-4 space-y-2">
+            <a href="#" class="flex items-center px-4 py-3 bg-white/10 rounded-xl font-bold transition-colors">
+                <i class="ph-bold ph-house text-xl mr-3"></i> ホーム
+            </a>
+            
+            <a href="#" class="flex items-center px-4 py-3 hover:bg-white/5 rounded-xl font-bold transition-colors relative">
+                <i class="ph-bold ph-bell-ringing text-xl mr-3"></i> 申請の確認
+                <span class="absolute right-4 bg-brand-accent text-white text-xs font-black px-2 py-0.5 rounded-full">2</span>
+            </a>
+
+            <a href="#" class="flex items-center px-4 py-3 hover:bg-white/5 rounded-xl font-bold transition-colors text-gray-300">
+                <i class="ph-bold ph-users text-xl mr-3"></i> クラス・生徒管理
+            </a>
+
+            <a href="#" class="flex items-center px-4 py-3 hover:bg-white/5 rounded-xl font-bold transition-colors text-gray-300">
+                <i class="ph-bold ph-gear text-xl mr-3"></i> 設定
+            </a>
+        </nav>
+
+        <!-- ユーザー情報 -->
+        <div class="p-4 border-t border-white/10">
+            <div class="flex items-center px-4 py-3 bg-black/20 rounded-xl">
+                <div class="w-10 h-10 bg-white text-brand-dark rounded-full flex items-center justify-center font-black text-lg mr-3">
+                    横
+                </div>
+                <div>
+                    <p class="text-sm font-bold">鈴木 先生</p>
+                    <p class="text-xs text-gray-400">キッズプログラミング教室 みらい</p>
+                </div>
+            </div>
+            <button class="w-full mt-2 text-center text-sm font-bold text-gray-400 hover:text-white py-2 transition-colors">
+                <i class="ph-bold ph-sign-out"></i> ログアウト
+            </button>
+        </div>
+    </aside>
+
+    <!-- メインコンテンツ -->
+    <main class="flex-1 flex flex-col h-full relative z-10 bg-brand-gray">
+        
+        <!-- ヘッダー -->
+        <header class="h-20 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm">
+            <h2 class="text-2xl font-black text-gray-800">水曜・Webアプリ開発クラス の管理</h2>
+            
+            <div class="flex items-center gap-4">
+                <span class="text-sm font-bold text-gray-500">現在のクラス:</span>
+                <select class="bg-brand-light border-2 border-brand-blue/20 text-brand-dark font-bold text-lg rounded-xl px-4 py-2 focus:outline-none focus:border-brand-blue cursor-pointer">
+                    <option>水曜・Webアプリ開発クラス</option>
+                    <option>月曜・はじめてのScratch</option>
+                    <option>土曜・Unityゲーム制作</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- ダッシュボード中身 -->
+        <div class="flex-1 overflow-y-auto p-8">
+            
+            <!-- ようこそメッセージ -->
+            <div class="mb-8">
+                <h3 class="text-3xl font-black text-brand-dark mb-2">鈴木先生、こんにちは！</h3>
+                <p class="text-lg font-bold text-gray-600">生徒さんから <span class="text-brand-accent text-xl">2件</span> のアプリ公開申請が届いています。</p>
+            </div>
+
+            <!-- 確認待ちセクション (一番目立たせる) -->
+            <section class="mb-12 bg-orange-50 border-4 border-orange-200 rounded-3xl p-6 shadow-sm">
+                <div class="flex items-center mb-6 border-b-2 border-orange-200 pb-3">
+                    <i class="ph-fill ph-warning-circle text-brand-accent text-3xl mr-3"></i>
+                    <h4 class="text-2xl font-black text-gray-800">先生の確認待ち</h4>
+                    <span class="ml-4 bg-brand-accent text-white font-bold px-3 py-1 rounded-full text-sm">2件</span>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+                    
+                    <!-- 申請カード 1 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-center shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
+                        <div class="w-20 h-20 bg-blue-100 text-brand-blue rounded-2xl flex items-center justify-center flex-shrink-0 border-4 border-blue-200">
+                            <i class="ph-fill ph-game-controller text-4xl"></i>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <h5 class="text-xl font-black text-gray-800 mb-2">モンスター討伐タイマー</h5>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm font-bold text-gray-600 mb-3 justify-center sm:justify-start">
+                                <span class="flex items-center gap-1"><i class="ph-fill ph-user-circle text-lg"></i> ゆうき くん (小5)</span>
+                                <span class="flex items-center gap-1"><i class="ph-fill ph-clock text-lg"></i> 本日 16:15 申請</span>
+                            </div>
+                            <p class="text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100 text-left">
+                                先生、宿題をがんばるためのタイマーができました！時間がくるとモンスターをたおすアニメーションが出ます。かくにんお願いします。
+                            </p>
+                        </div>
+                        <div class="w-full sm:w-auto">
+                            <!-- モーダルを開くボタン -->
+                            <button onclick="openModal()" class="w-full bg-brand-blue text-white font-black px-6 py-4 rounded-xl btn-pressable btn-shadow-blue flex items-center justify-center gap-2 text-lg">
+                                <i class="ph-bold ph-magnifying-glass"></i> 確認する
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 申請カード 2 -->
+                    <div class="bg-white border-2 border-gray-200 rounded-2xl p-6 flex flex-col sm:flex-row gap-6 items-center shadow-[0_4px_10px_rgba(0,0,0,0.05)]">
+                        <div class="w-20 h-20 bg-green-100 text-brand-green rounded-2xl flex items-center justify-center flex-shrink-0 border-4 border-green-200">
+                            <i class="ph-fill ph-magic-wand text-4xl"></i>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <h5 class="text-xl font-black text-gray-800 mb-2">ふしぎなお絵かきツール</h5>
+                            <div class="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm font-bold text-gray-600 mb-3 justify-center sm:justify-start">
+                                <span class="flex items-center gap-1"><i class="ph-fill ph-user-circle text-lg"></i> さくら ちゃん (小4)</span>
+                                <span class="flex items-center gap-1"><i class="ph-fill ph-clock text-lg"></i> 昨日 18:30 申請</span>
+                            </div>
+                            <p class="text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100 text-left">
+                                マウスを動かすとキラキラ星が出るようにお絵かきできます。JavaScriptでがんばって作りました。
+                            </p>
+                        </div>
+                        <div class="w-full sm:w-auto">
+                            <button class="w-full bg-brand-blue text-white font-black px-6 py-4 rounded-xl btn-pressable btn-shadow-blue flex items-center justify-center gap-2 text-lg">
+                                <i class="ph-bold ph-magnifying-glass"></i> 確認する
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- クラスの公開済みアプリ一覧 -->
+            <section>
+                <div class="flex items-center mb-6 border-b-2 border-gray-200 pb-3">
+                    <i class="ph-fill ph-check-circle text-brand-green text-3xl mr-3"></i>
+                    <h4 class="text-2xl font-black text-gray-800">現在クラスに公開されているアプリ</h4>
+                </div>
+
+                <div class="bg-white rounded-3xl border-2 border-gray-200 shadow-sm overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 text-gray-500 font-bold text-sm border-b-2 border-gray-200">
+                                <th class="p-4">アプリ名</th>
+                                <th class="p-4">作成者</th>
+                                <th class="p-4">公開日</th>
+                                <th class="p-4">ステータス</th>
+                                <th class="p-4 text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-bold text-gray-700">
+                            <tr class="border-b border-gray-100 hover:bg-brand-light transition-colors">
+                                <td class="p-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-orange-100 text-brand-accent rounded-lg flex items-center justify-center">
+                                        <i class="ph-fill ph-calculator text-xl"></i>
+                                    </div>
+                                    九九マスター道場
+                                </td>
+                                <td class="p-4">けんた くん (小3)</td>
+                                <td class="p-4">2026/08/10</td>
+                                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">公開中</span></td>
+                                <td class="p-4 text-center">
+                                    <button class="text-gray-400 hover:text-brand-red underline text-sm transition-colors">公開を停止する</button>
+                                </td>
+                            </tr>
+                            <tr class="border-b border-gray-100 hover:bg-brand-light transition-colors">
+                                <td class="p-4 flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-gray-100 text-gray-500 rounded-lg flex items-center justify-center">
+                                        <i class="ph-fill ph-dice-three text-xl"></i>
+                                    </div>
+                                    今日の運勢ガチャ
+                                </td>
+                                <td class="p-4">あおい ちゃん (小6)</td>
+                                <td class="p-4">2026/08/05</td>
+                                <td class="p-4"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">公開中</span></td>
+                                <td class="p-4 text-center">
+                                    <button class="text-gray-400 hover:text-brand-red underline text-sm transition-colors">公開を停止する</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- アプリ確認（プレビュー）モーダル -->
+    <div id="previewModal" class="fixed inset-0 bg-black/70 z-50 hidden flex-col items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+        
+        <div class="w-full max-w-4xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row h-full max-h-[800px]">
+            
+            <!-- 左側：スマホプレビューエリア -->
+            <div class="w-full md:w-1/2 bg-gray-100 p-8 flex items-center justify-center border-r border-gray-200 relative">
+                <button onclick="closeModal()" class="md:hidden absolute top-4 right-4 bg-white w-10 h-10 rounded-full flex items-center justify-center shadow-md font-bold text-gray-500">
+                    <i class="ph-bold ph-x text-xl"></i>
+                </button>
+                
+                <!-- スマホのモックアップ -->
+                <div class="preview-frame shadow-xl flex flex-col">
+                    <!-- アプリのヘッダー風 -->
+                    <div class="bg-indigo-600 text-white p-4 text-center font-bold shadow-sm">
+                        モンスター討伐タイマー
+                    </div>
+                    <!-- アプリの中身 (デモ用にモックコンテンツ) -->
+                    <div class="flex-1 p-4 bg-gray-900 flex flex-col items-center justify-center gap-4 text-white">
+                        <div class="text-xl font-bold">残り時間</div>
+                        <div class="text-5xl font-black text-red-500 font-mono tracking-wider">14:59</div>
+                        
+                        <!-- モンスター風アイコン -->
+                        <div class="w-32 h-32 bg-gray-800 rounded-full border-4 border-purple-500 flex items-center justify-center my-4 animate-bounce">
+                            <i class="ph-fill ph-alien text-6xl text-green-400"></i>
+                        </div>
+                        
+                        <div class="w-full bg-gray-700 h-4 rounded-full overflow-hidden border border-gray-600">
+                            <div class="bg-red-500 h-full w-3/4"></div>
+                        </div>
+                        <div class="text-xs text-gray-400">モンスターのHP</div>
+
+                        <div class="mt-4 text-center text-xs text-gray-500 font-bold">
+                            安全なプレビュー環境で動作しています
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右側：確認・承認エリア -->
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <div class="inline-block bg-orange-100 text-brand-accent font-black px-3 py-1 rounded-full text-sm mb-2 border border-orange-200">
+                            確認待ち
+                        </div>
+                        <h2 class="text-3xl font-black text-gray-800">モンスター討伐タイマー</h2>
+                    </div>
+                    <button onclick="closeModal()" class="hidden md:flex bg-gray-100 hover:bg-gray-200 w-12 h-12 rounded-full items-center justify-center transition-colors text-gray-500">
+                        <i class="ph-bold ph-x text-2xl"></i>
+                    </button>
+                </div>
+
+                <div class="bg-brand-light border-2 border-brand-blue/20 rounded-2xl p-6 mb-8">
+                    <p class="font-bold text-gray-600 text-sm mb-1">作成者からのメッセージ</p>
+                    <p class="font-bold text-lg text-gray-800 leading-relaxed">
+                        「先生、宿題をがんばるためのタイマーができました！時間がくるとモンスターをたおすアニメーションが出ます。かくにんお願いします。」
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-brand-blue/20 flex gap-4 text-sm font-bold text-gray-500">
+                        <span class="flex items-center gap-1"><i class="ph-fill ph-user-circle text-lg"></i> ゆうき くん (小5)</span>
+                        <span class="flex items-center gap-1"><i class="ph-fill ph-file-zip text-lg"></i> monster_timer.zip (2.4MB)</span>
+                    </div>
+                </div>
+
+                <!-- スペーサー -->
+                <div class="flex-1">
+                    <h3 class="font-black text-gray-700 mb-3 flex items-center gap-2">
+                        <i class="ph-fill ph-check-shield text-brand-green text-xl"></i> 安全性チェック結果
+                    </h3>
+                    <ul class="space-y-2 font-bold text-sm text-gray-600 bg-gray-50 p-4 rounded-xl border border-gray-200">
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-brand-green"></i> ウイルスチェック：問題なし</li>
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-brand-green"></i> 外部通信：遮断済み</li>
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-brand-green"></i> ファイルサイズ：規定内</li>
+                    </ul>
+                </div>
+
+                <!-- アクションボタン -->
+                <div class="mt-8 space-y-4">
+                    <p class="text-center font-bold text-gray-600 mb-2">左の画面で動作を確認し、問題がなければ承認してください。</p>
+                    
+                    <button onclick="approveApp()" class="w-full bg-brand-green text-white font-black text-xl py-5 rounded-2xl btn-pressable btn-shadow-green flex items-center justify-center gap-3">
+                        <i class="ph-bold ph-check-circle text-2xl"></i>
+                        承認して、クラス全員に公開する
+                    </button>
+                    
+                    <button onclick="closeModal()" class="w-full bg-white text-gray-600 border-4 border-gray-200 font-black text-lg py-4 rounded-2xl btn-pressable btn-shadow-gray flex items-center justify-center gap-2">
+                        <i class="ph-bold ph-arrow-u-up-left text-xl"></i>
+                        差し戻す（公開しない）
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('previewModal');
+
+        // モーダルを開く
+        function openModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        // モーダルを閉じる
+        function closeModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 承認ボタンのアクション（デモ用）
+        function approveApp() {
+            // alertの代わりにUIを書き換える
+            const btn = document.querySelector('.bg-brand-green');
+            btn.innerHTML = '<i class="ph-bold ph-spinner animate-spin text-2xl"></i> 公開処理中...';
+            btn.classList.remove('btn-shadow-green', 'btn-pressable');
+            btn.style.opacity = '0.8';
+            
+            setTimeout(() => {
+                btn.innerHTML = '<i class="ph-bold ph-check text-2xl"></i> 公開完了しました！';
+                setTimeout(() => {
+                    closeModal();
+                    // デモとして、カードを1つ非表示にするなどの処理を追加しても良い
+                }, 1500);
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
