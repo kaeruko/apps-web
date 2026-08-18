@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - 「つくりたい！」を、アプリにしよう。</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="%23FF5C5C" d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm56,112H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48a8,8,0,0,1,0,16Z"></path></svg>'>
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        toy: {
+                            red: '#FF5C5C',
+                            blue: '#4DA8DA',
+                            yellow: '#FFD166',
+                            green: '#54C286',
+                            purple: '#B185DB',
+                            light: '#FDFBF7',
+                            dark: '#2D3748'
+                        }
+                    },
+                    boxShadow: {
+                        'pop': '4px 4px 0px 0px rgba(45,55,72,1)',
+                        'pop-hover': '2px 2px 0px 0px rgba(45,55,72,1)',
+                        'pop-lg': '8px 8px 0px 0px rgba(45,55,72,1)',
+                    },
+                    animation: {
+                        'wiggle': 'wiggle 2s ease-in-out infinite',
+                        'wiggle-fast': 'wiggle 1s ease-in-out infinite',
+                        'float': 'float 4s ease-in-out infinite',
+                        'float-delay': 'float 4s ease-in-out infinite 2s',
+                        'float-fast': 'float 3s ease-in-out infinite 1s',
+                        'bounce-slight': 'bounce-slight 2s infinite',
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        'bounce-slight': {
+                            '0%, 100%': { transform: 'translateY(-5%)', animationTimingFunction: 'cubic-bezier(0.8, 0, 1, 1)' },
+                            '50%': { transform: 'translateY(0)', animationTimingFunction: 'cubic-bezier(0, 0, 0.2, 1)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            background-image: radial-gradient(#E2E8F0 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FDFBF7;
+            border-left: 2px solid #2D3748;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFD166;
+            border: 2px solid #2D3748;
+            border-radius: 10px;
+        }
+        .chat-typing span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #2D3748;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out both;
+            margin: 0 2px;
+        }
+        .chat-typing span:nth-child(1) { animation-delay: -0.32s; }
+        .chat-typing span:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .toy-border {
+            border: 3px solid #2D3748;
+        }
+    </style>
+</head>
+<body class="text-toy-dark font-sans antialiased overflow-x-hidden selection:bg-toy-yellow selection:text-toy-dark">
+
+    <header class="fixed w-full top-0 z-50 p-2 sm:p-4 pointer-events-none">
+        <div class="max-w-6xl mx-auto flex justify-between items-center gap-2">
+            <!-- ロゴ -->
+            <a href="#" class="bg-white toy-border shadow-pop rounded-full px-4 sm:px-6 py-2 pointer-events-auto inline-block transform -rotate-2 hover:rotate-0 transition-transform">
+                <span class="text-lg sm:text-xl font-black tracking-wider flex">
+                    <span class="text-toy-blue">み</span>
+                    <span class="text-toy-red">ん</span>
+                    <span class="text-toy-yellow">ア</span>
+                    <span class="text-toy-green">プ</span>
+                </span>
+            </a>
+            
+            <!-- ナビゲーション (タブレット・PC) -->
+            <nav class="hidden lg:flex items-center gap-6 pointer-events-auto bg-white/90 backdrop-blur-sm px-6 py-2 rounded-full toy-border shadow-pop">
+                <a href="#examples" class="font-bold text-toy-dark hover:text-toy-blue transition-colors flex items-center gap-1">
+                    <i class="ph-bold ph-game-controller text-lg"></i> こんなの作れる！
+                </a>
+                <a href="#how-to" class="font-bold text-toy-dark hover:text-toy-red transition-colors flex items-center gap-1">
+                    <i class="ph-bold ph-magic-wand text-lg"></i> つくりかた
+                </a>
+                <a href="ideas.html" class="font-bold text-toy-dark hover:text-toy-green transition-colors flex items-center gap-1">
+                    <i class="ph-bold ph-lightbulb text-lg"></i> アイデア集
+                </a>
+                <a href="#teachers" class="font-bold text-toy-dark hover:text-toy-purple transition-colors flex items-center gap-1">
+                    <i class="ph-bold ph-chalkboard-teacher text-lg"></i> 先生へ
+                </a>
+            </nav>
+
+            <!-- モバイル用アイコンメニュー -->
+            <div class="flex lg:hidden gap-2 pointer-events-auto">
+                <a href="#examples" class="bg-white toy-border shadow-pop rounded-full w-10 h-10 flex items-center justify-center text-toy-blue hover:-translate-y-1 transition-transform" title="こんなの作れる！">
+                    <i class="ph-bold ph-game-controller text-xl"></i>
+                </a>
+                <a href="#how-to" class="bg-white toy-border shadow-pop rounded-full w-10 h-10 flex items-center justify-center text-toy-red hover:-translate-y-1 transition-transform" title="つくりかた">
+                    <i class="ph-bold ph-magic-wand text-xl"></i>
+                </a>
+                <a href="#teachers" class="bg-toy-dark text-white toy-border shadow-pop rounded-full w-10 h-10 flex items-center justify-center hover:-translate-y-1 transition-transform" title="先生へ">
+                    <i class="ph-bold ph-chalkboard-teacher text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="pt-32 pb-16 relative flex flex-col items-center justify-center overflow-hidden">
+            <div class="max-w-6xl mx-auto px-4 relative z-10 w-full text-center">
+                
+                <div class="inline-block bg-toy-yellow text-toy-dark font-black px-6 py-2 rounded-full toy-border shadow-pop transform -rotate-3 mb-6 animate-wiggle">
+                    プログラミングがわからなくても大丈夫！
+                </div>
+
+                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8">
+                    <span class="inline-block transform hover:scale-110 transition-transform text-toy-blue">「つくりたい！」</span>を、<br>
+                    <span class="relative inline-block mt-2">
+                        <span class="relative z-10">アプリ</span>
+                        <span class="absolute bottom-2 left-0 w-full h-6 bg-toy-red opacity-30 -z-10 -rotate-2"></span>
+                    </span>にしよう。
+                </h1>
+
+                <p class="text-xl md:text-2xl font-bold mb-12 max-w-2xl mx-auto bg-white p-6 rounded-3xl toy-border shadow-pop">
+                    ChatGPTに作りたいものを話して、<br>
+                    できたアプリをクラスのみんなに見せよう！
+                </p>
+
+                <div class="mt-8">
+                    <i class="ph-bold ph-caret-double-down text-4xl text-toy-dark animate-bounce mx-auto"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="examples" class="py-16 relative bg-toy-dark text-white overflow-hidden border-y-8 border-toy-yellow">
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <i class="ph-fill ph-star text-6xl absolute top-10 left-10"></i>
+                <i class="ph-fill ph-rocket text-8xl absolute bottom-20 right-10 transform rotate-45"></i>
+            </div>
+
+            <div class="max-w-4xl mx-auto px-4 relative z-10">
+                <h2 class="text-4xl md:text-5xl font-black text-center mb-16">
+                    ChatGPTで、<br class="md:hidden"><span class="text-toy-yellow">こんなの作れる！</span>
+                </h2>
+
+                <div class="space-y-16">
+                    
+                    <!-- 作品カード 1: 柴犬どんぐりキャッチ -->
+                    <div class="bg-white text-toy-dark p-6 md:p-8 rounded-[2rem] toy-border shadow-pop relative group transform transition-transform hover:-translate-y-2">
+                        <h3 class="text-3xl font-black mb-4 flex items-center gap-3">
+                            <i class="ph-fill ph-game-controller text-toy-blue text-4xl"></i>
+                            柴犬どんぐりキャッチ
+                        </h3>
+                        
+                        <!-- 画面スクショ（モック） -->
+                        <div class="aspect-video bg-[#d8f3dc] rounded-2xl toy-border relative overflow-hidden mb-6 flex flex-col items-center justify-center">
+                            <div class="absolute top-4 left-4 font-black text-xl bg-white px-3 py-1 rounded-lg toy-border">SCORE: 120</div>
+                            <div class="text-3xl absolute top-8 left-[30%] animate-float">🌰</div>
+                            <div class="text-4xl absolute top-20 left-[70%] animate-float-delay">🌰</div>
+                            <div class="text-7xl absolute bottom-4 left-[40%]">🐕</div>
+                            <div class="absolute bottom-4 right-4 flex gap-2">
+                                <div class="bg-white/50 p-2 rounded toy-border"><i class="ph-bold ph-caret-left"></i></div>
+                                <div class="bg-white/50 p-2 rounded toy-border"><i class="ph-bold ph-caret-right"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- プロンプトと結果 -->
+                        <div class="bg-gray-50 rounded-xl p-4 toy-border mb-6">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="w-10 h-10 bg-toy-blue text-white rounded-full toy-border flex items-center justify-center flex-shrink-0">
+                                    <i class="ph-fill ph-user text-xl"></i>
+                                </div>
+                                <div class="bg-white p-4 rounded-2xl rounded-tl-none font-bold toy-border shadow-sm text-lg">
+                                    「柴犬がどんぐりを集めるゲームを作って！」
+                                </div>
+                            </div>
+                            <div class="text-right font-black text-toy-red text-xl flex items-center justify-end gap-2">
+                                <i class="ph-fill ph-sparkle"></i> ChatGPTでできました！
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-toy-red text-white text-2xl font-black py-4 rounded-full toy-border shadow-pop-hover group-hover:bg-red-500 transition-colors flex items-center justify-center gap-2">
+                            🎮 遊んでみる
+                        </button>
+                    </div>
+
+                    <!-- 作品カード 2: おえかき -->
+                    <div class="bg-white text-toy-dark p-6 md:p-8 rounded-[2rem] toy-border shadow-pop relative group transform transition-transform hover:-translate-y-2">
+                        <h3 class="text-3xl font-black mb-4 flex items-center gap-3">
+                            <i class="ph-fill ph-palette text-toy-green text-4xl"></i>
+                            みんなのおえかきアプリ
+                        </h3>
+                        
+                        <!-- 画面スクショ（モック） -->
+                        <div class="aspect-video bg-white rounded-2xl toy-border relative overflow-hidden mb-6 flex flex-col">
+                            <div class="flex items-center gap-2 p-3 border-b-2 border-gray-200 bg-gray-50">
+                                <div class="w-8 h-8 rounded-full bg-red-500 toy-border cursor-pointer"></div>
+                                <div class="w-8 h-8 rounded-full bg-blue-500 toy-border cursor-pointer"></div>
+                                <div class="w-8 h-8 rounded-full bg-black toy-border cursor-pointer"></div>
+                                <div class="ml-auto bg-white px-3 py-1 text-sm font-bold rounded toy-border cursor-pointer">ぜんぶ消す</div>
+                            </div>
+                            <div class="flex-1 relative flex items-center justify-center bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCI+PGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iMSIgZmlsbD0iI2QxZDVkYiIvPjwvc3ZnPg==')]">
+                                <!-- 描かれた絵のモック -->
+                                <svg width="200" height="200" viewBox="0 0 200 200" class="stroke-toy-dark stroke-[6px] fill-transparent">
+                                    <path d="M50,150 Q100,50 150,150 Q100,180 50,150 Z" />
+                                    <circle cx="80" cy="120" r="10" class="fill-toy-dark" />
+                                    <circle cx="120" cy="120" r="10" class="fill-toy-dark" />
+                                    <path d="M90,140 Q100,150 110,140" stroke-linecap="round" />
+                                </svg>
+                                <div class="absolute top-2 left-4 font-black text-gray-400 rotate-[-10deg]">しばいぬ 描いたよ！</div>
+                            </div>
+                        </div>
+
+                        <!-- プロンプトと結果 -->
+                        <div class="bg-gray-50 rounded-xl p-4 toy-border mb-6">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="w-10 h-10 bg-toy-green text-white rounded-full toy-border flex items-center justify-center flex-shrink-0">
+                                    <i class="ph-fill ph-user text-xl"></i>
+                                </div>
+                                <div class="bg-white p-4 rounded-2xl rounded-tl-none font-bold toy-border shadow-sm text-lg">
+                                    「自由に色が選べる、おえかきアプリを作って！」
+                                </div>
+                            </div>
+                            <div class="text-right font-black text-toy-red text-xl flex items-center justify-end gap-2">
+                                <i class="ph-fill ph-sparkle"></i> ChatGPTでできました！
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-toy-green text-white text-2xl font-black py-4 rounded-full toy-border shadow-pop-hover group-hover:bg-green-500 transition-colors flex items-center justify-center gap-2">
+                            🎨 使ってみる
+                        </button>
+                    </div>
+
+                    <!-- 作品カード 3: クイズ -->
+                    <div class="bg-white text-toy-dark p-6 md:p-8 rounded-[2rem] toy-border shadow-pop relative group transform transition-transform hover:-translate-y-2">
+                        <h3 class="text-3xl font-black mb-4 flex items-center gap-3">
+                            <i class="ph-fill ph-question text-toy-yellow text-4xl text-toy-dark"></i>
+                            都道府県クイズ
+                        </h3>
+                        
+                        <!-- 画面スクショ（モック） -->
+                        <div class="aspect-video bg-[#caf0f8] rounded-2xl toy-border relative overflow-hidden mb-6 flex flex-col items-center justify-center p-6 text-center">
+                            <div class="font-bold text-gray-500 mb-2">第 1 問</div>
+                            <h4 class="text-2xl font-black mb-6">りんごが一番たくさんとれる県はどこ？</h4>
+                            <div class="grid grid-cols-1 w-full max-w-sm gap-3">
+                                <div class="bg-white py-3 rounded-xl toy-border font-bold cursor-pointer hover:bg-gray-100">1. 青森県</div>
+                                <div class="bg-white py-3 rounded-xl toy-border font-bold cursor-pointer hover:bg-gray-100">2. 秋田県</div>
+                                <div class="bg-white py-3 rounded-xl toy-border font-bold cursor-pointer hover:bg-gray-100">3. 山形県</div>
+                            </div>
+                        </div>
+
+                        <!-- プロンプトと結果 -->
+                        <div class="bg-gray-50 rounded-xl p-4 toy-border mb-6">
+                            <div class="flex items-start gap-3 mb-3">
+                                <div class="w-10 h-10 bg-toy-yellow text-toy-dark rounded-full toy-border flex items-center justify-center flex-shrink-0">
+                                    <i class="ph-fill ph-user text-xl"></i>
+                                </div>
+                                <div class="bg-white p-4 rounded-2xl rounded-tl-none font-bold toy-border shadow-sm text-lg">
+                                    「3択の都道府県クイズを作って！」
+                                </div>
+                            </div>
+                            <div class="text-right font-black text-toy-red text-xl flex items-center justify-end gap-2">
+                                <i class="ph-fill ph-sparkle"></i> ChatGPTでできました！
+                            </div>
+                        </div>
+
+                        <button class="w-full bg-toy-yellow text-toy-dark text-2xl font-black py-4 rounded-full toy-border shadow-pop-hover group-hover:bg-yellow-400 transition-colors flex items-center justify-center gap-2">
+                            🧠 挑戦する
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="how-to" class="py-24 relative">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-5xl font-black inline-block relative">
+                        つくりかたは、3ステップ！
+                        <div class="absolute -bottom-4 left-0 w-full h-8 bg-toy-yellow opacity-40 -z-10 transform -rotate-1"></div>
+                    </h2>
+                </div>
+
+                <div class="space-y-24">
+                    
+                    <!-- STEP 1 -->
+                    <div class="relative">
+                        <div class="bg-toy-blue text-white font-black text-2xl inline-block px-6 py-2 rounded-full toy-border shadow-pop mb-6 transform -rotate-2">
+                            STEP 1
+                        </div>
+                        <h3 class="text-3xl font-black mb-6 flex items-center gap-3">
+                            ChatGPTにお願い 🤖
+                        </h3>
+                        
+                        <div class="bg-gray-50 toy-border rounded-[2rem] shadow-pop overflow-hidden">
+                            <div class="bg-white border-b-3 border-toy-dark p-4 flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-toy-red toy-border"></div>
+                                <div class="w-3 h-3 rounded-full bg-toy-yellow toy-border"></div>
+                                <div class="w-3 h-3 rounded-full bg-toy-green toy-border"></div>
+                            </div>
+                            <div class="p-6 space-y-6">
+                                <div class="flex justify-end gap-4">
+                                    <div class="bg-toy-blue text-white font-bold p-4 rounded-2xl rounded-tr-none toy-border max-w-[80%] shadow-sm text-lg">
+                                        ゲームを作ってください。<br>
+                                        柴犬を左右キーで動かして、落ちてくるどんぐりを集めます。
+                                    </div>
+                                    <div class="w-10 h-10 bg-white rounded-full toy-border flex items-center justify-center flex-shrink-0">
+                                        <i class="ph-fill ph-user text-xl"></i>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-start gap-4">
+                                    <div class="w-10 h-10 bg-toy-dark rounded-full toy-border flex items-center justify-center flex-shrink-0">
+                                        <i class="ph-fill ph-robot text-white text-xl"></i>
+                                    </div>
+                                    <div class="bg-white text-toy-dark font-bold p-4 rounded-2xl rounded-tl-none toy-border max-w-[80%] shadow-sm relative">
+                                        <p>もちろんです！HTMLとJavaScriptでコードを作成しますね。</p>
+                                        
+                                        <div class="absolute -right-6 -bottom-6 bg-toy-yellow toy-border rounded-full px-4 py-2 font-black text-sm shadow-pop transform rotate-12 flex items-center gap-2">
+                                            作っています
+                                            <div class="chat-typing inline-flex"><span></span><span></span><span></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 -->
+                    <div class="relative">
+                        <div class="bg-toy-red text-white font-black text-2xl inline-block px-6 py-2 rounded-full toy-border shadow-pop mb-6 transform rotate-2">
+                            STEP 2
+                        </div>
+                        <h3 class="text-3xl font-black mb-6 flex items-center gap-3">
+                            できた！遊んで、直す 🎉
+                        </h3>
+                        
+                        <div class="flex flex-col md:flex-row gap-8 items-center bg-white toy-border rounded-[2rem] p-6 shadow-pop">
+                            <div class="w-full md:w-1/2 bg-green-100 rounded-2xl h-48 toy-border relative overflow-hidden">
+                                <div class="absolute top-4 left-4 font-black bg-white px-2 py-1 rounded toy-border">SCORE: 120</div>
+                                <div class="absolute top-10 left-[20%] text-xl animate-[float_3s_linear_infinite]">🌰</div>
+                                <div class="absolute bottom-4 left-[40%] text-5xl">🐕</div>
+                            </div>
+                            
+                            <div class="w-full md:w-1/2 space-y-4">
+                                <p class="text-xl font-black mb-4">会話しながら、改造もできる！</p>
+                                <div class="bg-gray-100 font-bold p-4 rounded-2xl toy-border relative">
+                                    <div class="absolute top-1/2 -left-3 w-4 h-4 bg-gray-100 border-b-3 border-l-3 border-toy-dark transform rotate-45 -translate-y-1/2"></div>
+                                    「どんぐりが落ちるのを速くして！」
+                                </div>
+                                <div class="bg-gray-100 font-bold p-4 rounded-2xl toy-border relative">
+                                    <div class="absolute top-1/2 -left-3 w-4 h-4 bg-gray-100 border-b-3 border-l-3 border-toy-dark transform rotate-45 -translate-y-1/2"></div>
+                                    「背景を宇宙にして！」
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3 -->
+                    <div class="relative">
+                        <div class="bg-toy-green text-white font-black text-2xl inline-block px-6 py-2 rounded-full toy-border shadow-pop mb-6 transform -rotate-2">
+                            STEP 3
+                        </div>
+                        <h3 class="text-3xl font-black mb-6 flex items-center gap-3">
+                            みんアプで、クラスに共有 🚀
+                        </h3>
+                        
+                        <div class="bg-toy-light toy-border rounded-[2rem] p-8 shadow-pop text-center relative overflow-hidden">
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
+                                
+                                <!-- アップロード -->
+                                <div class="text-center">
+                                    <div class="inline-flex items-center justify-center w-24 h-24 bg-white rounded-3xl toy-border mb-4 border-dashed border-4 animate-bounce-slight">
+                                        <i class="ph-fill ph-file-zip text-5xl text-toy-blue"></i>
+                                    </div>
+                                    <p class="font-black">コードをZIPにしてポン！</p>
+                                </div>
+                                
+                                <i class="ph-bold ph-arrow-right text-4xl text-toy-dark hidden md:block"></i>
+                                <i class="ph-bold ph-arrow-down text-4xl text-toy-dark block md:hidden"></i>
+
+                                <!-- スマホ画面 -->
+                                <div class="w-48 bg-white toy-border rounded-[2rem] p-2 shadow-lg border-4 border-toy-dark transform rotate-3">
+                                    <div class="bg-gray-100 h-64 rounded-xl overflow-hidden flex flex-col">
+                                        <div class="bg-white p-2 border-b border-gray-200 text-center font-black text-xs">
+                                            みんアプ - 3年2組
+                                        </div>
+                                        <div class="p-2 space-y-2">
+                                            <div class="bg-white p-2 rounded-lg border-2 border-toy-dark flex items-center gap-2 relative">
+                                                <div class="absolute -top-1 -right-1 bg-toy-red text-white text-[8px] font-bold px-1 rounded">NEW!</div>
+                                                <div class="text-2xl">🐕</div>
+                                                <div class="text-left">
+                                                    <div class="font-black text-[10px]">柴犬ゲーム</div>
+                                                    <div class="text-[8px] text-gray-500">作: たなか</div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-white p-2 rounded-lg border-2 border-gray-300 flex items-center gap-2 opacity-70">
+                                                <div class="text-2xl">🎨</div>
+                                                <div class="text-left">
+                                                    <div class="font-black text-[10px]">おえかき</div>
+                                                    <div class="text-[8px] text-gray-500">作: さとう</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="teachers" class="py-24 bg-toy-dark text-white text-center relative mt-12">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl font-black mb-8 flex justify-center items-center gap-3">
+                    <i class="ph-fill ph-shield-check text-toy-green text-4xl"></i>
+                    学校・教室でも安心して使えます
+                </h2>
+                <div class="bg-white/10 rounded-3xl p-8 border-2 border-white/20 text-left mb-8">
+                    <ul class="space-y-4 font-bold text-lg">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-toy-green mt-1 text-2xl flex-shrink-0"></i> 
+                            <span>生徒が作った作品は、<span class="text-toy-yellow">公開前に先生が確認（承認）</span>できます。</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-toy-green mt-1 text-2xl flex-shrink-0"></i> 
+                            <span>生徒ごとの<span class="text-toy-yellow">クラウド契約やアプリストアへの登録は不要</span>です。</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-bold ph-check-circle text-toy-green mt-1 text-2xl flex-shrink-0"></i> 
+                            <span>外部通信を遮断する仕組みにより、安全な実行環境を提供します。</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <h3 class="text-2xl font-black mb-4">👨‍🏫 先生・教育関係者の方へ</h3>
+                <p class="font-bold mb-8 text-gray-300">
+                    導入のご相談や詳しい資料をご希望の方は、下記よりお問い合わせください。
+                </p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="inline-block bg-toy-yellow text-toy-dark font-black text-xl px-8 py-4 rounded-full toy-border shadow-[4px_4px_0px_0px_#FFFFFF] hover:translate-y-1 hover:shadow-none transition-all">
+                    導入のご相談・お問い合わせ
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white text-toy-dark py-8 border-t-8 border-toy-yellow text-center font-bold">
+        <p>&copy; 2015-2026 cloxs LLC. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
