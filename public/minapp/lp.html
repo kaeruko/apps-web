@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>みんアプ - 子どもプログラミング塾向けチラシ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;800;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"M PLUS Rounded 1c"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            main: '#0ea5e9',
+                            dark: '#0284c7',
+                            accent: '#f59e0b',
+                            red: '#ef4444',
+                            yellow: '#fde047',
+                            green: '#22c55e',
+                            bg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 画面表示時のスタイル（背景グレーで中央寄せ） */
+        body {
+            background-color: #cbd5e1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* A4サイズの紙を模したコンテナ（ピクセル固定） */
+        .flyer-container {
+            width: 794px; /* A4幅 (96dpi) */
+            height: 1123px; /* A4高さ (96dpi) */
+            background-color: #ffffff;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            border-top: 16px solid #0ea5e9;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 背景のドットパターン */
+        .bg-dots {
+            background-image: radial-gradient(#e2e8f0 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        /* マーカー風の装飾 */
+        .marker-yellow {
+            background: linear-gradient(transparent 60%, rgba(253, 224, 71, 0.8) 60%);
+        }
+        
+        /* 吹き出しのしっぽ */
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #ef4444 transparent transparent transparent;
+            display: block;
+            width: 0;
+        }
+
+        /* ============== 印刷専用のスタイル ============== */
+        @media print {
+            /* ページ設定: A4縦、余白なし */
+            @page {
+                size: A4 portrait;
+                margin: 0 !important;
+            }
+            body {
+                background-color: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                /* 背景グラフィックを強制的に印刷 */
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                display: block;
+            }
+            .flyer-container {
+                width: 100% !important;
+                height: 100vh !important;
+                box-shadow: none !important;
+                border-top: 16px solid #0ea5e9 !important; /* TailwindのクラスではなくCSSで強制 */
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+            /* 印刷時にTailwindの背景色が消えないようにする保険 */
+            .bg-dots { background-image: radial-gradient(#e2e8f0 2px, transparent 2px) !important; }
+            .bg-brand-red { background-color: #ef4444 !important; }
+            .bg-brand-yellow { background-color: #fde047 !important; }
+            .bg-brand-main { background-color: #0ea5e9 !important; }
+            .bg-brand-accent { background-color: #f59e0b !important; }
+            .bg-brand-green { background-color: #22c55e !important; }
+            .bg-slate-800 { background-color: #1e293b !important; }
+            .text-white { color: #ffffff !important; }
+            .text-brand-main { color: #0ea5e9 !important; }
+        }
+    </style>
+</head>
+<body class="text-slate-800 font-sans antialiased">
+
+    <!-- チラシコンテナ -->
+    <div class="flyer-container bg-dots" id="flyer-content">
+        
+        <!-- ヘッダーエリア -->
+        <header class="pt-8 px-10 pb-4 flex justify-between items-end border-b-4 border-dashed border-slate-200">
+            <div>
+                <p class="text-brand-main font-bold text-lg mb-1 tracking-wider">子どもプログラミング塾・教室の先生へ</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-14 h-14 bg-brand-main rounded-2xl flex items-center justify-center text-white shadow-md transform -rotate-3">
+                        <i class="ph-fill ph-users-three text-3xl"></i>
+                    </div>
+                    <h1 class="text-5xl font-black text-slate-800 tracking-tight">みんアプ</h1>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-xs font-bold text-slate-500 mb-1">運営会社：CLOXS LLC</p>
+                <div class="bg-brand-accent text-white px-4 py-2 rounded-full font-bold text-base inline-flex items-center gap-2 shadow-sm">
+                    <i class="ph-bold ph-magnifying-glass"></i> みんアプ で検索
+                </div>
+            </div>
+        </header>
+
+        <!-- キャッチコピー＆課題提示 -->
+        <section class="px-10 py-8 flex gap-6">
+            <!-- 左：悩み -->
+            <div class="w-5/12 flex flex-col justify-center">
+                <div class="bg-brand-red text-white p-4 rounded-2xl rounded-br-none shadow-md speech-bubble relative mb-6 transform -rotate-2">
+                    <h2 class="text-lg font-bold leading-relaxed">
+                        「生徒が作ったWeb作品、<br>
+                        <span class="text-yellow-300 text-xl font-black">パソコンの中で眠っていませんか？</span>」
+                    </h2>
+                </div>
+                <ul class="space-y-4 mt-6">
+                    <li class="flex items-start gap-2">
+                        <i class="ph-fill ph-smiley-sad text-2xl text-brand-red flex-shrink-0"></i>
+                        <p class="font-bold text-base leading-tight">作ったゲームを友達のスマホで遊ばせたいけど、サーバー公開は難しい…</p>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="ph-fill ph-warning-circle text-2xl text-brand-red flex-shrink-0"></i>
+                        <p class="font-bold text-base leading-tight">自由にネット公開させると、不適切コンテンツや事故が心配…</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 右：解決策 -->
+            <div class="w-7/12 bg-white rounded-3xl p-6 shadow-[6px_6px_0_0_#0ea5e9] border-[3px] border-brand-main relative z-10 flex flex-col justify-center">
+                <div class="absolute -top-4 -right-4 bg-brand-yellow text-slate-800 font-black px-4 py-1.5 rounded-full transform rotate-6 border-2 border-slate-800 shadow-sm text-sm">
+                    そのお悩み、解決します！
+                </div>
+                <h2 class="text-3xl font-black leading-tight mb-4">
+                    作品を<span class="text-brand-main">安全にクラス共有</span>できる<br>
+                    <span class="marker-yellow">教育現場のための発表ツール</span>
+                </h2>
+                <p class="text-base font-bold text-slate-600 leading-relaxed">
+                    「みんアプ」を使えば、生徒が作ったアプリを先生の承認付きで安全にクラス内に配信できます。<br>
+                    クレジットカードや面倒なクラウド契約は一切不要！
+                </p>
+            </div>
+        </section>
+
+        <!-- メインビジュアル（図解） -->
+        <section class="px-10 py-4">
+            <div class="bg-slate-100 rounded-3xl p-6 border-2 border-slate-200 relative overflow-hidden">
+                <!-- 矢印の背景装飾 -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-[0.07] pointer-events-none">
+                    <i class="ph-fill ph-arrows-left-right text-[15rem] text-slate-500"></i>
+                </div>
+                
+                <h3 class="text-center font-black text-xl text-slate-700 mb-6 tracking-wider">かんたん3ステップで、みんなのスマホへ！</h3>
+                
+                <div class="flex justify-between items-center relative z-10">
+                    <!-- Step 1 -->
+                    <div class="w-[30%] bg-white p-4 rounded-2xl shadow-sm text-center border border-slate-200">
+                        <div class="w-10 h-10 bg-brand-main text-white rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 -mt-8 border-[3px] border-white shadow-sm">1</div>
+                        <i class="ph-fill ph-file-zip text-4xl text-brand-main mb-2"></i>
+                        <h4 class="font-bold text-base mb-1">生徒がアップロード</h4>
+                        <p class="text-xs font-medium text-slate-500 leading-snug">作ったコードをZIPにして、専用サイトからポンッと提出。</p>
+                    </div>
+
+                    <i class="ph-bold ph-arrow-right text-2xl text-brand-main"></i>
+
+                    <!-- Step 2 -->
+                    <div class="w-[30%] bg-white p-4 rounded-2xl shadow-sm text-center border border-slate-200">
+                        <div class="w-10 h-10 bg-brand-accent text-white rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 -mt-8 border-[3px] border-white shadow-sm">2</div>
+                        <i class="ph-fill ph-chalkboard-teacher text-4xl text-brand-accent mb-2"></i>
+                        <h4 class="font-bold text-base mb-1">先生が承認</h4>
+                        <p class="text-xs font-medium text-slate-500 leading-snug">隔離された安全な環境で動作確認。OKならボタンをポチッ。</p>
+                    </div>
+
+                    <i class="ph-bold ph-arrow-right text-2xl text-brand-accent"></i>
+
+                    <!-- Step 3 -->
+                    <div class="w-[30%] bg-white p-4 rounded-2xl shadow-sm text-center border border-slate-200">
+                        <div class="w-10 h-10 bg-brand-green text-white rounded-full flex items-center justify-center font-black text-lg mx-auto mb-2 -mt-8 border-[3px] border-white shadow-sm">3</div>
+                        <i class="ph-fill ph-device-mobile text-4xl text-brand-green mb-2"></i>
+                        <h4 class="font-bold text-base mb-1">みんなで遊ぶ！</h4>
+                        <p class="text-xs font-medium text-slate-500 leading-snug">スマホアプリを開けば、承認された作品だけが安全に並びます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- メリット -->
+        <section class="px-10 py-6 flex-1 flex flex-col justify-center">
+            <h3 class="text-xl font-black text-slate-800 mb-4 flex items-center gap-2">
+                <i class="ph-fill ph-star text-brand-yellow text-2xl"></i>
+                塾に導入する３つのメリット
+            </h3>
+            
+            <div class="grid grid-cols-3 gap-5">
+                <!-- メリット1 -->
+                <div class="bg-white p-5 rounded-2xl border-t-[6px] border-brand-main shadow-sm">
+                    <h4 class="text-lg font-black mb-2 leading-tight">1. 生徒のモチベーションが劇的にアップ！</h4>
+                    <p class="font-medium text-slate-600 text-xs leading-relaxed">「自分の作ったゲームで友達が遊んでくれた！」という感動体験が、プログラミング学習への一番のモチベーションになります。</p>
+                </div>
+                
+                <!-- メリット2 -->
+                <div class="bg-white p-5 rounded-2xl border-t-[6px] border-brand-accent shadow-sm">
+                    <h4 class="text-lg font-black mb-2 leading-tight">2. 保護者への「成果報告」として最適</h4>
+                    <p class="font-medium text-slate-600 text-xs leading-relaxed">ご家庭のスマホからお子様の作品をすぐに見られるため、「塾でどんなことを学んでいるのか」が可視化され、満足度向上に繋がります。</p>
+                </div>
+
+                <!-- メリット3 -->
+                <div class="bg-white p-5 rounded-2xl border-t-[6px] border-brand-green shadow-sm">
+                    <h4 class="text-lg font-black mb-2 leading-tight">3. 個人情報不要で<br>安全・安心の仕組み</h4>
+                    <p class="font-medium text-slate-600 text-xs leading-relaxed">メールアドレス不要。外部通信の遮断機能も備えているため、子どもたちをネットのトラブルから守りつつ、共有の楽しさを提供できます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- フッター（CTA） -->
+        <footer class="bg-slate-800 text-white px-10 py-8 mt-auto">
+            <div class="flex items-center justify-between">
+                <div class="w-3/4">
+                    <h3 class="text-2xl font-black text-brand-yellow mb-2">まずは無料デモ環境でお試しください！</h3>
+                    <p class="text-sm font-medium text-slate-300 mb-4">初期設定の代行や、カリキュラムへの組み込み相談も無料で承ります。</p>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 px-3 py-1.5 rounded-lg font-bold flex items-center gap-2 text-sm">
+                            <i class="ph-bold ph-phone text-lg text-brand-main"></i> 03-XXXX-XXXX
+                        </div>
+                        <div class="bg-white/10 px-3 py-1.5 rounded-lg font-bold flex items-center gap-2 text-sm">
+                            <i class="ph-bold ph-envelope-simple text-lg text-brand-main"></i> contact@cloxs.co.jp
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-1/4 flex flex-col items-end">
+                    <div class="bg-white p-2 rounded-xl mb-1">
+                        <!-- ダミーのQRコード画像 -->
+                        <div class="w-16 h-16 bg-slate-200 flex flex-col items-center justify-center text-slate-400 rounded-lg">
+                            <i class="ph-bold ph-qr-code text-3xl"></i>
+                        </div>
+                    </div>
+                    <p class="text-[10px] font-bold text-slate-400 text-center">スマホで読み取って<br>お問い合わせ</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
