@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都営でGO - クリニック向けチラシ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                        title: ['"Kosugi Maru"', 'sans-serif'],
+                    },
+                    colors: {
+                        clinic: {
+                            green: '#10b981',    /* 優しい緑 */
+                            lightgreen: '#d1fae5',
+                            orange: '#f59e0b',   /* 温かいオレンジ */
+                            lightorange: '#fef3c7',
+                            blue: '#3b82f6',     /* 落ち着いた青 */
+                            lightblue: '#dbeafe',
+                            text: '#475569',     /* 濃すぎないグレーで目に優しく */
+                            bg: '#fdfbf7'        /* 真っ白ではないクリーム色の背景 */
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 画面表示時のスタイル */
+        body {
+            background-color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* A4サイズの紙を模したコンテナ（ピクセル固定） */
+        .flyer-container {
+            width: 794px; /* A4幅 (96dpi) */
+            height: 1123px; /* A4高さ (96dpi) */
+            background-color: #fdfbf7;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* flex-col の時の配置を上詰めに変更 */
+        }
+
+        /* 印刷専用のスタイル */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0 !important;
+            }
+            body {
+                background-color: white !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                display: block;
+            }
+            .flyer-container {
+                width: 100% !important;
+                height: 100vh !important;
+                box-shadow: none !important;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+        }
+
+        /* 柔らかい波の背景装飾 */
+        .wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 210px;
+            background: linear-gradient(135deg, #d1fae5 0%, #dbeafe 100%);
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+            z-index: 0;
+        }
+        
+        .blob-shape {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+    </style>
+</head>
+<body class="text-clinic-text font-sans antialiased">
+
+    <!-- チラシコンテナ -->
+    <div class="flyer-container" id="flyer-content">
+        
+        <!-- 背景の波 -->
+        <div class="wave-bg"></div>
+
+        <!-- ヘッダー部分 -->
+        <header class="relative z-10 pt-6 px-12 text-center">
+            <div class="inline-block bg-white text-clinic-green font-bold px-4 py-1 rounded-full shadow-sm mb-2 border border-green-100 text-sm">
+                <i class="ph-fill ph-ticket mr-1"></i> 精神障害者保健福祉手帳をお持ちの方へ
+            </div>
+            <h1 class="text-2xl font-bold text-slate-700 mb-2">都営交通の「無料乗車券」を活用しませんか？</h1>
+            <p class="text-base text-slate-600 mb-3">交通費を気にせず、通院や気分転換のお出かけに。</p>
+            
+            <div class="flex items-center justify-center gap-6 mt-3">
+                <!-- ロゴマーク -->
+                <div class="w-20 h-20 bg-white rounded-3xl shadow-md flex items-center justify-center blob-shape border-4 border-clinic-lightgreen">
+                    <i class="ph-fill ph-bus text-4xl text-clinic-green"></i>
+                </div>
+                <div class="text-left">
+                    <p class="text-xs font-bold text-clinic-blue mb-1">都営専用ルート検索アプリ</p>
+                    <h2 class="text-4xl font-title font-black text-slate-800 tracking-wide">都営でGO</h2>
+                </div>
+            </div>
+        </header>
+
+        <!-- こんなお悩みありませんか？ -->
+        <section class="relative z-10 px-12 pt-5 pb-3">
+            <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-clinic-orange text-white font-bold px-5 py-1 rounded-full text-sm shadow-sm">
+                    こんなことで困っていませんか？
+                </div>
+                <div class="grid grid-cols-2 gap-4 mt-2">
+                    <div class="flex items-start gap-2">
+                        <i class="ph-fill ph-smiley-sad text-2xl text-clinic-orange flex-shrink-0 mt-0.5"></i>
+                        <p class="font-bold text-sm leading-relaxed">無料パスを使いたいけど、いつもの乗換案内だと<span class="text-clinic-orange border-b-2 border-clinic-orange">JRや私鉄が混ざって</span>運賃がかかってしまう。</p>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="ph-fill ph-map-pin-line text-2xl text-clinic-orange flex-shrink-0 mt-0.5"></i>
+                        <p class="font-bold text-sm leading-relaxed">都営地下鉄と都営バスを<span class="text-clinic-orange border-b-2 border-clinic-orange">どう乗り継げばいいか</span>、調べるのが少し面倒で疲れる。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特徴 -->
+        <section class="px-12 py-3">
+            <div class="text-center mb-3">
+                <h3 class="text-xl font-bold text-clinic-blue inline-block relative">
+                    <span class="relative z-10">「都営でGO」なら、お出かけがもっと楽になります</span>
+                    <span class="absolute bottom-1 left-0 w-full h-2.5 bg-clinic-lightblue opacity-60 -z-10 rounded-full"></span>
+                </h3>
+            </div>
+
+            <div class="space-y-3">
+                <!-- 特徴1 -->
+                <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-blue shadow-sm">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
+                        <i class="ph-fill ph-train text-2xl text-clinic-blue"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-1">都営交通「だけ」のルートをご案内</h4>
+                        <p class="text-xs font-medium text-slate-600 leading-relaxed">
+                            JRや東京メトロ（私鉄）を省いた、<span class="font-bold">無料パスだけで行けるルート</span>を自動で探せます。運賃を気にせず安心して移動できます。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 特徴2 -->
+                <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-green shadow-sm">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
+                        <i class="ph-fill ph-bus text-2xl text-clinic-green"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-1">地下鉄とバスの乗り継ぎもスムーズ</h4>
+                        <p class="text-xs font-medium text-slate-600 leading-relaxed">
+                            都営地下鉄・都営バス・都電荒川線・日暮里舎人ライナーを組み合わせた、歩く距離が少ないルートも提案します。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 特徴3 -->
+                <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-orange shadow-sm">
+                    <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
+                        <i class="ph-fill ph-leaf text-2xl text-clinic-orange"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800 mb-1">シンプルで目に優しい画面</h4>
+                        <p class="text-xs font-medium text-slate-600 leading-relaxed">
+                            複雑な機能やチカチカする広告はありません。ご自身のペースで、ゆっくりルートを確認できます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- メッセージ -->
+        <section class="px-12 py-3">
+            <div class="bg-clinic-lightgreen bg-opacity-30 rounded-3xl p-4 text-center">
+                <i class="ph-fill ph-coffee text-2xl text-clinic-green mb-1 opacity-50"></i>
+                <p class="text-sm font-bold text-slate-700 leading-relaxed">
+                    通院の日はもちろん、調子が良い日に少し遠くの公園や図書館へ。<br>
+                    無料パスを活用して、無理のない範囲で気分転換してみませんか？<br>
+                    「都営でGO」が、あなたのお出かけをそっとサポートします。
+                </p>
+            </div>
+        </section>
+
+        <!-- フッター (ダウンロード案内) -->
+        <footer class="bg-slate-50 border-t border-slate-200 px-12 py-4 flex items-center justify-between mt-4">
+            <div>
+                <h3 class="text-base font-bold text-slate-800 mb-1">完全無料・会員登録なしで使えます</h3>
+                <p class="text-xs font-medium text-slate-500 mb-2">
+                    スマートフォン（iPhone / Android）から<br>
+                    右のQRコードを読み取ってダウンロードしてください。
+                </p>
+                <div class="flex items-center gap-1.5 text-[10px] font-bold text-slate-400">
+                    <i class="ph-fill ph-shield-check text-sm"></i>
+                    提供元：CLOXS LLC
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-8">
+                <!-- iOS用QRコード -->
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs mb-1.5">
+                        <i class="ph-fill ph-apple-logo text-base"></i> iPhoneの方
+                    </div>
+                    <!-- ※実際のiOS用QRコード画像に差し替えてください -->
+                    <img src="https://placehold.co/150x150/ffffff/475569?text=QR+iOS" alt="iPhone用アプリダウンロードQRコード" class="w-[84px] h-[84px] bg-white border-2 border-slate-200 rounded-xl shadow-sm p-1 object-cover">
+                </div>
+                
+                <!-- Android用QRコード -->
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs mb-1.5">
+                        <i class="ph-fill ph-google-play-logo text-base"></i> Androidの方
+                    </div>
+                    <!-- ※実際のAndroid用QRコード画像に差し替えてください -->
+                    <img src="https://placehold.co/150x150/ffffff/475569?text=QR+Android" alt="Android用アプリダウンロードQRコード" class="w-[84px] h-[84px] bg-white border-2 border-slate-200 rounded-xl shadow-sm p-1 object-cover">
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</body>
+</html>
