@@ -26,7 +26,7 @@
     "@type": "SoftwareApplication",
     "name": "都営でGO",
     "alternateName": "TOEI DE GO",
-    "operatingSystem": "Android",
+    "operatingSystem": "Android, iOS",
     "applicationCategory": "TravelApplication",
     "description": "都営バス・都営地下鉄を中心に、ルート検索、乗車中案内、おでかけ共有、一本で行ける場所探しをサポートする非公式アプリです。",
     "url": "https://cloxs.jp/toeigo/toeigo.html",
@@ -113,9 +113,7 @@
       background:#fff;font-weight:800;text-decoration:none;
     }
     .hero-note{font-size:12px;color:#7a808a;margin-top:13px}
-    .phones{
-      position:relative;min-height:610px;
-    }
+    .phones{position:relative;min-height:610px}
     .phone{
       position:absolute;width:min(58%,330px);border-radius:30px;overflow:hidden;
       background:#fff;border:1px solid #dfe2e8;box-shadow:var(--shadow);
@@ -129,9 +127,7 @@
     .kicker{font-weight:900;color:var(--blue);font-size:13px;letter-spacing:.08em}
     h2{font-size:clamp(32px,4.5vw,50px);line-height:1.22;letter-spacing:-.035em;margin:8px 0 16px}
     .lead{font-size:18px;color:var(--muted);margin:0}
-    .feature{
-      display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px;
-    }
+    .feature{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:70px}
     .feature + .feature{margin-top:110px}
     .feature.reverse .feature-copy{order:2}
     .feature.reverse .visual{order:1}
@@ -155,38 +151,35 @@
     .screen.single{width:min(62%,340px)}
     .screen.small{width:min(39%,240px)}
     .screen img{width:100%}
-    .discover{
-      background:linear-gradient(180deg,#fbfcff 0,#fff 100%);
-    }
+    .discover{background:linear-gradient(180deg,#fbfcff 0,#fff 100%)}
     .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
-    .mini{
-      border:1px solid var(--line);border-radius:22px;padding:22px;background:#fff;
-    }
+    .mini{border:1px solid var(--line);border-radius:22px;padding:22px;background:#fff}
     .mini strong{display:block;font-size:17px;margin-bottom:6px}
     .mini span{color:var(--muted);font-size:14px}
-    .gallery{
-      display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start;
-    }
+    .gallery{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start}
     .gallery figure{margin:0}
     .gallery img{
       width:100%;border-radius:18px;border:1px solid var(--line);
       box-shadow:0 12px 30px rgba(33,43,62,.08);
     }
     .gallery figcaption{font-size:12px;color:var(--muted);margin-top:8px}
-    .audience{
-      background:#17191f;color:#fff;
-    }
+    .audience{background:#17191f;color:#fff}
     .audience .lead{color:#c7cad1}
     .audience-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
     .audience-card{border:1px solid #333741;border-radius:20px;padding:22px;background:#20232a}
     .audience-card strong{display:block;font-size:18px;margin-bottom:8px}
     .audience-card p{margin:0;color:#c7cad1;font-size:14px}
-    .official{
-      background:#f6f7f9;
-    }
-    .notice{
-      border:1px solid #dadde4;border-radius:22px;padding:28px;background:#fff;
-    }
+    .support{background:#fff}
+    .support-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+    .support-card{border:1px solid var(--line);border-radius:20px;padding:22px;background:var(--panel)}
+    .support-card h3{margin:0 0 10px;font-size:18px}
+    .support-card p{margin:0;color:var(--muted);font-size:14px}
+    .support-contact{margin-top:24px;border:1px solid #cfe2ff;border-radius:22px;padding:28px;background:var(--blue-soft)}
+    .support-contact h3{margin:0 0 10px;font-size:22px}
+    .support-contact p{margin:0 0 16px;color:#445064}
+    .support-links{display:flex;gap:10px;flex-wrap:wrap}
+    .official{background:#f6f7f9}
+    .notice{border:1px solid #dadde4;border-radius:22px;padding:28px;background:#fff}
     .notice h3{margin:0 0 12px;font-size:22px}
     .notice p{margin:0 0 16px;color:#545b66}
     .sources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
@@ -197,13 +190,13 @@
     .source small{display:block;color:var(--muted);font-weight:500;margin-top:5px}
     .final{
       padding:92px 0;text-align:center;
-      background:
-        radial-gradient(circle at 50% 0, rgba(8,124,255,.16), transparent 42%),
-        #fff;
+      background:radial-gradient(circle at 50% 0, rgba(8,124,255,.16), transparent 42%),#fff;
     }
     .final p{color:var(--muted);font-size:18px;max-width:660px;margin:0 auto 28px}
     footer{padding:28px 0 44px;border-top:1px solid var(--line);font-size:12px;color:#7a808a}
     .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
+    .footer-links a{text-decoration:none}
     @media (max-width:900px){
       .nav-links a:not(.cta){display:none}
       .hero-grid{grid-template-columns:1fr;gap:20px;padding:58px 0 44px}
@@ -212,7 +205,7 @@
       .feature.reverse .feature-copy,.feature.reverse .visual{order:initial}
       .feature + .feature{margin-top:84px}
       .gallery{grid-template-columns:repeat(3,1fr)}
-      .audience-grid,.sources{grid-template-columns:1fr}
+      .audience-grid,.sources,.support-grid{grid-template-columns:1fr}
       .mini-grid{grid-template-columns:1fr}
     }
     @media (max-width:560px){
@@ -230,6 +223,7 @@
       .gallery{grid-template-columns:repeat(2,1fr)}
       .gallery figure:last-child{display:none}
       .hero-actions .cta,.hero-actions .secondary{width:100%}
+      .support-links .cta,.support-links .secondary{width:100%}
     }
   </style>
 </head>
@@ -240,6 +234,7 @@
       <nav class="nav-links" aria-label="メインナビゲーション">
         <a href="#features">できること</a>
         <a href="#discover">行き先探し</a>
+        <a href="#support">サポート</a>
         <a href="#official">公式情報源</a>
         <a class="cta" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Play</a>
       </nav>
@@ -281,10 +276,7 @@
         <article class="feature">
           <div class="feature-copy">
             <h3>都営交通中心のルートを見つける</h3>
-            <p>
-              現在地や出発地から目的地までを検索。所要時間、乗換回数、徒歩距離、待ち時間、
-              乗車区間を見ながら、都営交通を中心としたルートを選べます。
-            </p>
+            <p>現在地や出発地から目的地までを検索。所要時間、乗換回数、徒歩距離、待ち時間、乗車区間を見ながら、都営交通を中心としたルートを選べます。</p>
             <div class="chips">
               <span class="chip">ルート候補を比較</span>
               <span class="chip">地図で確認</span>
@@ -302,10 +294,7 @@
         <article class="feature reverse">
           <div class="feature-copy">
             <h3>降りるタイミングを、大きく案内</h3>
-            <p>
-              乗車中は「あと何回停車」「次降ります」など、降りるタイミングがわかる表示に。
-              初めての場所でも、路線図と合わせて現在の区間を確認できます。
-            </p>
+            <p>乗車中は「あと何回停車」「次降ります」など、降りるタイミングがわかる表示に。初めての場所でも、路線図と合わせて現在の区間を確認できます。</p>
             <div class="chips">
               <span class="chip">次降ります</span>
               <span class="chip">残り停車回数</span>
@@ -323,11 +312,7 @@
         <article class="feature">
           <div class="feature-copy">
             <h3>みんなで出かける日の予定も、ひとつに</h3>
-            <p>
-              集合、徒歩、乗車、到着までを「今日の予定」として共有。
-              参加コード付きのしおりで、同行者と同じ行程を確認できます。
-              必要に応じて予定を追加したり、帰りの時間を調整したりできます。
-            </p>
+            <p>集合、徒歩、乗車、到着までを「今日の予定」として共有。参加コード付きのしおりで、同行者と同じ行程を確認できます。必要に応じて予定を追加したり、帰りの時間を調整したりできます。</p>
             <div class="chips">
               <span class="chip">集合</span>
               <span class="chip">参加コード</span>
@@ -356,10 +341,7 @@
         <article class="feature reverse">
           <div class="feature-copy">
             <h3>一本で行ける場所を探す</h3>
-            <p>
-              現在地の近くから、乗り換えなしで行ける駅やバス停を一覧表示。
-              行き先を決めてから経路検索するだけでなく、行ける場所の中からおでかけ先を見つけられます。
-            </p>
+            <p>現在地の近くから、乗り換えなしで行ける駅やバス停を一覧表示。行き先を決めてから経路検索するだけでなく、行ける場所の中からおでかけ先を見つけられます。</p>
             <div class="chips">
               <span class="chip">乗り換えなし</span>
               <span class="chip">近くの駅・バス停</span>
@@ -376,10 +358,7 @@
         <article class="feature">
           <div class="feature-copy">
             <h3>周辺のようすを見て、行き先を選ぶ</h3>
-            <p>
-              駅やバス停の周辺写真や特徴を見ながら、気になる場所をチェック。
-              地図だけではわかりにくい「どんな場所？」をイメージしやすくします。
-            </p>
+            <p>駅やバス停の周辺写真や特徴を見ながら、気になる場所をチェック。地図だけではわかりにくい「どんな場所？」をイメージしやすくします。</p>
             <div class="chips">
               <span class="chip">周辺写真</span>
               <span class="chip">散歩</span>
@@ -428,16 +407,48 @@
         <div class="section-head">
           <div class="kicker" style="color:#8ec8ff">FOR YOUR TRIP</div>
           <h2>都営交通を使って出かけたい人へ。</h2>
-          <p class="lead">
-            いつもの移動にも、ちょっと知らない場所へのおでかけにも。
-            精神障害者都営交通乗車証や東京都シルバーパスなどを利用して、
-            都営交通で移動したい方にも使いやすいナビを目指しています。
-          </p>
+          <p class="lead">いつもの移動にも、ちょっと知らない場所へのおでかけにも。精神障害者都営交通乗車証や東京都シルバーパスなどを利用して、都営交通で移動したい方にも使いやすいナビを目指しています。</p>
         </div>
         <div class="audience-grid">
           <div class="audience-card"><strong>都営交通中心で移動したい</strong><p>JR・私鉄を使わない移動を考えたいときに。</p></div>
           <div class="audience-card"><strong>降りる場所が不安</strong><p>乗車中に、次に何をするか確認したいときに。</p></div>
           <div class="audience-card"><strong>同行者と予定を共有したい</strong><p>集合から到着まで、同じ行程を見ながら動きたいときに。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="support" class="support">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">SUPPORT</div>
+          <h2>都営でGO サポート</h2>
+          <p class="lead">アプリの利用中に困ったことがある場合は、まず以下をご確認ください。iOS版・Android版のどちらについても、このページでサポート情報をご案内します。</p>
+        </div>
+
+        <div class="support-grid">
+          <div class="support-card">
+            <h3>位置情報が取得できない</h3>
+            <p>端末の設定で位置情報サービスが有効になっていることと、「都営でGO」に位置情報の利用が許可されていることをご確認ください。</p>
+          </div>
+          <div class="support-card">
+            <h3>ルートや時刻が実際と異なる</h3>
+            <p>交通情報や時刻表は変更される場合があります。運休・遅延・臨時変更を含む最新情報は、東京都交通局などの公式情報もあわせてご確認ください。</p>
+          </div>
+          <div class="support-card">
+            <h3>表示や動作に問題がある</h3>
+            <p>アプリをいったん終了して再起動し、利用可能な最新版へ更新してください。解決しない場合は、下記から不具合をご連絡ください。</p>
+          </div>
+        </div>
+
+        <div class="support-contact">
+          <h3>お問い合わせ・不具合報告</h3>
+          <p>不具合をご連絡いただく際は、端末名、OSのバージョン、都営でGOのバージョン、発生した操作と症状を添えていただけると確認がスムーズです。</p>
+          <div class="support-links">
+            <a class="cta" href="https://github.com/kaeruko/apps-web/issues/new?title=%E9%83%BD%E5%96%B6%E3%81%A7GO%3A%20" target="_blank" rel="noopener">不具合・要望を送る</a>
+            <a class="secondary" href="../toeigo_privacy.html">プライバシーポリシー</a>
+            <a class="secondary" href="#official">公式情報を確認する</a>
+          </div>
+          <p style="margin-top:14px;font-size:12px;color:#6d7582">※ お問い合わせ先は本アプリの開発者です。東京都・東京都交通局等へのお問い合わせ窓口ではありません。</p>
         </div>
       </div>
     </section>
@@ -450,16 +461,8 @@
         </div>
         <div class="notice">
           <h3>本アプリは非公式アプリです</h3>
-          <p>
-            本アプリは個人が開発・提供する非公式アプリです。
-            東京都、東京都交通局、東京都福祉局その他の行政機関を代表するものではなく、
-            これらの機関による承認、提携、運営を受けているものではありません。
-          </p>
-          <p>
-            制度の対象者、利用条件、利用可能な交通機関などは変更される場合があります。
-            精神障害者都営交通乗車証、東京都シルバーパス、都営交通無料乗車券などの
-            最新かつ正確な情報は、以下の公式情報をご確認ください。
-          </p>
+          <p>本アプリは個人が開発・提供する非公式アプリです。東京都、東京都交通局、東京都福祉局その他の行政機関を代表するものではなく、これらの機関による承認、提携、運営を受けているものではありません。</p>
+          <p>制度の対象者、利用条件、利用可能な交通機関などは変更される場合があります。精神障害者都営交通乗車証、東京都シルバーパス、都営交通無料乗車券などの最新かつ正確な情報は、以下の公式情報をご確認ください。</p>
           <div class="sources">
             <a class="source" href="https://www.fukushi.metro.tokyo.lg.jp/shougai/nichijo/jousyasyo" target="_blank" rel="noopener">
               精神障害者都営交通乗車証
@@ -491,7 +494,11 @@
   <footer>
     <div class="wrap footer-inner">
       <div>© 都営でGO</div>
-      <div>非公式アプリ / 東京都・東京都交通局等とは関係ありません。</div>
+      <div class="footer-links">
+        <a href="#support">サポート</a>
+        <a href="../toeigo_privacy.html">プライバシーポリシー</a>
+        <span>非公式アプリ / 東京都・東京都交通局等とは関係ありません。</span>
+      </div>
     </div>
   </footer>
 </body>
