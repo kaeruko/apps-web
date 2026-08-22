@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(aws cloudfront:*)",
+      "Bash(aws s3:*)",
+      "Bash(aws s3api:*)",
+      "Bash(curl:*)",
+      "Bash(chmod +x:*)"
+    ]
+  }
+}
