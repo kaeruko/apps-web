@@ -290,6 +290,68 @@
       .lightbox-image { max-width: 96vw; max-height: 88vh; border-radius: 10px; }
       .lightbox-hint { font-size: 0.75rem; }
     }
+    .hero-actions {
+      display: flex;
+      flex-direction: column; /* 全体を縦並びに変更 */
+      align-items: center;
+      gap: 32px; /* グループ間の余白 */
+      max-width: 780px;
+      margin: 0 auto 50px;
+    }
+
+    .action-group {
+      width: 100%;
+      background: #ffffff; /* グループを枠で囲む場合（任意） */
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .action-group-title {
+      font-size: 1.1rem;
+      color: var(--primary);
+      text-align: center;
+      margin: 0 0 20px;
+      border-bottom: 2px dashed var(--bg-light);
+      padding-bottom: 10px;
+    }
+
+    .action-group-items {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* 既存の .action-item はそのまま活用 */
+    .action-item {
+      flex: 1 1 220px;
+      max-width: 245px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    @media (max-width: 600px) {
+      .hero-actions {
+        gap: 20px;
+      }
+      .action-group {
+        padding: 20px 16px;
+      }
+      .action-group-items {
+        flex-direction: column;
+        align-items: center;
+      }
+      .action-item {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+
+
   </style>
 </head>
 <body>
@@ -317,41 +379,50 @@
           がるなびは、ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料の<strong>がるちゃんアプリ・ブラウザ</strong>です。トピックやコメントを保存し、カテゴリ分けやメモもできます。
         </p>
 
-        <div class="hero-actions" id="download">
-          <div class="action-item">
-            <div class="btn btn-secondary" aria-label="iOS版はApp Storeで公開準備中">
-              <span class="btn-badge">iOS 版</span>
-              <span class="btn-label">App Store 公開準備中</span>
+      <div class="hero-actions" id="download">
+        <!-- スマートフォン向けグループ -->
+        <div class="action-group">
+          <h3 class="action-group-title">スマートフォン版</h3>
+          <div class="action-group-items">
+            <div class="action-item">
+              <div class="btn btn-secondary" aria-label="iOS版はApp Storeで公開準備中">
+                <span class="btn-badge">iOS 版</span>
+                <span class="btn-label">App Store 公開準備中</span>
+              </div>
             </div>
-            <p class="meta-text">iPhone / iPad 対応予定</p>
-          </div>
 
-          <div class="action-item">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=jp.cloxs.girlschan_app" target="_blank" rel="noopener noreferrer">
-              <span class="btn-badge">Android 版</span>
-              <span class="btn-label">Google Playで入手</span>
-            </a>
-            <p class="meta-text">Androidスマートフォン対応</p>
+            <div class="action-item">
+              <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=jp.cloxs.girlschan_app" target="_blank" rel="noopener noreferrer">
+                <span class="btn-badge">Android 版</span>
+                <span class="btn-label">Google Playで入手</span>
+              </a>
+              <p class="meta-text">Androidスマートフォン対応</p>
+            </div>
           </div>
+        </div>
 
-          <div class="action-item">
-            <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9nk5dp1d6w1f?hl=ja-JP&gl=JP" target="_blank" rel="noopener noreferrer">
-              <span class="btn-badge">Windows 版</span>
-              <span class="btn-label">Microsoft Storeで入手</span>
-            </a>
-            <p class="meta-text">Windows 10/11 (64bit) 対応</p>
-          </div>
+        <!-- PC向けグループ -->
+        <div class="action-group">
+          <h3 class="action-group-title">PC版</h3>
+          <div class="action-group-items">
+            <div class="action-item">
+              <a class="btn btn-primary" href="https://apps.microsoft.com/detail/9nk5dp1d6w1f?hl=ja-JP&gl=JP" target="_blank" rel="noopener noreferrer">
+                <span class="btn-badge">Windows 版</span>
+                <span class="btn-label">Microsoft Storeで入手</span>
+              </a>
+              <p class="meta-text">Windows 10/11 (64bit) 対応</p>
+            </div>
 
-          <div class="action-item">
-            <a class="btn btn-secondary" href="" download>
-              <span class="btn-badge">macOS 版</span>
-              <span class="btn-label">ダウンロード (.zip)</span>
-            </a>
-            <p class="meta-text">v1.0.0 · Apple Silicon / Intel · 約 50 MB</p>
+            <div class="action-item">
+              <a class="btn btn-primary" href="garunavi/assets/girlschan_app.dmg" download>
+                <span class="btn-badge">macOS 版</span>
+                <span class="btn-label">ダウンロード (.dmg)</span>
+              </a>
+              <p class="meta-text">v1.0.0 · Apple Silicon / Intel · 約 50 MB</p>
+            </div>
           </div>
         </div>
       </div>
-
       <div class="hero-art">
         <div class="card shadow">
           <img src="./assets/android/new.png" alt="がるなび がるちゃんアプリ・ブラウザの画面">
