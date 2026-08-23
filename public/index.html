@@ -335,13 +335,51 @@
             </div>
         </section>
 
-        <div class="text-center">
-         <p class="font-bold mb-6">お問い合わせは以下の専用フォームからお願いします</p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8R1YAWbkctfN3ejHw-jagd_lyY-ZrmwoqVMMPjc1LqjhSnQ/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="bg-toy-yellow text-toy-dark border-4 border-toy-dark font-black py-4 px-12 rounded-full shadow-pop hover:translate-y-1 hover:shadow-pop-sm transition-all text-xl inline-block">
-            お問い合わせフォームを開く
-          </a>
-        </div>
+        <section id="contact" class="max-w-4xl mx-auto px-4 py-20">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 bg-toy-yellow border-4 border-toy-dark shadow-pop-sm rounded-full px-5 py-2 font-black mb-5">
+                    <i class="ph-bold ph-envelope-simple"></i> お問い合わせ
+                </div>
+                <h3 class="text-4xl font-black mb-4">お気軽にご連絡ください</h3>
+                <p class="font-bold text-gray-600">アプリ、サービス、受託開発などのお問い合わせを受け付けています。</p>
+            </div>
 
+            <div class="bg-white border-4 border-toy-dark rounded-3xl shadow-pop p-6 sm:p-9">
+                <form id="contact-form" action="https://formspree.io/f/xljrvdjr" method="POST" class="space-y-6" novalidate>
+                    <input type="hidden" name="_subject" value="CLOXS LLC お問い合わせ">
+                    <div class="hidden" aria-hidden="true">
+                        <label>この欄は空のままにしてください<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <label class="block font-black">
+                            お名前 <span class="text-toy-red">*</span>
+                            <input id="contact-name" name="name" type="text" autocomplete="name" required maxlength="80" class="mt-2 w-full rounded-2xl border-2 border-toy-dark px-4 py-3 font-bold bg-white focus:outline-none focus:ring-4 focus:ring-toy-yellow/60" placeholder="例：山田 太郎">
+                        </label>
+                        <label class="block font-black">
+                            会社名・団体名
+                            <input id="contact-org" name="organization" type="text" autocomplete="organization" maxlength="120" class="mt-2 w-full rounded-2xl border-2 border-toy-dark px-4 py-3 font-bold bg-white focus:outline-none focus:ring-4 focus:ring-toy-yellow/60" placeholder="例：○○株式会社">
+                        </label>
+                    </div>
+                    <label class="block font-black">
+                        メールアドレス <span class="text-toy-red">*</span>
+                        <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="200" class="mt-2 w-full rounded-2xl border-2 border-toy-dark px-4 py-3 font-bold bg-white focus:outline-none focus:ring-4 focus:ring-toy-yellow/60" placeholder="example@example.com">
+                    </label>
+                    <label class="block font-black">
+                        お問い合わせ内容 <span class="text-toy-red">*</span>
+                        <textarea id="contact-message" name="message" required maxlength="3000" rows="7" class="mt-2 w-full rounded-2xl border-2 border-toy-dark px-4 py-3 font-bold bg-white focus:outline-none focus:ring-4 focus:ring-toy-yellow/60" placeholder="お問い合わせ内容をご記入ください。"></textarea>
+                    </label>
+                    <p id="contact-error" class="hidden bg-red-50 text-red-700 border-2 border-red-200 rounded-2xl px-4 py-3 font-bold" role="alert"></p>
+                    <p id="contact-success" class="hidden bg-green-50 text-green-800 border-2 border-green-200 rounded-2xl px-4 py-3 font-bold" role="status">
+                        <i class="ph-bold ph-check-circle mr-1"></i> お問い合わせを送信しました。ありがとうございます！
+                    </p>
+                    <div class="flex justify-end">
+                        <button id="contact-submit" type="submit" class="bg-toy-yellow border-4 border-toy-dark shadow-pop rounded-full px-8 py-4 font-black hover:translate-y-1 hover:shadow-pop-sm transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+                            <i class="ph-bold ph-paper-plane-tilt mr-1"></i> 送信する
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
     </main>
 
@@ -394,18 +432,88 @@
             });
         });
 
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            document.getElementById('contact-form').classList.add('hidden');
-            document.getElementById('success-message').classList.remove('hidden');
-            document.getElementById('contact-container').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const contactForm = document.getElementById('contact-form');
+        const contactName = document.getElementById('contact-name');
+        const contactEmail = document.getElementById('contact-email');
+        const contactMessage = document.getElementById('contact-message');
+        const contactError = document.getElementById('contact-error');
+        const contactSuccess = document.getElementById('contact-success');
+        const contactSubmit = document.getElementById('contact-submit');
+
+        if (!(contactForm instanceof HTMLFormElement)) throw new Error('#contact-form was not found.');
+        if (!(contactName instanceof HTMLInputElement)) throw new Error('#contact-name was not found.');
+        if (!(contactEmail instanceof HTMLInputElement)) throw new Error('#contact-email was not found.');
+        if (!(contactMessage instanceof HTMLTextAreaElement)) throw new Error('#contact-message was not found.');
+        if (!(contactError instanceof HTMLElement)) throw new Error('#contact-error was not found.');
+        if (!(contactSuccess instanceof HTMLElement)) throw new Error('#contact-success was not found.');
+        if (!(contactSubmit instanceof HTMLButtonElement)) throw new Error('#contact-submit was not found.');
+
+        function showContactError(message) {
+            if (typeof message !== 'string' || message.length === 0) throw new TypeError('Contact error message must be non-empty.');
+            contactSuccess.classList.add('hidden');
+            contactError.textContent = message;
+            contactError.classList.remove('hidden');
         }
 
-        function resetForm() {
-            document.getElementById('contact-form').reset();
-            document.getElementById('contact-form').classList.remove('hidden');
-            document.getElementById('success-message').classList.add('hidden');
+        function clearContactStatus() {
+            contactError.textContent = '';
+            contactError.classList.add('hidden');
+            contactSuccess.classList.add('hidden');
         }
+
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            clearContactStatus();
+
+            const name = contactName.value.trim();
+            const email = contactEmail.value.trim();
+            const message = contactMessage.value.trim();
+
+            if (name.length === 0 || email.length === 0 || message.length === 0) {
+                showContactError('お名前、メールアドレス、お問い合わせ内容を入力してください。');
+                return;
+            }
+            if (!contactEmail.checkValidity()) {
+                showContactError('メールアドレスの形式を確認してください。');
+                return;
+            }
+
+            contactSubmit.disabled = true;
+            contactSubmit.innerHTML = '<i class="ph-bold ph-circle-notch mr-1 animate-spin"></i> 送信中…';
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: new FormData(contactForm),
+                    headers: { Accept: 'application/json' }
+                });
+
+                if (!response.ok) {
+                    let messageFromService = '';
+                    try {
+                        const data = await response.json();
+                        if (Array.isArray(data.errors)) {
+                            messageFromService = data.errors
+                                .map((item) => (item && typeof item.message === 'string' ? item.message : ''))
+                                .filter(Boolean)
+                                .join(' ');
+                        }
+                    } catch (parseError) {
+                        console.error('Failed to parse Formspree error response.', parseError);
+                    }
+                    throw new Error(messageFromService || `Formspree returned HTTP ${response.status}.`);
+                }
+
+                contactForm.reset();
+                contactSuccess.classList.remove('hidden');
+            } catch (error) {
+                console.error('Contact form submission failed.', error);
+                showContactError('送信できませんでした。少し時間をおいてもう一度お試しください。');
+            } finally {
+                contactSubmit.disabled = false;
+                contactSubmit.innerHTML = '<i class="ph-bold ph-paper-plane-tilt mr-1"></i> 送信する';
+            }
+        });
     </script>
 </body>
 </html>
