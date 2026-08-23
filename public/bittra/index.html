@@ -380,10 +380,6 @@
                         </button>
                     </div>
                 </form>
-
-                <div class="mt-7 pt-6 border-t-2 border-dashed border-pink-200 text-center font-medium text-gray-600">
-                    メールを直接送る場合：<a href="mailto:mail@cloxs.jp?subject=%E3%81%B3%E3%81%A3%E3%81%A8%E3%82%89%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88" class="text-doujin font-bold underline decoration-2 underline-offset-4">mail@cloxs.jp</a>
-                </div>
             </div>
         </div>
     </section>
@@ -472,7 +468,7 @@
                 supportSuccess.classList.remove('hidden');
             } catch (error) {
                 console.error('Support form submission failed.', error);
-                showSupportError('送信できませんでした。少し時間をおいてもう一度お試しいただくか、mail@cloxs.jp へ直接ご連絡ください。');
+                showSupportError('送信できませんでした。少し時間をおいてもう一度お試しください。');
             } finally {
                 supportSubmit.disabled = false;
                 supportSubmit.innerHTML = '<i class="fa-solid fa-paper-plane mr-1"></i> 送信する';
