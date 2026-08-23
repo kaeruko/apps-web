@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>びっとら - 会場の熱量が「次の一冊」を決める。同人イベント特化口コミアプリ</title>
-    <meta name="description" content="びっとらは、同人イベント会場でBluetoothのすれ違い通信を使い、近くにいる人のリアルな口コミや感想を受け取れるAndroidアプリです。タグ検索やアカウント登録は不要です。">
+    <meta name="description" content="びっとらは、同人イベント会場でBluetoothのすれ違い通信を使い、近くにいる人のリアルな口コミや感想を受け取れるiOS・Androidアプリです。タグ検索やアカウント登録は不要です。">
     <link rel="canonical" href="https://cloxs.jp/bittra/index.html">
 
     <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
       "@type": "SoftwareApplication",
       "name": "びっとら",
       "alternateName": "Bittra",
-      "operatingSystem": "Android",
+      "operatingSystem": "iOS, Android",
       "applicationCategory": "SocialNetworkingApplication",
       "description": "同人イベント会場でBluetoothのすれ違い通信を使い、近くにいる人の口コミや感想を受け取れるアプリです。",
       "url": "https://cloxs.jp/bittra/index.html",
@@ -102,7 +102,8 @@
                 <img src="logo.png" alt="びっとら" class="w-8 h-8 object-contain" onerror="this.outerHTML='<div class=\'w-8 h-8 bg-gradient-to-br from-brand-light to-brand rounded-xl flex items-center justify-center text-white font-black text-xl\'>び</div>'">
                 <span class="font-black text-xl tracking-tight text-gray-900">びっとら <span class="text-xs text-doujin ml-1">for Event</span></span>
             </div>
-            <div>
+            <div class="flex items-center gap-3">
+                <a href="#support" class="text-gray-600 px-3 py-2 text-sm font-bold hover:text-doujin transition">サポート</a>
                 <a href="https://play.google.com/store/apps/details?id=jp.cloxs.bitra" class="bg-gray-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-doujin transition shadow-lg">アプリを入手</a>
             </div>
         </div>
@@ -203,8 +204,6 @@
             </div>
         </div>
     </section>
-
-
 
     <!-- Pain Points (Why not X?) -->
     <section class="py-20 bg-gray-900 text-white relative">
@@ -318,9 +317,168 @@
         </div>
     </section>
 
+    <!-- Support -->
+    <section id="support" class="py-24 bg-white border-t border-pink-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 bg-doujin/10 text-doujin font-bold px-4 py-2 rounded-full border border-doujin/20 mb-5">
+                    <i class="fa-solid fa-headset"></i> びっとら サポート
+                </div>
+                <h2 class="text-4xl font-black mb-4 text-gray-900">困ったときはこちらへ</h2>
+                <p class="text-gray-600 font-medium leading-relaxed">
+                    使い方のご質問、不具合のご報告、ご意見・ご要望などを受け付けています。
+                </p>
+            </div>
+
+            <div class="bg-pink-50/60 border border-pink-100 shadow-xl rounded-3xl p-6 sm:p-9">
+                <form id="support-form" action="https://formspree.io/f/xljrvdjr" method="POST" class="space-y-6" novalidate>
+                    <input type="hidden" name="_subject" value="びっとらサポートへのお問い合わせ">
+                    <div class="hidden" aria-hidden="true">
+                        <label>この欄は空のままにしてください<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <label class="block font-bold text-gray-800">
+                            お名前 <span class="text-doujin">*</span>
+                            <input id="support-name" name="name" type="text" autocomplete="name" required maxlength="80" class="mt-2 w-full rounded-2xl border-2 border-pink-200 px-4 py-3 bg-white focus:outline-none focus:ring-4 focus:ring-doujin/20 focus:border-doujin" placeholder="例：山田 太郎">
+                        </label>
+                        <label class="block font-bold text-gray-800">
+                            お問い合わせ種別
+                            <select id="support-category" name="category" class="mt-2 w-full rounded-2xl border-2 border-pink-200 px-4 py-3 bg-white focus:outline-none focus:ring-4 focus:ring-doujin/20 focus:border-doujin">
+                                <option value="不具合の報告">不具合の報告</option>
+                                <option value="使い方について">使い方について</option>
+                                <option value="ご意見・ご要望">ご意見・ご要望</option>
+                                <option value="その他">その他</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label class="block font-bold text-gray-800">
+                        メールアドレス <span class="text-doujin">*</span>
+                        <input id="support-email" name="email" type="email" autocomplete="email" required maxlength="200" class="mt-2 w-full rounded-2xl border-2 border-pink-200 px-4 py-3 bg-white focus:outline-none focus:ring-4 focus:ring-doujin/20 focus:border-doujin" placeholder="example@example.com">
+                    </label>
+
+                    <label class="block font-bold text-gray-800">
+                        ご利用環境
+                        <input id="support-environment" name="environment" type="text" maxlength="200" class="mt-2 w-full rounded-2xl border-2 border-pink-200 px-4 py-3 bg-white focus:outline-none focus:ring-4 focus:ring-doujin/20 focus:border-doujin" placeholder="例：iPhone 15 / iOS 26.0、iPad、Android など">
+                    </label>
+
+                    <label class="block font-bold text-gray-800">
+                        お問い合わせ内容 <span class="text-doujin">*</span>
+                        <textarea id="support-message" name="message" required maxlength="3000" rows="7" class="mt-2 w-full rounded-2xl border-2 border-pink-200 px-4 py-3 bg-white focus:outline-none focus:ring-4 focus:ring-doujin/20 focus:border-doujin" placeholder="発生している問題や操作手順など、できるだけ詳しくご記入ください。"></textarea>
+                    </label>
+
+                    <p id="support-error" class="hidden bg-red-50 text-red-700 border-2 border-red-200 rounded-2xl px-4 py-3 font-bold" role="alert"></p>
+                    <p id="support-success" class="hidden bg-green-50 text-green-800 border-2 border-green-200 rounded-2xl px-4 py-3 font-bold" role="status">
+                        <i class="fa-solid fa-circle-check mr-1"></i> お問い合わせを送信しました。ありがとうございます！
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                        <p class="text-sm font-medium text-gray-500">このフォームからそのまま送信できます。</p>
+                        <button id="support-submit" type="submit" class="bg-gradient-to-r from-doujin to-brand text-white rounded-full px-8 py-4 font-black shadow-lg hover:-translate-y-1 transition-transform shrink-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
+                            <i class="fa-solid fa-paper-plane mr-1"></i> 送信する
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-7 pt-6 border-t-2 border-dashed border-pink-200 text-center font-medium text-gray-600">
+                    メールを直接送る場合：<a href="mailto:mail@cloxs.jp?subject=%E3%81%B3%E3%81%A3%E3%81%A8%E3%82%89%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88" class="text-doujin font-bold underline decoration-2 underline-offset-4">mail@cloxs.jp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm font-medium">
-        <p>&copy; 2026 Bittora Project. オタクの熱量が共鳴する。</p>
+        <p class="mb-2">&copy; 2026 Bittora Project. オタクの熱量が共鳴する。</p>
+        <a href="#support" class="text-gray-300 hover:text-white underline underline-offset-4">サポート・お問い合わせ</a>
     </footer>
+
+    <script>
+        'use strict';
+
+        const supportForm = document.getElementById('support-form');
+        const supportName = document.getElementById('support-name');
+        const supportEmail = document.getElementById('support-email');
+        const supportMessage = document.getElementById('support-message');
+        const supportError = document.getElementById('support-error');
+        const supportSuccess = document.getElementById('support-success');
+        const supportSubmit = document.getElementById('support-submit');
+
+        if (!(supportForm instanceof HTMLFormElement)) throw new Error('#support-form was not found.');
+        if (!(supportName instanceof HTMLInputElement)) throw new Error('#support-name was not found.');
+        if (!(supportEmail instanceof HTMLInputElement)) throw new Error('#support-email was not found.');
+        if (!(supportMessage instanceof HTMLTextAreaElement)) throw new Error('#support-message was not found.');
+        if (!(supportError instanceof HTMLElement)) throw new Error('#support-error was not found.');
+        if (!(supportSuccess instanceof HTMLElement)) throw new Error('#support-success was not found.');
+        if (!(supportSubmit instanceof HTMLButtonElement)) throw new Error('#support-submit was not found.');
+
+        function showSupportError(message) {
+            if (typeof message !== 'string' || message.length === 0) throw new TypeError('Support error message must be non-empty.');
+            supportSuccess.classList.add('hidden');
+            supportError.textContent = message;
+            supportError.classList.remove('hidden');
+        }
+
+        function clearSupportStatus() {
+            supportError.textContent = '';
+            supportError.classList.add('hidden');
+            supportSuccess.classList.add('hidden');
+        }
+
+        supportForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            clearSupportStatus();
+
+            const name = supportName.value.trim();
+            const email = supportEmail.value.trim();
+            const message = supportMessage.value.trim();
+
+            if (name.length === 0 || email.length === 0 || message.length === 0) {
+                showSupportError('お名前、メールアドレス、お問い合わせ内容を入力してください。');
+                return;
+            }
+            if (!supportEmail.checkValidity()) {
+                showSupportError('メールアドレスの形式を確認してください。');
+                return;
+            }
+
+            supportSubmit.disabled = true;
+            supportSubmit.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1"></i> 送信中…';
+
+            try {
+                const response = await fetch(supportForm.action, {
+                    method: 'POST',
+                    body: new FormData(supportForm),
+                    headers: { Accept: 'application/json' }
+                });
+
+                if (!response.ok) {
+                    let messageFromService = '';
+                    try {
+                        const data = await response.json();
+                        if (Array.isArray(data.errors)) {
+                            messageFromService = data.errors
+                                .map((item) => (item && typeof item.message === 'string' ? item.message : ''))
+                                .filter(Boolean)
+                                .join(' ');
+                        }
+                    } catch (parseError) {
+                        console.error('Failed to parse Formspree error response.', parseError);
+                    }
+                    throw new Error(messageFromService || `Formspree returned HTTP ${response.status}.`);
+                }
+
+                supportForm.reset();
+                supportSuccess.classList.remove('hidden');
+            } catch (error) {
+                console.error('Support form submission failed.', error);
+                showSupportError('送信できませんでした。少し時間をおいてもう一度お試しいただくか、mail@cloxs.jp へ直接ご連絡ください。');
+            } finally {
+                supportSubmit.disabled = false;
+                supportSubmit.innerHTML = '<i class="fa-solid fa-paper-plane mr-1"></i> 送信する';
+            }
+        });
+    </script>
 
 </body>
 </html>
