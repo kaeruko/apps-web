@@ -104,7 +104,6 @@
 </head>
 <body class="text-clinic-text font-sans antialiased">
 
-    <!-- チラシコンテナ -->
     <div class="flyer-container" id="flyer-content">
         
         <!-- 背景の波 -->
@@ -130,7 +129,6 @@
             </div>
         </header>
 
-        <!-- こんなお悩みありませんか？ -->
         <section class="relative z-10 px-12 pt-5 pb-3">
             <div class="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 relative">
                 <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-clinic-orange text-white font-bold px-5 py-1 rounded-full text-sm shadow-sm">
@@ -143,13 +141,12 @@
                     </div>
                     <div class="flex items-start gap-2">
                         <i class="ph-fill ph-map-pin-line text-2xl text-clinic-orange flex-shrink-0 mt-0.5"></i>
-                        <p class="font-bold text-sm leading-relaxed">都営地下鉄と都営バスを<span class="text-clinic-orange border-b-2 border-clinic-orange">どう乗り継げばいいか</span>、調べるのが少し面倒で疲れる。</p>
+                        <p class="font-bold text-sm leading-relaxed">バスに乗ると<span class="text-clinic-orange border-b-2 border-clinic-orange">いつ降りるか不安</span>で、ずっと気を張っていて目的地に着く前に疲れる。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 特徴 -->
         <section class="px-12 py-3">
             <div class="text-center mb-3">
                 <h3 class="text-xl font-bold text-clinic-blue inline-block relative">
@@ -159,7 +156,7 @@
             </div>
 
             <div class="space-y-3">
-                <!-- 特徴1 -->
+                <!-- 特徴1: 無料ルート -->
                 <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-blue shadow-sm">
                     <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
                         <i class="ph-fill ph-train text-2xl text-clinic-blue"></i>
@@ -167,25 +164,25 @@
                     <div>
                         <h4 class="text-lg font-bold text-slate-800 mb-1">都営交通「だけ」のルートをご案内</h4>
                         <p class="text-xs font-medium text-slate-600 leading-relaxed">
-                            JRや東京メトロ（私鉄）を省いた、<span class="font-bold">無料パスだけで行けるルート</span>を自動で探せます。運賃を気にせず安心して移動できます。
+                            JRや東京メトロ（私鉄）を省いた、<span class="font-bold text-clinic-blue">無料パスだけで行けるルート</span>を自動で探せます。運賃を気にせず安心して移動できます。
                         </p>
                     </div>
                 </div>
 
-                <!-- 特徴2 -->
+                <!-- 特徴2: 乗車中ナビ（新設） -->
                 <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-green shadow-sm">
                     <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
-                        <i class="ph-fill ph-bus text-2xl text-clinic-green"></i>
+                        <i class="ph-fill ph-bell-ringing text-2xl text-clinic-green"></i>
                     </div>
                     <div>
-                        <h4 class="text-lg font-bold text-slate-800 mb-1">地下鉄とバスの乗り継ぎもスムーズ</h4>
+                        <h4 class="text-lg font-bold text-slate-800 mb-1">乗車中も安心の「降車ナビ」機能</h4>
                         <p class="text-xs font-medium text-slate-600 leading-relaxed">
-                            都営地下鉄・都営バス・都電荒川線・日暮里舎人ライナーを組み合わせた、歩く距離が少ないルートも提案します。
+                            乗車中は画面で<span class="font-bold text-clinic-green">「次降ります」</span>とお知らせ。乗り過ごしの心配がいらないので、移動中の緊張や疲れを和らげます。
                         </p>
                     </div>
                 </div>
 
-                <!-- 特徴3 -->
+                <!-- 特徴3: シンプルUI -->
                 <div class="flex items-center bg-clinic-bg rounded-2xl p-3 border-l-8 border-clinic-orange shadow-sm">
                     <div class="w-14 h-14 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-sm mr-4">
                         <i class="ph-fill ph-leaf text-2xl text-clinic-orange"></i>
@@ -193,14 +190,13 @@
                     <div>
                         <h4 class="text-lg font-bold text-slate-800 mb-1">シンプルで目に優しい画面</h4>
                         <p class="text-xs font-medium text-slate-600 leading-relaxed">
-                            複雑な機能やチカチカする広告はありません。ご自身のペースで、ゆっくりルートを確認できます。
+                            複雑な機能やチカチカする広告はありません。情報過多にならず、ご自身のペースでゆっくりルートを確認できます。
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- メッセージ -->
         <section class="px-12 py-3">
             <div class="bg-clinic-lightgreen bg-opacity-30 rounded-3xl p-4 text-center">
                 <i class="ph-fill ph-coffee text-2xl text-clinic-green mb-1 opacity-50"></i>
@@ -213,7 +209,7 @@
         </section>
 
         <!-- フッター (ダウンロード案内) -->
-        <footer class="bg-slate-50 border-t border-slate-200 px-12 py-4 flex items-center justify-between mt-4">
+        <footer class="bg-slate-50 border-t border-slate-200 px-12 py-4 flex items-center justify-between mt-auto">
             <div>
                 <h3 class="text-base font-bold text-slate-800 mb-1">完全無料・会員登録なしで使えます</h3>
                 <p class="text-xs font-medium text-slate-500 mb-2">
@@ -232,7 +228,6 @@
                     <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs mb-1.5">
                         <i class="ph-fill ph-apple-logo text-base"></i> iPhoneの方
                     </div>
-                    <!-- ※実際のiOS用QRコード画像に差し替えてください -->
                     <img src="https://placehold.co/150x150/ffffff/475569?text=QR+iOS" alt="iPhone用アプリダウンロードQRコード" class="w-[84px] h-[84px] bg-white border-2 border-slate-200 rounded-xl shadow-sm p-1 object-cover">
                 </div>
                 
@@ -241,7 +236,6 @@
                     <div class="flex items-center gap-1.5 text-slate-700 font-bold text-xs mb-1.5">
                         <i class="ph-fill ph-google-play-logo text-base"></i> Androidの方
                     </div>
-                    <!-- ※実際のAndroid用QRコード画像に差し替えてください -->
                     <img src="https://placehold.co/150x150/ffffff/475569?text=QR+Android" alt="Android用アプリダウンロードQRコード" class="w-[84px] h-[84px] bg-white border-2 border-slate-200 rounded-xl shadow-sm p-1 object-cover">
                 </div>
             </div>
