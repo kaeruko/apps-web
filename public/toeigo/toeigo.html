@@ -56,8 +56,9 @@
       --orange-soft:#fff4e3;
       --coral:#ff765b;
       --shadow:0 18px 55px rgba(29, 39, 58, .10);
+      --shadow-strong:0 28px 70px rgba(29,39,58,.17);
       --radius:28px;
-      --max:1120px;
+      --max:1180px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -74,57 +75,94 @@
     .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
     .nav{
       position:sticky;top:0;z-index:20;
-      background:rgba(255,255,255,.88);
-      backdrop-filter:blur(16px);
+      background:rgba(255,255,255,.94);
+      backdrop-filter:blur(18px);
       border-bottom:1px solid rgba(231,232,237,.9);
     }
     .nav-inner{
-      min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px
+      min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px
     }
-    .brand{font-weight:900;letter-spacing:.02em;font-size:20px;text-decoration:none}
-    .nav-links{display:flex;align-items:center;gap:18px;font-size:14px;color:var(--muted)}
+    .brand{display:flex;align-items:center;font-weight:900;letter-spacing:.02em;font-size:20px;text-decoration:none}
+    .brand img{height:70px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--muted)}
     .nav-links a{text-decoration:none}
+    .nav-store{
+      min-height:40px;padding:0 16px;border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
+      font-weight:800;transition:transform .16s ease,box-shadow .16s ease;
+    }
+    .nav-store:hover{transform:translateY(-1px)}
+    .nav-store.ios{background:#17191f;color:#fff;box-shadow:0 7px 18px rgba(23,25,31,.13)}
+    .nav-store.play{background:var(--blue);color:#fff;box-shadow:0 7px 20px rgba(8,124,255,.18)}
     .cta{
       display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      min-height:48px;padding:0 20px;border-radius:999px;
+      min-height:50px;padding:0 22px;border-radius:999px;
       background:var(--blue);color:#fff;font-weight:800;text-decoration:none;
       box-shadow:0 8px 24px rgba(8,124,255,.20);
     }
     .hero{
       overflow:hidden;
       background:
-        radial-gradient(circle at 14% 16%, rgba(8,124,255,.12), transparent 28%),
-        radial-gradient(circle at 89% 15%, rgba(255,154,32,.14), transparent 28%),
+        radial-gradient(circle at 8% 13%, rgba(8,124,255,.13), transparent 32%),
+        radial-gradient(circle at 91% 13%, rgba(255,154,32,.16), transparent 31%),
+        radial-gradient(circle at 78% 83%, rgba(69,179,84,.10), transparent 26%),
         linear-gradient(180deg,#fff 0%,#fbfcff 100%);
     }
     .hero-grid{
-      min-height:700px;
-      display:grid;grid-template-columns:1.02fr .98fr;gap:70px;align-items:center;
-      padding:78px 0 86px;
+      min-height:650px;
+      display:grid;grid-template-columns:.93fr 1.07fr;gap:54px;align-items:center;
+      padding:52px 0 72px;
     }
+    .hero-copy-block{position:relative;z-index:2}
     .eyebrow{
       display:inline-flex;align-items:center;gap:8px;
-      padding:7px 12px;border-radius:999px;background:var(--blue-soft);
+      padding:7px 13px;border-radius:999px;background:var(--blue-soft);
       color:#0566d5;font-size:13px;font-weight:800;
+      box-shadow:inset 0 0 0 1px rgba(8,124,255,.06);
     }
-    h1{font-size:clamp(42px,6.1vw,56px);line-height:1.12;letter-spacing:-.045em;margin:22px 0 24px}
-    .hero-copy{font-size:clamp(17px,2vw,21px);color:#454b56;max-width:640px;margin:0}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    h1{font-size:clamp(46px,5.2vw,66px);line-height:1.1;letter-spacing:-.05em;margin:20px 0 22px}
+    .hero-copy{font-size:clamp(17px,1.55vw,20px);color:#454b56;max-width:610px;margin:0}
+    .hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .hero-chip{
+      padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.88);
+      border:1px solid #dde3eb;color:#3f4652;font-size:13px;font-weight:800;
+      box-shadow:0 4px 16px rgba(35,48,66,.05);
+    }
+    .hero-actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:27px}
+    .store-button{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:52px;padding:0 23px;border-radius:999px;text-decoration:none;
+      font-weight:850;transition:transform .16s ease,box-shadow .16s ease;
+    }
+    .store-button:hover{transform:translateY(-2px)}
+    .store-button.ios{background:#17191f;color:#fff;box-shadow:0 11px 28px rgba(23,25,31,.18)}
+    .store-button.play{background:#fff;color:#17191f;border:1px solid #cfd3db;box-shadow:0 9px 24px rgba(33,43,62,.07)}
     .secondary{
       display:inline-flex;align-items:center;justify-content:center;
       min-height:48px;padding:0 20px;border-radius:999px;border:1px solid #cfd3db;
       background:#fff;font-weight:800;text-decoration:none;
     }
-    .hero-note{font-size:12px;color:#7a808a;margin-top:13px}
-    .phones{position:relative;min-height:610px}
+    .hero-note{
+      display:inline-flex;align-items:flex-start;gap:6px;
+      font-size:12px;color:#6d7480;margin-top:16px;padding:8px 11px;
+      background:rgba(255,255,255,.8);border:1px solid rgba(207,211,219,.78);border-radius:12px;
+    }
+    .phones{position:relative;min-height:570px;isolation:isolate}
+    .phones::before{
+      content:"";position:absolute;inset:7% 1% 6% 8%;z-index:-1;
+      border-radius:42% 58% 50% 50% / 48% 38% 62% 52%;
+      background:linear-gradient(145deg,rgba(255,255,255,.78),rgba(234,244,255,.62));
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 30px 80px rgba(34,54,83,.08);
+    }
     .phone{
-      position:absolute;width:min(58%,330px);border-radius:30px;overflow:hidden;
-      background:#fff;border:1px solid #dfe2e8;box-shadow:var(--shadow);
+      position:absolute;width:min(61%,355px);border-radius:30px;overflow:hidden;
+      background:#fff;border:1px solid #dfe2e8;box-shadow:var(--shadow-strong);
     }
     .phone img{width:100%;height:auto}
-    .phone.a{left:1%;top:10%;transform:rotate(-4deg)}
-    .phone.b{right:1%;top:0;transform:rotate(4deg)}
-    .phone.c{right:19%;bottom:0;width:min(47%,270px);transform:rotate(-1deg)}
+    .phone.a{left:0;top:16%;transform:rotate(-4.5deg);z-index:1}
+    .phone.b{right:0;top:2%;transform:rotate(4deg);z-index:3}
+    .phone.c{right:18%;bottom:0;width:min(50%,285px);transform:rotate(-1.5deg);z-index:4}
     section{padding:96px 0}
     .section-head{max-width:760px;margin-bottom:44px}
     .kicker{font-weight:900;color:var(--blue);font-size:13px;letter-spacing:.08em}
@@ -200,10 +238,11 @@
     .footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     .footer-links{display:flex;gap:14px;flex-wrap:wrap}
     .footer-links a{text-decoration:none}
-    @media (max-width:900px){
-      .nav-links a:not(.cta){display:none}
-      .hero-grid{grid-template-columns:1fr;gap:20px;padding:58px 0 44px}
-      .phones{min-height:520px;max-width:560px;width:100%;margin:0 auto}
+    @media (max-width:980px){
+      .nav-links a:not(.nav-store){display:none}
+      .hero-grid{grid-template-columns:1fr;gap:22px;padding:48px 0 46px}
+      .hero-copy-block{max-width:760px}
+      .phones{min-height:540px;max-width:620px;width:100%;margin:0 auto}
       .feature,.feature.reverse{grid-template-columns:1fr;gap:34px}
       .feature.reverse .feature-copy,.feature.reverse .visual{order:initial}
       .feature + .feature{margin-top:84px}
@@ -211,12 +250,17 @@
       .audience-grid,.sources,.support-grid{grid-template-columns:1fr}
       .mini-grid{grid-template-columns:1fr}
     }
-    @media (max-width:560px){
+    @media (max-width:640px){
       .wrap{width:min(calc(100% - 28px),var(--max))}
-      .nav-inner{min-height:60px}
-      .hero-grid{padding-top:42px}
-      h1{font-size:44px}
+      .nav-inner{min-height:64px;gap:12px}
+      .brand img{height:58px}
+      .nav-links{gap:8px}
+      .nav-store{min-height:36px;padding:0 12px;font-size:12px}
+      .nav-store.ios{display:none}
+      .hero-grid{padding-top:38px}
+      h1{font-size:43px}
       .hero-copy{font-size:17px}
+      .hero-chips{margin-top:20px}
       .phones{min-height:430px}
       .phone{border-radius:21px}
       section{padding:72px 0}
@@ -225,7 +269,7 @@
       .screen{border-radius:15px}
       .gallery{grid-template-columns:repeat(2,1fr)}
       .gallery figure:last-child{display:none}
-      .hero-actions .cta,.hero-actions .secondary{width:100%}
+      .hero-actions .store-button,.hero-actions .secondary{width:100%}
       .support-links .cta,.support-links .secondary{width:100%}
     }
   </style>
@@ -233,14 +277,14 @@
 <body>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="brand" href="#" aria-label="都営でGO"><img src="assets/toeigo_logo.png" alt="都営でGO" style="height:84px;width:auto"></a>
+      <a class="brand" href="#" aria-label="都営でGO"><img src="assets/toeigo_logo.png" alt="都営でGO"></a>
       <nav class="nav-links" aria-label="メインナビゲーション">
         <a href="#features">できること</a>
         <a href="#discover">行き先探し</a>
         <a href="#support">サポート</a>
         <a href="#official">公式情報源</a>
-        <a href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Store</a>
-        <a class="cta" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Play</a>
+        <a class="nav-store ios" href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Store</a>
+        <a class="nav-store play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Play</a>
       </nav>
     </div>
   </header>
@@ -248,19 +292,24 @@
   <main>
     <section class="hero">
       <div class="wrap hero-grid">
-        <div>
-          <span class="eyebrow">🚌 都営交通のおでかけナビ</span>
+        <div class="hero-copy-block">
+          <span class="eyebrow">🚌 都営交通中心のおでかけナビ</span>
           <h1>都営交通だけで、<br>迷わずおでかけ。</h1>
           <p class="hero-copy">
             都営バス・都営地下鉄を中心に、JRや私鉄を使わないルートを探せるおでかけアプリ。
-            検索だけでなく、乗車中の案内、みんなでのおでかけ、近場の行き先探しまでサポートします。
+            乗車中の案内、みんなでのおでかけ、近場の行き先探しまでサポートします。
           </p>
-          <div class="hero-actions">
-            <a class="cta" href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
-            <a class="secondary" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
-            <a class="secondary" href="#features">できることを見る</a>
+          <div class="hero-chips" aria-label="主な機能">
+            <span class="hero-chip">🧭 ルート検索</span>
+            <span class="hero-chip">🚌 乗車中案内</span>
+            <span class="hero-chip">👥 おでかけ共有</span>
+            <span class="hero-chip">📍 行き先探し</span>
           </div>
-          <div class="hero-note">※ 本アプリは東京都・東京都交通局等が提供する公式アプリではありません。</div>
+          <div class="hero-actions">
+            <a class="store-button ios" href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
+            <a class="store-button play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
+          </div>
+          <div class="hero-note">ℹ 本アプリは東京都・東京都交通局等が提供する公式アプリではありません。</div>
         </div>
         <div class="phones" aria-label="都営でGOの画面例">
           <div class="phone a"><img src="assets/screenshots/route-search.png" alt="都営交通中心のルート検索結果"></div>
@@ -492,8 +541,8 @@
         <h2>都営交通で行ける東京を、<br>もっと見つけやすく。</h2>
         <p>検索から乗車中の案内、みんなでのおでかけ共有まで。都営でGOで、次のおでかけを始めてみませんか。</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="cta" href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
-          <a class="secondary" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
+          <a class="store-button ios" href="https://apps.apple.com/jp/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
+          <a class="store-button play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
         </div>
       </div>
     </section>
