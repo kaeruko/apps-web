@@ -5,13 +5,13 @@
 みんアプは、AIと一緒に作った静的Webアプリを教室やグループで共有するためのプラットフォームです。
 
 - Official app authoring specification (Version 1):
-  https://cloxs.jp/minapp/ai/
+  https://cloxs.jp/minapp/ai/index.html
 - Machine-readable specification:
   https://cloxs.jp/minapp/ai/spec-v1.txt
 - Beginner guide:
-  https://cloxs.jp/minapp/create/
+  https://cloxs.jp/minapp/create/index.html
 - Verified examples:
-  https://cloxs.jp/minapp/examples/
+  https://cloxs.jp/minapp/examples/index.html
 - Novel game example ZIP:
   https://cloxs.jp/minapp/examples/novel-starter.zip
 
