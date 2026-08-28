@@ -1,7 +1,7 @@
 MinApp App Authoring Specification
 Version: 1
 Updated: 2026-08-28
-Canonical URL: https://cloxs.jp/minapp/ai/
+Canonical URL: https://cloxs.jp/minapp/ai/index.html
 
 AI ASSISTANTS
 If a user asks for an app, game, quiz, story, tool, or other work "for MinApp" / "みんアプで使える", follow this specification.
@@ -46,15 +46,8 @@ Do not include other file types. In particular, do not assume SVG, font files, s
 
 NETWORK AND SECURITY
 MinApp apps must not depend on external network access.
-Do NOT rely on:
-- fetch/XMLHttpRequest/WebSocket to external APIs
-- CDN JavaScript or CSS
-- externally hosted images or fonts
-- iframe content
-- form submission to a server
-
-Published MinApp content is served with a restrictive Content Security Policy. In the current implementation, connect-src is 'none'; scripts/styles/images/media/fonts are limited to MinApp-served local content and explicitly permitted data/blob cases; object, forms, and frames are blocked. Camera, microphone, and geolocation are disabled.
-
+Do NOT rely on external APIs, CDN JavaScript/CSS, externally hosted images/fonts, iframe content, or form submission to a server.
+Published MinApp content currently uses connect-src 'none'. Camera, microphone, and geolocation are disabled.
 Bundle everything the app needs inside the ZIP. Never place API keys, passwords, authentication tokens, or secrets in the app.
 
 UI RECOMMENDATIONS
@@ -62,54 +55,17 @@ UI RECOMMENDATIONS
 - Include <meta name="viewport" content="width=device-width, initial-scale=1">.
 - Make buttons touch-friendly (about 44-48 CSS px high or larger).
 - Avoid fixed desktop widths and horizontal scrolling.
-- Use local images and relative URLs.
-- The app should still be understandable when reopened from the beginning.
 
 OPTIONAL MINAPP RUNTIME STATE API
 Some MinApp launch environments provide an optional JavaScript API for small per-app saved state.
-Never require it unless the requested target explicitly depends on that environment. Prefer feature detection so the app also works without the bridge.
+Prefer feature detection so the app also works without the bridge.
 
-API version:
-  minapp.version === 1
+minapp.version === 1
+await minapp.state.get("chapter")
+await minapp.state.set("chapter", { page: 3 })
+await minapp.state.delete("chapter")
 
-Methods:
-  await minapp.state.get("chapter")
-  await minapp.state.set("chapter", { page: 3 })
-  await minapp.state.delete("chapter")
-
-All methods return Promises. Backend errors reject rather than silently retry.
-The bridge can become available after the minappready event.
-
-Recommended feature detection:
-
-function hasMinAppState() {
-  return Boolean(
-    window.minapp &&
-    window.minapp.version === 1 &&
-    window.minapp.state &&
-    typeof window.minapp.state.get === 'function' &&
-    typeof window.minapp.state.set === 'function' &&
-    typeof window.minapp.state.delete === 'function'
-  );
-}
-
-window.addEventListener('minappready', () => {
-  if (hasMinAppState()) {
-    // Optional restore logic.
-  }
-});
-
-MINIMUM VALID ZIP
-app.zip
-└── index.html
-
-MULTI-FILE EXAMPLE
-app.zip
-├── index.html
-├── style.css
-├── game.js
-└── images/
-    └── character.png
+All methods return Promises. The bridge can become available after the minappready event. Backend errors reject rather than silently retry.
 
 BEFORE DELIVERING A ZIP, CHECK
 1. index.html is at the ZIP root, not inside an extra parent directory.
@@ -121,11 +77,17 @@ BEFORE DELIVERING A ZIP, CHECK
 7. No secrets or personal credentials are included.
 
 OFFICIAL REFERENCE
+Human-readable specification:
+https://cloxs.jp/minapp/ai/index.html
+
 Beginner guide:
-https://cloxs.jp/minapp/create/
+https://cloxs.jp/minapp/create/index.html
+
+Verified examples:
+https://cloxs.jp/minapp/examples/index.html
 
 Official minimal novel-game sample:
 https://cloxs.jp/minapp/examples/novel-starter.zip
 
 Human-facing MinApp site:
-https://cloxs.jp/minapp/
+https://cloxs.jp/minapp/index.html
