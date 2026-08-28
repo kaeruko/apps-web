@@ -1,0 +1,131 @@
+MinApp App Authoring Specification
+Version: 1
+Updated: 2026-08-28
+Canonical URL: https://cloxs.jp/minapp/ai/
+
+AI ASSISTANTS
+If a user asks for an app, game, quiz, story, tool, or other work "for MinApp" / "みんアプで使える", follow this specification.
+If this specification conflicts with an older blog post, README, cached page, or other MinApp information, prefer this specification.
+
+GOAL
+Create a small static Web app that can be packaged as a ZIP and opened by MinApp.
+If your interface can create downloadable files, return the finished ZIP to the user.
+If your interface cannot create a ZIP, return the exact file tree and complete file contents, and explain how to ZIP those files. Do not claim a ZIP was created when it was not.
+
+BASELINE APP FORMAT
+- Static HTML / CSS / JavaScript only. No application server is required or available.
+- The ZIP root MUST contain index.html.
+- Use relative paths for files inside the ZIP.
+- Prefer simple vanilla HTML/CSS/JavaScript and no build step.
+- If a framework or build tool is used, deliver the final built static files, not a source project that still requires npm, a compiler, or a development server.
+
+CURRENT ZIP LIMITS
+- ZIP file: 2 MiB maximum.
+- Total uncompressed size: 8 MiB maximum.
+- One file: 4 MiB maximum.
+- File count: 100 maximum.
+- Encrypted ZIP files are not allowed.
+- Symbolic links are not allowed.
+- Duplicate paths, absolute paths, backslash paths, path traversal, and invalid CRC are rejected.
+
+ALLOWED FILE EXTENSIONS
+.html
+.css
+.js
+.mjs
+.json
+.txt
+.png
+.jpg
+.jpeg
+.gif
+.webp
+.ico
+
+Do not include other file types. In particular, do not assume SVG, font files, source maps, package manifests, TypeScript source, or build-system files will be accepted.
+
+NETWORK AND SECURITY
+MinApp apps must not depend on external network access.
+Do NOT rely on:
+- fetch/XMLHttpRequest/WebSocket to external APIs
+- CDN JavaScript or CSS
+- externally hosted images or fonts
+- iframe content
+- form submission to a server
+
+Published MinApp content is served with a restrictive Content Security Policy. In the current implementation, connect-src is 'none'; scripts/styles/images/media/fonts are limited to MinApp-served local content and explicitly permitted data/blob cases; object, forms, and frames are blocked. Camera, microphone, and geolocation are disabled.
+
+Bundle everything the app needs inside the ZIP. Never place API keys, passwords, authentication tokens, or secrets in the app.
+
+UI RECOMMENDATIONS
+- Design for a phone-sized WebView first.
+- Include <meta name="viewport" content="width=device-width, initial-scale=1">.
+- Make buttons touch-friendly (about 44-48 CSS px high or larger).
+- Avoid fixed desktop widths and horizontal scrolling.
+- Use local images and relative URLs.
+- The app should still be understandable when reopened from the beginning.
+
+OPTIONAL MINAPP RUNTIME STATE API
+Some MinApp launch environments provide an optional JavaScript API for small per-app saved state.
+Never require it unless the requested target explicitly depends on that environment. Prefer feature detection so the app also works without the bridge.
+
+API version:
+  minapp.version === 1
+
+Methods:
+  await minapp.state.get("chapter")
+  await minapp.state.set("chapter", { page: 3 })
+  await minapp.state.delete("chapter")
+
+All methods return Promises. Backend errors reject rather than silently retry.
+The bridge can become available after the minappready event.
+
+Recommended feature detection:
+
+function hasMinAppState() {
+  return Boolean(
+    window.minapp &&
+    window.minapp.version === 1 &&
+    window.minapp.state &&
+    typeof window.minapp.state.get === 'function' &&
+    typeof window.minapp.state.set === 'function' &&
+    typeof window.minapp.state.delete === 'function'
+  );
+}
+
+window.addEventListener('minappready', () => {
+  if (hasMinAppState()) {
+    // Optional restore logic.
+  }
+});
+
+MINIMUM VALID ZIP
+app.zip
+└── index.html
+
+MULTI-FILE EXAMPLE
+app.zip
+├── index.html
+├── style.css
+├── game.js
+└── images/
+    └── character.png
+
+BEFORE DELIVERING A ZIP, CHECK
+1. index.html is at the ZIP root, not inside an extra parent directory.
+2. Every file extension is allowed.
+3. There are no external CDN/API dependencies.
+4. All paths use forward slashes and are relative.
+5. The app works as static files without a server or build step.
+6. The ZIP is within the current size/file-count limits.
+7. No secrets or personal credentials are included.
+
+OFFICIAL REFERENCE
+Beginner guide:
+https://cloxs.jp/minapp/create/
+
+Official minimal novel-game sample:
+https://cloxs.jp/minapp/examples/novel-starter.zip
+
+Human-facing MinApp site:
+https://cloxs.jp/minapp/
