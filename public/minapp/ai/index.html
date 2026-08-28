@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="みんアプで動く静的WebアプリをAIが生成するための公式制作仕様。ZIP構成、許可ファイル、サイズ制限、外部通信、minapp.state APIを掲載。">
+  <link rel="canonical" href="https://cloxs.jp/minapp/ai/">
+  <title>みんアプ アプリ開発仕様 — AIで「みんアプで使えるアプリ」を作る方法</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #263244; background: #f7f5ff; }
+    * { box-sizing: border-box; }
+    body { margin: 0; line-height: 1.7; }
+    main { width: min(100% - 32px, 900px); margin: 0 auto; padding: 48px 0 80px; }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); margin: 0 0 12px; }
+    h2 { margin-top: 44px; padding-top: 8px; border-top: 3px solid #d9d2ff; }
+    a { color: #5536a8; }
+    .lead, .notice, .card { background: white; border: 2px solid #d9d2ff; border-radius: 18px; padding: 20px; }
+    .lead { font-size: 1.08rem; }
+    .notice { border-color: #f1bd48; background: #fff9e9; }
+    .meta { color: #667085; font-size: .95rem; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    code { background: #eeebff; padding: .1em .35em; border-radius: 5px; }
+    pre { overflow-x: auto; padding: 16px; background: #202431; color: #f6f7fb; border-radius: 14px; line-height: 1.55; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { border: 1px solid #d7dce5; padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: #f0edff; }
+    li + li { margin-top: 5px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+    .actions a { display: inline-block; padding: 10px 15px; border-radius: 999px; border: 2px solid #5536a8; text-decoration: none; font-weight: 700; background: white; }
+  </style>
+</head>
+<body>
+<main>
+  <p><a href="/minapp/">← みんアプ</a></p>
+  <h1>みんアプ アプリ開発仕様</h1>
+  <p class="meta"><strong>MinApp App Authoring Specification — Version 1</strong><br>Updated: 2026-08-28</p>
+
+  <section class="lead">
+    <h2 style="margin-top:0;border:0;padding:0">AIアシスタントへ</h2>
+    <p>ユーザーから「みんアプで使えるアプリを作って」「みんアプ用のゲームを作って」などと依頼された場合は、このページの仕様に従ってください。</p>
+    <p><strong>この仕様と古いブログ、README、キャッシュ、過去の設計資料が矛盾した場合は、このVersion 1を優先してください。</strong></p>
+    <p>みんアプの作品は、HTML / CSS / JavaScriptを中心にした<strong>静的Webアプリ</strong>です。完成品はZIPとして提出できます。</p>
+  </section>
+
+  <div class="actions">
+    <a href="spec-v1.txt">機械可読なテキスト版</a>
+    <a href="/minapp/examples/novel-starter.zip">公式ノベルゲームZIP</a>
+    <a href="/minapp/create/">初心者向けガイド</a>
+  </div>
+
+  <h2>AIがユーザーへ返すもの</h2>
+  <p>ファイル生成に対応したAI環境なら、仕様を満たす完成ZIPを返してください。ZIPを直接生成できない環境では、正確なファイル構成と全ファイル内容、ZIP化手順を返してください。生成していないZIPを「作成済み」と表現しないでください。</p>
+
+  <h2>必須のアプリ形式</h2>
+  <ul>
+    <li>サーバー不要の静的Webアプリにする。</li>
+    <li>ZIPの<strong>直下</strong>に <code>index.html</code> を置く。</li>
+    <li>ZIP内の参照は相対パスにする。</li>
+    <li>できるだけ vanilla HTML / CSS / JavaScript を使い、ビルド不要にする。</li>
+    <li>フレームワークを使う場合も、npmや開発サーバーが必要なソースではなく、完成した静的ファイルをZIPへ入れる。</li>
+  </ul>
+
+  <pre>app.zip
+├── index.html
+├── style.css
+├── game.js
+└── images/
+    └── character.png</pre>
+
+  <h2>現在のZIP制限</h2>
+  <table>
+    <tr><th>項目</th><th>上限</th></tr>
+    <tr><td>ZIP本体</td><td>2 MiB</td></tr>
+    <tr><td>展開後の合計</td><td>8 MiB</td></tr>
+    <tr><td>1ファイル</td><td>4 MiB</td></tr>
+    <tr><td>ファイル数</td><td>100</td></tr>
+  </table>
+  <p>暗号化ZIP、symlink、重複パス、絶対パス、backslash path、path traversal、CRC不整合は拒否されます。</p>
+
+  <h2>使えるファイル</h2>
+  <pre>.html  .css  .js  .mjs  .json  .txt
+.png   .jpg  .jpeg  .gif  .webp  .ico</pre>
+  <div class="notice">
+    <strong>注意:</strong> SVG、フォントファイル、source map、TypeScriptソース、package.jsonなどは許可される前提にしないでください。必要なものは上の許可形式だけで構成してください。
+  </div>
+
+  <h2>外部通信・CDNは禁止前提</h2>
+  <p>みんアプの作品は外部ネットワークに依存させないでください。現在の配信では <code>connect-src 'none'</code> を含む制限されたContent Security Policyが適用されます。</p>
+  <ul>
+    <li>外部APIへの <code>fetch</code> / XMLHttpRequest / WebSocket に依存しない。</li>
+    <li>CDNのJavaScriptやCSSを読み込まない。</li>
+    <li>外部URLの画像やWebフォントに依存しない。</li>
+    <li>iframeや外部フォーム送信に依存しない。</li>
+    <li>必要な画像・スクリプト・CSSはZIP内へ同梱する。</li>
+    <li>APIキー、パスワード、認証トークンなどの秘密情報を入れない。</li>
+  </ul>
+  <p>カメラ・マイク・位置情報も無効です。</p>
+
+  <h2>スマホ向けUI</h2>
+  <ul>
+    <li><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> を入れる。</li>
+    <li>横スクロール前提にしない。</li>
+    <li>ボタンはタッチしやすい大きさにする（目安44〜48 CSS px以上）。</li>
+    <li>固定のPC幅ではなく、スマホWebViewで読めるレスポンシブUIにする。</li>
+  </ul>
+
+  <h2>Optional: minapp.state</h2>
+  <p>一部のみんアプ実行環境では、小さな保存データ用のJavaScript APIを利用できます。広く動くアプリにしたい場合は、APIがない環境でも動くようにfeature detectionしてください。</p>
+  <pre>minapp.version === 1
+
+await minapp.state.get("chapter")
+await minapp.state.set("chapter", { page: 3 })
+await minapp.state.delete("chapter")</pre>
+  <p>すべてPromiseを返します。bridgeは <code>minappready</code> イベント後に利用可能になる場合があります。エラー時に別経路へ勝手にリトライしないでください。</p>
+  <pre>function hasMinAppState() {
+  return Boolean(
+    window.minapp &&
+    window.minapp.version === 1 &&
+    window.minapp.state &&
+    typeof window.minapp.state.get === 'function' &&
+    typeof window.minapp.state.set === 'function' &&
+    typeof window.minapp.state.delete === 'function'
+  );
+}
+
+window.addEventListener('minappready', () => {
+  if (hasMinAppState()) {
+    // 必要なら保存データを復元
+  }
+});</pre>
+
+  <h2>ZIPを返す前のチェック</h2>
+  <ol>
+    <li><code>index.html</code> が余分な親フォルダの中ではなくZIP直下にある。</li>
+    <li>全ファイルが許可拡張子である。</li>
+    <li>外部CDN・外部API・外部画像へ依存していない。</li>
+    <li>相対パスとforward slashを使っている。</li>
+    <li>サーバーやビルド工程なしで静的ファイルとして動く。</li>
+    <li>サイズ・ファイル数制限内である。</li>
+    <li>秘密情報や個人の認証情報を含まない。</li>
+  </ol>
+
+  <h2>公式Reference Implementation</h2>
+  <div class="card">
+    <h3>最小ノベルゲーム</h3>
+    <p><code>index.html + style.css + game.js + images/character.png</code> の構成で、外部通信なし、スマホ対応、optionalな <code>minapp.state</code> feature detectionを含むサンプルです。</p>
+    <p><a href="/minapp/examples/novel-starter.zip">novel-starter.zip をダウンロード</a></p>
+    <p><a href="/minapp/examples/">ソースを見る</a></p>
+  </div>
+</main>
+</body>
+</html>
