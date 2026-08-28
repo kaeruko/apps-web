@@ -2,11 +2,18 @@
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "PublicRead",
+      "Sid": "AllowCloudFrontReadOnly",
       "Effect": "Allow",
-      "Principal": "*",
+      "Principal": {
+        "Service": "cloudfront.amazonaws.com"
+      },
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::ampere-apps-web/*"
+      "Resource": "arn:aws:s3:::cloxs-apps-web-314267685786/*",
+      "Condition": {
+        "StringEquals": {
+          "AWS:SourceArn": "arn:aws:cloudfront::314267685786:distribution/EQWPIWBHWFB17"
+        }
+      }
     }
   ]
 }
