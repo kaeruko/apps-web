@@ -6,6 +6,8 @@
     <title>都営でGO - シルバーパスのお出かけがもっと楽しく</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons (Apple, Google Playアイコン用に追加) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         body {
             font-family: 'Noto Sans JP', sans-serif;
@@ -17,16 +19,196 @@
             --primary-green: #009955; /* 都営カラーの緑 */
             --accent-orange: #f26f21;
         }
+
+        /* A4で写真を活かしたまま1ページに収める印刷用レイアウト */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 6mm;
+            }
+
+            html {
+                background: white !important;
+            }
+
+            body {
+                background-color: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                width: 178mm !important;
+                max-width: 178mm !important;
+                margin: 0 auto !important;
+                padding-bottom: 0 !important;
+                box-shadow: none !important;
+            }
+
+            header {
+                padding: 2.5mm 4mm !important;
+            }
+
+            header img {
+                width: 14mm !important;
+                height: 14mm !important;
+            }
+
+            .print-hero img {
+                width: 100% !important;
+                height: 74mm !important;
+                max-height: none !important;
+                object-fit: cover !important;
+                object-position: center 42% !important;
+            }
+
+            .print-hero > div {
+                right: 4mm !important;
+                bottom: -5mm !important;
+                padding: 3mm !important;
+                max-width: 48% !important;
+            }
+
+            .print-hero > div p {
+                font-size: 13pt !important;
+            }
+
+            .print-spacer {
+                display: block !important;
+                height: 10mm !important;
+            }
+
+            .print-features {
+                padding: 3mm 5mm 2.5mm !important;
+            }
+
+            .print-features > div:first-child {
+                margin-bottom: 3mm !important;
+            }
+
+            .print-features > .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 2.5mm !important;
+            }
+
+            .print-features > .grid > div {
+                padding: 3mm !important;
+                gap: 3mm !important;
+                break-inside: avoid;
+            }
+
+            .print-features h2 {
+                font-size: 15pt !important;
+            }
+
+            .print-features h3,
+            .print-guide h3 {
+                font-size: 11pt !important;
+            }
+
+            .print-features p.text-sm,
+            .print-guide span.text-sm,
+            .print-download p.text-sm {
+                font-size: 8.5pt !important;
+            }
+
+            .print-features p.text-xs,
+            .print-guide p.text-xs {
+                font-size: 7pt !important;
+            }
+
+            .print-guide {
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 4mm !important;
+                padding: 2.5mm 5mm !important;
+            }
+
+            .print-guide > div {
+                width: 50% !important;
+                flex: 1 1 0 !important;
+            }
+
+            .print-guide > div:first-child {
+                padding: 3.5mm !important;
+            }
+
+            .print-guide > div:first-child h3 {
+                margin-bottom: 2.5mm !important;
+                padding-bottom: 1.5mm !important;
+            }
+
+            .print-guide ul {
+                row-gap: 2mm !important;
+            }
+
+            .print-guide > div:last-child > h3 {
+                margin-bottom: 2.5mm !important;
+            }
+
+            .print-guide .p-3 {
+                padding: 2mm !important;
+            }
+
+            .print-guide .-my-2 {
+                margin-top: -1.5mm !important;
+                margin-bottom: -1.5mm !important;
+            }
+
+            .print-guide > div:last-child > p {
+                margin-top: 2.5mm !important;
+            }
+
+            .print-download {
+                display: flex !important;
+                flex-direction: row !important;
+                margin: 4mm 5mm 0 !important;
+                padding: 3.5mm !important;
+                gap: 4mm !important;
+            }
+
+            .print-download > div:first-of-type {
+                width: auto !important;
+                margin-bottom: 0 !important;
+            }
+
+            .print-download h2 {
+                margin-bottom: 1.5mm !important;
+                font-size: 15pt !important;
+                text-align: left !important;
+            }
+
+            .print-download p {
+                margin-bottom: 2mm !important;
+                text-align: left !important;
+            }
+
+            .print-download .justify-center {
+                justify-content: flex-start !important;
+            }
+
+            .print-download .w-\[64px\] {
+                width: 14mm !important;
+                height: 14mm !important;
+            }
+
+            .print-download .w-\[88px\] {
+                width: 19mm !important;
+                padding: 1.5mm !important;
+            }
+
+            .print-download,
+            .print-guide,
+            .print-features {
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body class="antialiased max-w-2xl mx-auto bg-white shadow-lg relative pb-10">
 
-    <!-- ヘッダー -->
     <header class="flex justify-between items-center px-4 py-3 bg-white border-b border-gray-200">
-<a href="#" class="flex items-center gap-2">
-    <!-- w-20 h-20（80px）で大きめに表示 -->
-    <img src="assets/logo.png" alt="都営でGOロゴ" class="w-20 h-20 object-contain">
-</a>
+        <a href="#" class="flex items-center gap-2">
+            <!-- w-20 h-20（80px）で大きめに表示 -->
+            <img src="assets/logo.png" alt="都営でGOロゴ" class="w-20 h-20 object-contain">
+        </a>
         <div class="text-right">
             <p class="text-sm font-medium text-gray-800 leading-tight">
                 シルバーパスのお出かけが、<br>
@@ -35,8 +217,7 @@
         </div>
     </header>
 
-    <!-- メインビジュアル -->
-    <section class="relative">
+    <section class="print-hero relative">
         <img src="silver_main.png" alt="笑顔でスマートフォンを見るシニア夫婦" class="w-full h-auto object-cover max-h-[300px]">
         
         <!-- キャッチコピーの吹き出し風 -->
@@ -49,10 +230,9 @@
     </section>
 
     <!-- メインビジュアル下の余白調整 -->
-    <div class="h-10"></div>
+    <div class="print-spacer h-10"></div>
 
-    <!-- 機能紹介 -->
-    <section class="px-5 py-6">
+    <section class="print-features px-5 py-6">
         <div class="flex items-center justify-center gap-2 mb-6">
             <span class="bg-[#009955] text-white text-xs font-bold px-2 py-1 rounded-full">機能</span>
             <h2 class="text-xl font-bold text-center">都営でGOでできること</h2>
@@ -115,8 +295,7 @@
         </div>
     </section>
 
-    <!-- おすすめな人と使い方セクション (横並び) -->
-    <section class="px-5 py-2 flex flex-col md:flex-row gap-6">
+    <section class="print-guide px-5 py-2 flex flex-col md:flex-row gap-6">
         
         <!-- こんな方におすすめ -->
         <div class="bg-gray-50 rounded-xl p-5 md:w-1/2 border border-gray-100">
@@ -176,27 +355,26 @@
         </div>
     </section>
 
-    <!-- ダウンロード案内 -->
-    <section class="mx-5 mt-8 mb-5 bg-[#009955] rounded-xl p-5 text-white flex flex-col md:flex-row items-center justify-between relative overflow-hidden">
+    <section class="print-download mx-5 mt-8 mb-5 bg-[#009955] rounded-xl p-5 text-white flex flex-col md:flex-row items-center justify-between relative overflow-hidden">
         <!-- 背景の装飾的な図形 -->
         <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10"></div>
         <div class="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-8 -mb-8"></div>
 
-        <div class="z-10 md:w-2/3">
-            <h2 class="text-2xl font-bold mb-2 tracking-wide">無料ダウンロードはこちら</h2>
-            <p class="text-sm font-medium mb-4">ご家族の方のサポートもおすすめです。</p>
+        <div class="z-10 w-full md:w-auto mb-4 md:mb-0">
+            <h2 class="text-xl md:text-2xl font-bold mb-2 tracking-wide text-center md:text-left">無料ダウンロードはこちら</h2>
+            <p class="text-sm font-medium mb-4 text-center md:text-left">ご家族の方のサポートもおすすめです。</p>
             
-            <div class="flex gap-3">
-                <!-- App Store風ボタン
-                <button class="flex items-center gap-2 border border-white rounded-md px-3 py-1.5 hover:bg-white hover:text-[#009955] transition-colors">
+            <div class="flex justify-center md:justify-start gap-3">
+                <!-- App Storeボタン -->
+                <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 border border-white rounded-md px-2 py-1.5 hover:bg-white hover:text-[#009955] transition-colors bg-[#009955]">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16.365 17.078c-.752.122-1.464-.325-2.072-.882-.693-.637-1.353-1.618-1.527-2.585-.173-.966.192-1.92.812-2.58.744-.79 1.83-1.218 2.894-1.218h.273c.159 1.157-.272 2.37-.98 3.193-.664.767-1.636 1.173-2.617 1.173h-.173c.09.43.342.825.708 1.127.354.293.794.463 1.25.463.367 0 .726-.1 1.037-.29l.73 1.256c-.66.425-1.436.657-2.335.343zm1.613-6.666c-1.393-.11-2.734.577-3.418 1.62-.68-1.01-1.948-1.632-3.328-1.543-1.874.122-3.614 1.41-4.482 3.23-1.848 3.864-.39 9.387 2.327 13.064 1.272 1.733 2.805 3.655 4.795 3.606 1.874-.047 2.62-.132 4.67-.132 1.996 0 2.628.1 4.717.13 1.997.03 3.32-1.782 4.542-3.498 1.47-2.062 2.06-4.062 2.096-4.17-.046-.017-3.83-1.425-3.92-5.717-.075-3.52 2.92-5.185 3.056-5.26-1.562-2.186-3.843-2.457-4.66-2.502L16.365 17.078h1.613v-6.666zM13.82 5.093c.96-1.128 1.626-2.695 1.45-4.242-1.397.056-2.98.895-3.974 2.064-.882 1.042-1.666 2.665-1.464 4.187 1.516.11 3.01-.762 3.988-2.01z"/></svg>
                     <div class="text-left flex flex-col justify-center">
                         <span class="text-[0.5rem] leading-none mb-0.5">Download on the</span>
                         <span class="text-xs font-bold leading-none">App Store</span>
                     </div>
-                </button> -->
-                <!-- Google Play風ボタン -->
-                <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 border border-white rounded-md px-3 py-1.5 hover:bg-white hover:text-[#009955] transition-colors">
+                </a>
+                <!-- Google Playボタン -->
+                <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 border border-white rounded-md px-2 py-1.5 hover:bg-white hover:text-[#009955] transition-colors bg-[#009955]">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3.243 2.115c-.218.232-.34.582-.34 1.022v17.728c0 .44.12.79.34 1.02l.035.034 9.932-9.934v-.072L3.277 2.08l-.034.035zM14.28 13.916l-1.07-1.07v-.07l1.07-1.07 3.35 1.905c.96.54.96 1.432 0 1.977l-3.35 1.905-.002-.002zM13.21 12.846L3.896 22.16c-.346.347-.905.347-1.252 0-.346-.346-.346-.906 0-1.252l9.314-9.314v-.002l1.253 1.254zm0-1.073L3.896 2.46c-.346-.346-.905-.346-1.252 0-.346.347-.346.906 0 1.252l9.314 9.314v.002l1.253-1.254z"/></svg>
                     <div class="text-left flex flex-col justify-center">
                         <span class="text-[0.5rem] leading-none mb-0.5">GET IT ON</span>
@@ -206,12 +384,23 @@
             </div>
         </div>
         
-        <!-- QRコードエリア -->
-        <div class="z-10 mt-4 md:mt-0 bg-white p-2 rounded-lg text-center shadow-md">
-            <!-- QRコード画像を読み込む -->
-            <img src="assets/qr.png" alt="ダウンロード用QRコード" class="w-24 h-24 mx-auto mb-1 object-contain">
+        <!-- QRコードエリア (iOS / Android 併記) -->
+        <div class="z-10 flex gap-3 justify-center">
+            <!-- iOS用QRコード -->
+            <div class="bg-white p-2 rounded-lg text-center shadow-md flex flex-col items-center w-[88px]">
+                <div class="flex items-center justify-center gap-1 text-slate-700 font-bold text-[10px] mb-1.5 w-full">
+                    <i class="ph-fill ph-apple-logo text-sm"></i> iPhone
+                </div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXIAAAFyAQAAAADAX2ykAAACcklEQVR4nO2bTYrjMBCFX40MWcqQA8xR5KvNkfoG8VFygAFpOSDzZlGSrXTTZJp2e6ymahES+1sUPEr1pwjxEZt/fAgHjDfeeOONN97493gpNgDAIjJhKU+mVN9NB/pj/M58IElGAPMI8AYAIToCcCRJPvJf7Y/xO/NpjVA4ypQu5K+fWR/UwD7SH+P34Ye3j5aBwB9BuA+ZSMf6Y/wX8+F+YTmkfT6BP8Z/iq/x6wkgAQKfgRAXAGkEAaAdgZzNf+P/iZ9FRGQEEO4DZEoXygRHWSvpY/0xfide43eLUM6jg+bfeYSUwD7OH+P35aHNT2AGb3BVTE+SzJqEudntbP4b/8Q27QBPIkSo0pvcvHlSW2TTt0tepiRC3kUwj46Als6L6KQDSeq3c/pv/LvWDKfKIQ0APoPc5lexxrnFb2c8tqO5TCWr3A/nc4adz13yq74Z9VRGGT0HZtRKy+qrTvlaX8X6e1W12TmUF6Zvf/zb/OupWVc/wmOTZPp2xrf9UYgAVNXoSruklRZN3075qptfwzQCW9Yt7bD1v73yOp+UEEEgXQj4PFCfvVwzkVyWEJe6hzib/8Y/sa2+aodYD+NKktYfdco38+eSfz25HcjKhOisP+qTb5cHq9J1dIUy7ggRFr998iX/ll8uE+lKARwQXq5ZkK55y8nn89/4J1ajltSoLQVzbl4oaPHbI19ljKhpNqJpkpQJNp/8LrzI6Oq6IQ0lE892P+e78GQE9CYWsIiIXoJ2lOm/+GP85/jX9yfVwg0Q+N/r7axFrL7qkm/3C7pV8GXJr/MNra9sv9ArL3zONGb/7zbeeOONN974Hfi/egMRJqBm2EoAAAAASUVORK5CYII=" alt="iPhone用アプリダウンロードQRコード" class="w-[64px] h-[64px] object-cover mx-auto">
+            </div>
             
-            <span class="text-[10px] text-gray-800 font-bold block">スマホで読み取る</span>
+            <!-- Android用QRコード -->
+            <div class="bg-white p-2 rounded-lg text-center shadow-md flex flex-col items-center w-[88px]">
+                <div class="flex items-center justify-center gap-1 text-slate-700 font-bold text-[10px] mb-1.5 w-full">
+                    <i class="ph-fill ph-google-play-logo text-sm"></i> Android
+                </div>
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAAC90lEQVR4nO2cQW7bQAxFHysBXo6AHCBHkW4W9Ei9gXUUH6CAZllgjN/FcGSlXbVJbVeid5b9kBmA+OQn6Zj449f85c8ZCCiggAIKKKCA9gmZv3rMrId5AGYzMxuuBrl9YXrI8QK6PzRKkhaA9MMAsClJ0qUH6CRJeg/d73gB3R/KLgA655Nsyj0eIIBN4OLxqOMF9DDI3hZg1A9jHsCmVP7RXwroOaH+l/ciA7OBjRdD5BfZ444X0N2hFhFJQAZIBZFfStUImkZsO1lPfqeAPgFyXwE25R6bAHtbOjHWyvJarcajjhfQvTViKwCpUA3HPGAiX03vv/D0dwroIxDVVY4L6AzonArS0gnodHurcyruUs9PfqeAPgJx6zNIKs1zJo8SRhVu8RIRcRholAT5pJvd1DlJkL323PrQ/+NOAX1AIzbKQJKkqgydvJmp0tJJaMTeoU3WqGmiPltaWeGhUmihEhGxc6hphFYBAG4lRE0dY2jEcaDmNVpR6TYjeSbxiFitR0TE7qHWs8wDRiq9ec/SEEkYGJqHDpFf7n+8gO4OtToilTVXrKlDBcDlgdCIY0CbDpVbUNiUEK2s8EwS/Yj9Q5tJl5EHNE+g2cBIYKMA8tUYv1lrZj/5nQL6FOhq29Sx+FOduRrz4Bph06OOF9C9oNV9eoa4mdH66cZ9rp9G1tg/VJdupyT5qi1drTbt7WIG+RQacSzIO1SX3gda5B7Gy0n6OgBwNcZL7EccAWqJoDUk68M6zVi6zUgjutgHgVb32TULWudbzX36pgRtLh4RsXdoW1munQlPHXg68UZFzDUOAW1zhdeT8ibluLTZ53YuHhFxDMgLB9Z9KTccZq+F2qiYY/P2ENC7LnZdp1y1YAHW7fyNUIRGHAmyiau5HiSpWlCpoK+vsVV3BOjX33QxfjsJ0vfeoCu+nZ8HGC99ibnG/qF1Y6Y1IM7wfr+ua7NyxezzCNBvXmO8jTTW32usi1ThNfYPWfxnsoACCiiggAIK6C+hn3L5kg5FEXwTAAAAAElFTkSuQmCC" alt="Android用アプリダウンロードQRコード" class="w-[64px] h-[64px] object-cover mx-auto">
+            </div>
         </div>
     </section>
 
