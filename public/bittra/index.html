@@ -323,7 +323,7 @@
                 <h2 class="text-4xl font-black mb-4 text-gray-900">会場で「びっとら」を一緒に試してくれる<br class="hidden sm:block">サークルさんを募集しています</h2>
                 <p class="text-gray-600 font-medium leading-relaxed">
                     文学フリマの会場で、びっとらの近距離口コミを一緒に育ててくださるサークルさんを募集しています。<br>
-                    下の2つのうち、どちらか1つだけでも大歓迎です。
+                    下の2つの両方にご協力いただけるサークルさんを募集しています。
                 </p>
             </div>
 
@@ -331,18 +331,20 @@
                 <div class="bg-pink-50 border border-pink-100 rounded-3xl p-6">
                     <div class="text-doujin text-3xl mb-3"><i class="fa-solid fa-comment-dots"></i></div>
                     <h3 class="text-xl font-black text-gray-900 mb-2">感想をびっとらで流す</h3>
-                    <p class="text-gray-600 leading-relaxed">会場で読んだ作品の感想や「これよかった！」というおすすめを、びっとらで近くの来場者へ流してもらいます。</p>
+                    <p class="text-gray-600 leading-relaxed">当日、作品の感想や「これよかった！」というおすすめを、びっとらで近くの来場者へ流していただきます。</p>
                 </div>
                 <div class="bg-orange-50 border border-orange-100 rounded-3xl p-6">
                     <div class="text-brand text-3xl mb-3"><i class="fa-solid fa-sign-hanging"></i></div>
                     <h3 class="text-xl font-black text-gray-900 mb-2">卓上POPを置く</h3>
-                    <p class="text-gray-600 leading-relaxed">サークルスペースに小さな「びっとら」卓上POPを置いて、来場者へアプリを案内してもらいます。</p>
+                    <p class="text-gray-600 leading-relaxed">サークルスペースに小さな「びっとら」卓上POPを置いて、来場者へアプリを案内していただきます。</p>
                 </div>
             </div>
 
             <div class="bg-pink-50/60 border border-pink-100 shadow-xl rounded-3xl p-6 sm:p-9">
                 <form id="collab-form" action="https://formspree.io/f/xljrvdjr" method="POST" class="space-y-6" novalidate>
                     <input type="hidden" name="_subject" value="びっとら 文学フリマ協力サークル応募">
+                    <input type="hidden" name="cooperation_1" value="感想・おすすめをびっとらで流す">
+                    <input type="hidden" name="cooperation_2" value="卓上POPを置く">
                     <div class="hidden" aria-hidden="true">
                         <label>この欄は空のままにしてください<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
                     </div>
@@ -369,15 +371,16 @@
                     </label>
 
                     <fieldset>
-                        <legend class="font-bold text-gray-800 mb-3">ご協力いただけること <span class="text-doujin">*</span></legend>
-                        <div class="space-y-3">
-                            <label class="flex items-start gap-3 bg-white border-2 border-pink-200 rounded-2xl p-4 cursor-pointer hover:border-doujin transition">
-                                <input type="checkbox" name="cooperation" value="感想をびっとらで流す" class="mt-1 h-5 w-5 accent-fuchsia-500">
-                                <span><strong>感想をびっとらで流す</strong><br><span class="text-sm text-gray-500">会場で読んだ作品の感想やおすすめを発信する</span></span>
-                            </label>
-                            <label class="flex items-start gap-3 bg-white border-2 border-pink-200 rounded-2xl p-4 cursor-pointer hover:border-brand transition">
-                                <input type="checkbox" name="cooperation" value="卓上POPを置く" class="mt-1 h-5 w-5 accent-orange-500">
-                                <span><strong>卓上POPを置く</strong><br><span class="text-sm text-gray-500">サークルスペースにびっとらの案内POPを置く</span></span>
+                        <legend class="font-bold text-gray-800 mb-3">ご協力内容の確認 <span class="text-doujin">*</span></legend>
+                        <div class="bg-white border-2 border-pink-200 rounded-2xl p-5 space-y-4">
+                            <p class="font-bold text-gray-800">参加にあたり、次の2点の両方にご協力をお願いします。</p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><i class="fa-solid fa-circle-check text-doujin mr-2"></i>感想・おすすめをびっとらで流す</li>
+                                <li><i class="fa-solid fa-circle-check text-brand mr-2"></i>サークルスペースに卓上POPを置く</li>
+                            </ul>
+                            <label class="flex items-start gap-3 bg-pink-50 border border-pink-100 rounded-xl p-4 cursor-pointer">
+                                <input id="collab-agreement" type="checkbox" name="cooperation_agreement" value="上記2点の両方に協力する" required class="mt-1 h-5 w-5 accent-fuchsia-500">
+                                <span class="font-black text-gray-900">上記2点の両方に協力します</span>
                             </label>
                         </div>
                     </fieldset>
@@ -398,7 +401,7 @@
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-                        <p class="text-sm font-medium text-gray-500">どちらか1つだけのご協力でも大歓迎です。</p>
+                        <p class="text-sm font-medium text-gray-500">上記2点の両方にご協力いただけるサークルさん向けの募集です。</p>
                         <button id="collab-submit" type="submit" class="bg-gradient-to-r from-doujin to-brand text-white rounded-full px-8 py-4 font-black shadow-lg hover:-translate-y-1 transition-transform shrink-0 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0">
                             <i class="fa-solid fa-paper-plane mr-1"></i> 協力サークルに応募する
                         </button>
@@ -420,21 +423,19 @@
         const collabCircle = document.getElementById('collab-circle');
         const collabName = document.getElementById('collab-name');
         const collabEmail = document.getElementById('collab-email');
+        const collabAgreement = document.getElementById('collab-agreement');
         const collabError = document.getElementById('collab-error');
         const collabSuccess = document.getElementById('collab-success');
         const collabSubmit = document.getElementById('collab-submit');
-        const cooperationInputs = Array.from(document.querySelectorAll('input[name="cooperation"]'));
 
         if (!(collabForm instanceof HTMLFormElement)) throw new Error('#collab-form was not found.');
         if (!(collabCircle instanceof HTMLInputElement)) throw new Error('#collab-circle was not found.');
         if (!(collabName instanceof HTMLInputElement)) throw new Error('#collab-name was not found.');
         if (!(collabEmail instanceof HTMLInputElement)) throw new Error('#collab-email was not found.');
+        if (!(collabAgreement instanceof HTMLInputElement)) throw new Error('#collab-agreement was not found.');
         if (!(collabError instanceof HTMLElement)) throw new Error('#collab-error was not found.');
         if (!(collabSuccess instanceof HTMLElement)) throw new Error('#collab-success was not found.');
         if (!(collabSubmit instanceof HTMLButtonElement)) throw new Error('#collab-submit was not found.');
-        if (cooperationInputs.length !== 2 || cooperationInputs.some((input) => !(input instanceof HTMLInputElement))) {
-            throw new Error('Cooperation checkboxes were not found.');
-        }
 
         function showCollabError(message) {
             if (typeof message !== 'string' || message.length === 0) throw new TypeError('Collaboration error message must be non-empty.');
@@ -456,7 +457,6 @@
             const circleName = collabCircle.value.trim();
             const name = collabName.value.trim();
             const email = collabEmail.value.trim();
-            const hasCooperation = cooperationInputs.some((input) => input.checked);
 
             if (circleName.length === 0 || name.length === 0 || email.length === 0) {
                 showCollabError('サークル名、お名前・ペンネーム、メールアドレスを入力してください。');
@@ -466,8 +466,8 @@
                 showCollabError('メールアドレスの形式を確認してください。');
                 return;
             }
-            if (!hasCooperation) {
-                showCollabError('ご協力いただける内容を1つ以上選んでください。');
+            if (!collabAgreement.checked) {
+                showCollabError('感想の配信と卓上POP設置の両方へのご協力に同意してください。');
                 return;
             }
 
