@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="みんアプ Girlsは、AIで作ったアプリをみんなで遊んだり、好きな見た目や機能に改造したりできるアプリプラットフォームです。">
+  <link rel="canonical" href="https://cloxs.jp/minapp/girls/">
+  <title>みんアプ Girls | 好きから、アプリをつくろう。</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <style>
+    :root {
+      --ink: #493e58;
+      --muted: #756b82;
+      --pink: #f8d8e7;
+      --pink-strong: #eb94b8;
+      --lavender: #ddd4f4;
+      --lavender-strong: #8d79b6;
+      --mint: #dff4e8;
+      --cream: #fffaf2;
+      --white: #fff;
+      --line: #6d5b78;
+      --shadow: 0 12px 30px rgba(89, 68, 104, .13);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "M PLUS Rounded 1c", sans-serif;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(235,148,184,.16) 0 3px, transparent 3.5px) 0 0/36px 36px,
+        linear-gradient(180deg, #fffafd 0%, #fffdf8 45%, #fffaf4 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+
+    .top-ribbon {
+      height: 10px;
+      background: repeating-linear-gradient(90deg, #f2a5c3 0 40px, #d8cef3 40px 80px, #d7f0e0 80px 120px);
+      border-bottom: 2px solid rgba(109,91,120,.2);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(255,250,253,.92);
+      border-bottom: 1px solid rgba(109,91,120,.18);
+    }
+    .header-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    .brand-mark {
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      display: grid; place-items: center;
+      background: linear-gradient(145deg, var(--pink), var(--lavender));
+      border: 2px solid var(--line);
+      box-shadow: 3px 3px 0 rgba(109,91,120,.18);
+      font-size: 24px;
+    }
+    nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .nav-link {
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .nav-link:hover { background: rgba(221,212,244,.55); }
+    .login-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--ink);
+      color: #fff;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 900;
+      font-size: 13px;
+      box-shadow: 0 5px 0 rgba(73,62,88,.18);
+    }
+
+    .hero { padding: 76px 0 42px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 48px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--mint);
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      margin: 0 0 22px;
+      letter-spacing: -.045em;
+      font-weight: 900;
+    }
+    .accent { color: #d56e9a; }
+    .hero-copy {
+      font-size: 18px;
+      line-height: 1.9;
+      color: var(--muted);
+      font-weight: 700;
+      max-width: 620px;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .primary, .secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 50px;
+      border-radius: 16px;
+      padding: 0 20px;
+      font-weight: 900;
+      border: 2px solid var(--line);
+    }
+    .primary { background: linear-gradient(135deg, #f3a9c6, #d7caef); color: #3e344a; box-shadow: 5px 5px 0 rgba(109,91,120,.16); }
+    .secondary { background: #fff; box-shadow: 5px 5px 0 rgba(109,91,120,.1); }
+
+    .hero-board {
+      position: relative;
+      min-height: 450px;
+      display: grid;
+      place-items: center;
+    }
+    .hero-board::before, .hero-board::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      z-index: -1;
+    }
+    .hero-board::before { width: 230px; height: 230px; background: var(--pink); top: 20px; right: 10px; }
+    .hero-board::after { width: 190px; height: 190px; background: var(--mint); bottom: 0; left: 10px; }
+    .phone-card {
+      width: min(380px, 86vw);
+      background: #fff;
+      border: 3px solid var(--line);
+      border-radius: 34px;
+      padding: 18px;
+      box-shadow: 14px 14px 0 rgba(109,91,120,.14), var(--shadow);
+      transform: rotate(2deg);
+    }
+    .phone-top { display: flex; justify-content: center; margin-bottom: 14px; }
+    .phone-pill { width: 90px; height: 9px; border-radius: 999px; background: #d7cedd; }
+    .mini-app {
+      border-radius: 24px;
+      padding: 22px;
+      min-height: 340px;
+      background: linear-gradient(160deg, #fff6fa, #f4effd 58%, #effaf3);
+      border: 2px solid rgba(109,91,120,.25);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mini-logo { font-weight: 900; font-size: 26px; text-align: center; margin-top: 6px; }
+    .mini-logo span { color: #dc779f; }
+    .mini-menu { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-top: 20px; }
+    .mini-tile {
+      min-height: 92px;
+      background: #fff;
+      border: 2px solid rgba(109,91,120,.35);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 900;
+      padding: 10px;
+    }
+    .mini-tile i { display: block; font-size: 28px; margin-bottom: 4px; }
+    .mini-note { font-size: 11px; color: var(--muted); font-weight: 800; text-align: center; }
+
+    .portal { padding: 34px 0 80px; }
+    .section-kicker { color: #c3658d; font-weight: 900; letter-spacing: .12em; font-size: 12px; text-transform: uppercase; }
+    h2 { font-size: clamp(30px, 4vw, 46px); line-height: 1.25; margin: 6px 0 12px; font-weight: 900; letter-spacing: -.025em; }
+    .section-lead { color: var(--muted); font-weight: 700; line-height: 1.8; margin: 0 0 28px; }
+    .portal-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    .portal-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 178px;
+      padding: 22px;
+      border: 2px solid var(--line);
+      border-radius: 26px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      transition: transform .18s ease;
+    }
+    .portal-card:hover { transform: translateY(-4px); }
+    .portal-card::after {
+      content: "";
+      position: absolute;
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      right: -35px; bottom: -35px;
+      background: var(--card-accent, var(--pink));
+      opacity: .7;
+    }
+    .portal-icon {
+      width: 48px; height: 48px;
+      border-radius: 16px;
+      display: grid; place-items: center;
+      background: var(--card-accent, var(--pink));
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+    .portal-card strong { display: block; font-size: 19px; margin-bottom: 7px; }
+    .portal-card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); font-weight: 700; max-width: 190px; }
+
+    section.detail { padding: 82px 0; }
+    .panel {
+      background: rgba(255,255,255,.88);
+      border: 2px solid rgba(109,91,120,.35);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      padding: 34px;
+    }
+    .steps { display: grid; gap: 28px; margin-top: 30px; }
+    .step {
+      display: grid;
+      grid-template-columns: 80px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+    .step-no {
+      width: 64px; height: 64px;
+      display: grid; place-items: center;
+      border-radius: 22px;
+      background: linear-gradient(145deg, var(--pink), var(--lavender));
+      border: 2px solid var(--line);
+      font-size: 23px;
+      font-weight: 900;
+      box-shadow: 4px 4px 0 rgba(109,91,120,.14);
+    }
+    .step h3 { font-size: 23px; margin: 4px 0 8px; font-weight: 900; }
+    .step p { margin: 0; color: var(--muted); line-height: 1.8; font-weight: 700; }
+    .shot-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+    .shot {
+      min-height: 250px;
+      border: 2px dashed #bfaec8;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #fff8fb, #faf7ff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 18px;
+      color: #8d7898;
+    }
+    .shot i { font-size: 34px; margin-bottom: 9px; }
+    .shot strong { font-size: 14px; }
+    .shot code { display: block; margin-top: 7px; font-size: 11px; background: #fff; border-radius: 8px; padding: 4px 7px; color: #675a70; }
+
+    .app-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; margin-top: 28px; }
+    .app-card {
+      min-height: 270px;
+      border: 2px solid var(--line);
+      border-radius: 30px;
+      padding: 28px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+    .app-art {
+      width: 120px; height: 120px;
+      border-radius: 30px;
+      border: 2px solid var(--line);
+      display: grid; place-items: center;
+      font-size: 52px;
+      background: linear-gradient(145deg, var(--pink), #fff6c8);
+      box-shadow: 5px 5px 0 rgba(109,91,120,.13);
+    }
+    .app-card:nth-child(2) .app-art { background: linear-gradient(145deg, var(--lavender), #e7f7ef); }
+    .app-label { display: inline-block; font-size: 11px; font-weight: 900; background: var(--mint); border-radius: 999px; padding: 5px 9px; margin-bottom: 8px; }
+    .app-card h3 { font-size: 27px; margin: 0 0 8px; font-weight: 900; }
+    .app-card p { color: var(--muted); font-weight: 700; line-height: 1.75; margin: 0; }
+
+    .guide-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin-top: 26px; }
+    .guide-card {
+      background: #fff;
+      border: 2px solid rgba(109,91,120,.35);
+      border-radius: 24px;
+      padding: 22px;
+    }
+    .guide-card .num { font-size: 12px; font-weight: 900; color: #ca6d94; letter-spacing: .1em; }
+    .guide-card h3 { margin: 8px 0 9px; font-size: 19px; }
+    .guide-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.7; font-weight: 700; }
+    .code-link {
+      margin-top: 18px;
+      display: inline-flex;
+      gap: 7px;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 900;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .note-box {
+      margin-top: 24px;
+      border-left: 6px solid var(--lavender-strong);
+      background: #f7f3fd;
+      border-radius: 18px;
+      padding: 18px 20px;
+      color: #665a72;
+      font-weight: 700;
+      line-height: 1.75;
+    }
+
+    .cta { padding: 64px 0 90px; }
+    .cta-card {
+      position: relative;
+      overflow: hidden;
+      border: 3px solid var(--line);
+      border-radius: 36px;
+      padding: 52px 32px;
+      text-align: center;
+      background: linear-gradient(135deg, #f9dce8 0%, #eee6fb 50%, #e5f6eb 100%);
+      box-shadow: 10px 10px 0 rgba(109,91,120,.14);
+    }
+    .cta-card h2 { margin-top: 0; }
+    .cta-card p { color: var(--muted); font-weight: 700; line-height: 1.8; }
+    .cta-card .primary { margin-top: 12px; background: var(--ink); color: white; }
+
+    footer {
+      padding: 32px 0 44px;
+      border-top: 1px solid rgba(109,91,120,.2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 900px) {
+      nav .nav-link { display: none; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 48px; }
+      .hero-board { min-height: 390px; }
+      .portal-grid { grid-template-columns: repeat(2,1fr); }
+      .app-grid { grid-template-columns: 1fr; }
+      .guide-grid { grid-template-columns: repeat(2,1fr); }
+      .shot-row { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 22px, 1120px); }
+      .header-inner { min-height: 64px; }
+      .brand { font-size: 16px; }
+      .brand-mark { width: 34px; height: 34px; border-radius: 12px; }
+      .login-button { padding: 10px 13px; }
+      .hero { padding-top: 38px; }
+      h1 { font-size: 46px; }
+      .hero-copy { font-size: 16px; }
+      .hero-actions { flex-direction: column; }
+      .primary, .secondary { width: 100%; justify-content: center; }
+      .portal-grid { grid-template-columns: 1fr; }
+      .portal-card { min-height: 144px; }
+      section.detail { padding: 58px 0; }
+      .panel { padding: 22px 18px; border-radius: 28px; }
+      .step { grid-template-columns: 52px 1fr; gap: 13px; }
+      .step-no { width: 48px; height: 48px; border-radius: 16px; font-size: 18px; }
+      .step h3 { font-size: 19px; }
+      .shot-row { grid-template-columns: 1fr; }
+      .app-card { grid-template-columns: 82px 1fr; padding: 20px; }
+      .app-art { width: 82px; height: 82px; border-radius: 22px; font-size: 38px; }
+      .app-card h3 { font-size: 22px; }
+      .guide-grid { grid-template-columns: 1fr; }
+      .cta-card { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-ribbon" aria-hidden="true"></div>
+  <header>
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="みんアプ Girls トップ">
+        <span class="brand-mark">♡</span>
+        <span>みんアプ Girls</span>
+      </a>
+      <nav aria-label="メインメニュー">
+        <a class="nav-link" href="#howto">使い方</a>
+        <a class="nav-link" href="#apps">遊べるアプリ</a>
+        <a class="nav-link" href="#customize">改造の仕方</a>
+        <a class="login-button" href="https://minapp.cloxs.jp/girls.html">
+          <i class="ph-bold ph-sign-in"></i> ログイン
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><i class="ph-fill ph-sparkle"></i> AIでつくって、みんなで遊べる</div>
+          <h1>好きから、<br><span class="accent">アプリ</span>をつくろう。</h1>
+          <p class="hero-copy">
+            みんアプ Girlsは、AIで作ったアプリをグループのみんなで遊べる場所。
+            最初から遊べるアプリを楽しんだり、もとのアプリを自分好みに改造したり、ゼロから新しいアプリを作ったりできます。
+          </p>
+          <div class="hero-actions">
+            <a class="primary" href="#howto"><i class="ph-bold ph-heart"></i> はじめかたを見る</a>
+            <a class="secondary" href="https://minapp.cloxs.jp/girls.html"><i class="ph-bold ph-arrow-square-out"></i> Girlsにログイン</a>
+          </div>
+        </div>
+
+        <div class="hero-board" aria-label="みんアプ Girlsのイメージ">
+          <div class="phone-card">
+            <div class="phone-top"><span class="phone-pill"></span></div>
+            <div class="mini-app">
+              <div>
+                <div class="mini-logo">みんアプ <span>Girls</span> ♡</div>
+                <div class="mini-menu">
+                  <div class="mini-tile"><span><i class="ph-fill ph-users-three"></i>グループ</span></div>
+                  <div class="mini-tile"><span><i class="ph-fill ph-game-controller"></i>アプリ</span></div>
+                  <div class="mini-tile"><span><i class="ph-fill ph-storefront"></i>ショップ</span></div>
+                  <div class="mini-tile"><span><i class="ph-fill ph-user-circle"></i>マイページ</span></div>
+                </div>
+              </div>
+              <div class="mini-note">友だちと遊ぶ。AIで作る。好きに改造する。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portal">
+      <div class="wrap">
+        <div class="section-kicker">Girls portal</div>
+        <h2>まず、ここから。</h2>
+        <p class="section-lead">Yahoo!のトップページみたいに、やりたいことからすぐ目的の場所へ行ける入口です。</p>
+
+        <div class="portal-grid">
+          <a class="portal-card" href="#howto" style="--card-accent:#f8d8e7">
+            <span class="portal-icon"><i class="ph-fill ph-book-open-text"></i></span>
+            <strong>みんアプ Girlsの使い方</strong>
+            <p>新規登録、グループ作成、参加、アプリ追加まで。</p>
+          </a>
+          <a class="portal-card" href="#apps" style="--card-accent:#ddd4f4">
+            <span class="portal-icon"><i class="ph-fill ph-game-controller"></i></span>
+            <strong>最初から遊べるアプリ</strong>
+            <p>育成ゲームやカラオケなど、まずは遊んでみよう。</p>
+          </a>
+          <a class="portal-card" href="#customize" style="--card-accent:#dff4e8">
+            <span class="portal-icon"><i class="ph-fill ph-magic-wand"></i></span>
+            <strong>アプリを改造する</strong>
+            <p>元のHTMLを入手して、AIに好きな変更をお願いする方法。</p>
+          </a>
+          <a class="portal-card" href="https://minapp.cloxs.jp/girls.html" style="--card-accent:#ffe6a8">
+            <span class="portal-icon"><i class="ph-fill ph-sign-in"></i></span>
+            <strong>Girlsにログイン</strong>
+            <p>Webポータルで自分のアプリを追加・管理します。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="howto" class="detail">
+      <div class="wrap panel">
+        <div class="section-kicker">How to start</div>
+        <h2>みんアプ Girlsの使い方</h2>
+        <p class="section-lead">スクショをたくさん使って、「どこを押すの？」が迷わない説明ページにします。</p>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-no">1</div>
+            <div>
+              <h3>新規登録する</h3>
+              <p>Girlsアプリを開いてアカウントを作成。登録後は、そのIDとパスワードをWebポータルでも使えます。</p>
+              <div class="shot-row">
+                <figure class="shot"><i class="ph-duotone ph-device-mobile"></i><strong>新規登録の入口</strong><code>01-signup-entry.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-identification-card"></i><strong>ID・パスワード入力</strong><code>02-signup-form.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-check-circle"></i><strong>登録完了</strong><code>03-signup-done.png</code></figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-no">2</div>
+            <div>
+              <h3>グループを作る / 参加する</h3>
+              <p>友だちと同じグループに入ると、同じ場所でアプリを使えます。グループ作成・参加やプロフィール変更はGirlsアプリ側で行います。</p>
+              <div class="shot-row">
+                <figure class="shot"><i class="ph-duotone ph-users-three"></i><strong>グループ一覧</strong><code>04-groups.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-plus-circle"></i><strong>グループを作成</strong><code>05-create-group.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-user-plus"></i><strong>グループへ参加</strong><code>06-join-group.png</code></figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-no">3</div>
+            <div>
+              <h3>Webポータルからアプリを追加</h3>
+              <p>メニューの「ログイン」からWebポータルへ。AIが作ったHTMLを貼り付けるか、HTML / ZIPファイルを選んでアップロードできます。</p>
+              <div class="shot-row">
+                <figure class="shot"><i class="ph-duotone ph-sign-in"></i><strong>Girlsポータルにログイン</strong><code>07-web-login.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-upload-simple"></i><strong>アプリを追加</strong><code>08-upload.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-app-window"></i><strong>自分のアプリを確認</strong><code>09-my-apps.png</code></figure>
+              </div>
+            </div>
+          </article>
+
+          <article class="step">
+            <div class="step-no">4</div>
+            <div>
+              <h3>Girlsアプリでみんなと遊ぶ</h3>
+              <p>追加したアプリはグループのみんなで使えます。遊んで「ここ変えたい！」と思ったら、そのまま次の“改造”へ。</p>
+              <div class="shot-row">
+                <figure class="shot"><i class="ph-duotone ph-grid-four"></i><strong>アプリ一覧</strong><code>10-app-list.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-play-circle"></i><strong>アプリを開く</strong><code>11-open-app.png</code></figure>
+                <figure class="shot"><i class="ph-duotone ph-heart-straight"></i><strong>みんなで遊ぶ</strong><code>12-play.png</code></figure>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apps" class="detail">
+      <div class="wrap">
+        <div class="section-kicker">Starter apps</div>
+        <h2>最初から遊べるアプリ</h2>
+        <p class="section-lead">何を作ればいいかわからなくても大丈夫。まず遊んで、好きなところから改造してみよう。</p>
+
+        <div class="app-grid">
+          <article class="app-card">
+            <div class="app-art">🐣</div>
+            <div>
+              <span class="app-label">育成ゲーム</span>
+              <h3>みんあぷっち</h3>
+              <p>お世話しながら育てるシンプルな育成アプリ。キャラクター、セリフ、色、成長条件などを変える改造にも向いています。</p>
+              <a class="code-link" href="https://github.com/kaeruko/minapp_apps/tree/main/minappchi"><i class="ph-bold ph-github-logo"></i> 元のアプリを見る</a>
+            </div>
+          </article>
+
+          <article class="app-card">
+            <div class="app-art">🎤</div>
+            <div>
+              <span class="app-label">BGM付き録音</span>
+              <h3>うたってみよう</h3>
+              <p>BGMを流しながら歌って録音できるアプリ。背景やボタン、曲の雰囲気など、自分の“推し仕様”へ変えてみよう。</p>
+              <a class="code-link" href="https://github.com/kaeruko/minapp_apps/tree/main/sing_along"><i class="ph-bold ph-github-logo"></i> 元のアプリを見る</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="customize" class="detail">
+      <div class="wrap panel">
+        <div class="section-kicker">Customize</div>
+        <h2>既存アプリを、AIといっしょに改造する</h2>
+        <p class="section-lead">ゼロから作らなくてもOK。動くアプリを元にして「ここだけ変えたい」から始められます。</p>
+
+        <div class="guide-grid">
+          <article class="guide-card">
+            <div class="num">STEP 01</div>
+            <h3>元アプリを入手</h3>
+            <p>配布元のGitHubを開き、必要なアプリの <code>index.html</code> を確認します。リポジトリ全体は「Code → Download ZIP」でも保存できます。</p>
+          </article>
+          <article class="guide-card">
+            <div class="num">STEP 02</div>
+            <h3>ZIPを展開</h3>
+            <p>ダウンロードしたZIPをファイルアプリで展開。目的のアプリフォルダを開くと、現在のスターターアプリは <code>index.html</code> 1ファイルで管理されています。</p>
+          </article>
+          <article class="guide-card">
+            <div class="num">STEP 03</div>
+            <h3>AIに渡してお願い</h3>
+            <p><code>index.html</code> をAIへ渡して「背景をピンクに」「キャラを変えたい」「ボタンを増やして」など、普通の言葉で変更を頼みます。</p>
+          </article>
+          <article class="guide-card">
+            <div class="num">STEP 04</div>
+            <h3>みんアプへ追加</h3>
+            <p>完成したHTMLをGirlsのWebポータルへ貼り付けるか、HTML / ZIPとしてアップロード。自分のグループで遊べます。</p>
+          </article>
+        </div>
+
+        <div class="shot-row" style="margin-top:26px">
+          <figure class="shot"><i class="ph-duotone ph-github-logo"></i><strong>GitHubのDownload ZIP</strong><code>13-download-zip.png</code></figure>
+          <figure class="shot"><i class="ph-duotone ph-folder-open"></i><strong>ZIPを展開してindex.htmlを開く</strong><code>14-open-index.png</code></figure>
+          <figure class="shot"><i class="ph-duotone ph-chat-circle-text"></i><strong>AIに改造をお願いする</strong><code>15-ai-customize.png</code></figure>
+        </div>
+
+        <div class="note-box">
+          <strong>いまの配布元について：</strong>
+          スターターアプリの source of truth は <a href="https://github.com/kaeruko/minapp_apps" style="text-decoration:underline">kaeruko/minapp_apps</a> です。
+          現時点では「アプリごとのZIP配布ページ」はまだ無いため、このページでは存在しないダウンロードボタンを案内せず、実際のGitHub上の入手方法を説明しています。
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap cta-card">
+        <h2>遊ぶだけでも、改造だけでも、ゼロから作ってもいい。</h2>
+        <p>まずはGirlsに入って、好きなアプリをひとつ触ってみよう。</p>
+        <a class="primary" href="https://minapp.cloxs.jp/girls.html"><i class="ph-bold ph-sign-in"></i> みんアプ Girlsにログイン</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© CLOXS LLC / みんアプ Girls</span>
+      <span><a href="/minapp/">みんアプ</a> · <a href="https://github.com/kaeruko/minapp_apps">スターターアプリ</a></span>
+    </div>
+  </footer>
+</body>
+</html>
