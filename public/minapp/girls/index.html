@@ -3,30 +3,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="みんアプ Girlsは、AIで作ったアプリをみんなで遊んだり、好きな見た目や機能に改造したりできるアプリプラットフォームです。">
+  <meta name="description" content="みんアプ Girlsは、AIといっしょにアプリを作って、友だちと遊んだり、好きに改造したりできるアプリプラットフォームです。">
   <link rel="canonical" href="https://cloxs.jp/minapp/girls/">
-  <title>みんアプ Girls | 好きから、アプリをつくろう。</title>
+  <title>みんアプ Girls | 好きなものを、アプリにしよう。</title>
   <style>
-    :root{--purple:#9b72b7;--purple-strong:#745b9e;--purple-deep:#675568;--pink:#f9dde8;--cream:#fff9f4;--brown:#604943;--muted:#8f756d;--border:#ead9e8;--shadow:0 18px 48px rgba(115,84,93,.1);font-family:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;color:var(--brown);background:var(--cream)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;min-height:100vh;background:linear-gradient(rgba(255,250,246,.58),rgba(255,247,241,.68)),url("https://minapp.cloxs.jp/girls_login_pattern.png") center top/360px auto repeat}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button,input{font:inherit}.wrap{width:min(1180px,calc(100% - 40px));margin:0 auto}
-    .girls-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:64px;padding:12px max(20px,env(safe-area-inset-right)) 12px max(20px,env(safe-area-inset-left));background:rgba(255,250,244,.92);border-bottom:1px solid rgba(204,166,193,.36);box-shadow:0 1px 0 rgba(255,255,255,.86);backdrop-filter:blur(16px)}
-    .girls-brand{display:inline-flex;align-items:center;gap:9px;color:var(--purple-strong);font-size:19px;font-weight:900;white-space:nowrap}.girls-brand-icon{width:34px;height:34px;flex:0 0 auto;border-radius:10px;background:url("https://minapp.cloxs.jp/girls_brand_icon.png") center/contain no-repeat}.girls-nav{display:flex;align-items:center;justify-content:flex-end;gap:6px}.girls-nav-link{padding:9px 11px;border:0;border-radius:999px;background:transparent;color:#816c76;font-size:12px;font-weight:800;cursor:pointer}.girls-nav-link:hover,.girls-nav-link:focus-visible{background:rgba(249,221,232,.72);color:var(--purple-strong);outline:none}.girls-login-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 17px;border:1px solid rgba(255,255,255,.9);border-radius:999px;background:linear-gradient(180deg,#c5b1d8 0%,#a88bc2 54%,#9a7ab8 100%);color:#fff;box-shadow:inset 0 2px 0 rgba(255,255,255,.58),0 7px 14px rgba(123,88,143,.18);font-size:12px;font-weight:900}.lace-strip{position:relative;z-index:3;width:100%;height:50px;margin-bottom:-10px;background:url("https://minapp.cloxs.jp/girls_login_lace.png") center top/25vw auto repeat-x;pointer-events:none}
-    .app-menu-wrap{position:relative}.app-submenu{position:absolute;z-index:80;top:calc(100% + 10px);right:0;width:min(330px,calc(100vw - 24px));padding:10px;border:1px solid #e4cfdf;border-radius:22px;background:rgba(255,253,250,.98);box-shadow:0 18px 45px rgba(91,62,103,.18);display:none}.app-submenu.is-open{display:grid;gap:7px}.app-submenu::before{content:"";position:absolute;right:24px;top:-7px;width:12px;height:12px;transform:rotate(45deg);border-left:1px solid #e4cfdf;border-top:1px solid #e4cfdf;background:#fffdfa}.app-submenu-title{margin:2px 6px 5px;color:#9f78bb;font-size:10px;font-weight:900;letter-spacing:.09em}.app-submenu-link{position:relative;z-index:1;display:grid;grid-template-columns:42px 1fr 14px;gap:10px;align-items:center;min-height:62px;padding:9px 11px;border-radius:16px;background:#fff;color:var(--brown);box-shadow:0 5px 14px rgba(108,73,103,.05)}.app-submenu-link:hover,.app-submenu-link:focus-visible{background:#fff5f8;outline:2px solid rgba(159,120,187,.18)}.app-submenu-icon{display:grid;width:42px;height:42px;place-items:center;border-radius:14px;background:#fff0f5;color:#bc6b8b;font-size:20px;font-weight:900}.app-submenu-link:nth-of-type(3) .app-submenu-icon{background:#f1edfb;color:#7b66a7}.app-submenu-copy{display:grid;gap:2px}.app-submenu-copy strong{font-size:.83rem}.app-submenu-copy small{color:#917a86;font-size:.66rem;font-weight:700}.app-submenu-arrow{color:#b79eae;font-weight:900}
-    .hero{padding:10px 0 72px}.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(360px,430px);gap:26px 42px;align-items:center}.hero-visual{position:relative;min-height:610px;padding:34px 22px 324px;text-align:center;background:url("https://minapp.cloxs.jp/girls_mascot_pair.svg") center calc(100% - 4px)/min(78%,560px) auto no-repeat}.hero-logo{width:min(74%,440px);margin:0 auto}.speech{position:absolute;top:106px;right:1%;width:min(250px,43%);margin:0;padding:17px 20px;border:2px solid #7f6679;border-radius:46% 54% 50% 46%/52% 46% 54% 48%;background:rgba(255,255,255,.95);color:#5e4a4d;box-shadow:0 8px 22px rgba(107,74,99,.08);font-size:.92rem;font-weight:900;line-height:1.65}.hero-caption{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:min(580px,95%);margin:0;padding:10px 17px;border-radius:999px;background:rgba(255,255,255,.76);color:#806b75;font-size:.82rem;font-weight:800;line-height:1.55}
-    .portal-frame{width:100%;min-height:610px;padding:119px 52px 70px;background:url("https://minapp.cloxs.jp/girls_login_frame.png") center/100% 100% no-repeat}.portal-frame-kicker{margin:0 0 4px;color:#9f78bb;font-size:11px;font-weight:900;letter-spacing:.08em;text-align:center}.portal-frame h1{margin:0 0 8px;color:var(--purple-deep);font-size:clamp(1.55rem,3vw,2rem);line-height:1.25;text-align:center}.portal-frame-lead{margin:0 auto 20px;color:#8a7480;font-size:.78rem;font-weight:700;line-height:1.7;text-align:center}.portal-menu{display:grid;gap:10px}.portal-item{display:grid;width:100%;grid-template-columns:42px minmax(0,1fr) 18px;gap:11px;align-items:center;min-height:70px;padding:10px 13px;border:1px solid #ead8e7;border-radius:19px;background:rgba(255,255,255,.94);color:var(--brown);box-shadow:0 8px 18px rgba(108,73,103,.06);text-align:left;cursor:pointer}.portal-item:hover,.portal-item:focus-visible{transform:translateY(-1px);border-color:#cea9d6;box-shadow:0 11px 24px rgba(139,98,166,.12);outline:none}.portal-item-icon{display:grid;width:42px;height:42px;place-items:center;border-radius:14px;background:#f7e8f5;color:#8b62a6;font-size:18px;font-weight:900}.portal-item-copy{display:grid;gap:2px}.portal-item-copy strong{font-size:.9rem}.portal-item-copy small{color:#917a86;font-size:.68rem;font-weight:700;line-height:1.4}.portal-arrow{color:#b79eae;font-weight:900}.portal-login{margin-top:12px;min-height:48px;background:linear-gradient(135deg,#a778bd,#785d9f);color:#fff;border-color:rgba(255,255,255,.84);box-shadow:0 10px 24px rgba(116,91,158,.22)}.portal-login .portal-item-icon{background:rgba(255,255,255,.17);color:#fff}.portal-login .portal-item-copy small,.portal-login .portal-arrow{color:#f4eaf8}.portal-app-wrap .app-submenu{top:calc(100% + 7px);left:0;right:auto;width:100%}
-    .section{padding:78px 0}.section.alt{background:rgba(255,253,250,.62);border-top:1px solid rgba(234,217,232,.7);border-bottom:1px solid rgba(234,217,232,.7)}.section-heading{max-width:760px;margin:0 auto 34px;text-align:center}.section-kicker{margin:0 0 8px;color:#9f78bb;font-size:12px;font-weight:900;letter-spacing:.1em}.section-heading h2{margin:0;color:var(--purple-deep);font-size:clamp(1.9rem,5vw,3rem);line-height:1.2;letter-spacing:-.03em}.section-heading p:last-child{margin:14px auto 0;color:var(--muted);font-size:.95rem;font-weight:700;line-height:1.8}.content-card{padding:30px;border:1px solid #eadde7;border-radius:26px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(108,73,103,.08)}
+    :root {
+      --purple:#9b72b7;
+      --purple-strong:#745b9e;
+      --purple-deep:#675568;
+      --pink:#f4a9c2;
+      --pink-strong:#e8799e;
+      --pink-soft:#fff0f5;
+      --cream:#fff9f4;
+      --brown:#604943;
+      --muted:#8f756d;
+      --border:#ead9e8;
+      --shadow:0 18px 45px rgba(108,73,103,.11);
+      font-family:Inter,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+      color:var(--brown);
+      background:var(--cream);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;min-width:320px;background:#fff8f5}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    button,input{font:inherit}
+    .wrap{width:min(1120px,calc(100% - 40px));margin:0 auto}
+
+    .girls-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:64px;padding:10px max(24px,env(safe-area-inset-right)) 10px max(24px,env(safe-area-inset-left));background:rgba(255,252,249,.96);border-bottom:1px solid rgba(207,169,190,.3);backdrop-filter:blur(14px)}
+    .girls-brand{display:inline-flex;align-items:center;gap:9px;color:var(--purple-strong);font-size:20px;font-weight:900;white-space:nowrap}
+    .girls-brand-icon{width:36px;height:36px;border-radius:10px;background:url("https://minapp.cloxs.jp/girls_brand_icon.png") center/contain no-repeat}
+    .girls-brand em{color:#e476a0;font-style:normal}
+    .girls-nav{display:flex;align-items:center;justify-content:flex-end;gap:4px}
+    .girls-nav-link{padding:9px 11px;border:0;border-radius:999px;background:transparent;color:#715c64;font-size:12px;font-weight:800;cursor:pointer}
+    .girls-nav-link:hover,.girls-nav-link:focus-visible{background:#fff0f5;color:var(--purple-strong);outline:none}
+    .girls-login-button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;margin-left:4px;padding:0 18px;border:1px solid rgba(255,255,255,.8);border-radius:999px;background:linear-gradient(180deg,#c6b1d9,#9674b5);color:#fff;font-size:12px;font-weight:900;box-shadow:0 7px 14px rgba(123,88,143,.18)}
+    .lace-strip{height:36px;margin-bottom:-1px;background:url("https://minapp.cloxs.jp/girls_login_lace.png") center top/250px auto repeat-x;pointer-events:none}
+
+    .app-menu-wrap{position:relative}
+    .app-submenu{position:absolute;z-index:80;top:calc(100% + 10px);right:0;display:none;width:min(330px,calc(100vw - 24px));padding:10px;border:1px solid #e4cfdf;border-radius:22px;background:rgba(255,253,250,.99);box-shadow:0 18px 45px rgba(91,62,103,.18)}
+    .app-submenu.is-open{display:grid;gap:7px}
+    .app-submenu::before{content:"";position:absolute;right:24px;top:-7px;width:12px;height:12px;transform:rotate(45deg);border-left:1px solid #e4cfdf;border-top:1px solid #e4cfdf;background:#fffdfa}
+    .app-submenu-title{margin:2px 6px 5px;color:#9f78bb;font-size:10px;font-weight:900;letter-spacing:.09em}
+    .app-submenu-link{position:relative;z-index:1;display:grid;grid-template-columns:42px 1fr 14px;gap:10px;align-items:center;min-height:62px;padding:9px 11px;border-radius:16px;background:#fff;box-shadow:0 5px 14px rgba(108,73,103,.05)}
+    .app-submenu-link:hover,.app-submenu-link:focus-visible{background:#fff5f8;outline:2px solid rgba(159,120,187,.18)}
+    .app-submenu-icon{display:grid;width:42px;height:42px;place-items:center;border-radius:14px;background:#fff0f5;color:#bc6b8b;font-size:20px;font-weight:900}
+    .app-submenu-link:nth-of-type(3) .app-submenu-icon{background:#f1edfb;color:#7b66a7}
+    .app-submenu-copy{display:grid;gap:2px}.app-submenu-copy strong{font-size:.83rem}.app-submenu-copy small{color:#917a86;font-size:.66rem;font-weight:700}.app-submenu-arrow{color:#b79eae;font-weight:900}
+
+    .hero{position:relative;overflow:hidden;padding:42px 0 22px;background:linear-gradient(rgba(255,239,245,.84),rgba(255,240,246,.9)),url("https://minapp.cloxs.jp/girls_login_pattern.png") center top/360px auto repeat;border-bottom:1px solid #f0d8e3}
+    .hero::before,.hero::after{content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none}
+    .hero::before{width:330px;height:330px;left:-150px;top:40px;background:rgba(255,207,224,.42)}
+    .hero::after{width:300px;height:300px;right:-120px;bottom:-120px;background:rgba(226,213,247,.5)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);gap:30px;align-items:center;min-height:420px}
+    .hero-copy{padding:20px 0 30px}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;padding:7px 12px;border:1px solid #efc8d8;border-radius:999px;background:rgba(255,255,255,.8);color:#a26480;font-size:12px;font-weight:900}
+    .hero h1{margin:0;color:#714e69;font-size:clamp(44px,5.5vw,72px);font-weight:900;line-height:1.08;letter-spacing:-.055em;text-shadow:0 3px 0 rgba(255,255,255,.8)}
+    .hero h1 span{color:#e5799f}
+    .hero-lead{margin:18px 0 0;color:#5f4b4e;font-size:18px;font-weight:900;line-height:1.7}
+    .hero-text{max-width:520px;margin:10px 0 0;color:#806b75;font-size:14px;font-weight:700;line-height:1.8}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+    .hero-primary,.hero-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 25px;border-radius:999px;font-size:14px;font-weight:900;transition:transform .15s ease,box-shadow .15s ease}
+    .hero-primary{background:linear-gradient(180deg,#f5a8c2,#e77fa2);color:#fff;box-shadow:0 9px 20px rgba(220,111,147,.24),inset 0 2px 0 rgba(255,255,255,.45)}
+    .hero-secondary{border:1px solid #e8c9d8;background:rgba(255,255,255,.86);color:#a76683;box-shadow:0 7px 16px rgba(108,73,103,.06)}
+    .hero-primary:hover,.hero-secondary:hover{transform:translateY(-2px)}
+
+    .hero-art{position:relative;min-height:400px;display:grid;place-items:end center}
+    .hero-art-panel{position:absolute;inset:36px 22px 42px;border:2px solid rgba(255,255,255,.9);border-radius:38px;background:radial-gradient(circle at 75% 20%,rgba(224,209,247,.95),transparent 32%),radial-gradient(circle at 20% 20%,rgba(255,214,226,.95),transparent 34%),rgba(255,253,252,.72);box-shadow:var(--shadow)}
+    .hero-device{position:absolute;left:50%;bottom:55px;width:320px;height:190px;transform:translateX(-50%);border:7px solid #fff;border-radius:28px;background:linear-gradient(145deg,#f4eefc,#fff7fa);box-shadow:0 18px 35px rgba(103,76,111,.18)}
+    .hero-device::before{content:"♡";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#d69ab9;font-size:45px;font-weight:900}
+    .hero-mascots{position:relative;z-index:3;width:min(76%,470px);margin-bottom:0;filter:drop-shadow(0 13px 10px rgba(92,65,92,.14))}
+    .hero-bubble{position:absolute;z-index:4;right:16px;top:36px;width:180px;padding:15px 16px;border:1px solid #bda1b6;border-radius:48% 52% 46% 54%/52% 44% 56% 48%;background:#fff;color:#6a525d;font-size:12px;font-weight:900;line-height:1.6;text-align:center;box-shadow:0 8px 18px rgba(108,73,103,.08)}
+    .spark{position:absolute;z-index:4;color:#e99bb7;font-size:22px;font-weight:900}.spark.s1{left:36px;top:78px}.spark.s2{right:70px;bottom:74px;color:#b79bd7}.spark.s3{left:90px;bottom:35px;color:#efc560}
+
+    .benefits{position:relative;z-index:5;margin-top:-18px;padding-bottom:56px}
+    .benefits-shell{padding:18px 20px 22px;border:1px solid #ebd6e2;border-radius:30px;background:rgba(255,255,255,.96);box-shadow:0 18px 45px rgba(108,73,103,.1)}
+    .benefits-title{display:flex;align-items:center;justify-content:center;gap:12px;margin:0 0 14px;color:#75536d;font-size:22px;font-weight:900}.benefits-title::before,.benefits-title::after{content:"";height:2px;flex:1;max-width:230px;background:repeating-linear-gradient(90deg,#e9a7c0 0 4px,transparent 4px 9px)}
+    .benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .benefit-card{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;min-height:132px;padding:18px;border:1px solid #efdce5;border-radius:24px;background:linear-gradient(180deg,#fff,#fffafd);box-shadow:0 8px 20px rgba(108,73,103,.06)}
+    .benefit-icon{display:grid;width:72px;height:72px;place-items:center;border-radius:50%;background:#fff0f5;color:#d97c9d;font-size:30px;font-weight:900;box-shadow:inset 0 0 0 7px #fff8fb}
+    .benefit-card:nth-child(2) .benefit-icon{background:#f3effc;color:#836eae}.benefit-card:nth-child(3) .benefit-icon{background:#fff7dc;color:#c99a38}
+    .benefit-card h2{margin:0 0 6px;color:#684f63;font-size:16px;line-height:1.45}.benefit-card p{margin:0;color:#8b737d;font-size:12px;font-weight:700;line-height:1.65}
+
+    .section{padding:76px 0}.section.alt{background:linear-gradient(rgba(255,253,250,.9),rgba(255,253,250,.9)),url("https://minapp.cloxs.jp/girls_login_pattern.png") center/360px auto repeat;border-top:1px solid #f0dde6;border-bottom:1px solid #f0dde6}
+    .section-heading{max-width:760px;margin:0 auto 32px;text-align:center}.section-kicker{margin:0 0 8px;color:#a179b6;font-size:11px;font-weight:900;letter-spacing:.12em}.section-heading h2{margin:0;color:#6d5267;font-size:clamp(30px,4vw,44px);line-height:1.2}.section-heading p:last-child{margin:13px auto 0;color:var(--muted);font-size:14px;font-weight:700;line-height:1.8}
+    .content-card{padding:30px;border:1px solid #eadde7;border-radius:26px;background:rgba(255,255,255,.96);box-shadow:var(--shadow)}
+
+    .apps-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.app-card{display:grid;grid-template-columns:100px minmax(0,1fr);gap:20px;align-items:center;min-height:210px;padding:25px;border:1px solid #eadde7;border-radius:26px;background:#fff;box-shadow:0 14px 34px rgba(108,73,103,.08);transition:transform .16s ease,box-shadow .16s ease}.app-card:hover,.app-card:focus-visible{transform:translateY(-3px);box-shadow:0 20px 42px rgba(108,73,103,.14);outline:2px solid rgba(159,120,187,.18)}.app-icon{display:grid;width:100px;height:100px;place-items:center;border-radius:28px;background:linear-gradient(145deg,#ffdce7,#fff5c9);color:#a26688;font-size:44px}.app-card:nth-child(2) .app-icon{background:linear-gradient(145deg,#e7ddf7,#e9f7ef);color:#765f9e}.app-label{display:inline-flex;margin-bottom:7px;padding:5px 9px;border-radius:999px;background:#fff0f5;color:#b56887;font-size:.65rem;font-weight:900}.app-card h3{margin:0 0 7px;font-size:1.35rem}.app-card p{margin:0;color:var(--muted);font-size:.86rem;font-weight:700;line-height:1.75}.app-more{display:inline-block;margin-top:10px;color:var(--purple-strong);font-size:.75rem;font-weight:900}
+
     .steps{display:grid;gap:24px}.step{display:grid;grid-template-columns:56px minmax(0,1fr);gap:18px;align-items:start}.step-no{display:grid;width:56px;height:56px;place-items:center;border-radius:18px;background:linear-gradient(145deg,#f8dce9,#e8ddf6);color:var(--purple-strong);font-size:20px;font-weight:900}.step h3{margin:3px 0 6px;font-size:1.2rem}.step p{margin:0;color:var(--muted);font-size:.9rem;font-weight:700;line-height:1.75}.shot-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.shot{position:relative;min-height:235px;overflow:hidden;border:1px dashed #d5bdd0;border-radius:20px;background:linear-gradient(160deg,#fffafd,#faf6fd)}.shot img{width:100%;height:100%;min-height:235px;object-fit:contain;background:#fff}.shot-placeholder{position:absolute;inset:0;display:grid;place-content:center;gap:8px;padding:16px;color:#9a8092;text-align:center;font-size:.76rem;font-weight:800}.shot-placeholder span{font-size:26px}.shot-placeholder code{padding:5px 8px;border-radius:8px;background:#fff;color:#765f72;font-size:.68rem}
-    .apps-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.app-card{display:grid;grid-template-columns:100px minmax(0,1fr);gap:20px;align-items:center;min-height:220px;padding:26px;border:1px solid #eadde7;border-radius:24px;background:rgba(255,255,255,.96);box-shadow:0 16px 38px rgba(108,73,103,.08);transition:transform .16s ease,box-shadow .16s ease}.app-card:hover,.app-card:focus-visible{transform:translateY(-3px);box-shadow:0 20px 42px rgba(108,73,103,.14);outline:2px solid rgba(159,120,187,.2)}.app-icon{display:grid;width:100px;height:100px;place-items:center;border-radius:28px;background:linear-gradient(145deg,#ffdce7,#fff5c9);color:#a26688;font-size:44px}.app-card:nth-child(2) .app-icon{background:linear-gradient(145deg,#e7ddf7,#e9f7ef);color:#765f9e}.app-label{display:inline-flex;margin-bottom:7px;padding:5px 9px;border-radius:999px;background:#fff0f5;color:#b56887;font-size:.65rem;font-weight:900}.app-card h3{margin:0 0 7px;font-size:1.35rem}.app-card p{margin:0;color:var(--muted);font-size:.86rem;font-weight:700;line-height:1.75}.app-more{display:inline-block;margin-top:10px;color:var(--purple-strong);font-size:.75rem;font-weight:900}
-    .guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.guide-card{padding:21px;border:1px solid #eadde7;border-radius:22px;background:rgba(255,255,255,.96);box-shadow:0 12px 28px rgba(108,73,103,.06)}.guide-no{color:#9f78bb;font-size:.7rem;font-weight:900;letter-spacing:.1em}.guide-card h3{margin:8px 0;font-size:1rem}.guide-card p{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;line-height:1.7}.guide-card a{display:inline-block;margin-top:12px;color:var(--purple-strong);font-size:.76rem;font-weight:900;text-decoration:underline;text-underline-offset:3px}.prompt-box{margin-top:22px;padding:20px;border:1px solid #f2b8ca;border-radius:22px;background:#ffdce7}.prompt-text{margin:12px 0 0;padding:14px;border:1px solid #ead6af;border-radius:15px;background:#fff9e8;font-size:.82rem;font-weight:700;line-height:1.7}
-    .cta{padding:70px 0 88px}.cta-card{padding:42px 30px;border:1px solid #e8d8e5;border-radius:28px;background:radial-gradient(circle at 90% 15%,rgba(255,224,238,.75),transparent 16rem),linear-gradient(135deg,#b984bd 0%,#9371b7 48%,#7a68af 100%);color:#fff;text-align:center;box-shadow:0 18px 42px rgba(123,85,153,.16)}.cta-card h2{margin:0;font-size:clamp(1.8rem,5vw,2.7rem)}.cta-card p{max-width:650px;margin:14px auto 22px;color:#fff8fc;font-size:.92rem;font-weight:700;line-height:1.75}.cta-button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 25px;border:1px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.94);color:var(--purple-strong);font-size:.88rem;font-weight:900}footer{padding:12px 20px 22px;border-top:1px solid rgba(204,166,193,.28);background:rgba(255,252,248,.94);color:#725f5d;font-size:10px;font-weight:600;text-align:center}
-    @media(max-width:900px){.hero-grid{grid-template-columns:1fr;width:min(680px,calc(100% - 24px));margin:0 auto}.hero-visual{min-height:430px;padding:24px 18px 245px;background-size:min(82%,430px) auto}.hero-logo{width:min(76%,400px)}.speech{top:76px;right:3%;width:min(220px,43%);padding:14px 16px}.hero-caption{bottom:6px}.portal-frame{width:min(430px,100%);margin:0 auto}.shot-row{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:620px){.girls-header{min-height:58px;padding-inline:12px}.girls-brand{font-size:16px}.girls-brand-icon{width:31px;height:31px}.girls-nav-link{display:none}.app-menu-wrap.header-app-menu{display:none}.girls-login-button{min-height:38px;padding:0 14px}.lace-strip{height:38px;background-size:46vw auto}.wrap{width:min(100% - 20px,1180px)}.hero{padding-top:0}.hero-grid{width:min(100% - 14px,460px);gap:4px}.hero-visual{min-height:345px;padding:16px 8px 200px;background-position:center bottom;background-size:min(94%,390px) auto}.hero-logo{width:min(82%,330px)}.speech{top:62px;right:0;width:47%;padding:9px 10px;font-size:.7rem}.hero-caption{display:none}.portal-frame{min-height:560px;padding:112px 37px 58px}.portal-item{min-height:66px}.section{padding:58px 0}.content-card{padding:20px 16px;border-radius:22px}.step{grid-template-columns:46px minmax(0,1fr);gap:12px}.step-no{width:46px;height:46px;border-radius:15px;font-size:17px}.shot-row{grid-template-columns:1fr}.apps-grid{grid-template-columns:1fr}.app-card{grid-template-columns:78px minmax(0,1fr);min-height:180px;padding:18px;gap:14px}.app-icon{width:78px;height:78px;border-radius:22px;font-size:34px}.guide-grid{grid-template-columns:1fr}.cta-card{padding:36px 20px}}
+
+    .guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.guide-card{padding:21px;border:1px solid #eadde7;border-radius:22px;background:#fff;box-shadow:0 12px 28px rgba(108,73,103,.06)}.guide-no{color:#9f78bb;font-size:.7rem;font-weight:900;letter-spacing:.1em}.guide-card h3{margin:8px 0;font-size:1rem}.guide-card p{margin:0;color:var(--muted);font-size:.8rem;font-weight:700;line-height:1.7}.guide-card a{display:inline-block;margin-top:12px;color:var(--purple-strong);font-size:.76rem;font-weight:900;text-decoration:underline;text-underline-offset:3px}.prompt-box{margin-top:22px;padding:20px;border:1px solid #f2b8ca;border-radius:22px;background:#ffdce7}.prompt-text{margin:12px 0 0;padding:14px;border:1px solid #ead6af;border-radius:15px;background:#fff9e8;font-size:.82rem;font-weight:700;line-height:1.7}
+
+    .cta{padding:68px 0 84px}.cta-card{padding:42px 30px;border:1px solid #e8d8e5;border-radius:30px;background:radial-gradient(circle at 90% 15%,rgba(255,224,238,.75),transparent 16rem),linear-gradient(135deg,#b984bd,#9371b7 48%,#7a68af);color:#fff;text-align:center;box-shadow:0 18px 42px rgba(123,85,153,.16)}.cta-card h2{margin:0;font-size:clamp(1.8rem,5vw,2.7rem)}.cta-card p{max-width:650px;margin:14px auto 22px;color:#fff8fc;font-size:.92rem;font-weight:700;line-height:1.75}.cta-button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 25px;border:1px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.94);color:var(--purple-strong);font-size:.88rem;font-weight:900}
+    footer{padding:14px 20px 24px;border-top:1px solid rgba(204,166,193,.28);background:#fffdfa;color:#725f5d;font-size:10px;font-weight:600;text-align:center}
+
+    @media(max-width:900px){
+      .hero-grid{grid-template-columns:1fr;min-height:auto}.hero-copy{text-align:center}.hero-text{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}.hero-art{min-height:360px}.hero-art-panel{inset:25px 10% 35px}.hero-device{width:290px;height:170px}.hero-mascots{width:min(66%,430px)}.benefits-grid{grid-template-columns:1fr}.benefit-card{grid-template-columns:72px 1fr}.shot-row{grid-template-columns:repeat(2,minmax(0,1fr))}.guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:620px){
+      .girls-header{min-height:58px;padding-inline:12px}.girls-brand{font-size:16px}.girls-brand-icon{width:31px;height:31px}.girls-nav-link{display:none}.header-app-menu{display:none}.girls-login-button{min-height:38px;padding:0 14px}.lace-strip{height:30px;background-size:210px auto}.wrap{width:min(100% - 20px,1120px)}.hero{padding-top:24px}.hero h1{font-size:43px}.hero-lead{font-size:15px}.hero-text{font-size:13px}.hero-actions{flex-direction:column}.hero-primary,.hero-secondary{width:100%}.hero-art{min-height:300px}.hero-art-panel{inset:18px 4px 28px;border-radius:28px}.hero-device{width:240px;height:145px;bottom:40px}.hero-mascots{width:min(82%,340px)}.hero-bubble{right:8px;top:24px;width:145px;padding:10px;font-size:10px}.benefits{margin-top:-6px;padding-bottom:42px}.benefits-shell{padding:15px 12px 16px}.benefits-title{font-size:18px}.benefit-card{grid-template-columns:58px 1fr;min-height:112px;padding:14px}.benefit-icon{width:58px;height:58px;font-size:24px}.section{padding:58px 0}.content-card{padding:20px 16px}.apps-grid{grid-template-columns:1fr}.app-card{grid-template-columns:78px minmax(0,1fr);min-height:175px;padding:18px;gap:14px}.app-icon{width:78px;height:78px;border-radius:22px;font-size:34px}.step{grid-template-columns:46px minmax(0,1fr);gap:12px}.step-no{width:46px;height:46px;border-radius:15px;font-size:17px}.shot-row{grid-template-columns:1fr}.guide-grid{grid-template-columns:1fr}.cta-card{padding:36px 20px}
+    }
   </style>
 </head>
 <body>
   <header class="girls-header">
-    <a class="girls-brand" href="#top" aria-label="みんアプ Girls トップ"><span class="girls-brand-icon" aria-hidden="true"></span><span>みんアプ Girls</span></a>
+    <a class="girls-brand" href="#top" aria-label="みんアプ Girls トップ"><span class="girls-brand-icon" aria-hidden="true"></span><span>みんアプ <em>Girls</em></span></a>
     <nav class="girls-nav" aria-label="メインメニュー">
+      <a class="girls-nav-link" href="#top">ホーム</a>
       <a class="girls-nav-link" href="#howto">使い方</a>
       <div class="app-menu-wrap header-app-menu">
         <button class="girls-nav-link" type="button" data-app-menu-trigger aria-expanded="false">遊べるアプリ</button>
@@ -43,56 +128,112 @@
   <div class="lace-strip" aria-hidden="true"></div>
 
   <main id="top">
-    <section class="hero"><div class="wrap hero-grid">
-      <div class="hero-visual"><img class="hero-logo" src="https://minapp.cloxs.jp/girls_logo.png" alt="みんアプ Girls"><p class="speech">好きなアプリを<br>AIといっしょにつくろう♡</p><p class="hero-caption">AIでつくる。みんなで遊ぶ。好きなところから改造する。</p></div>
-      <div class="portal-frame" aria-label="みんアプ Girls メニュー">
-        <p class="portal-frame-kicker">WELCOME ♡</p><h1>みんアプ Girlsへ<br>ようこそ</h1><p class="portal-frame-lead">やりたいことを選んでね。</p>
-        <div class="portal-menu">
-          <a class="portal-item" href="#howto"><span class="portal-item-icon">?</span><span class="portal-item-copy"><strong>Girlsの使い方</strong><small>登録・グループ・アプリ追加</small></span><span class="portal-arrow">›</span></a>
-          <div class="app-menu-wrap portal-app-wrap">
-            <button class="portal-item" type="button" data-app-menu-trigger aria-expanded="false"><span class="portal-item-icon">♪</span><span class="portal-item-copy"><strong>最初から遊べるアプリ</strong><small>育成ゲーム・カラオケなど</small></span><span class="portal-arrow">⌄</span></button>
-            <div class="app-submenu" data-app-menu>
-              <p class="app-submenu-title">どれを見る？ ♡</p>
-              <a class="app-submenu-link" href="apps/minappchi.html"><span class="app-submenu-icon">♡</span><span class="app-submenu-copy"><strong>みんあぷっち</strong><small>たまごから育てる育成ゲーム</small></span><span class="app-submenu-arrow">›</span></a>
-              <a class="app-submenu-link" href="apps/sing-along.html"><span class="app-submenu-icon">♪</span><span class="app-submenu-copy"><strong>うたってみよう</strong><small>BGMにあわせて歌って録音</small></span><span class="app-submenu-arrow">›</span></a>
-            </div>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="hero-eyebrow">♡ AIといっしょに、はじめてのアプリづくり</p>
+          <h1>好きなものを、<br><span>アプリにしよう。</span></h1>
+          <p class="hero-lead">作って、遊んで、好きに改造。</p>
+          <p class="hero-text">みんアプ Girlsなら、最初から遊べるアプリを楽しんだり、AIにお願いして自分好みに変えたり、友だちと同じグループで作品を遊んだりできます。</p>
+          <div class="hero-actions">
+            <a class="hero-primary" href="https://minapp.cloxs.jp/girls.html">みんアプ Girlsをはじめる　›</a>
+            <a class="hero-secondary" href="#howto">使い方を見る　›</a>
           </div>
-          <a class="portal-item" href="#customize"><span class="portal-item-icon">✧</span><span class="portal-item-copy"><strong>アプリを改造する</strong><small>ZIPを入手してAIにお願い</small></span><span class="portal-arrow">›</span></a>
-          <a class="portal-item portal-login" href="https://minapp.cloxs.jp/girls.html"><span class="portal-item-icon">♡</span><span class="portal-item-copy"><strong>Girlsにログイン</strong><small>Webでアプリを追加・管理</small></span><span class="portal-arrow">›</span></a>
+        </div>
+        <div class="hero-art" aria-label="みんアプ Girlsのイメージ">
+          <div class="hero-art-panel"></div>
+          <div class="hero-device" aria-hidden="true"></div>
+          <img class="hero-mascots" src="https://minapp.cloxs.jp/girls_mascot_pair.svg" alt="みんアプ Girlsの白と黒のマスコット">
+          <div class="hero-bubble">AIといっしょに<br>作ってみる？♡</div>
+          <span class="spark s1" aria-hidden="true">♡</span><span class="spark s2" aria-hidden="true">✦</span><span class="spark s3" aria-hidden="true">★</span>
         </div>
       </div>
-    </div></section>
+    </section>
 
-    <section id="howto" class="section alt"><div class="wrap"><div class="section-heading"><p class="section-kicker">HOW TO START ♡</p><h2>みんアプ Girlsの使い方</h2><p>新規登録から、友だちとグループを作って、自分のアプリを追加するところまで。実際の画面を見ながら順番に進められるようにします。</p></div>
-      <div class="content-card steps">
-        <article class="step"><div class="step-no">1</div><div><h3>新規登録する</h3><p>GirlsアプリからIDとパスワードを登録します。登録したIDはWebポータルへのログインにも使います。</p><div class="shot-row"><div class="shot" data-shot="assets/01-signup-entry.png"><div class="shot-placeholder"><span>♡</span><strong>新規登録の入口</strong><code>01-signup-entry.png</code></div></div><div class="shot" data-shot="assets/02-signup-form.png"><div class="shot-placeholder"><span>♡</span><strong>ID・パスワード入力</strong><code>02-signup-form.png</code></div></div><div class="shot" data-shot="assets/03-signup-done.png"><div class="shot-placeholder"><span>♡</span><strong>登録完了</strong><code>03-signup-done.png</code></div></div></div></div></article>
-        <article class="step"><div class="step-no">2</div><div><h3>グループを作る・参加する</h3><p>自分でグループを作るか、友だちのグループへ参加します。同じグループのアプリをみんなで遊べます。</p><div class="shot-row"><div class="shot" data-shot="assets/04-groups.png"><div class="shot-placeholder"><span>♡</span><strong>グループ一覧</strong><code>04-groups.png</code></div></div><div class="shot" data-shot="assets/05-create-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ作成</strong><code>05-create-group.png</code></div></div><div class="shot" data-shot="assets/06-join-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ参加</strong><code>06-join-group.png</code></div></div></div></div></article>
-        <article class="step"><div class="step-no">3</div><div><h3>Webポータルからアプリを追加する</h3><p>右上の「ログイン」からWebポータルへ。HTMLコードを貼るか、HTML / ZIPファイルを選んでグループへ追加できます。</p><div class="shot-row"><div class="shot" data-shot="assets/07-web-login.png"><div class="shot-placeholder"><span>♡</span><strong>Webログイン</strong><code>07-web-login.png</code></div></div><div class="shot" data-shot="assets/08-upload.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ追加</strong><code>08-upload.png</code></div></div><div class="shot" data-shot="assets/09-my-apps.png"><div class="shot-placeholder"><span>♡</span><strong>自分のアプリ</strong><code>09-my-apps.png</code></div></div></div></div></article>
-        <article class="step"><div class="step-no">4</div><div><h3>Girlsで遊ぶ</h3><p>追加したアプリはGirls側のアプリ一覧から開けます。グループのみんなが同じアプリを使えます。</p><div class="shot-row"><div class="shot" data-shot="assets/10-app-list.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ一覧</strong><code>10-app-list.png</code></div></div><div class="shot" data-shot="assets/11-open-app.png"><div class="shot-placeholder"><span>♡</span><strong>アプリを開く</strong><code>11-open-app.png</code></div></div><div class="shot" data-shot="assets/12-play.png"><div class="shot-placeholder"><span>♡</span><strong>みんなで遊ぶ</strong><code>12-play.png</code></div></div></div></div></article>
-      </div></div></section>
+    <section class="benefits" aria-labelledby="benefits-title">
+      <div class="wrap benefits-shell">
+        <h2 id="benefits-title" class="benefits-title">♡ みんアプ Girls の魅力 ♡</h2>
+        <div class="benefits-grid">
+          <a class="benefit-card" href="#customize"><span class="benefit-icon">AI</span><span><h2>AIといっしょに作れる</h2><p>「ここをこうしたい」と伝えて、アプリづくりや改造に挑戦できます。</p></span></a>
+          <a class="benefit-card" href="#apps"><span class="benefit-icon">♪</span><span><h2>最初から遊べるアプリがある</h2><p>育成ゲームやカラオケなど、まず遊んでから仕組みを見られます。</p></span></a>
+          <a class="benefit-card" href="#howto"><span class="benefit-icon">♡</span><span><h2>友だちと遊んで、好きに改造</h2><p>グループで同じアプリを遊んだり、自分好みの作品を追加できます。</p></span></a>
+        </div>
+      </div>
+    </section>
 
-    <section id="apps" class="section"><div class="wrap"><div class="section-heading"><p class="section-kicker">BUILT-IN APPS ♡</p><h2>最初から遊べるアプリ</h2><p>トップの「遊べるアプリ」からも選べます。気になるアプリを押すと、くわしい紹介ページへ移動します。</p></div><div class="apps-grid">
-      <a class="app-card" href="apps/minappchi.html"><div class="app-icon" aria-hidden="true">♡</div><div><span class="app-label">育成ゲーム</span><h3>みんあぷっち</h3><p>たまごから小さなキャラクターを育てるシンプルな育成アプリ。</p><span class="app-more">くわしく見る →</span></div></a>
-      <a class="app-card" href="apps/sing-along.html"><div class="app-icon" aria-hidden="true">♪</div><div><span class="app-label">カラオケ・録音</span><h3>うたってみよう</h3><p>好きなBGMを選んで、歌って、声を録音して遊べるアプリ。</p><span class="app-more">くわしく見る →</span></div></a>
-    </div></div></section>
+    <section id="apps" class="section">
+      <div class="wrap">
+        <div class="section-heading"><p class="section-kicker">PLAYABLE APPS ♡</p><h2>最初から遊べるアプリ</h2><p>まずは遊んでみよう。気になるアプリを押すと、くわしい紹介ページへ移動します。</p></div>
+        <div class="apps-grid">
+          <a class="app-card" href="apps/minappchi.html"><div class="app-icon" aria-hidden="true">♡</div><div><span class="app-label">育成ゲーム</span><h3>みんあぷっち</h3><p>たまごから小さなキャラクターを育てるシンプルな育成アプリ。</p><span class="app-more">くわしく見る →</span></div></a>
+          <a class="app-card" href="apps/sing-along.html"><div class="app-icon" aria-hidden="true">♪</div><div><span class="app-label">カラオケ・録音</span><h3>うたってみよう</h3><p>好きなBGMを選んで、歌って、声を録音して遊べるアプリ。</p><span class="app-more">くわしく見る →</span></div></a>
+        </div>
+      </div>
+    </section>
 
-    <section id="customize" class="section alt"><div class="wrap"><div class="section-heading"><p class="section-kicker">CUSTOMIZE WITH AI ♡</p><h2>アプリを改造してみよう</h2><p>コードを全部理解していなくても大丈夫。元のアプリを入手して、AIに「ここをこうしたい」と伝えるところから始められます。</p></div><div class="guide-grid">
-      <article class="guide-card"><div class="guide-no">STEP 1</div><h3>元アプリを入手</h3><p>GitHubの <b>Code → Download ZIP</b> から `minapp_apps` をダウンロードします。</p><a href="https://github.com/kaeruko/minapp_apps">minapp_apps を開く</a></article>
-      <article class="guide-card"><div class="guide-no">STEP 2</div><h3>ZIPを展開</h3><p>ダウンロードしたZIPを開き、改造したいアプリのフォルダへ進みます。</p></article>
-      <article class="guide-card"><div class="guide-no">STEP 3</div><h3>index.html をAIへ</h3><p>アプリの `index.html` をChatGPTなどへ渡して、変えたい内容を伝えます。</p></article>
-      <article class="guide-card"><div class="guide-no">STEP 4</div><h3>Girlsへ追加</h3><p>完成したHTMLをWebポータルへ貼るか、ファイルとして選んでアップロードします。</p></article>
-    </div><div class="content-card" style="margin-top:22px"><div class="shot-row"><div class="shot" data-shot="assets/13-download-zip.png"><div class="shot-placeholder"><span>♡</span><strong>Download ZIP</strong><code>13-download-zip.png</code></div></div><div class="shot" data-shot="assets/14-open-index.png"><div class="shot-placeholder"><span>♡</span><strong>index.html を開く</strong><code>14-open-index.png</code></div></div><div class="shot" data-shot="assets/15-ai-customize.png"><div class="shot-placeholder"><span>♡</span><strong>AIに改造をお願い</strong><code>15-ai-customize.png</code></div></div></div><div class="prompt-box"><strong>AIへのお願い例</strong><p class="prompt-text">この index.html は、みんアプ Girlsで使うアプリです。今の機能は壊さずに、背景をピンクの水玉にして、ボタンをハート形の雰囲気に変えて。HTML・CSS・JavaScriptは1つの index.html の中にまとめたままにして。</p></div></div></div></section>
+    <section id="howto" class="section alt">
+      <div class="wrap">
+        <div class="section-heading"><p class="section-kicker">HOW TO START ♡</p><h2>みんアプ Girlsの使い方</h2><p>新規登録から、友だちとグループを作って、自分のアプリを追加するところまで。</p></div>
+        <div class="content-card steps">
+          <article class="step"><div class="step-no">1</div><div><h3>新規登録する</h3><p>GirlsアプリからIDとパスワードを登録します。登録したIDはWebポータルへのログインにも使います。</p><div class="shot-row"><div class="shot" data-shot="assets/01-signup-entry.png"><div class="shot-placeholder"><span>♡</span><strong>新規登録の入口</strong><code>01-signup-entry.png</code></div></div><div class="shot" data-shot="assets/02-signup-form.png"><div class="shot-placeholder"><span>♡</span><strong>ID・パスワード入力</strong><code>02-signup-form.png</code></div></div><div class="shot" data-shot="assets/03-signup-done.png"><div class="shot-placeholder"><span>♡</span><strong>登録完了</strong><code>03-signup-done.png</code></div></div></div></div></article>
+          <article class="step"><div class="step-no">2</div><div><h3>グループを作る・参加する</h3><p>自分でグループを作るか、友だちのグループへ参加します。同じグループのアプリをみんなで遊べます。</p><div class="shot-row"><div class="shot" data-shot="assets/04-groups.png"><div class="shot-placeholder"><span>♡</span><strong>グループ一覧</strong><code>04-groups.png</code></div></div><div class="shot" data-shot="assets/05-create-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ作成</strong><code>05-create-group.png</code></div></div><div class="shot" data-shot="assets/06-join-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ参加</strong><code>06-join-group.png</code></div></div></div></div></article>
+          <article class="step"><div class="step-no">3</div><div><h3>Webポータルからアプリを追加する</h3><p>右上の「ログイン」からWebポータルへ。HTMLコードを貼るか、HTML / ZIPファイルを選んでグループへ追加できます。</p><div class="shot-row"><div class="shot" data-shot="assets/07-web-login.png"><div class="shot-placeholder"><span>♡</span><strong>Webログイン</strong><code>07-web-login.png</code></div></div><div class="shot" data-shot="assets/08-upload.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ追加</strong><code>08-upload.png</code></div></div><div class="shot" data-shot="assets/09-my-apps.png"><div class="shot-placeholder"><span>♡</span><strong>自分のアプリ</strong><code>09-my-apps.png</code></div></div></div></div></article>
+          <article class="step"><div class="step-no">4</div><div><h3>Girlsで遊ぶ</h3><p>追加したアプリはGirls側のアプリ一覧から開けます。グループのみんなが同じアプリを使えます。</p><div class="shot-row"><div class="shot" data-shot="assets/10-app-list.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ一覧</strong><code>10-app-list.png</code></div></div><div class="shot" data-shot="assets/11-open-app.png"><div class="shot-placeholder"><span>♡</span><strong>アプリを開く</strong><code>11-open-app.png</code></div></div><div class="shot" data-shot="assets/12-play.png"><div class="shot-placeholder"><span>♡</span><strong>みんなで遊ぶ</strong><code>12-play.png</code></div></div></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="customize" class="section">
+      <div class="wrap">
+        <div class="section-heading"><p class="section-kicker">CUSTOMIZE WITH AI ♡</p><h2>アプリを改造してみよう</h2><p>コードを全部理解していなくても大丈夫。元のアプリを入手して、AIに「ここをこうしたい」と伝えるところから始められます。</p></div>
+        <div class="guide-grid">
+          <article class="guide-card"><div class="guide-no">STEP 1</div><h3>元アプリを入手</h3><p>GitHubの <b>Code → Download ZIP</b> から `minapp_apps` をダウンロードします。</p><a href="https://github.com/kaeruko/minapp_apps">minapp_apps を開く</a></article>
+          <article class="guide-card"><div class="guide-no">STEP 2</div><h3>ZIPを展開</h3><p>ダウンロードしたZIPを開き、改造したいアプリのフォルダへ進みます。</p></article>
+          <article class="guide-card"><div class="guide-no">STEP 3</div><h3>index.html をAIへ</h3><p>アプリの `index.html` をChatGPTなどへ渡して、変えたい内容を伝えます。</p></article>
+          <article class="guide-card"><div class="guide-no">STEP 4</div><h3>Girlsへ追加</h3><p>完成したHTMLをWebポータルへ貼るか、ファイルとして選んでアップロードします。</p></article>
+        </div>
+        <div class="content-card" style="margin-top:22px"><div class="shot-row"><div class="shot" data-shot="assets/13-download-zip.png"><div class="shot-placeholder"><span>♡</span><strong>Download ZIP</strong><code>13-download-zip.png</code></div></div><div class="shot" data-shot="assets/14-open-index.png"><div class="shot-placeholder"><span>♡</span><strong>index.html を開く</strong><code>14-open-index.png</code></div></div><div class="shot" data-shot="assets/15-ai-customize.png"><div class="shot-placeholder"><span>♡</span><strong>AIに改造をお願い</strong><code>15-ai-customize.png</code></div></div></div><div class="prompt-box"><strong>AIへのお願い例</strong><p class="prompt-text">この index.html は、みんアプ Girlsで使うアプリです。今の機能は壊さずに、背景をピンクの水玉にして、ボタンをハート形の雰囲気に変えて。HTML・CSS・JavaScriptは1つの index.html の中にまとめたままにして。</p></div></div>
+      </div>
+    </section>
 
     <section class="cta"><div class="wrap"><div class="cta-card"><h2>好きなものを、アプリにしよう♡</h2><p>最初からあるアプリを遊んでもいいし、改造してもいいし、AIとゼロから作ってもOK。できたらGirlsのグループへ追加してみよう。</p><a class="cta-button" href="https://minapp.cloxs.jp/girls.html">Girlsにログインする</a></div></div></section>
   </main>
   <footer>© CLOXS LLC / みんアプ Girls</footer>
+
   <script>
-    document.querySelectorAll('[data-shot]').forEach((box)=>{const src=box.dataset.shot;if(!src)throw new Error('data-shot is required');const img=new Image();img.alt=box.querySelector('strong')?.textContent||'みんアプ Girlsの画面';img.onload=()=>box.replaceChildren(img);img.onerror=()=>{};img.src=src});
+    document.querySelectorAll('[data-shot]').forEach((box)=>{
+      const src=box.dataset.shot;
+      if(!src)throw new Error('data-shot is required');
+      const img=new Image();
+      img.alt=box.querySelector('strong')?.textContent||'みんアプ Girlsの画面';
+      img.onload=()=>box.replaceChildren(img);
+      img.onerror=()=>{};
+      img.src=src;
+    });
 
     const menuTriggers=[...document.querySelectorAll('[data-app-menu-trigger]')];
     if(menuTriggers.length===0)throw new Error('app menu trigger is required');
-    const closeMenus=(except=null)=>{menuTriggers.forEach((trigger)=>{if(trigger===except)return;const menu=trigger.parentElement?.querySelector('[data-app-menu]');if(!menu)throw new Error('app submenu is required for every trigger');menu.classList.remove('is-open');trigger.setAttribute('aria-expanded','false')})};
-    menuTriggers.forEach((trigger)=>{const menu=trigger.parentElement?.querySelector('[data-app-menu]');if(!menu)throw new Error('app submenu is required');trigger.addEventListener('click',(event)=>{event.stopPropagation();const willOpen=!menu.classList.contains('is-open');closeMenus(trigger);menu.classList.toggle('is-open',willOpen);trigger.setAttribute('aria-expanded',String(willOpen))});menu.addEventListener('click',(event)=>event.stopPropagation())});
+    const closeMenus=(except=null)=>{
+      menuTriggers.forEach((trigger)=>{
+        if(trigger===except)return;
+        const menu=trigger.parentElement?.querySelector('[data-app-menu]');
+        if(!menu)throw new Error('app submenu is required for every trigger');
+        menu.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded','false');
+      });
+    };
+    menuTriggers.forEach((trigger)=>{
+      const menu=trigger.parentElement?.querySelector('[data-app-menu]');
+      if(!menu)throw new Error('app submenu is required');
+      trigger.addEventListener('click',(event)=>{
+        event.stopPropagation();
+        const willOpen=!menu.classList.contains('is-open');
+        closeMenus(trigger);
+        menu.classList.toggle('is-open',willOpen);
+        trigger.setAttribute('aria-expanded',String(willOpen));
+      });
+      menu.addEventListener('click',(event)=>event.stopPropagation());
+    });
     document.addEventListener('click',()=>closeMenus());
     document.addEventListener('keydown',(event)=>{if(event.key==='Escape')closeMenus()});
   </script>
