@@ -45,26 +45,20 @@ html = HTML.read_text(encoding="utf-8")
 
 html = replace_once(
     html,
-    '<meta name="description" content="がるなびは、ガールズちゃんねる（がるちゃん）を快適に読むための無料のがるちゃんアプリ・ブラウザです。iOS・Android・Windows・macOSに対応。検索、クリップ、下書きなど長いトピを読むための機能を備えています。">',
-    '<meta name="description" content="がるなびは、ガールズちゃんねる（がるちゃん）を快適に読むための無料のがるちゃんアプリ・ブラウザです。一度開いたトピックのコメントを端末に保存し、次回はすぐ表示。履歴やクリップの更新チェック、検索、下書きなど長いトピを読むための機能を備えています。">',
+    '<meta name="description" content="がるなびは、ガールズちゃんねる（がるちゃん）を快適に読むための無料のがるちゃんアプリ・ブラウザです。Android・Windows・macOSに対応。検索、クリップ、下書きなど長いトピを読むための機能を備えています。">',
+    '<meta name="description" content="がるなびは、ガールズちゃんねる（がるちゃん）を快適に読むための無料のがるちゃんアプリ・ブラウザです。Android・Windows・macOSに対応。一度読んだトピックをすぐ読み返せて、履歴やクリップの更新もまとめて確認できます。">',
     "meta description",
 )
 html = replace_once(
     html,
-    '<meta property="og:description" content="がるちゃんを快適に読むための無料のがるちゃんアプリ・ブラウザ。iOS・Android・Windows・macOS対応。">',
-    '<meta property="og:description" content="一度読んだトピックは待たずにすぐ読める、無料のがるちゃんアプリ・ブラウザ。履歴やクリップの更新もまとめて確認できます。">',
+    '<meta property="og:description" content="がるちゃんを快適に読むための無料のがるちゃんアプリ・ブラウザ。Android・Windows・macOS対応。">',
+    '<meta property="og:description" content="一度読んだトピックはすぐ読み返せて、履歴やクリップの更新もまとめて確認できる無料のがるちゃんアプリ・ブラウザ。">',
     "og description",
 )
 html = replace_once(
     html,
-    '    "description": "ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料のがるちゃんアプリ・ブラウザ。"',
-    '    "description": "ガールズちゃんねる（がるちゃん）を快適に閲覧できる無料のがるちゃんアプリ・ブラウザ。一度開いたトピックのコメントを端末に保存し、履歴やクリップの更新もまとめて確認できます。"',
-    "structured data description",
-)
-html = replace_once(
-    html,
-    '          がるなびは、ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料の<strong>がるちゃんアプリ・ブラウザ</strong>です。トピックやコメントを保存し、カテゴリ分けやメモもできます。',
-    '          がるなびは、ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料の<strong>がるちゃんアプリ・ブラウザ</strong>です。<strong>一度開いたトピックのコメントは端末に保存され、次に開くときは待たずにすぐ読めます。</strong>履歴やクリップの更新もまとめてチェックできます。検索、クリップ、下書きなど、長いトピを読むための機能も備えています。',
+    '          がるなびは、ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料の<strong>がるちゃんアプリ・ブラウザ</strong>です。保存済みのコメントは通信なしでも読み返せます。検索、クリップ、下書きなど、長いトピを読むための機能も備えています。',
+    '          がるなびは、ガールズちゃんねる（がるちゃん）をiPhone・AndroidスマホやPCで快適に閲覧できる無料の<strong>がるちゃんアプリ・ブラウザ</strong>です。保存済みのコメントは通信なしでも読み返せます。<strong>履歴やクリップの更新もまとめてチェック</strong>できるので、気になる話題のその後を追いやすくなります。',
     "hero description",
 )
 html = replace_once(
@@ -74,25 +68,11 @@ html = replace_once(
     "feature lead",
 )
 
-scroll_marker = '''    <article class="feature-row">
+scroll_marker = '''    <article class="feature-row reverse">
       <div class="feature-copy">
         <span class="feature-category">スクロール画面</span>
         <h3 class="feature-heading">爆速スクロール</h3>'''
-new_sections = '''    <article class="feature-row">
-      <div class="feature-copy">
-        <span class="feature-category">読み返し</span>
-        <h3 class="feature-heading">一度読んだトピは、すぐ開ける</h3>
-        <p class="feature-description">一度開いたトピックのコメントは端末に自動で保存。<br>次に開くときは読み込みを待たずに表示します。<br>保存済みのコメントは、通信できない場所でも読み返せます。</p>
-      </div>
-      <div class="feature-visual">
-        <div class="screens">
-          <img class="phone-shot" src="./assets/android/history.png" alt="Android版の履歴画面" loading="lazy">
-          <img class="phone-shot" src="./assets/android/detail.png" alt="Android版の保存済みトピック詳細画面" loading="lazy">
-        </div>
-      </div>
-    </article>
-
-    <article class="feature-row reverse">
+new_sections = '''    <article class="feature-row reverse">
       <div class="feature-copy">
         <span class="feature-category">履歴機能</span>
         <h3 class="feature-heading">履歴の新着をまとめてチェック</h3>
@@ -121,21 +101,6 @@ new_sections = '''    <article class="feature-row">
 '''
 html = replace_once(html, scroll_marker, new_sections + scroll_marker, "scroll section")
 
-html = replace_once(
-    html,
-    '      <li>インターネット接続が必要です（初回起動時および画像読み込み時）。</li>',
-    '      <li>新しいトピック・コメントの取得や画像の読み込みにはインターネット接続が必要です。保存済みのコメントは通信なしでも読み返せます。</li>',
-    "network requirement",
-)
-faq_marker = '''    <details class="faq">
-      <summary>iOS版のアップデート方法は？</summary>'''
-offline_faq = '''    <details class="faq">
-      <summary>通信なしでもトピックを読めますか？</summary>
-      <p>一度開いて端末に保存されたコメントは、通信できない場所でも読み返せます。新しいトピックやコメントの取得、画像の読み込みにはインターネット接続が必要です。</p>
-    </details>
-'''
-html = replace_once(html, faq_marker, offline_faq + faq_marker, "FAQ marker")
-
 style_marker = '    .feature-row:nth-child(5) .feature-visual { background: #fff6e9; }'
 style_new = '''    .feature-row:nth-child(5) .feature-visual { background: #fff6e9; }
     .feature-row:nth-child(6) .feature-visual { background: #eef5ff; }
@@ -156,7 +121,6 @@ for required in (
 
 HTML.write_text(html, encoding="utf-8")
 
-# Remove one-shot transport files from the final diff.
 if WORKFLOW.exists():
     WORKFLOW.unlink()
 if SELF.exists():
