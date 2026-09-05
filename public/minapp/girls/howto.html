@@ -3,13 +3,142 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="みんアプ Girlsの新規登録、グループ作成、アプリ追加までを説明します。">
+  <meta name="description" content="みんアプ Girlsのはじめてのアプリづくりガイド。遊ぶところからAIでの改造、Girlsへの追加まで6ステップで紹介します。">
   <link rel="stylesheet" href="site.css">
-  <title>使い方 | みんアプ Girls</title>
+  <title>はじめてのアプリづくりガイド | みんアプ Girls</title>
+  <style>
+    .lesson-page{
+      min-height:calc(100vh - 94px);
+      padding:34px 0 64px;
+      background:
+        linear-gradient(rgba(255,241,246,.92),rgba(255,248,244,.94)),
+        url("https://minapp.cloxs.jp/girls_login_pattern.png") center top/360px auto repeat;
+    }
+    .lesson-shell{
+      width:min(1060px,calc(100% - 36px));
+      margin:0 auto;
+      padding:28px 28px 34px;
+      border:1px solid #edcfdc;
+      border-radius:34px;
+      background:rgba(255,253,251,.9);
+      box-shadow:0 18px 44px rgba(117,76,99,.11);
+    }
+    .lesson-heading{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:18px 28px;
+      align-items:end;
+      margin-bottom:24px;
+      padding:0 4px;
+    }
+    .lesson-kicker{
+      margin:0 0 6px;
+      color:#bd7895;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.12em;
+    }
+    .lesson-heading h1{
+      margin:0;
+      color:#654d5d;
+      font-size:clamp(27px,4vw,42px);
+      line-height:1.2;
+      letter-spacing:-.03em;
+    }
+    .lesson-heading p:last-child{
+      max-width:720px;
+      margin:9px 0 0;
+      color:#8a7079;
+      font-size:13px;
+      font-weight:700;
+      line-height:1.75;
+    }
+    .lesson-progress{
+      display:grid;
+      gap:6px;
+      min-width:150px;
+      padding:12px 15px;
+      border:1px solid #e9cbd9;
+      border-radius:18px;
+      background:#fff8fb;
+    }
+    .lesson-progress strong{
+      color:#8f6384;
+      font-size:13px;
+    }
+    .progress-track{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:4px;
+    }
+    .progress-track span{
+      height:7px;
+      border-radius:999px;
+      background:#efb9cb;
+    }
+    .progress-track span:nth-child(2){background:#a9d3ef}
+    .progress-track span:nth-child(3){background:#cbb0e6}
+    .progress-track span:nth-child(4){background:#a9dfc2}
+    .progress-track span:nth-child(5){background:#f0b1aa}
+    .progress-track span:nth-child(6){background:#f2d36f}
+
+    .lesson-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+    .lesson-card{
+      display:block;
+      overflow:hidden;
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 10px 24px rgba(101,71,91,.09);
+      transition:transform .16s ease,box-shadow .16s ease;
+    }
+    .lesson-card:hover,
+    .lesson-card:focus-visible{
+      transform:translateY(-3px);
+      box-shadow:0 16px 30px rgba(101,71,91,.15);
+      outline:3px solid rgba(213,151,180,.22);
+      outline-offset:2px;
+    }
+    .lesson-card img{
+      display:block;
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover;
+    }
+    .lesson-note{
+      margin:24px 4px 0;
+      padding:15px 18px;
+      border:1px solid #ecd8e3;
+      border-radius:18px;
+      background:rgba(255,255,255,.76);
+      color:#806b75;
+      font-size:12px;
+      font-weight:700;
+      line-height:1.7;
+      text-align:center;
+    }
+    @media(max-width:860px){
+      .lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .lesson-heading{grid-template-columns:1fr}.lesson-progress{width:min(260px,100%)}
+    }
+    @media(max-width:560px){
+      .lesson-page{padding:20px 0 42px}
+      .lesson-shell{width:min(100% - 18px,1060px);padding:20px 12px 24px;border-radius:24px}
+      .lesson-heading{padding:0 4px;margin-bottom:18px}
+      .lesson-grid{grid-template-columns:1fr;gap:14px}
+      .lesson-card{border-radius:18px}
+    }
+  </style>
 </head>
 <body>
   <header class="girls-header">
-    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ"><span class="girls-brand-icon" aria-hidden="true"></span><span>みんアプ <em>Girls</em></span></a>
+    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ">
+      <span class="girls-brand-icon" aria-hidden="true"></span>
+      <span>みんアプ <em>Girls</em></span>
+    </a>
     <nav class="girls-nav" aria-label="メインメニュー">
       <a class="girls-nav-link" href="index.html">ホーム</a>
       <a class="girls-nav-link active" href="howto.html">使い方</a>
@@ -20,81 +149,45 @@
   </header>
   <div class="lace-strip" aria-hidden="true"></div>
 
-  <main class="page-main">
-    <div class="wrap">
-      <div class="page-heading">
-        <p class="page-kicker">HOW TO START ♡</p>
-        <h1>みんアプ Girlsの使い方</h1>
-        <p>新規登録から、友だちとグループを作って、自分のアプリを追加するところまで。</p>
+  <main class="lesson-page">
+    <section class="lesson-shell" aria-labelledby="lesson-title">
+      <div class="lesson-heading">
+        <div>
+          <p class="lesson-kicker">LESSON GUIDE ♡</p>
+          <h1 id="lesson-title">はじめてのアプリづくりガイド</h1>
+          <p>まず遊んで、変えたいところを見つけて、AIといっしょに改造。完成したらGirlsに追加して、グループのみんなで遊んでみよう。</p>
+        </div>
+        <div class="lesson-progress" aria-label="全6ステップ">
+          <strong>6 STEPS ♡</strong>
+          <div class="progress-track" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
       </div>
 
-      <div class="content-card steps">
-        <article class="step">
-          <div class="step-no">1</div>
-          <div>
-            <h2>新規登録する</h2>
-            <p>GirlsアプリからIDとパスワードを登録します。登録したIDはWebポータルへのログインにも使います。</p>
-            <div class="shot-row">
-              <div class="shot" data-shot="assets/01-signup-entry.png"><div class="shot-placeholder"><span>♡</span><strong>新規登録の入口</strong><code>01-signup-entry.png</code></div></div>
-              <div class="shot" data-shot="assets/02-signup-form.png"><div class="shot-placeholder"><span>♡</span><strong>ID・パスワード入力</strong><code>02-signup-form.png</code></div></div>
-              <div class="shot" data-shot="assets/03-signup-done.png"><div class="shot-placeholder"><span>♡</span><strong>登録完了</strong><code>03-signup-done.png</code></div></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="step">
-          <div class="step-no">2</div>
-          <div>
-            <h2>グループを作る・参加する</h2>
-            <p>自分でグループを作るか、友だちのグループへ参加します。同じグループのアプリをみんなで遊べます。</p>
-            <div class="shot-row">
-              <div class="shot" data-shot="assets/04-groups.png"><div class="shot-placeholder"><span>♡</span><strong>グループ一覧</strong><code>04-groups.png</code></div></div>
-              <div class="shot" data-shot="assets/05-create-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ作成</strong><code>05-create-group.png</code></div></div>
-              <div class="shot" data-shot="assets/06-join-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ参加</strong><code>06-join-group.png</code></div></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="step">
-          <div class="step-no">3</div>
-          <div>
-            <h2>Webポータルからアプリを追加する</h2>
-            <p>右上の「ログイン」からWebポータルへ。HTMLコードを貼るか、HTML / ZIPファイルを選んでグループへ追加できます。</p>
-            <div class="shot-row">
-              <div class="shot" data-shot="assets/07-web-login.png"><div class="shot-placeholder"><span>♡</span><strong>Webログイン</strong><code>07-web-login.png</code></div></div>
-              <div class="shot" data-shot="assets/08-upload.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ追加</strong><code>08-upload.png</code></div></div>
-              <div class="shot" data-shot="assets/09-my-apps.png"><div class="shot-placeholder"><span>♡</span><strong>自分のアプリ</strong><code>09-my-apps.png</code></div></div>
-            </div>
-          </div>
-        </article>
-
-        <article class="step">
-          <div class="step-no">4</div>
-          <div>
-            <h2>Girlsで遊ぶ</h2>
-            <p>追加したアプリはGirls側のアプリ一覧から開けます。グループのみんなが同じアプリを使えます。</p>
-            <div class="shot-row">
-              <div class="shot" data-shot="assets/10-app-list.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ一覧</strong><code>10-app-list.png</code></div></div>
-              <div class="shot" data-shot="assets/11-open-app.png"><div class="shot-placeholder"><span>♡</span><strong>アプリを開く</strong><code>11-open-app.png</code></div></div>
-              <div class="shot" data-shot="assets/12-play.png"><div class="shot-placeholder"><span>♡</span><strong>みんなで遊ぶ</strong><code>12-play.png</code></div></div>
-            </div>
-          </div>
-        </article>
+      <div class="lesson-grid">
+        <a class="lesson-card" href="apps.html" aria-label="ステップ1 まずアプリで遊んでみよう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_10 (1).png" alt="1 まずアプリで遊んでみよう。育成ゲームやカラオケからスタート">
+        </a>
+        <a class="lesson-card" href="apps.html" aria-label="ステップ2 改造したいアプリを選ぼう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_10 (2).png" alt="2 改造したいアプリを選ぼう。ここを変えたいを見つけよう">
+        </a>
+        <a class="lesson-card" href="customize.html" aria-label="ステップ3 元のアプリを手に入れよう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_10 (3).png" alt="3 元のアプリを手に入れよう。ZIPをダウンロードしてindex.htmlを開く">
+        </a>
+        <a class="lesson-card" href="customize.html" aria-label="ステップ4 AIに改造をお願いしよう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_11 (4).png" alt="4 AIに改造をお願いしよう。色や機能の変更をAIに相談">
+        </a>
+        <a class="lesson-card" href="https://minapp.cloxs.jp/girls.html" aria-label="ステップ5 Girlsにアプリを追加しよう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_11 (5).png" alt="5 Girlsにアプリを追加しよう。HTMLまたはZIPをアップロード">
+        </a>
+        <a class="lesson-card" href="https://minapp.cloxs.jp/girls.html" aria-label="ステップ6 グループのみんなで遊ぼう">
+          <img src="assets/ChatGPT Image 2026年9月5日 21_57_11 (6).png" alt="6 グループのみんなで遊ぼう。友だちといっしょに作品を楽しもう">
+        </a>
       </div>
-    </div>
+
+      <p class="lesson-note">カードを押すと、遊べるアプリ・改造ガイド・Girlsポータルの関連ページへ進めます。</p>
+    </section>
   </main>
 
   <footer>© CLOXS LLC / みんアプ Girls</footer>
-  <script>
-    document.querySelectorAll('[data-shot]').forEach((box)=>{
-      const src=box.dataset.shot;
-      if(!src)throw new Error('data-shot is required');
-      const img=new Image();
-      img.alt=box.querySelector('strong')?.textContent||'みんアプ Girlsの画面';
-      img.onload=()=>box.replaceChildren(img);
-      img.onerror=()=>{};
-      img.src=src;
-    });
-  </script>
 </body>
 </html>
