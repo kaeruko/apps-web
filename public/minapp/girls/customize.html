@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="みんアプ GirlsのアプリをAIで改造する方法を説明します。">
+  <link rel="stylesheet" href="site.css">
+  <title>改造の仕方 | みんアプ Girls</title>
+</head>
+<body>
+  <header class="girls-header">
+    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ"><span class="girls-brand-icon" aria-hidden="true"></span><span>みんアプ <em>Girls</em></span></a>
+    <nav class="girls-nav" aria-label="メインメニュー">
+      <a class="girls-nav-link" href="index.html">ホーム</a>
+      <a class="girls-nav-link" href="howto.html">使い方</a>
+      <a class="girls-nav-link" href="apps.html">遊べるアプリ</a>
+      <a class="girls-nav-link active" href="customize.html">改造の仕方</a>
+      <a class="girls-login-button" href="https://minapp.cloxs.jp/girls.html">ログイン</a>
+    </nav>
+  </header>
+  <div class="lace-strip" aria-hidden="true"></div>
+
+  <main class="page-main">
+    <div class="wrap">
+      <div class="page-heading">
+        <p class="page-kicker">CUSTOMIZE WITH AI ♡</p>
+        <h1>アプリを改造してみよう</h1>
+        <p>元のアプリを入手して、AIに「ここをこうしたい」と伝えるところから始められます。</p>
+      </div>
+
+      <div class="guide-grid">
+        <article class="guide-card">
+          <div class="guide-no">STEP 1</div>
+          <h2>元アプリを入手</h2>
+          <p>GitHubの <b>Code → Download ZIP</b> から `minapp_apps` をダウンロードします。</p>
+          <a href="https://github.com/kaeruko/minapp_apps">minapp_apps を開く</a>
+        </article>
+        <article class="guide-card">
+          <div class="guide-no">STEP 2</div>
+          <h2>ZIPを展開</h2>
+          <p>ダウンロードしたZIPを開き、改造したいアプリのフォルダへ進みます。</p>
+        </article>
+        <article class="guide-card">
+          <div class="guide-no">STEP 3</div>
+          <h2>index.html をAIへ</h2>
+          <p>アプリの `index.html` をChatGPTなどへ渡して、変えたい内容を伝えます。</p>
+        </article>
+        <article class="guide-card">
+          <div class="guide-no">STEP 4</div>
+          <h2>Girlsへ追加</h2>
+          <p>完成したHTMLをWebポータルへ貼るか、ファイルとして選んでアップロードします。</p>
+        </article>
+      </div>
+
+      <div class="content-card" style="margin-top:22px">
+        <div class="shot-row">
+          <div class="shot" data-shot="assets/13-download-zip.png"><div class="shot-placeholder"><span>♡</span><strong>Download ZIP</strong><code>13-download-zip.png</code></div></div>
+          <div class="shot" data-shot="assets/14-open-index.png"><div class="shot-placeholder"><span>♡</span><strong>index.html を開く</strong><code>14-open-index.png</code></div></div>
+          <div class="shot" data-shot="assets/15-ai-customize.png"><div class="shot-placeholder"><span>♡</span><strong>AIに改造をお願い</strong><code>15-ai-customize.png</code></div></div>
+        </div>
+        <div class="prompt-box">
+          <strong>AIへのお願い例</strong>
+          <p class="prompt-text">この index.html は、みんアプ Girlsで使うアプリです。今の機能は壊さずに、背景をピンクの水玉にして、ボタンをハート形の雰囲気に変えて。HTML・CSS・JavaScriptは1つの index.html の中にまとめたままにして。</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>© CLOXS LLC / みんアプ Girls</footer>
+  <script>
+    document.querySelectorAll('[data-shot]').forEach((box)=>{
+      const src=box.dataset.shot;
+      if(!src)throw new Error('data-shot is required');
+      const img=new Image();
+      img.alt=box.querySelector('strong')?.textContent||'みんアプ Girlsの画面';
+      img.onload=()=>box.replaceChildren(img);
+      img.onerror=()=>{};
+      img.src=src;
+    });
+  </script>
+</body>
+</html>
