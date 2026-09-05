@@ -1,0 +1,42 @@
+name: Apply garunavi LP final patch
+
+on:
+  push:
+    branches:
+      - feat/garunavi-lp-final
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/garunavi-lp-final
+          fetch-depth: 0
+
+      - name: Patch LP and verify screenshots
+        run: python .tmp/apply_garunavi_final.py
+
+      - name: Verify final diff
+        run: |
+          test -f public/garunavi/assets/android/history_update.png
+          test -f public/garunavi/assets/android/clip_update.png
+          test ! -e public/garunavi/assets/android/history_update.webp
+          test ! -e public/garunavi/assets/android/clip_update.webp
+          test ! -e .tmp/apply_garunavi_final.py
+          test ! -e .github/workflows/apply_garunavi_final.yml
+          grep -q '履歴の新着をまとめてチェック' public/garunavi/index.html
+          grep -q 'クリップしたコメントの反応をまとめて確認' public/garunavi/index.html
+          grep -q '一度読んだトピは、すぐ開ける' public/garunavi/index.html
+          git status --short
+
+      - name: Commit final LP update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "feat: highlight garunavi offline and update features"
+          git push origin HEAD:feat/garunavi-lp-final
