@@ -13,7 +13,13 @@ WORKFLOW = ROOT / ".github" / "workflows" / "apply_garunavi_lp.yml"
 
 
 def decode_asset(prefix: str, parts: int, output: str, expected_len: int, expected_sha256: str) -> None:
-    encoded = "".join((TMP / f"{prefix}_{i:02d}.b64").read_text(encoding="utf-8") for i in range(parts))
+    chunks = [
+        (TMP / f"{prefix}_{i:02d}.b64").read_text(encoding="utf-8")
+        for i in range(parts)
+    ]
+    print(f"{prefix} chunk lengths: {[len(chunk) for chunk in chunks]}")
+    encoded = "".join(chunks)
+    print(f"{prefix} encoded length: {len(encoded)}")
     data = base64.b64decode(encoded, validate=True)
     actual_sha256 = hashlib.sha256(data).hexdigest()
     if len(data) != expected_len:
