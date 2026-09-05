@@ -1,0 +1,94 @@
+name: Apply garunavi LP feature update
+
+on:
+  push:
+    branches:
+      - feat/garunavi-offline-cache-copy
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feat/garunavi-offline-cache-copy
+          fetch-depth: 0
+
+      - name: Add update feature sections
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('public/garunavi/index.html')
+          text = path.read_text(encoding='utf-8')
+
+          old_lead = '<p class="section-lead">Android版の実際の画面といっしょに、がるなびの機能を紹介します。</p>'
+          new_lead = '<p class="section-lead">Android版の実際の画面といっしょに、がるなびならではの便利な機能を紹介します。</p>'
+          if text.count(old_lead) != 1:
+              raise RuntimeError(f'feature lead anchor count must be 1, got {text.count(old_lead)}')
+          text = text.replace(old_lead, new_lead, 1)
+
+          scroll_anchor = '''    <article class="feature-row reverse">
+              <div class="feature-copy">
+                <span class="feature-category">スクロール画面</span>'''
+          if text.count(scroll_anchor) != 1:
+              raise RuntimeError(f'scroll section anchor count must be 1, got {text.count(scroll_anchor)}')
+
+          added = '''    <article class="feature-row reverse">
+              <div class="feature-copy">
+                <span class="feature-category">履歴機能</span>
+                <h3 class="feature-heading">履歴の新着をまとめてチェック</h3>
+                <p class="feature-description">履歴に入れたトピックの新着をまとめて確認。<br>どのトピに何件増えたか、一覧でひと目でわかります。</p>
+              </div>
+              <div class="feature-visual">
+                <div class="screens">
+                  <img class="phone-shot single" src="./assets/android/history_update.webp" alt="Android版の履歴一括更新画面" loading="lazy">
+                </div>
+              </div>
+            </article>
+
+            <article class="feature-row">
+              <div class="feature-copy">
+                <span class="feature-category">クリップ機能</span>
+                <h3 class="feature-heading">クリップしたコメントの反応をまとめて確認</h3>
+                <p class="feature-description">保存したコメントの返信や、いいね・マイナスの変化をまとめて確認。<br>気になるコメントのその後を追いかけやすくなります。</p>
+              </div>
+              <div class="feature-visual">
+                <div class="screens">
+                  <img class="phone-shot single" src="./assets/android/clip_update.webp" alt="Android版のクリップ一括更新画面" loading="lazy">
+                </div>
+              </div>
+            </article>
+
+'''
+          text = text.replace(scroll_anchor, added + scroll_anchor, 1)
+          path.write_text(text, encoding='utf-8')
+
+      - name: Add screenshots from Git blobs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p public/garunavi/assets/android
+          gh api "repos/$GITHUB_REPOSITORY/git/blobs/b8f41ce69463a2a7a1b964ffece98dfdd5f990e9" --jq .content | tr -d '\n' | base64 --decode > public/garunavi/assets/android/history_update.webp
+          gh api "repos/$GITHUB_REPOSITORY/git/blobs/bb9c2d31ebb0e3861291a5496fdea1dccef94486" --jq .content | tr -d '\n' | base64 --decode > public/garunavi/assets/android/clip_update.webp
+          test -s public/garunavi/assets/android/history_update.webp
+          test -s public/garunavi/assets/android/clip_update.webp
+
+      - name: Verify LP references
+        run: |
+          grep -q '履歴の新着をまとめてチェック' public/garunavi/index.html
+          grep -q 'クリップしたコメントの反応をまとめて確認' public/garunavi/index.html
+          grep -q 'history_update.webp' public/garunavi/index.html
+          grep -q 'clip_update.webp' public/garunavi/index.html
+
+      - name: Commit final changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/garunavi_lp_patch.yml
+          git add public/garunavi/index.html public/garunavi/assets/android/history_update.webp public/garunavi/assets/android/clip_update.webp
+          git commit -m "feat: add bulk update features to garunavi LP"
+          git push origin HEAD:feat/garunavi-offline-cache-copy
