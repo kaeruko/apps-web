@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="みんアプ Girlsの新規登録、グループ作成、アプリ追加までを説明します。">
+  <link rel="stylesheet" href="site.css">
+  <title>使い方 | みんアプ Girls</title>
+</head>
+<body>
+  <header class="girls-header">
+    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ"><span class="girls-brand-icon" aria-hidden="true"></span><span>みんアプ <em>Girls</em></span></a>
+    <nav class="girls-nav" aria-label="メインメニュー">
+      <a class="girls-nav-link" href="index.html">ホーム</a>
+      <a class="girls-nav-link active" href="howto.html">使い方</a>
+      <a class="girls-nav-link" href="apps.html">遊べるアプリ</a>
+      <a class="girls-nav-link" href="customize.html">改造の仕方</a>
+      <a class="girls-login-button" href="https://minapp.cloxs.jp/girls.html">ログイン</a>
+    </nav>
+  </header>
+  <div class="lace-strip" aria-hidden="true"></div>
+
+  <main class="page-main">
+    <div class="wrap">
+      <div class="page-heading">
+        <p class="page-kicker">HOW TO START ♡</p>
+        <h1>みんアプ Girlsの使い方</h1>
+        <p>新規登録から、友だちとグループを作って、自分のアプリを追加するところまで。</p>
+      </div>
+
+      <div class="content-card steps">
+        <article class="step">
+          <div class="step-no">1</div>
+          <div>
+            <h2>新規登録する</h2>
+            <p>GirlsアプリからIDとパスワードを登録します。登録したIDはWebポータルへのログインにも使います。</p>
+            <div class="shot-row">
+              <div class="shot" data-shot="assets/01-signup-entry.png"><div class="shot-placeholder"><span>♡</span><strong>新規登録の入口</strong><code>01-signup-entry.png</code></div></div>
+              <div class="shot" data-shot="assets/02-signup-form.png"><div class="shot-placeholder"><span>♡</span><strong>ID・パスワード入力</strong><code>02-signup-form.png</code></div></div>
+              <div class="shot" data-shot="assets/03-signup-done.png"><div class="shot-placeholder"><span>♡</span><strong>登録完了</strong><code>03-signup-done.png</code></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-no">2</div>
+          <div>
+            <h2>グループを作る・参加する</h2>
+            <p>自分でグループを作るか、友だちのグループへ参加します。同じグループのアプリをみんなで遊べます。</p>
+            <div class="shot-row">
+              <div class="shot" data-shot="assets/04-groups.png"><div class="shot-placeholder"><span>♡</span><strong>グループ一覧</strong><code>04-groups.png</code></div></div>
+              <div class="shot" data-shot="assets/05-create-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ作成</strong><code>05-create-group.png</code></div></div>
+              <div class="shot" data-shot="assets/06-join-group.png"><div class="shot-placeholder"><span>♡</span><strong>グループ参加</strong><code>06-join-group.png</code></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-no">3</div>
+          <div>
+            <h2>Webポータルからアプリを追加する</h2>
+            <p>右上の「ログイン」からWebポータルへ。HTMLコードを貼るか、HTML / ZIPファイルを選んでグループへ追加できます。</p>
+            <div class="shot-row">
+              <div class="shot" data-shot="assets/07-web-login.png"><div class="shot-placeholder"><span>♡</span><strong>Webログイン</strong><code>07-web-login.png</code></div></div>
+              <div class="shot" data-shot="assets/08-upload.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ追加</strong><code>08-upload.png</code></div></div>
+              <div class="shot" data-shot="assets/09-my-apps.png"><div class="shot-placeholder"><span>♡</span><strong>自分のアプリ</strong><code>09-my-apps.png</code></div></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-no">4</div>
+          <div>
+            <h2>Girlsで遊ぶ</h2>
+            <p>追加したアプリはGirls側のアプリ一覧から開けます。グループのみんなが同じアプリを使えます。</p>
+            <div class="shot-row">
+              <div class="shot" data-shot="assets/10-app-list.png"><div class="shot-placeholder"><span>♡</span><strong>アプリ一覧</strong><code>10-app-list.png</code></div></div>
+              <div class="shot" data-shot="assets/11-open-app.png"><div class="shot-placeholder"><span>♡</span><strong>アプリを開く</strong><code>11-open-app.png</code></div></div>
+              <div class="shot" data-shot="assets/12-play.png"><div class="shot-placeholder"><span>♡</span><strong>みんなで遊ぶ</strong><code>12-play.png</code></div></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>© CLOXS LLC / みんアプ Girls</footer>
+  <script>
+    document.querySelectorAll('[data-shot]').forEach((box)=>{
+      const src=box.dataset.shot;
+      if(!src)throw new Error('data-shot is required');
+      const img=new Image();
+      img.alt=box.querySelector('strong')?.textContent||'みんアプ Girlsの画面';
+      img.onload=()=>box.replaceChildren(img);
+      img.onerror=()=>{};
+      img.src=src;
+    });
+  </script>
+</body>
+</html>
