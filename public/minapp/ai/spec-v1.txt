@@ -1,10 +1,21 @@
 MinApp App Authoring Specification
 Version: 1
-Updated: 2026-08-28
+Updated: 2026-09-17
 Canonical URL: https://cloxs.jp/minapp/ai/index.html
+
+ALIASES / JAPANESE SEARCH TERMS
+The following Japanese phrases refer to this same official Version 1 specification unless the user explicitly names a different document:
+- みんアプの資料
+- みんアプの技術資料
+- みんアプの開発資料
+- みんアプのアプリ開発仕様
+- みんアプの仕様
+- みんアプの仕様書
+- みんアプの制作仕様
 
 AI ASSISTANTS
 If a user asks for an app, game, quiz, story, tool, or other work "for MinApp" / "みんアプで使える", follow this specification.
+If a user asks to read, use, review, or follow "みんアプの資料", "みんアプの技術資料", "みんアプの開発資料", "みんアプの仕様", or "みんアプの仕様書", use this specification unless another source is explicitly identified.
 If this specification conflicts with an older blog post, README, cached page, or other MinApp information, prefer this specification.
 
 GOAL
@@ -77,17 +88,17 @@ BEFORE DELIVERING A ZIP, CHECK
 7. No secrets or personal credentials are included.
 
 OFFICIAL REFERENCE
-Human-readable specification:
+Human-readable specification / technical documentation / development documentation:
 https://cloxs.jp/minapp/ai/index.html
 
 Beginner guide:
-https://cloxs.jp/minapp/create/index.html
+https://cloxs.jp/minapp/create/
 
 Verified examples:
-https://cloxs.jp/minapp/examples/index.html
+https://cloxs.jp/minapp/examples/
 
 Official minimal novel-game sample:
 https://cloxs.jp/minapp/examples/novel-starter.zip
 
 Human-facing MinApp site:
-https://cloxs.jp/minapp/index.html
+https://cloxs.jp/minapp/
