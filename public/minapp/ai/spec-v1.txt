@@ -30,6 +30,18 @@ BASELINE APP FORMAT
 - Prefer simple vanilla HTML/CSS/JavaScript and no build step.
 - If a framework or build tool is used, deliver the final built static files, not a source project that still requires npm, a compiler, or a development server.
 
+STABLE APP IDENTITY / UPDATES
+- ZIP apps SHOULD contain minapp-package.json at the ZIP root.
+- minapp-package.json is a MinApp-reserved identity file. It is allowed even though other package/build manifests are not.
+- Its exact schema is:
+  {"schema_version":1,"package_id":"0123456789abcdef0123456789abcdef"}
+- package_id MUST be exactly 32 lowercase hexadecimal characters.
+- When creating a genuinely new app, generate a new package_id.
+- When modifying, fixing, extending, or regenerating an existing app, preserve its existing package_id exactly.
+- Never copy one app's package_id into an unrelated app.
+- MinApp uses this stable identity to decide that a changed ZIP is an update of the same app rather than a new app.
+- If the user gives you an existing ZIP containing minapp-package.json, do not remove or replace that file unless the user explicitly asks to create a separate new app.
+
 CURRENT ZIP LIMITS
 - ZIP file: 2 MiB maximum.
 - Total uncompressed size: 8 MiB maximum.
@@ -53,7 +65,8 @@ ALLOWED FILE EXTENSIONS
 .webp
 .ico
 
-Do not include other file types. In particular, do not assume SVG, font files, source maps, package manifests, TypeScript source, or build-system files will be accepted.
+Do not include other file types. In particular, do not include README.md or other Markdown files, SVG, font files, source maps, TypeScript source, or build-system files such as package.json. The reserved minapp-package.json described above is allowed.
+If you need a human-readable note inside the ZIP, use a .txt file such as README.txt.
 
 NETWORK AND SECURITY
 MinApp apps must not depend on external network access.
@@ -80,12 +93,13 @@ All methods return Promises. The bridge can become available after the minapprea
 
 BEFORE DELIVERING A ZIP, CHECK
 1. index.html is at the ZIP root, not inside an extra parent directory.
-2. Every file extension is allowed.
-3. There are no external CDN/API dependencies.
-4. All paths use forward slashes and are relative.
-5. The app works as static files without a server or build step.
-6. The ZIP is within the current size/file-count limits.
-7. No secrets or personal credentials are included.
+2. minapp-package.json is at the ZIP root and has a valid stable package_id; preserve an existing package_id for updates.
+3. Every file extension is allowed; do not include README.md.
+4. There are no external CDN/API dependencies.
+5. All paths use forward slashes and are relative.
+6. The app works as static files without a server or build step.
+7. The ZIP is within the current size/file-count limits.
+8. No secrets or personal credentials are included.
 
 OFFICIAL REFERENCE
 Human-readable specification / technical documentation / development documentation:
