@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="みんアプで動く静的WebアプリをAIが生成するための公式技術資料・開発資料・アプリ開発仕様。ZIP構成、許可ファイル、サイズ制限、外部通信、minapp.state APIを掲載。">
+  <meta name="description" content="みんアプで動く静的WebアプリをAIが生成するための公式技術資料・開発資料・アプリ開発仕様。ZIP構成、更新識別子、許可ファイル、サイズ制限、外部通信、minapp.state APIを掲載。">
   <link rel="canonical" href="https://cloxs.jp/minapp/ai/index.html">
   <title>みんアプ アプリ開発仕様・技術資料 — AIで「みんアプで使えるアプリ」を作る方法</title>
   <style>
@@ -24,16 +24,22 @@
 <ul><li>サーバー不要の静的Webアプリ。</li><li>ZIP直下に <code>index.html</code>。</li><li>ZIP内参照は相対パス。</li><li>完成した静的ファイルをZIPに入れる。npmや開発サーバーが必要な状態で渡さない。</li></ul>
 <pre>app.zip
 ├── index.html
+├── minapp-package.json
 ├── style.css
 ├── game.js
 └── images/
     └── character.png</pre>
+<h2>同じアプリの更新を見分ける仕組み</h2>
+<p>ZIPには、できるだけルート直下に <code>minapp-package.json</code> を入れてください。これは、みんアプが「新しいアプリ」か「既存アプリの更新」かを自動判定するための安定した識別子です。</p>
+<pre>{"schema_version":1,"package_id":"0123456789abcdef0123456789abcdef"}</pre>
+<ul><li><code>package_id</code> は32文字の小文字16進数。</li><li>新しいアプリを作るときは、新しい <code>package_id</code> を1つ生成する。</li><li>既存アプリを修正・改良・再生成するときは、そのZIPに入っている <code>package_id</code> を<strong>絶対に変えずに引き継ぐ</strong>。</li><li>別アプリへ同じ <code>package_id</code> を使い回さない。</li></ul>
+<div class="notice">AIへ: ユーザーから既存ZIPを渡されて修正を頼まれた場合、<code>minapp-package.json</code> を削除・再生成しないでください。同じ <code>package_id</code> を保持することで、再アップロード時に同じアプリが更新されます。</div>
 <h2>現在のZIP制限</h2>
 <ul><li>ZIP本体: 2 MiB以下</li><li>展開後合計: 8 MiB以下</li><li>1ファイル: 4 MiB以下</li><li>100ファイル以下</li></ul>
 <p>暗号化ZIP、symlink、重複パス、絶対パス、backslash path、path traversal、CRC不整合は拒否されます。</p>
 <h2>使えるファイル</h2><pre>.html .css .js .mjs .json .txt
 .png .jpg .jpeg .gif .webp .ico</pre>
-<div class="notice">SVG、フォントファイル、source map、TypeScriptソース、package.jsonなどは許可される前提にしないでください。</div>
+<div class="notice"><code>README.md</code> などのMarkdown、SVG、フォントファイル、source map、TypeScriptソース、<code>package.json</code> などのビルド用ファイルは入れないでください。説明文を同梱したい場合は <code>README.txt</code> を使えます。上記の <code>minapp-package.json</code> はみんアプ専用の予約ファイルとして使用できます。</div>
 <h2>外部通信</h2>
 <p>外部ネットワークに依存させないでください。現在の配信は <code>connect-src 'none'</code>。CDN、外部API、外部画像・フォント、iframe、外部フォーム送信に依存せず、必要ファイルはZIP内へ同梱してください。カメラ・マイク・位置情報も無効です。</p>
 <h2>スマホ向け</h2>
@@ -46,5 +52,5 @@ await minapp.state.set("chapter", { page: 3 })
 await minapp.state.delete("chapter")</pre>
 <p><code>minappready</code> イベント後に利用可能になる場合があります。失敗時に別経路へ勝手にリトライしないでください。</p>
 <h2>返却前チェック</h2>
-<ol><li>index.htmlがZIP直下。</li><li>全ファイルが許可拡張子。</li><li>外部依存なし。</li><li>相対パスとforward slash。</li><li>サーバー/ビルド工程なしで動く。</li><li>サイズ/ファイル数制限内。</li><li>秘密情報を含まない。</li></ol>
+<ol><li>index.htmlがZIP直下。</li><li>minapp-package.jsonがZIP直下にあり、有効なpackage_idを持つ。既存アプリの更新ではpackage_idを保持。</li><li>全ファイルが許可拡張子で、README.mdを含まない。</li><li>外部依存なし。</li><li>相対パスとforward slash。</li><li>サーバー/ビルド工程なしで動く。</li><li>サイズ/ファイル数制限内。</li><li>秘密情報を含まない。</li></ol>
 </main></body></html>
