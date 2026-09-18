@@ -120,6 +120,134 @@
       line-height:1.7;
       text-align:center;
     }
+    .lesson-card-button{
+      width:100%;
+      padding:0;
+      border:0;
+      font:inherit;
+      text-align:inherit;
+      cursor:pointer;
+    }
+    .step-modal[hidden]{display:none}
+    .step-modal{
+      position:fixed;
+      inset:0;
+      z-index:1000;
+      display:grid;
+      place-items:center;
+      padding:20px;
+    }
+    .step-modal-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(83,58,75,.48);
+      backdrop-filter:blur(5px);
+    }
+    .step-modal-panel{
+      position:relative;
+      width:min(820px,100%);
+      max-height:calc(100vh - 40px);
+      overflow:auto;
+      padding:28px;
+      border:1px solid #efcadb;
+      border-radius:28px;
+      background:#fffafc;
+      box-shadow:0 24px 70px rgba(74,45,64,.28);
+    }
+    .step-modal-close{
+      position:absolute;
+      top:14px;
+      right:14px;
+      display:grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      padding:0;
+      border:1px solid #edc9d9;
+      border-radius:50%;
+      background:#fff;
+      color:#8e6078;
+      font-size:24px;
+      line-height:1;
+      cursor:pointer;
+    }
+    .step-modal-kicker{
+      margin:0 46px 5px 0;
+      color:#c37596;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.12em;
+    }
+    .step-modal-title{
+      margin:0;
+      color:#654d5d;
+      font-size:clamp(24px,4vw,34px);
+      line-height:1.25;
+    }
+    .step-modal-copy{
+      margin:8px 0 20px;
+      color:#8a7079;
+      font-size:14px;
+      font-weight:700;
+      line-height:1.75;
+    }
+    .step-demo-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+    }
+    .step-demo{
+      margin:0;
+      padding:12px;
+      border:1px solid #f0d7e2;
+      border-radius:22px;
+      background:#fff;
+    }
+    .step-demo img{
+      display:block;
+      width:100%;
+      max-height:58vh;
+      object-fit:contain;
+      border-radius:16px;
+      background:#fff8fb;
+    }
+    .step-demo figcaption{
+      margin-top:10px;
+      color:#7d6570;
+      font-size:13px;
+      font-weight:800;
+      text-align:center;
+    }
+    .step-modal-actions{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:10px;
+      margin-top:20px;
+    }
+    .step-modal-link,
+    .step-modal-dismiss{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:10px 18px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .step-modal-link{
+      border:1px solid #dcaac0;
+      background:#f4c7d8;
+      color:#674b5a;
+    }
+    .step-modal-dismiss{
+      border:1px solid #e5d4dd;
+      background:#fff;
+      color:#806b75;
+    }
     @media(max-width:860px){
       .lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .lesson-heading{grid-template-columns:1fr}.lesson-progress{width:min(260px,100%)}
@@ -130,6 +258,10 @@
       .lesson-heading{padding:0 4px;margin-bottom:18px}
       .lesson-grid{grid-template-columns:1fr;gap:14px}
       .lesson-card{border-radius:18px}
+      .step-modal{padding:8px}
+      .step-modal-panel{max-height:calc(100vh - 16px);padding:24px 14px 18px;border-radius:22px}
+      .step-demo-grid{grid-template-columns:1fr;gap:12px}
+      .step-demo img{max-height:68vh}
     }
   </style>
   <link rel="stylesheet" href="login-theme.css">
@@ -165,9 +297,9 @@
       </div>
 
       <div class="lesson-grid">
-        <a class="lesson-card" href="apps.html" aria-label="ステップ1 まずアプリで遊んでみよう">
+        <button class="lesson-card lesson-card-button" type="button" id="step1-open" aria-haspopup="dialog" aria-controls="step1-modal" aria-label="ステップ1 まずアプリで遊んでみよう">
           <img src="assets/01-play-app.png" alt="1 まずアプリで遊んでみよう。育成ゲームやカラオケからスタート">
-        </a>
+        </button>
         <a class="lesson-card" href="apps.html" aria-label="ステップ2 改造したいアプリを選ぼう">
           <img src="assets/02-choose-app.png" alt="2 改造したいアプリを選ぼう。ここを変えたいを見つけよう">
         </a>
@@ -185,10 +317,63 @@
         </a>
       </div>
 
-      <p class="lesson-note">カードを押すと、遊べるアプリ・改造ガイド・Girlsポータルの関連ページへ進めます。</p>
+      <p class="lesson-note">カードを押すと、ステップ1は遊び方を表示し、ほかのステップは関連ページへ進みます。</p>
     </section>
   </main>
 
+  <div class="step-modal" id="step1-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step1-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 1 ♡</p>
+      <h2 class="step-modal-title" id="step1-modal-title">まずはアプリで遊んでみよう</h2>
+      <p class="step-modal-copy">「みんアプっち」をタップして、まずは自由に遊んでみよう。遊びながら「ここを変えたい！」を見つけたら、次のステップへ。</p>
+      <div class="step-demo-grid">
+        <figure class="step-demo">
+          <img src="assets/steps/step1-select-minappchi.png" alt="みんアプ Girlsのホーム画面で、みんアプっちをタップする案内">
+          <figcaption>① 「みんアプっち」をタップ♡</figcaption>
+        </figure>
+        <figure class="step-demo">
+          <img src="assets/steps/step1-open-minappchi.png" alt="みんアプっちが開き、育成ゲームで遊べる画面">
+          <figcaption>② アプリがひらいた！</figcaption>
+        </figure>
+      </div>
+      <div class="step-modal-actions">
+        <a class="step-modal-link" href="apps.html">遊べるアプリを見る ♡</a>
+        <button class="step-modal-dismiss" type="button" data-modal-close>閉じる</button>
+      </div>
+    </section>
+  </div>
+
   <footer>© CLOXS LLC / みんアプ Girls</footer>
+  <script>
+    (() => {
+      const trigger = document.getElementById('step1-open');
+      const modal = document.getElementById('step1-modal');
+      const closeButton = modal.querySelector('.step-modal-close');
+      const closers = modal.querySelectorAll('[data-modal-close]');
+      let previousFocus = null;
+
+      const openModal = () => {
+        previousFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      };
+
+      const closeModal = () => {
+        if (modal.hidden) return;
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        if (previousFocus instanceof HTMLElement) previousFocus.focus();
+      };
+
+      trigger.addEventListener('click', openModal);
+      closers.forEach((element) => element.addEventListener('click', closeModal));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !modal.hidden) closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
