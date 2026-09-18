@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みんアプGirls - A4フライヤー（チラシ）</title>
+  <!-- Google Fonts: Zen Maru Gothic, Fredoka, M PLUS Rounded 1c -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700;800&family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              lavender: '#a285d8',
+              lavenderLight: '#f1eafd',
+              lavenderDark: '#7856b8',
+              pink: '#ff8fb1',
+              pinkLight: '#ffeef4',
+              pinkDark: '#eb4d7f',
+              mint: '#63d4be',
+              mintLight: '#e4fbf6',
+              mintDark: '#2ea18a',
+              yellow: '#ffdc69',
+              yellowLight: '#fff8db',
+              cream: '#fffdfa',
+              dark: '#3d2e50',
+              sub: '#6e5d83',
+            }
+          },
+          fontFamily: {
+            maru: ['"Zen Maru Gothic"', '"M PLUS Rounded 1c"', 'sans-serif'],
+            display: ['"Fredoka"', '"Zen Maru Gothic"', 'sans-serif'],
+          },
+          boxShadow: {
+            'pop': '0 8px 20px -4px rgba(162, 133, 216, 0.25)',
+            'pop-pink': '0 8px 20px -4px rgba(255, 143, 177, 0.35)',
+            'paper': '0 25px 50px -12px rgba(61, 46, 80, 0.25), 0 0 0 1px rgba(0,0,0,0.05)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* A4 Size Setting: 210mm x 297mm */
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    body {
+      background-color: #f3eff9;
+      font-family: 'Zen Maru Gothic', sans-serif;
+      color: #3d2e50;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* Print Specific Overrides */
+    @media print {
+      body {
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .flyer-viewport {
+        padding: 0 !important;
+        gap: 0 !important;
+      }
+      .a4-sheet {
+        width: 210mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        page-break-after: always;
+        break-after: page;
+        border-radius: 0 !important;
+      }
+      .a4-sheet:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+    }
+
+    /* Decorative Lace / Scallop patterns */
+    .lace-pattern {
+      background-image: radial-gradient(circle at 10px 0, #ffffff 8px, transparent 9px);
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+    }
+    .lace-pattern-bottom {
+      background-image: radial-gradient(circle at 10px 12px, #ffffff 8px, transparent 9px);
+      background-size: 20px 12px;
+      background-repeat: repeat-x;
+    }
+    .bg-dot-pattern {
+      background-image: radial-gradient(#bba6e6 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+    }
+    .bg-diagonal-stripes {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.4) 12px,
+        rgba(255, 240, 246, 0.5) 12px,
+        rgba(255, 240, 246, 0.5) 24px
+      );
+    }
+    .cut-line {
+      background-image: linear-gradient(to right, #b49fd9 50%, rgba(255,255,255,0) 0%);
+      background-position: bottom;
+      background-size: 12px 2px;
+      background-repeat: repeat-x;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+  <!-- Top Floating Toolbar (Hidden when printing) -->
+  <header class="no-print sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-brand-lavenderLight shadow-sm px-4 py-3">
+    <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <!-- Title & Branding -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-lavender to-brand-pink flex items-center justify-center text-white shadow-sm text-sm">
+          <i class="fa-solid fa-print"></i>
+        </div>
+        <div>
+          <h1 class="text-sm font-extrabold text-brand-dark flex items-center gap-1.5">
+            みんアプGirls <span class="text-xs px-2 py-0.5 rounded-full bg-brand-pinkLight text-brand-pinkDark font-bold">A4 チラシ</span>
+          </h1>
+          <p class="text-[11px] text-brand-sub">イベント・体験会・教室配布用フライヤー（210mm × 297mm）</p>
+        </div>
+      </div>
+
+      <!-- Controls: Toggle Front/Back & Print -->
+      <div class="flex items-center gap-2">
+        <!-- View Toggle Buttons -->
+        <div class="bg-brand-lavenderLight/70 p-1 rounded-xl flex items-center gap-1 text-xs font-bold">
+          <button id="btn-front" onclick="switchView('front')" class="px-3 py-1.5 rounded-lg bg-white text-brand-lavenderDark shadow-sm transition">
+            表面 (キッズ・体験)
+          </button>
+          <button id="btn-back" onclick="switchView('back')" class="px-3 py-1.5 rounded-lg text-brand-sub hover:text-brand-dark transition">
+            裏面 (保護者・詳細)
+          </button>
+          <button id="btn-both" onclick="switchView('both')" class="px-3 py-1.5 rounded-lg text-brand-sub hover:text-brand-dark transition">
+            両面並べる
+          </button>
+        </div>
+
+        <!-- Print / PDF Button -->
+        <button onclick="window.print()" class="px-4 py-1.5 bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white text-xs font-bold rounded-xl shadow-md hover:opacity-95 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>A4で印刷 / PDF保存</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="flyer-viewport w-full flex-1 flex flex-wrap justify-center gap-8 p-4 sm:p-8 overflow-x-auto">
+
+    <!-- ========================================== -->
+    <!-- FRONT SIDE (表面: 子ども・体験者向け) -->
+    <!-- ========================================== -->
+    <article id="sheet-front" class="a4-sheet relative w-[210mm] h-[297mm] min-w-[210mm] max-w-[210mm] min-h-[297mm] max-h-[297mm] bg-white rounded-2xl shadow-paper overflow-hidden flex flex-col justify-between select-none box-border border border-neutral-100">
+      
+      <!-- Top Decorative Lace & Header Banner -->
+      <div class="relative bg-gradient-to-r from-[#ffe4ee] via-[#f2e7fe] to-[#e4f8f4] pt-4 pb-3 px-6 border-b border-brand-pink/20">
+        <!-- Scallop bottom effect -->
+        <div class="absolute bottom-0 left-0 right-0 h-2 lace-pattern opacity-90"></div>
+
+        <div class="flex items-center justify-between">
+          <!-- Cute Sub-tag badge -->
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 shadow-sm border border-brand-pink/30 text-brand-pinkDark text-[11px] font-black tracking-wide">
+            <span class="text-sm">🎀</span> プログラミング知識ゼロでOK！遊んで創るアプリスタジオ
+          </div>
+          <div class="text-[11px] font-bold text-brand-lavenderDark tracking-widest uppercase">
+            Minapp Girls Special Flyer
+          </div>
+        </div>
+
+        <!-- Main Header Title & Catchphrase -->
+        <div class="mt-2.5 flex items-center justify-between">
+          <div>
+            <!-- Logo -->
+            <div class="flex items-center gap-2">
+              <span class="font-display font-black text-3xl tracking-wide text-brand-lavenderDark drop-shadow-sm">
+                Minapp <span class="text-brand-pink">girls</span>
+              </span>
+              <span class="text-xs font-black px-2.5 py-0.5 rounded-full bg-brand-pink text-white">
+                みんアプGirls
+              </span>
+            </div>
+            <!-- Main Catchphrase -->
+            <h2 class="text-[23px] font-black text-brand-dark leading-tight tracking-tight mt-1">
+              あなたの<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-pinkDark via-brand-lavenderDark to-brand-pink">「好き」</span>を、アプリにしてみよう！
+            </h2>
+            <p class="text-[12px] font-bold text-brand-sub mt-0.5">
+              遊ぶ → 改造 → 創る✨ AIと話すだけで、世界にひとつのオリジナルアプリが完成！
+            </p>
+          </div>
+
+          <!-- Small Cute Dog Badge -->
+          <div class="w-16 h-16 rounded-2xl bg-white/90 border-2 border-brand-pinkLight shadow-pop flex flex-col items-center justify-center">
+            <span class="text-2xl animate-bounce">🐶</span>
+            <span class="text-[9px] font-black text-brand-sub">柴犬こむぎ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Visual Block: Girl Creator, AI Angel, App Mockup -->
+      <div class="px-6 pt-3 pb-2">
+        <div class="relative rounded-3xl bg-gradient-to-br from-[#fff7fb] via-[#fcf5ff] to-[#f2fdfa] border-2 border-brand-lavenderLight/80 p-3.5 shadow-sm overflow-hidden">
+          
+          <!-- Background floating cute symbols -->
+          <span class="absolute top-2 left-4 text-brand-pink/30 text-lg">🌸</span>
+          <span class="absolute top-8 right-1/3 text-brand-lavender/40 text-xl">✨</span>
+          <span class="absolute bottom-2 left-1/4 text-brand-yellow/50 text-base">⭐</span>
+          <span class="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-brand-mintLight/50 -z-0"></span>
+
+          <div class="relative z-10 grid grid-cols-12 gap-3 items-center">
+            
+            <!-- Left: Smartphone Shell with Real App Screen -->
+            <div class="col-span-4 flex justify-center">
+              <div class="w-[155px] bg-neutral-900 rounded-[28px] p-2 shadow-xl border-2 border-white ring-4 ring-brand-pinkLight/80">
+                <!-- Notch -->
+                <div class="w-12 h-3 bg-neutral-900 rounded-full mx-auto mb-1 flex items-center justify-center">
+                  <div class="w-6 h-1 bg-neutral-700 rounded-full"></div>
+                </div>
+                <!-- Screen Content -->
+                <div class="rounded-[20px] bg-gradient-to-b from-[#fbe9f3] via-[#f7eefc] to-white p-2 flex flex-col items-center border border-pink-100 text-center">
+                  <span class="text-[8px] font-mono tracking-widest text-brand-pink/70">✿ ✿ ✿ ✿ ✿</span>
+                  <div class="font-display font-extrabold text-sm text-brand-lavenderDark mt-0.5">
+                    Minapp <span class="text-brand-pink text-[10px]">girls</span>
+                  </div>
+                  <!-- Mini Mascot -->
+                  <div class="w-11 h-11 rounded-full bg-white/90 border border-brand-pink/30 my-1 flex items-center justify-center text-xl shadow-inner">
+                    🐶
+                  </div>
+                  <!-- Custom App Elements -->
+                  <div class="w-full space-y-1 my-0.5">
+                    <div class="bg-white rounded-md py-0.5 px-1.5 text-[8px] text-neutral-400 border border-brand-lavenderLight text-left flex items-center gap-1">
+                      <i class="fa-solid fa-user text-[7px] text-brand-lavender"></i> ここあちゃん
+                    </div>
+                    <div class="w-full py-1 bg-gradient-to-r from-brand-lavender to-brand-lavenderDark text-white font-bold text-[8px] rounded-md shadow-xs">
+                      ログイン
+                    </div>
+                    <div class="w-full py-0.5 bg-brand-mint text-white font-bold text-[8px] rounded-md shadow-xs">
+                      柴犬の日記をひらく ✨
+                    </div>
+                  </div>
+                  <div class="text-[7px] font-bold text-brand-pinkDark mt-0.5">
+                    💕 ハート+128件
+                  </div>
+                </div>
+                <!-- Bottom bar -->
+                <div class="w-12 h-1 bg-neutral-600 rounded-full mx-auto mt-1.5"></div>
+              </div>
+            </div>
+
+            <!-- Center: Interactive Dialogue / AI Angel Partner -->
+            <div class="col-span-4 flex flex-col items-center text-center space-y-1.5">
+              <!-- AI Speech Bubble -->
+              <div class="relative bg-white px-3 py-2 rounded-2xl shadow-sm border-2 border-brand-lavenderLight text-[10px] font-bold text-brand-dark leading-snug">
+                「背景をピンクにして、<br>ハートのボタンをつけて！」
+                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-x-4 border-x-transparent border-t-8 border-t-brand-lavenderLight"></div>
+              </div>
+
+              <!-- AI Partner Angel Robot Mascot -->
+              <div class="relative my-0.5">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-brand-lavenderLight to-white border-2 border-brand-lavender flex items-center justify-center text-2xl shadow-pop">
+                  🤖
+                </div>
+                <span class="absolute -top-1 -right-1 text-xs">🪽</span>
+                <span class="absolute -top-1 -left-1 text-xs">🪽</span>
+                <span class="absolute -top-2 left-1/2 -translate-x-1/2 text-xs">👑</span>
+              </div>
+
+              <!-- AI Reply Bubble -->
+              <div class="bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white px-3 py-1.5 rounded-2xl shadow-pop-pink text-[10px] font-bold leading-snug">
+                「了解！ボタンを追加して<br>いちご色に変身させたよ✨」
+              </div>
+            </div>
+
+            <!-- Right: Human Girl Creator Vector Illustration -->
+            <div class="col-span-4 flex flex-col items-center justify-center">
+              <div class="relative w-28 h-28 bg-white/90 rounded-3xl p-1 shadow-sm border-2 border-brand-pink/30 flex items-center justify-center">
+                
+                <!-- SVG Illustration: Cute girl happily drawing on tablet -->
+                <svg viewBox="0 0 120 120" class="w-full h-full">
+                  <!-- Girl Back Hair (Twin Tails) -->
+                  <circle cx="28" cy="62" r="16" fill="#6d4734"/>
+                  <circle cx="92" cy="62" r="16" fill="#6d4734"/>
+                  <ellipse cx="26" cy="74" rx="8" ry="14" fill="#6d4734"/>
+                  <ellipse cx="94" cy="74" rx="8" ry="14" fill="#6d4734"/>
+                  <!-- Hair Ribbons -->
+                  <polygon points="28,52 20,46 24,54" fill="#ff8fb1"/>
+                  <polygon points="28,52 36,46 32,54" fill="#ff8fb1"/>
+                  <circle cx="28" cy="52" r="3" fill="#eb4d7f"/>
+                  <polygon points="92,52 84,46 88,54" fill="#ff8fb1"/>
+                  <polygon points="92,52 100,46 96,54" fill="#ff8fb1"/>
+                  <circle cx="92" cy="52" r="3" fill="#eb4d7f"/>
+                  
+                  <!-- Body & Checked Dress -->
+                  <path d="M42,75 Q60,68 78,75 L84,115 L36,115 Z" fill="#d9cbf3"/>
+                  <path d="M46,84 L74,84 M49,94 L71,94 M52,104 L68,104" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M50,75 L50,115 M60,70 L60,115 M70,75 L70,115" stroke="#ffffff" stroke-width="1.5"/>
+
+                  <!-- Collar -->
+                  <path d="M50,75 Q60,82 70,75" fill="#ffffff" stroke="#a285d8" stroke-width="1.5"/>
+
+                  <!-- Face -->
+                  <circle cx="60" cy="52" r="23" fill="#ffede3"/>
+                  <!-- Front Bangs -->
+                  <path d="M37,50 C38,36 50,28 60,28 C70,28 82,36 83,50 C77,44 72,46 66,44 C60,42 54,46 48,44 C42,46 38,48 37,50 Z" fill="#7d533d"/>
+                  
+                  <!-- Cheeks & Eyes -->
+                  <circle cx="49" cy="55" r="2.8" fill="#3d2e50"/>
+                  <circle cx="50" cy="54" r="0.9" fill="#ffffff"/>
+                  <circle cx="71" cy="55" r="2.8" fill="#3d2e50"/>
+                  <circle cx="72" cy="54" r="0.9" fill="#ffffff"/>
+                  <ellipse cx="44" cy="59" rx="3.5" ry="2" fill="#ff9ebb" opacity="0.8"/>
+                  <ellipse cx="76" cy="59" rx="3.5" ry="2" fill="#ff9ebb" opacity="0.8"/>
+                  <!-- Smile -->
+                  <path d="M57,60 Q60,63 63,60" fill="none" stroke="#eb4d7f" stroke-width="1.5" stroke-linecap="round"/>
+
+                  <!-- Tablet in hand -->
+                  <rect x="42" y="85" width="36" height="26" rx="4" fill="#ffffff" stroke="#7856b8" stroke-width="2"/>
+                  <rect x="46" y="89" width="28" height="18" rx="2" fill="#ffeaf1"/>
+                  <circle cx="60" cy="98" r="4" fill="#ff8fb1"/>
+                  <!-- Hands -->
+                  <circle cx="41" cy="98" r="4" fill="#ffede3"/>
+                  <circle cx="79" cy="98" r="4" fill="#ffede3"/>
+                  <!-- Stylus Pen -->
+                  <line x1="77" y1="96" x2="68" y2="92" stroke="#eb4d7f" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+
+                <span class="absolute -bottom-2 bg-brand-pink text-white text-[9px] font-black px-2 py-0.5 rounded-full shadow-xs">
+                  クリエイター体験 ✨
+                </span>
+              </div>
+              <div class="text-[10px] font-black text-brand-dark mt-1 text-center">
+                「わたし専用アプリが<br>できちゃった！」
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Steps Panels -->
+      <div class="px-6 py-2">
+        <div class="text-center mb-2">
+          <span class="inline-block px-3 py-0.5 rounded-full bg-brand-lavenderLight text-brand-lavenderDark text-[10px] font-black tracking-wider uppercase">
+            How It Works
+          </span>
+          <h3 class="text-base font-black text-brand-dark mt-0.5">
+            プログラミング不要！たった3つのステップ
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3">
+          
+          <!-- Step 1: 遊ぶ -->
+          <div class="bg-[#fff9fc] rounded-2xl p-3 border-2 border-pink-100 flex flex-col justify-between shadow-xs">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="w-6 h-6 rounded-full bg-brand-pink text-white text-[11px] font-black flex items-center justify-center">1</span>
+                <span class="text-lg">🎮</span>
+              </div>
+              <h4 class="text-xs font-black text-brand-pinkDark">① 遊ぶ (Play)</h4>
+              <p class="text-[10px] text-brand-sub mt-1 leading-snug font-medium">
+                可愛いゲームや日記アプリで遊んで「たのしい！」を見つけよう。
+              </p>
+            </div>
+            <div class="mt-2 pt-1.5 border-t border-pink-200/60 flex items-center gap-1.5 text-[9px] font-bold text-neutral-600">
+              <span class="text-xs">🐶</span>
+              <span>柴犬日記 / きせかえ</span>
+            </div>
+          </div>
+
+          <!-- Step 2: 改造 -->
+          <div class="bg-[#fcf8ff] rounded-2xl p-3 border-2 border-brand-lavender shadow-pop flex flex-col justify-between relative">
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-lavenderDark to-brand-pink text-white text-[8px] font-black px-2 py-0.2 rounded-full shadow-xs whitespace-nowrap">
+              ここがすごい！AI対話 ✨
+            </span>
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="w-6 h-6 rounded-full bg-brand-lavenderDark text-white text-[11px] font-black flex items-center justify-center">2</span>
+                <span class="text-lg">🪄</span>
+              </div>
+              <h4 class="text-xs font-black text-brand-lavenderDark">② 改造 (Customize)</h4>
+              <p class="text-[10px] text-brand-sub mt-1 leading-snug font-medium">
+                「背景をピンクに」「ハートをつけて」とAIにチャットするだけ！
+              </p>
+            </div>
+            <div class="mt-2 pt-1.5 border-t border-purple-200/60 flex items-center gap-1.5 text-[9px] font-bold text-neutral-600">
+              <span class="text-xs">🤖</span>
+              <span>AIがその場でコード変換</span>
+            </div>
+          </div>
+
+          <!-- Step 3: 創る -->
+          <div class="bg-[#f2fdf9] rounded-2xl p-3 border-2 border-teal-100 flex flex-col justify-between shadow-xs">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="w-6 h-6 rounded-full bg-brand-mint text-white text-[11px] font-black flex items-center justify-center">3</span>
+                <span class="text-lg">⭐</span>
+              </div>
+              <h4 class="text-xs font-black text-teal-700">③ 創る (Create)</h4>
+              <p class="text-[10px] text-brand-sub mt-1 leading-snug font-medium">
+                世界にひとつの作品に！スマホに追加して友達と一緒に遊ぼう。
+              </p>
+            </div>
+            <div class="mt-2 pt-1.5 border-t border-teal-200/60 flex items-center gap-1.5 text-[9px] font-bold text-neutral-600">
+              <span class="text-xs">👭</span>
+              <span>グループ共有＆発表</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Creation Gallery Examples -->
+      <div class="px-6 py-2 bg-gradient-to-r from-[#fef5f9] via-white to-[#f5f0fd] border-y border-brand-lavenderLight/60">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">✨</span>
+            <h4 class="text-xs font-black text-brand-dark">みんなはどんなアプリを作ってる？</h4>
+          </div>
+          <span class="text-[9px] font-bold text-brand-pinkDark bg-brand-pinkLight px-2 py-0.5 rounded-full">
+            作例アイデアいっぱい！
+          </span>
+        </div>
+
+        <div class="grid grid-cols-4 gap-2.5">
+          <!-- Card 1 -->
+          <div class="bg-white rounded-xl p-2 border border-brand-pinkLight text-center shadow-xs">
+            <div class="w-9 h-9 mx-auto rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-lg mb-1">
+              🐶
+            </div>
+            <div class="text-[10px] font-black text-brand-dark">柴犬のにっき</div>
+            <div class="text-[8px] text-brand-sub">お散歩と写真きろく</div>
+          </div>
+          <!-- Card 2 -->
+          <div class="bg-white rounded-xl p-2 border border-brand-pinkLight text-center shadow-xs">
+            <div class="w-9 h-9 mx-auto rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center text-lg mb-1">
+              🐱
+            </div>
+            <div class="text-[10px] font-black text-brand-dark">Kitten Cafe</div>
+            <div class="text-[8px] text-brand-sub">猫ちゃんメニュー表</div>
+          </div>
+          <!-- Card 3 -->
+          <div class="bg-white rounded-xl p-2 border border-brand-pinkLight text-center shadow-xs">
+            <div class="w-9 h-9 mx-auto rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-lg mb-1">
+              ⭐
+            </div>
+            <div class="text-[10px] font-black text-brand-dark">推し活タイマー</div>
+            <div class="text-[8px] text-brand-sub">次のライブまで計測</div>
+          </div>
+          <!-- Card 4 -->
+          <div class="bg-white rounded-xl p-2 border border-brand-pinkLight text-center shadow-xs">
+            <div class="w-9 h-9 mx-auto rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg mb-1">
+              🐰
+            </div>
+            <div class="text-[10px] font-black text-brand-dark">うさぎきせかえ</div>
+            <div class="text-[8px] text-brand-sub">リボンとお洋服コーデ</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA, QR Code, and Cut-line Coupon Ticket -->
+      <div class="p-6 pt-3">
+        
+        <!-- Action Callout Box -->
+        <div class="bg-gradient-to-r from-brand-lavender to-brand-lavenderDark rounded-2xl p-3.5 text-white shadow-pop flex items-center justify-between">
+          <div class="space-y-1">
+            <div class="inline-block bg-brand-yellow text-brand-dark font-black text-[9px] px-2 py-0.5 rounded-md">
+              完全無料・クレカ不要
+            </div>
+            <h4 class="text-sm font-black leading-tight">
+              スマホやタブレットで、今すぐあそぼう！
+            </h4>
+            <p class="text-[10px] text-white/90">
+              Webブラウザで開くだけ！アプリの面倒なインストールも不要です
+            </p>
+          </div>
+
+          <!-- QR Code Mockup -->
+          <div class="flex items-center gap-2 bg-white rounded-xl p-2 text-brand-dark shadow-sm">
+            <div class="w-16 h-16 bg-neutral-900 rounded-lg p-1 flex items-center justify-center">
+              <!-- SVG QR Pattern -->
+              <svg viewBox="0 0 40 40" class="w-full h-full fill-white">
+                <rect x="2" y="2" width="12" height="12" fill="white"/>
+                <rect x="4" y="4" width="8" height="8" fill="#171717"/>
+                <rect x="6" y="6" width="4" height="4" fill="white"/>
+                <rect x="26" y="2" width="12" height="12" fill="white"/>
+                <rect x="28" y="4" width="8" height="8" fill="#171717"/>
+                <rect x="30" y="6" width="4" height="4" fill="white"/>
+                <rect x="2" y="26" width="12" height="12" fill="white"/>
+                <rect x="4" y="28" width="8" height="8" fill="#171717"/>
+                <rect x="6" y="30" width="4" height="4" fill="white"/>
+                <rect x="18" y="4" width="4" height="8" fill="white"/>
+                <rect x="18" y="18" width="4" height="4" fill="white"/>
+                <rect x="26" y="18" width="6" height="4" fill="white"/>
+                <rect x="34" y="18" width="4" height="10" fill="white"/>
+                <rect x="18" y="26" width="4" height="8" fill="white"/>
+                <rect x="26" y="28" width="8" height="4" fill="white"/>
+                <rect x="24" y="34" width="6" height="4" fill="white"/>
+              </svg>
+            </div>
+            <div class="text-left pr-1">
+              <div class="text-[8px] font-black text-brand-pinkDark">カメラで読み取るだけ</div>
+              <div class="text-[10px] font-black text-brand-dark">無料体験アクセス</div>
+              <div class="text-[8px] text-brand-sub mt-0.5">または検索：<br><span class="font-bold underline text-brand-lavenderDark">みんアプGirls</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cut-line Perforated Coupon Ticket -->
+        <div class="mt-3 relative pt-2">
+          <!-- Dashed cut line with scissors -->
+          <div class="cut-line w-full h-2 mb-2 flex items-center">
+            <span class="bg-white px-2 text-[10px] text-brand-lavenderDark font-bold flex items-center gap-1">
+              <i class="fa-solid fa-scissors transform -rotate-90"></i> キリトリ線（体験チケット＆特典）
+            </span>
+          </div>
+
+          <div class="rounded-xl border-2 border-dashed border-brand-pink bg-[#fff7fa] p-2.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-pink text-white flex items-center justify-center text-xl shadow-xs">
+                🎁
+              </div>
+              <div>
+                <div class="inline-block px-2 py-0.5 rounded bg-brand-pinkDark text-white text-[8px] font-black">
+                  チラシ持参 / QR読取限定 特典
+                </div>
+                <div class="text-xs font-black text-brand-dark">
+                  柴犬＆パステルカフェ「限定きせかえスタンプセット」プレゼント！
+                </div>
+                <div class="text-[9px] text-brand-sub">
+                  初回登録時にコード <span class="font-mono font-bold text-brand-pinkDark bg-white px-1.5 py-0.5 rounded border border-pink-200">GIRLS2026</span> を入れると自動適用されます
+                </div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-[9px] font-bold text-neutral-400">有効期限: 2026年12月末日</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Front Footer Bar -->
+      <div class="bg-[#f7f2fc] px-6 py-2 border-t border-brand-lavenderLight flex items-center justify-between text-[9px] text-brand-sub font-medium">
+        <div>
+          <span>運営：みんアプGirlsプロジェクト</span>
+          <span class="mx-2">|</span>
+          <span>推奨環境：iOS, iPadOS, Android, 各種ブラウザ</span>
+        </div>
+        <div class="text-brand-lavenderDark font-bold">
+          裏面もぜひご覧ください（保護者・安心設計ガイド）▶
+        </div>
+      </div>
+
+    </article>
+
+    <!-- ========================================== -->
+    <!-- BACK SIDE (裏面: 保護者向け・教育安心設計) -->
+    <!-- ========================================== -->
+    <article id="sheet-back" class="a4-sheet relative w-[210mm] h-[297mm] min-w-[210mm] max-w-[210mm] min-h-[297mm] max-h-[297mm] bg-white rounded-2xl shadow-paper overflow-hidden flex flex-col justify-between select-none box-border border border-neutral-100">
+      
+      <!-- Back Top Header -->
+      <div class="bg-gradient-to-r from-[#f0ebfc] via-[#f9f3fd] to-[#edf9f6] pt-4 pb-3 px-6 border-b border-brand-lavenderLight">
+        <div class="flex items-center justify-between mb-1">
+          <span class="px-3 py-0.5 rounded-full bg-brand-lavenderDark text-white text-[10px] font-black tracking-wider uppercase">
+            For Parents & Educators
+          </span>
+          <span class="text-[10px] font-bold text-brand-sub">保護者・教育関係者の皆様へ</span>
+        </div>
+        
+        <h2 class="text-[21px] font-black text-brand-dark leading-tight mt-1">
+          子どもの「好き！」という気持ちを、<br>
+          これからの時代に必要な<span class="text-brand-lavenderDark">「デジタル創造力」</span>へ。
+        </h2>
+        <p class="text-[11px] text-brand-sub mt-1">
+          「みんアプGirls」は、受け身のゲーム遊びから脱却し、AIと一緒に自分のアイデアを形にする次世代型クリエイティブ学習プラットフォームです。
+        </p>
+      </div>
+
+      <!-- 3 Key Merits for Parents -->
+      <div class="px-6 py-3">
+        <div class="text-center mb-3">
+          <span class="text-xs font-black text-brand-lavenderDark tracking-widest uppercase">3つの安心＆学びのポイント</span>
+        </div>
+
+        <div class="space-y-2.5">
+          <!-- Merit 1 -->
+          <div class="p-3 rounded-2xl bg-[#faf7ff] border border-brand-lavenderLight flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-brand-lavender text-white flex-shrink-0 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-brain"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-black text-brand-dark flex items-center gap-2">
+                1. AIとの対話で「課題解決力」と「言葉で伝える力」が身につく
+                <span class="text-[9px] bg-brand-lavenderLight text-brand-lavenderDark px-2 py-0.2 rounded-full font-bold">思考力の育成</span>
+              </h3>
+              <p class="text-[10px] text-brand-sub mt-1 leading-relaxed">
+                英語のコードを暗記するのではなく、「どう変えたいか」「どうすれば使いやすくなるか」を考え、AIに分かりやすく指示を出すプロセスを通じて、プログラミング的思考力と要約力が自然に養われます。
+              </p>
+            </div>
+          </div>
+
+          <!-- Merit 2 -->
+          <div class="p-3 rounded-2xl bg-[#fff7fa] border border-brand-pinkLight flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-brand-pink text-white flex-shrink-0 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-black text-brand-dark flex items-center gap-2">
+                2. 子ども専用の安心・安全なクローズド環境
+                <span class="text-[9px] bg-brand-pinkLight text-brand-pinkDark px-2 py-0.2 rounded-full font-bold">セーフティ設計</span>
+              </h3>
+              <p class="text-[10px] text-brand-sub mt-1 leading-relaxed">
+                不適切な単語のAI自動検知・フィルタリングを標準搭載。知らないユーザーとの無秩序なチャットは遮断され、招待制のグループ機能でお友達やご家族とだけ安全に作品を見せ合えます。
+              </p>
+            </div>
+          </div>
+
+          <!-- Merit 3 -->
+          <div class="p-3 rounded-2xl bg-[#f2fcf8] border border-brand-mint/40 flex items-start gap-3.5">
+            <div class="w-10 h-10 rounded-xl bg-brand-mint text-white flex-shrink-0 flex items-center justify-center text-lg shadow-sm">
+              <i class="fa-solid fa-tablet-screen-button"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-black text-teal-800 flex items-center gap-2">
+                3. 高価なパソコンは不要！スマホやiPadですぐスタート
+                <span class="text-[9px] bg-brand-mintLight text-teal-700 px-2 py-0.2 rounded-full font-bold">手軽にはじまる</span>
+              </h3>
+              <p class="text-[10px] text-brand-sub mt-1 leading-relaxed">
+                高スペックなPCや複雑な開発ツールのセットアップは一切不要。普段お使いのご家庭のタブレットやスマートフォンから、ブラウザで即座にアプリ制作を楽しめます。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="px-6 py-2 bg-gradient-to-r from-[#faf8fc] to-white border-y border-neutral-100">
+        <h3 class="text-xs font-black text-brand-dark mb-2 flex items-center gap-1.5">
+          <i class="fa-solid fa-circle-question text-brand-lavenderDark"></i>
+          よくあるご質問（FAQ）
+        </h3>
+
+        <div class="grid grid-cols-2 gap-3 text-left">
+          
+          <div class="bg-white p-2.5 rounded-xl border border-neutral-200/80 shadow-xs">
+            <div class="text-[10px] font-black text-brand-dark flex items-center gap-1">
+              <span class="text-brand-pinkDark font-bold">Q.</span> 利用にお金はかかりますか？
+            </div>
+            <div class="text-[9px] text-brand-sub mt-1 leading-snug">
+              基本機能（アプリのプレイ、AIによる改造、自作アプリの保存・グループ共有）はずっと無料でお使いいただけます。勝手に課金される心配もありません。
+            </div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-xl border border-neutral-200/80 shadow-xs">
+            <div class="text-[10px] font-black text-brand-dark flex items-center gap-1">
+              <span class="text-brand-pinkDark font-bold">Q.</span> 小学生でも一人で楽しめますか？
+            </div>
+            <div class="text-[9px] text-brand-sub mt-1 leading-snug">
+              はい！ひらがな中心のナビゲーションと直感的なボタン操作に対応しています。AIが優しく褒めながらガイドしてくれるため、お子様だけでも夢中で作れます。
+            </div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-xl border border-neutral-200/80 shadow-xs">
+            <div class="text-[10px] font-black text-brand-dark flex items-center gap-1">
+              <span class="text-brand-pinkDark font-bold">Q.</span> 作ったアプリはどうやって使うの？
+            </div>
+            <div class="text-[9px] text-brand-sub mt-1 leading-snug">
+              タブレットやスマートフォンの「ホーム画面に追加」をすることで、本物のアプリと同じようにアイコンを並べていつでも起動して遊ぶことができます。
+            </div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-xl border border-neutral-200/80 shadow-xs">
+            <div class="text-[10px] font-black text-brand-dark flex items-center gap-1">
+              <span class="text-brand-pinkDark font-bold">Q.</span> 学校や習い事での活用はできますか？
+            </div>
+            <div class="text-[9px] text-brand-sub mt-1 leading-snug">
+              教育機関・プログラミング教室向けの団体管理プランもご用意しております。探究学習やプログラミング自由研究の題材としても好評です。
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Event / Workshop Announcement Space -->
+      <div class="px-6 py-2">
+        <div class="rounded-2xl border-2 border-brand-lavenderLight bg-[#f8f5fd] p-3 flex items-center justify-between">
+          <div class="space-y-1 max-w-[360px]">
+            <span class="inline-block bg-brand-lavenderDark text-white font-black text-[9px] px-2 py-0.5 rounded">
+              無料オンライン体験会＆ワークショップ開催中！
+            </span>
+            <h4 class="text-xs font-black text-brand-dark">
+              「30分でわたし専用アプリが完成！AIアプリクリエイター入門」
+            </h4>
+            <p class="text-[9px] text-brand-sub leading-snug">
+              専任の女性講師とAIと一緒に、初めてのアプリづくりを体験できるZoomイベントを定期開催しています。親子でのご参加も大歓迎です！
+            </p>
+          </div>
+
+          <!-- Date and Registration -->
+          <div class="bg-white p-2.5 rounded-xl border border-brand-lavender text-center min-w-[130px] shadow-xs">
+            <div class="text-[8px] font-bold text-brand-lavenderDark">毎週土日開催（参加無料）</div>
+            <div class="text-[11px] font-black text-brand-dark mt-0.5">オンライン体験予約</div>
+            <div class="mt-1">
+              <span class="inline-block text-[8px] font-bold bg-brand-pinkLight text-brand-pinkDark px-2 py-0.5 rounded-full">
+                定員各回10名・要予約
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back Footer Contact & Verification -->
+      <div class="p-6 pt-2 pb-4">
+        <div class="rounded-2xl bg-white border border-neutral-200 p-3 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-lavender to-brand-pink flex items-center justify-center text-white text-lg">
+              <i class="fa-solid fa-ribbon"></i>
+            </div>
+            <div>
+              <div class="text-xs font-black text-brand-dark">みんアプGirls 運営事務局</div>
+              <div class="text-[9px] text-brand-sub">公式Webサイト: https://minapp-girls.example.jp/</div>
+              <div class="text-[9px] text-brand-sub">お問い合わせ: support@minapp-girls.example.jp</div>
+            </div>
+          </div>
+
+          <!-- Official Account Badges -->
+          <div class="flex items-center gap-2 text-right">
+            <div class="text-[8px] font-bold text-neutral-500">
+              SNSで新作アプリ配信中！<br>
+              <span class="text-brand-lavenderDark">#みんアプGirls で検索</span>
+            </div>
+            <div class="w-12 h-12 bg-neutral-900 rounded-lg p-1 flex items-center justify-center">
+              <!-- Mini QR -->
+              <svg viewBox="0 0 40 40" class="w-full h-full fill-white">
+                <rect x="2" y="2" width="12" height="12" fill="white"/>
+                <rect x="4" y="4" width="8" height="8" fill="#171717"/>
+                <rect x="6" y="6" width="4" height="4" fill="white"/>
+                <rect x="26" y="2" width="12" height="12" fill="white"/>
+                <rect x="28" y="4" width="8" height="8" fill="#171717"/>
+                <rect x="30" y="6" width="4" height="4" fill="white"/>
+                <rect x="2" y="26" width="12" height="12" fill="white"/>
+                <rect x="4" y="28" width="8" height="8" fill="#171717"/>
+                <rect x="6" y="30" width="4" height="4" fill="white"/>
+                <rect x="18" y="8" width="4" height="6" fill="white"/>
+                <rect x="18" y="20" width="4" height="4" fill="white"/>
+                <rect x="28" y="20" width="6" height="4" fill="white"/>
+                <rect x="20" y="30" width="6" height="4" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-2 text-[8px] text-neutral-400">
+          &copy; 2026 Minapp Girls Project. All Rights Reserved. 掲載の内容・デザインは制作時点のものです。
+        </div>
+      </div>
+
+    </article>
+
+  </main>
+
+  <script>
+    const frontSheet = document.getElementById('sheet-front');
+    const backSheet = document.getElementById('sheet-back');
+    const btnFront = document.getElementById('btn-front');
+    const btnBack = document.getElementById('btn-back');
+    const btnBoth = document.getElementById('btn-both');
+
+    function switchView(mode) {
+      // Reset button styles
+      [btnFront, btnBack, btnBoth].forEach(btn => {
+        btn.className = 'px-3 py-1.5 rounded-lg text-brand-sub hover:text-brand-dark transition';
+      });
+
+      if (mode === 'front') {
+        frontSheet.classList.remove('hidden');
+        backSheet.classList.add('hidden');
+        btnFront.className = 'px-3 py-1.5 rounded-lg bg-white text-brand-lavenderDark shadow-sm transition';
+      } else if (mode === 'back') {
+        frontSheet.classList.add('hidden');
+        backSheet.classList.remove('hidden');
+        btnBack.className = 'px-3 py-1.5 rounded-lg bg-white text-brand-lavenderDark shadow-sm transition';
+      } else if (mode === 'both') {
+        frontSheet.classList.remove('hidden');
+        backSheet.classList.remove('hidden');
+        btnBoth.className = 'px-3 py-1.5 rounded-lg bg-white text-brand-lavenderDark shadow-sm transition';
+      }
+    }
+
+    // Default to front view on mobile screens, both on wide screens
+    if (window.innerWidth >= 1650) {
+      switchView('both');
+    } else {
+      switchView('front');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みんアプGirls - あなたの「好き」を、アプリにしてみよう！</title>
+  <!-- Google Fonts: Zen Maru Gothic & Fredoka -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              lavender: '#b89fe6',
+              lavenderLight: '#ede4fb',
+              lavenderDark: '#8b68cb',
+              pink: '#ff9ebb',
+              pinkLight: '#ffeaf1',
+              pinkDark: '#f06292',
+              mint: '#8be5d4',
+              mintLight: '#e4fbf6',
+              yellow: '#ffe382',
+              cream: '#fffdf9',
+              dark: '#48385a',
+              sub: '#7d6c91'
+            }
+          },
+          fontFamily: {
+            sans: ['"Zen Maru Gothic"', 'sans-serif'],
+            display: ['"Fredoka"', '"Zen Maru Gothic"', 'sans-serif']
+          },
+          boxShadow: {
+            'cute': '0 10px 25px -5px rgba(184, 159, 230, 0.35), 0 8px 10px -6px rgba(184, 159, 230, 0.2)',
+            'cute-pink': '0 10px 25px -5px rgba(255, 158, 187, 0.4), 0 8px 10px -6px rgba(255, 158, 187, 0.2)',
+            'pill': '0 6px 0 #9f82d4',
+            'pill-pink': '0 6px 0 #e6759b',
+            'pill-mint': '0 6px 0 #63c4b1',
+          },
+          animation: {
+            'float-slow': 'float 4s ease-in-out infinite',
+            'float-delayed': 'float 5s ease-in-out 1.5s infinite',
+            'pulse-subtle': 'pulseSubtle 2.5s ease-in-out infinite',
+            'sparkle': 'sparkle 1.8s ease-in-out infinite',
+            'wiggle': 'wiggle 1s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { transform: 'scale(1)' },
+              '50%': { transform: 'scale(1.03)' },
+            },
+            sparkle: {
+              '0%, 100%': { opacity: '0.4', transform: 'scale(0.8) rotate(0deg)' },
+              '50%': { opacity: '1', transform: 'scale(1.15) rotate(15deg)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-3deg)' },
+              '50%': { transform: 'rotate(3deg)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #fcf8fd;
+      color: #48385a;
+      overflow-x: hidden;
+      font-family: 'Zen Maru Gothic', sans-serif;
+    }
+    .bg-grid-pattern {
+      background-image: radial-gradient(rgba(184, 159, 230, 0.18) 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+    }
+    .scallop-border {
+      background: radial-gradient(circle, transparent, transparent 50%, #fcf8fd 50%, #fcf8fd 100%);
+      background-size: 20px 20px;
+    }
+    .bubble-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #9f82d4 !important;
+    }
+    .bubble-btn-pink:active {
+      transform: translateY(4px);
+      box-shadow: 0 2px 0 #e6759b !important;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fbf5fc;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d8c6f3;
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b89fe6;
+    }
+  </style>
+</head>
+<body class="bg-grid-pattern antialiased selection:bg-brand-pinkLight selection:text-brand-pinkDark">
+
+  <!-- Background floating cute symbols -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+    <span class="absolute top-12 left-8 text-brand-pink/40 text-2xl animate-float-slow">🌸</span>
+    <span class="absolute top-44 right-12 text-brand-lavender/50 text-3xl animate-float-delayed">✨</span>
+    <span class="absolute top-96 left-1/4 text-brand-yellow/60 text-xl animate-sparkle">⭐</span>
+    <span class="absolute top-2/3 right-1/4 text-brand-pink/30 text-2xl animate-float-slow">🎀</span>
+    <span class="absolute bottom-20 left-12 text-brand-mint/50 text-3xl animate-float-delayed">☁️</span>
+    <span class="absolute bottom-40 right-10 text-brand-lavender/40 text-2xl animate-sparkle">💖</span>
+  </div>
+
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 border-b border-brand-lavenderLight/80 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-lavender to-brand-pink flex items-center justify-center text-white shadow-cute transform group-hover:rotate-6 transition-transform">
+          <i class="fa-solid fa-ribbon text-xl"></i>
+        </div>
+        <div>
+          <span class="font-display font-bold text-2xl tracking-wider text-brand-lavenderDark flex items-center gap-1">
+            Minapp <span class="text-brand-pink">girls</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-brand-pinkLight text-brand-pinkDark font-sans font-bold">みんアプGirls</span>
+          </span>
+          <p class="text-[11px] text-brand-sub hidden sm:block font-medium">遊ぶ・改造・創る AIアプリスタジオ</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 font-bold text-brand-dark">
+        <a href="#about" class="hover:text-brand-lavenderDark transition-colors">みんアプとは？</a>
+        <a href="#howitworks" class="hover:text-brand-lavenderDark transition-colors">3つのステップ</a>
+        <a href="#simulator" class="hover:text-brand-pinkDark flex items-center gap-1 transition-colors">
+          <span class="inline-block w-2 h-2 rounded-full bg-brand-pink animate-ping"></span>
+          AI改造デモ体験
+        </a>
+        <a href="#features" class="hover:text-brand-lavenderDark transition-colors">できること</a>
+        <a href="#faq" class="hover:text-brand-lavenderDark transition-colors">よくある質問</a>
+      </nav>
+
+      <!-- CTA Button in Header -->
+      <div class="flex items-center gap-3">
+        <button onclick="openModal()" class="bubble-btn bg-gradient-to-r from-brand-lavender to-brand-lavenderDark text-white px-5 py-2.5 rounded-full font-bold shadow-pill text-sm sm:text-base flex items-center gap-2 transition hover:opacity-95">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span>無料で体験する</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section class="pt-8 pb-20 sm:pt-16 sm:pb-28 overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+          
+          <!-- Left: Hero Text -->
+          <div class="w-full lg:w-7/12 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-pinkLight border border-brand-pink/30 text-brand-pinkDark text-sm font-bold mb-6 shadow-sm animate-pulse-subtle">
+              <span class="text-base">🎀</span> プログラミングの知識ゼロで大丈夫！
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-black text-brand-dark leading-[1.25] tracking-tight mb-6">
+              「遊ぶ」から「創る」へ。<br>
+              あなたの<span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-pinkDark via-brand-lavenderDark to-brand-pink">「好き」</span>を、<br>
+              アプリにしてみよう✨
+            </h1>
+
+            <p class="text-base sm:text-lg text-brand-sub mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+              まずは可愛いビルトインアプリで遊んでみよう。<br class="hidden sm:inline">
+              「もっとこうしたい！」と思ったら、AIに話しかけるだけ。<br>
+              背景もボタンも機能も、魔法みたいにあなた色に変わります。
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-8">
+              <button onclick="openModal()" class="bubble-btn-pink w-full sm:w-auto bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white text-lg font-bold px-8 py-4 rounded-2xl shadow-pill-pink flex items-center justify-center gap-3 transition">
+                <i class="fa-solid fa-heart text-xl animate-wiggle"></i>
+                <span>今すぐアプリをつくってみる</span>
+              </button>
+              <a href="#simulator" class="bubble-btn w-full sm:w-auto bg-white border-2 border-brand-lavender text-brand-lavenderDark text-lg font-bold px-7 py-4 rounded-2xl shadow-pill flex items-center justify-center gap-2 hover:bg-brand-lavenderLight/30 transition">
+                <i class="fa-solid fa-play text-sm"></i>
+                <span>AI改造デモを試す</span>
+              </a>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm text-brand-sub font-medium">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-brand-mint"></i>
+                <span>完全無料ではじめられる</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-brand-mint"></i>
+                <span>AIがチャットで優しくガイド</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-brand-mint"></i>
+                <span>スマホ・タブレット対応</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Hero Visual Mockup -->
+          <div class="w-full lg:w-5/12 flex justify-center relative">
+            <!-- Glow background circle -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-lavenderLight via-brand-pinkLight to-brand-yellow/30 rounded-full filter blur-3xl opacity-70 -z-10 transform scale-110"></div>
+            
+            <!-- Smartphone Shell -->
+            <div class="relative w-[290px] sm:w-[320px] bg-white rounded-[44px] p-3.5 shadow-2xl border-4 border-white ring-8 ring-brand-lavenderLight/60">
+              
+              <!-- Phone notch / speaker -->
+              <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-5 bg-neutral-900 rounded-full z-30 flex items-center justify-end px-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-blue-900/60 border border-blue-400/40"></div>
+              </div>
+
+              <!-- Phone Screen Content (The Minapp Girls Login Screen Theme) -->
+              <div class="relative rounded-[36px] overflow-hidden bg-gradient-to-b from-[#fbeaf4] via-[#f7eefc] to-[#eef1ff] p-5 pt-8 flex flex-col items-center border border-pink-100">
+                
+                <!-- Lace decorative top -->
+                <div class="w-full text-center text-brand-pink/40 text-xs tracking-[6px] mb-2 font-mono">✿ ✿ ✿ ✿ ✿ ✿ ✿</div>
+
+                <!-- App title inside phone -->
+                <div class="text-center mb-2">
+                  <div class="relative inline-block">
+                    <span class="font-display font-extrabold text-3xl tracking-wide text-brand-lavenderDark drop-shadow-sm">Minapp</span>
+                    <span class="absolute -top-3 -right-4 text-xs bg-brand-pink text-white px-2 py-0.5 rounded-full font-bold transform rotate-12">🎀 girls</span>
+                  </div>
+                  <div class="font-display font-bold text-lg text-brand-lavender leading-none">girls</div>
+                </div>
+
+                <!-- Cute Mascot Dog inside card -->
+                <div class="relative my-2">
+                  <div class="w-24 h-24 sm:w-28 sm:h-28 bg-white/80 rounded-full p-2 shadow-inner border-2 border-brand-pink/30 flex items-center justify-center animate-float-slow">
+                    <!-- SVG Shiba Mascot holding letter -->
+                    <svg viewBox="0 0 100 100" class="w-full h-full">
+                      <!-- Ears -->
+                      <polygon points="25,45 15,20 40,32" fill="#e89d63" stroke="#48385a" stroke-width="2" stroke-linejoin="round"/>
+                      <polygon points="26,40 20,24 36,33" fill="#ffe2d1"/>
+                      <polygon points="75,45 85,20 60,32" fill="#e89d63" stroke="#48385a" stroke-width="2" stroke-linejoin="round"/>
+                      <polygon points="74,40 80,24 64,33" fill="#ffe2d1"/>
+                      <!-- Head -->
+                      <ellipse cx="50" cy="55" rx="33" ry="29" fill="#f0ab71" stroke="#48385a" stroke-width="2.5"/>
+                      <!-- White Cheek patches -->
+                      <ellipse cx="32" cy="62" rx="14" ry="12" fill="#ffffff"/>
+                      <ellipse cx="68" cy="62" rx="14" ry="12" fill="#ffffff"/>
+                      <ellipse cx="50" cy="67" rx="12" ry="11" fill="#ffffff"/>
+                      <!-- Eyes -->
+                      <ellipse cx="36" cy="52" rx="3.5" ry="4" fill="#3a2740"/>
+                      <circle cx="37.5" cy="50.5" r="1.2" fill="#ffffff"/>
+                      <ellipse cx="64" cy="52" rx="3.5" ry="4" fill="#3a2740"/>
+                      <circle cx="65.5" cy="50.5" r="1.2" fill="#ffffff"/>
+                      <!-- Pink Blushes -->
+                      <ellipse cx="25" cy="60" rx="4.5" ry="3" fill="#ffb4c8" opacity="0.8"/>
+                      <ellipse cx="75" cy="60" rx="4.5" ry="3" fill="#ffb4c8" opacity="0.8"/>
+                      <!-- Nose & Mouth -->
+                      <ellipse cx="50" cy="58" rx="3" ry="2" fill="#3a2740"/>
+                      <path d="M47,63 Q50,67 53,63" fill="none" stroke="#3a2740" stroke-width="1.8" stroke-linecap="round"/>
+                      <!-- Cute Envelope in hand -->
+                      <rect x="36" y="66" width="28" height="18" rx="3" fill="#ffffff" stroke="#e89d63" stroke-width="1.5"/>
+                      <polyline points="36,66 50,76 64,66" fill="none" stroke="#e89d63" stroke-width="1.5"/>
+                      <circle cx="50" cy="74" r="2.5" fill="#ff8ba7"/>
+                      <!-- Paws -->
+                      <ellipse cx="35" cy="78" rx="5" ry="4" fill="#ffffff" stroke="#e89d63" stroke-width="1.5"/>
+                      <ellipse cx="65" cy="78" rx="5" ry="4" fill="#ffffff" stroke="#e89d63" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <!-- Speech balloon -->
+                  <div class="absolute -top-3 -right-12 bg-white px-2.5 py-1 rounded-2xl rounded-bl-none shadow-md border border-brand-pinkLight text-[10px] font-bold text-brand-dark animate-pulse-subtle">
+                    Welcome back! 💕
+                  </div>
+                </div>
+
+                <!-- Input Mockups -->
+                <div class="w-full space-y-2.5 my-2">
+                  <div class="bg-white/90 border border-brand-lavenderLight rounded-xl px-3 py-2 text-xs flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-key text-brand-lavender text-xs"></i>
+                    <span class="text-neutral-400">Login ID / ユーザー名</span>
+                  </div>
+                  <div class="bg-white/90 border border-brand-lavenderLight rounded-xl px-3 py-2 text-xs flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-heart text-brand-pink text-xs"></i>
+                    <span class="text-neutral-400">••••••••</span>
+                  </div>
+                  <div class="w-full py-2.5 bg-gradient-to-r from-brand-lavender to-brand-lavenderDark text-white text-center rounded-xl font-bold text-xs shadow-md">
+                    ログイン
+                  </div>
+                </div>
+
+                <!-- New account button -->
+                <div class="w-full py-2 bg-brand-mint text-white text-center rounded-xl font-bold text-xs mt-1 shadow-sm">
+                  新規登録はこちら ✨
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Mascot Speech Card (AI Angel Partner) -->
+            <div class="absolute -bottom-6 -left-6 sm:-left-10 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-cute border border-brand-pinkLight flex items-center gap-3 animate-float-delayed max-w-[230px]">
+              <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-mint to-brand-lavender flex items-center justify-center text-white text-2xl shadow-sm">
+                🤖
+              </div>
+              <div>
+                <div class="text-[11px] font-bold text-brand-pinkDark">AIパートナー</div>
+                <div class="text-xs font-bold text-brand-dark">「どんなアプリに改造する？まかせてね！」</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STREAMING_CHUNK:Rendering Concept 3-Step Section (Play -> Customize -> Create)... -->
+    <section id="howitworks" class="py-16 sm:py-24 bg-gradient-to-b from-white via-[#fcf6fc] to-white relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="inline-block px-4 py-1 rounded-full bg-brand-lavenderLight text-brand-lavenderDark text-xs font-bold tracking-wider uppercase mb-3">
+            3 Simple Steps
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-brand-dark tracking-tight mb-4">
+            「遊ぶ」から始まって、<br>
+            いつのまにか「自分だけの作品」へ
+          </h2>
+          <p class="text-brand-sub text-sm sm:text-base leading-relaxed">
+            難しいプログラミング用語を暗記する必要はありません。<br>
+            遊んで、思いついて、AIとおしゃべりするだけでアプリが生まれます。
+          </p>
+        </div>
+
+        <!-- 3 Cards Layout with arrows -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+          <!-- Step 1: 遊ぶ (Play) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-cute border border-brand-pinkLight/80 hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-extrabold text-4xl text-brand-pink/30 group-hover:text-brand-pink/60 transition">01</span>
+              <span class="px-3 py-1 rounded-full bg-brand-pinkLight text-brand-pinkDark text-xs font-bold">Step 1</span>
+            </div>
+            
+            <div class="w-16 h-16 rounded-2xl bg-brand-pinkLight text-brand-pinkDark flex items-center justify-center text-3xl mb-5 shadow-sm group-hover:rotate-6 transition">
+              🎮
+            </div>
+
+            <h3 class="text-xl font-black text-brand-dark mb-2">遊ぶ (Play)</h3>
+            <p class="text-xs font-bold text-brand-pinkDark mb-3">まずはビルトインアプリで遊ぶ！</p>
+            <p class="text-brand-sub text-sm leading-relaxed mb-4 flex-grow">
+              可愛いミニゲームやお役立ちアプリが最初からいっぱい！直感的に触って「たのしい！」を見つけるところからスタート。
+            </p>
+
+            <div class="bg-[#fef9fc] rounded-2xl p-3 border border-pink-100 flex items-center gap-3">
+              <span class="text-2xl">🐶</span>
+              <span class="text-xs text-brand-dark font-medium">「柴犬の日記」「きせかえカフェ」などで遊べるよ♪</span>
+            </div>
+          </div>
+
+          <!-- Step 2: 改造 (Customize) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-cute border-2 border-brand-lavender hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col">
+            <!-- Popular tag badge -->
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-lavenderDark to-brand-pink text-white text-[11px] font-bold px-4 py-1 rounded-full shadow-md whitespace-nowrap">
+              ここが新しい！AIサポート ✨
+            </div>
+
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-extrabold text-4xl text-brand-lavender/30 group-hover:text-brand-lavender/60 transition">02</span>
+              <span class="px-3 py-1 rounded-full bg-brand-lavenderLight text-brand-lavenderDark text-xs font-bold">Step 2</span>
+            </div>
+            
+            <div class="w-16 h-16 rounded-2xl bg-brand-lavenderLight text-brand-lavenderDark flex items-center justify-center text-3xl mb-5 shadow-sm group-hover:rotate-6 transition">
+              🪄
+            </div>
+
+            <h3 class="text-xl font-black text-brand-dark mb-2">改造 (Customize)</h3>
+            <p class="text-xs font-bold text-brand-lavenderDark mb-3">AIと相談しながらアプリを改造！</p>
+            <p class="text-brand-sub text-sm leading-relaxed mb-4 flex-grow">
+              「背景をパステルピンクにしたい」「ハートのスタンプボタンをつけて！」とAIにチャットするだけで、リアルタイムに変更されます。
+            </p>
+
+            <div class="bg-[#fbf7ff] rounded-2xl p-3 border border-purple-100 flex items-center gap-3">
+              <span class="text-2xl">🤖</span>
+              <span class="text-xs text-brand-dark font-medium">「了解！ハートのボタンを追加したよ！」と即時反映</span>
+            </div>
+          </div>
+
+          <!-- Step 3: 創る (Create) -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-cute border border-brand-mint/40 hover:-translate-y-1.5 transition-all duration-300 relative group flex flex-col">
+            <div class="flex items-center justify-between mb-5">
+              <span class="font-display font-extrabold text-4xl text-brand-mint/40 group-hover:text-brand-mint transition">03</span>
+              <span class="px-3 py-1 rounded-full bg-brand-mintLight text-teal-700 text-xs font-bold">Step 3</span>
+            </div>
+            
+            <div class="w-16 h-16 rounded-2xl bg-brand-mintLight text-teal-600 flex items-center justify-center text-3xl mb-5 shadow-sm group-hover:rotate-6 transition">
+              ⭐
+            </div>
+
+            <h3 class="text-xl font-black text-brand-dark mb-2">創る (Create)</h3>
+            <p class="text-xs font-bold text-teal-600 mb-3">自分だけの作品やアプリを作る！</p>
+            <p class="text-brand-sub text-sm leading-relaxed mb-4 flex-grow">
+              アレンジを重ねて世界に1つだけのオリジナルアプリが完成！作ったアプリを自分の端末に追加したり、グループで友達にシェアして遊べます。
+            </p>
+
+            <div class="bg-[#f2fbf8] rounded-2xl p-3 border border-teal-100 flex items-center gap-3">
+              <span class="text-2xl">👭</span>
+              <span class="text-xs text-brand-dark font-medium">「見てみて！わたしが作った推し活アプリだよ！」</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Banner under steps -->
+        <div class="mt-12 text-center bg-gradient-to-r from-brand-pinkLight via-brand-lavenderLight to-brand-mintLight rounded-2xl p-5 border border-brand-lavenderLight/50 shadow-sm max-w-3xl mx-auto">
+          <p class="font-bold text-brand-dark text-sm sm:text-base flex items-center justify-center gap-2">
+            <i class="fa-solid fa-sparkles text-brand-pinkDark"></i>
+            プログラミングを最初から全部覚えていなくても大丈夫！「楽しむ心」だけでOKです。
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="simulator" class="py-16 sm:py-24 relative overflow-hidden bg-brand-cream border-y border-brand-lavenderLight/50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-brand-pinkLight text-brand-pinkDark text-xs font-bold tracking-wider uppercase mb-3">
+            <i class="fa-solid fa-hand-pointer"></i> Live Simulator
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-black text-brand-dark tracking-tight mb-4">
+            AIとの会話でアプリが変わる！<br>
+            リアルタイム改造を体験してみよう
+          </h2>
+          <p class="text-brand-sub text-sm sm:text-base">
+            ボタンをポチッと押してみてね！AIがあなたの言葉に応えて、右側のアプリ画面をその場でデザインし直します。
+          </p>
+        </div>
+
+        <!-- Interactive Playground Card -->
+        <div class="bg-white rounded-3xl shadow-cute border-2 border-brand-lavenderLight p-4 sm:p-8 max-w-4xl mx-auto">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Left Controls: Chat commands / prompts -->
+            <div class="lg:col-span-6 space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-full bg-brand-lavenderLight flex items-center justify-center text-brand-lavenderDark text-sm">
+                    <i class="fa-solid fa-comments"></i>
+                  </div>
+                  <span class="font-bold text-brand-dark text-sm">AIに指示を出してみる：</span>
+                </div>
+                <button onclick="resetSimulator()" class="text-xs text-brand-sub hover:text-brand-lavenderDark underline font-medium">
+                  初期状態に戻す
+                </button>
+              </div>
+
+              <!-- Prompt Choices -->
+              <div class="grid grid-cols-1 gap-2.5">
+                <button onclick="applyPrompt('pink')" id="btn-pink" class="sim-btn text-left p-3.5 rounded-2xl border-2 border-brand-lavenderLight bg-white hover:border-brand-pink hover:bg-brand-pinkLight/30 transition flex items-center justify-between group">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl">🌸</span>
+                    <div>
+                      <div class="text-xs font-bold text-brand-dark group-hover:text-brand-pinkDark">「背景をいちごみるくピンクにして！」</div>
+                      <div class="text-[11px] text-brand-sub">テーマカラーと壁紙を変更</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-right text-xs text-brand-lavender group-hover:translate-x-1 transition"></i>
+                </button>
+
+                <button onclick="applyPrompt('heart')" id="btn-heart" class="sim-btn text-left p-3.5 rounded-2xl border-2 border-brand-lavenderLight bg-white hover:border-brand-pink hover:bg-brand-pinkLight/30 transition flex items-center justify-between group">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl">💖</span>
+                    <div>
+                      <div class="text-xs font-bold text-brand-dark group-hover:text-brand-pinkDark">「ハートのいいねボタンを追加して！」</div>
+                      <div class="text-[11px] text-brand-sub">機能パーツをリアルタイム追加</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-right text-xs text-brand-lavender group-hover:translate-x-1 transition"></i>
+                </button>
+
+                <button onclick="applyPrompt('mascot')" id="btn-mascot" class="sim-btn text-left p-3.5 rounded-2xl border-2 border-brand-lavenderLight bg-white hover:border-brand-pink hover:bg-brand-pinkLight/30 transition flex items-center justify-between group">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl">🐶</span>
+                    <div>
+                      <div class="text-xs font-bold text-brand-dark group-hover:text-brand-pinkDark">「柴犬のマスコットを呼んで！」</div>
+                      <div class="text-[11px] text-brand-sub">キャラクターの出現アニメーション</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-right text-xs text-brand-lavender group-hover:translate-x-1 transition"></i>
+                </button>
+
+                <button onclick="applyPrompt('cat')" id="btn-cat" class="sim-btn text-left p-3.5 rounded-2xl border-2 border-brand-lavenderLight bg-white hover:border-brand-pink hover:bg-brand-pinkLight/30 transition flex items-center justify-between group">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl">🐱</span>
+                    <div>
+                      <div class="text-xs font-bold text-brand-dark group-hover:text-brand-pinkDark">「ネコカフェのメニュー表に変身させて！」</div>
+                      <div class="text-[11px] text-brand-sub">アプリ全体の内容・レイアウトをガラリと変換</div>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-chevron-right text-xs text-brand-lavender group-hover:translate-x-1 transition"></i>
+                </button>
+              </div>
+
+              <!-- AI Conversation Bubble status -->
+              <div class="bg-gradient-to-r from-brand-lavenderLight/70 to-brand-pinkLight/70 rounded-2xl p-4 border border-brand-lavender/30 flex items-start gap-3">
+                <div class="w-10 h-10 rounded-full bg-white shadow-sm flex-shrink-0 flex items-center justify-center text-xl">
+                  🤖
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-brand-lavenderDark">AIサポーター・ミナちゃん</span>
+                    <span id="ai-status-badge" class="text-[10px] bg-white px-2 py-0.5 rounded-full text-brand-sub font-semibold">待機中</span>
+                  </div>
+                  <p id="ai-response-text" class="text-xs text-brand-dark font-medium mt-1 leading-relaxed">
+                    「上のボタンを押してみてね！あなたのアイデアに合わせて、右側のアプリを一緒に改造するよ〜！」
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Interactive Live App Mockup -->
+            <div class="lg:col-span-6 flex flex-col items-center">
+              <div class="text-[11px] font-bold text-brand-sub mb-2 flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-ping"></span>
+                プレビュー画面（リアルタイム反映）
+              </div>
+
+              <!-- Preview Frame -->
+              <div class="w-[260px] sm:w-[280px] h-[460px] bg-neutral-900 rounded-[38px] p-3 shadow-2xl border-4 border-neutral-800 relative flex flex-col">
+                
+                <!-- Phone top speaker -->
+                <div class="w-20 h-4 bg-neutral-900 rounded-full mx-auto mb-2 flex items-center justify-center">
+                  <div class="w-10 h-1 bg-neutral-700 rounded-full"></div>
+                </div>
+
+                <!-- Inner Dynamic App Canvas -->
+                <div id="sim-app-canvas" class="flex-1 rounded-[28px] bg-gradient-to-b from-purple-50 via-pink-50 to-white p-4 flex flex-col justify-between transition-all duration-500 overflow-hidden relative border border-white/60">
+                  
+                  <!-- App Header Inside -->
+                  <div>
+                    <div class="flex items-center justify-between mb-3">
+                      <span id="sim-app-tag" class="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-lavender text-white">
+                        My Diary
+                      </span>
+                      <span class="text-xs text-neutral-400 font-mono">12:30</span>
+                    </div>
+
+                    <h4 id="sim-app-title" class="font-bold text-brand-dark text-base transition-all">
+                      きょうのできごと 💭
+                    </h4>
+                    <p id="sim-app-desc" class="text-[11px] text-neutral-500 mt-1">
+                      毎日のかわいい瞬間をメモしよう
+                    </p>
+                  </div>
+
+                  <!-- Center Visual Area inside App -->
+                  <div id="sim-app-center" class="my-auto py-4 text-center transition-all duration-500">
+                    <div id="sim-mascot-box" class="w-24 h-24 mx-auto rounded-2xl bg-white/90 shadow-sm border border-purple-100 flex items-center justify-center text-4xl transform transition-transform duration-300">
+                      📝
+                    </div>
+                    <p id="sim-sub-text" class="text-xs font-bold text-brand-sub mt-2">
+                      「まだノートはまっしろです」
+                    </p>
+                  </div>
+
+                  <!-- Bottom Action Buttons inside App -->
+                  <div id="sim-bottom-actions" class="space-y-2">
+                    <div id="sim-extra-widget" class="hidden animate-pulse-subtle bg-white/90 p-2 rounded-xl border border-pink-200 text-center">
+                      <span class="text-xs font-bold text-pink-500">💖 いいね！+128 件集まったよ</span>
+                    </div>
+
+                    <button id="sim-main-btn" class="w-full py-2.5 rounded-xl bg-brand-lavender text-white font-bold text-xs shadow-md transition-all">
+                      きろくを追加する
+                    </button>
+                  </div>
+
+                  <!-- Sparkle burst overlay (hidden by default) -->
+                  <div id="sparkle-overlay" class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-0 transition-opacity duration-300">
+                    <span class="text-4xl animate-wiggle">✨🎉✨</span>
+                  </div>
+
+                </div>
+
+                <!-- Phone bottom home bar -->
+                <div class="w-24 h-1 bg-neutral-600 rounded-full mx-auto mt-2.5"></div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="features" class="py-16 sm:py-24 bg-white relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="inline-block px-4 py-1 rounded-full bg-brand-pinkLight text-brand-pinkDark text-xs font-bold tracking-wider uppercase mb-3">
+            Features
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-brand-dark tracking-tight mb-4">
+            みんアプGirlsでできること
+          </h2>
+          <p class="text-brand-sub text-sm sm:text-base">
+            ただアプリを作るだけじゃない。友達とつながって、広がる楽しいコミュニティ！
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          
+          <!-- Feature 1 -->
+          <div class="p-6 rounded-3xl bg-[#fcf8ff] border border-brand-lavenderLight/70 hover:shadow-cute transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-brand-lavenderLight text-brand-lavenderDark flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-gamepad"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">ビルトインアプリで遊ぶ</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              最初からゲームや着せ替え、メモなど、クオリティの高い可愛いアプリがずらり。タップして遊ぶだけで楽しい！
+            </p>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="p-6 rounded-3xl bg-[#fff7fa] border border-brand-pinkLight/70 hover:shadow-cute-pink transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-brand-pinkLight text-brand-pinkDark flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-robot"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">AIと相談して簡単改造</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              「色を変えたい」「BGMをつけたい」など、思いついたことを友達に話すように伝えるだけで、AIがコードを書いて形にします。
+            </p>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="p-6 rounded-3xl bg-[#f3fbf8] border border-brand-mint/40 hover:shadow-cute transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-brand-mintLight text-teal-600 flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">ゼロからオリジナル制作</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              慣れてきたら完全オリジナルの作品づくりへ！推しのファンアプリや、自分専用のスケジュール帳など自由自在です。
+            </p>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="p-6 rounded-3xl bg-[#fffdf0] border border-brand-yellow/60 hover:shadow-cute transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-[#fff6cc] text-amber-700 flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">作ったアプリをコレクション</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              完成したアプリはホーム画面に自分だけのアイコンとして追加可能。本物のアプリみたいにいつでも起動して使えます。
+            </p>
+          </div>
+
+          <!-- Feature 5 -->
+          <div class="p-6 rounded-3xl bg-[#fbf5fe] border border-brand-lavenderLight/70 hover:shadow-cute transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-brand-lavenderLight text-brand-lavenderDark flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">グループ機能で友達と楽しむ</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              お友達とグループを作って、お互いに作ったアプリを交換したり、共同でひとつのアプリを改造したりできます！
+            </p>
+          </div>
+
+          <!-- Feature 6 -->
+          <div class="p-6 rounded-3xl bg-[#f9f9fc] border border-neutral-200 hover:shadow-cute transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-neutral-100 text-neutral-600 flex items-center justify-center text-2xl mb-4">
+              <i class="fa-solid fa-shield-heart text-brand-pinkDark"></i>
+            </div>
+            <h3 class="text-lg font-bold text-brand-dark mb-2">安心・安全の見守り設計</h3>
+            <p class="text-brand-sub text-sm leading-relaxed">
+              不適切な言葉を自動フィルタリングする安全設計。お子様やプログラミング初心者の方でも安心して楽しめます。
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-[#fcf6fc] to-[#fbf8fd] relative">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <div class="flex flex-col md:flex-row items-center justify-between mb-12">
+          <div>
+            <span class="inline-block px-4 py-1 rounded-full bg-brand-pinkLight text-brand-pinkDark text-xs font-bold tracking-wider uppercase mb-2">
+              User Creations
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-black text-brand-dark tracking-tight">
+              みんなが作ったアプリ集 🌟
+            </h2>
+          </div>
+          <p class="text-brand-sub text-sm mt-2 md:mt-0 max-w-sm">
+            小学生から大人まで、たくさんの「好き」が形になっています！
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          
+          <!-- App 1 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-cute border border-brand-pinkLight/60 text-center group hover:-translate-y-1 transition duration-300">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-tr from-amber-100 to-orange-50 border-2 border-orange-200 flex items-center justify-center text-3xl sm:text-4xl shadow-sm mb-3 group-hover:scale-105 transition">
+              🐶
+            </div>
+            <h4 class="font-bold text-brand-dark text-sm sm:text-base">柴犬のにっき帳</h4>
+            <p class="text-[11px] text-brand-sub mt-1">日々のワンちゃんのお散歩記録</p>
+            <span class="inline-block mt-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-50 text-amber-700">改造：カメラ機能追加</span>
+          </div>
+
+          <!-- App 2 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-cute border border-brand-pinkLight/60 text-center group hover:-translate-y-1 transition duration-300">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-tr from-pink-100 to-rose-50 border-2 border-pink-200 flex items-center justify-center text-3xl sm:text-4xl shadow-sm mb-3 group-hover:scale-105 transition">
+              🐱
+            </div>
+            <h4 class="font-bold text-brand-dark text-sm sm:text-base">Kitten Cafe メモ</h4>
+            <p class="text-[11px] text-brand-sub mt-1">カフェのスタンプカード風手帳</p>
+            <span class="inline-block mt-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-pink-50 text-pink-700">改造：ニャーと鳴くボタン</span>
+          </div>
+
+          <!-- App 3 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-cute border border-brand-pinkLight/60 text-center group hover:-translate-y-1 transition duration-300">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-100 to-purple-50 border-2 border-purple-200 flex items-center justify-center text-3xl sm:text-4xl shadow-sm mb-3 group-hover:scale-105 transition">
+              ⭐
+            </div>
+            <h4 class="font-bold text-brand-dark text-sm sm:text-base">推し活カウントダウン</h4>
+            <p class="text-[11px] text-brand-sub mt-1">次のライブまでの日数を計測</p>
+            <span class="inline-block mt-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-50 text-purple-700">改造：キラキラ星エフェクト</span>
+          </div>
+
+          <!-- App 4 -->
+          <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-cute border border-brand-pinkLight/60 text-center group hover:-translate-y-1 transition duration-300">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-gradient-to-tr from-teal-100 to-emerald-50 border-2 border-teal-200 flex items-center justify-center text-3xl sm:text-4xl shadow-sm mb-3 group-hover:scale-105 transition">
+              🐰
+            </div>
+            <h4 class="font-bold text-brand-dark text-sm sm:text-base">うさぎの着せ替え</h4>
+            <p class="text-[11px] text-brand-sub mt-1">リボンやお洋服をチェンジ！</p>
+            <span class="inline-block mt-3 text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-50 text-teal-700">改造：お洋服を3着追加</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="faq" class="py-16 sm:py-24 bg-white relative">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        
+        <div class="text-center mb-12">
+          <span class="inline-block px-4 py-1 rounded-full bg-brand-lavenderLight text-brand-lavenderDark text-xs font-bold tracking-wider uppercase mb-3">
+            Q&A
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-brand-dark tracking-tight mb-4">
+            よくある質問
+          </h2>
+          <p class="text-brand-sub text-sm sm:text-base">
+            はじめる前に気になるポイントにお答えします
+          </p>
+        </div>
+
+        <div class="space-y-4" id="faq-container">
+          
+          <!-- Q1 -->
+          <div class="border border-brand-lavenderLight rounded-2xl overflow-hidden shadow-sm">
+            <button onclick="toggleFaq(1)" class="w-full text-left p-5 bg-[#fcfaff] hover:bg-[#f7f2fc] transition flex items-center justify-between font-bold text-brand-dark text-sm sm:text-base">
+              <span class="flex items-center gap-3">
+                <span class="text-brand-lavenderDark font-display text-lg">Q.</span>
+                プログラミングをやったことがなくても本当に作れますか？
+              </span>
+              <i id="faq-icon-1" class="fa-solid fa-chevron-down text-brand-lavender text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="faq-ans-1" class="hidden p-5 bg-white text-brand-sub text-sm leading-relaxed border-t border-brand-lavenderLight/50">
+              はい、もちろんです！コードを直接打ち込む必要はありません。「ここをもっと可愛くしたい」「このボタンを押したら音が鳴るようにしたい」と日本語でAIに話しかけるだけで、AIが自動でアプリを組み直してくれます。
+            </div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="border border-brand-lavenderLight rounded-2xl overflow-hidden shadow-sm">
+            <button onclick="toggleFaq(2)" class="w-full text-left p-5 bg-[#fcfaff] hover:bg-[#f7f2fc] transition flex items-center justify-between font-bold text-brand-dark text-sm sm:text-base">
+              <span class="flex items-center gap-3">
+                <span class="text-brand-lavenderDark font-display text-lg">Q.</span>
+                どんな端末で利用できますか？
+              </span>
+              <i id="faq-icon-2" class="fa-solid fa-chevron-down text-brand-lavender text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="faq-ans-2" class="hidden p-5 bg-white text-brand-sub text-sm leading-relaxed border-t border-brand-lavenderLight/50">
+              スマートフォン（iOS / Android）、タブレット（iPad等）、パソコンのブラウザからすぐにご利用いただけます。アプリのインストールなしでもWebブラウザ上で快適に動作します。
+            </div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="border border-brand-lavenderLight rounded-2xl overflow-hidden shadow-sm">
+            <button onclick="toggleFaq(3)" class="w-full text-left p-5 bg-[#fcfaff] hover:bg-[#f7f2fc] transition flex items-center justify-between font-bold text-brand-dark text-sm sm:text-base">
+              <span class="flex items-center gap-3">
+                <span class="text-brand-lavenderDark font-display text-lg">Q.</span>
+                作ったアプリは友達に見せられますか？
+              </span>
+              <i id="faq-icon-3" class="fa-solid fa-chevron-down text-brand-lavender text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="faq-ans-3" class="hidden p-5 bg-white text-brand-sub text-sm leading-relaxed border-t border-brand-lavenderLight/50">
+              はい！グループ機能や専用の共有リンクを使って、お友達や家族に作ったアプリを送って実際に遊んでもらうことができます。
+            </div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="border border-brand-lavenderLight rounded-2xl overflow-hidden shadow-sm">
+            <button onclick="toggleFaq(4)" class="w-full text-left p-5 bg-[#fcfaff] hover:bg-[#f7f2fc] transition flex items-center justify-between font-bold text-brand-dark text-sm sm:text-base">
+              <span class="flex items-center gap-3">
+                <span class="text-brand-lavenderDark font-display text-lg">Q.</span>
+                利用料金はかかりますか？
+              </span>
+              <i id="faq-icon-4" class="fa-solid fa-chevron-down text-brand-lavender text-xs transition-transform duration-300"></i>
+            </button>
+            <div id="faq-ans-4" class="hidden p-5 bg-white text-brand-sub text-sm leading-relaxed border-t border-brand-lavenderLight/50">
+              基本機能（ビルトインアプリのプレイ、AIによる改造、アプリの保存・共有）はすべて無料でご利用いただけます！より高度な機能や無制限のAIリクエストプランも今後ご用意予定です。
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section class="py-16 sm:py-24 bg-gradient-to-r from-[#faeef9] via-[#f4edfd] to-[#ebf7f5] relative overflow-hidden">
+      <!-- Decorative circle rings -->
+      <div class="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-brand-pink/20 filter blur-2xl"></div>
+      <div class="absolute -bottom-16 -left-16 w-64 h-64 rounded-full bg-brand-lavender/20 filter blur-2xl"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+        <div class="w-20 h-20 rounded-3xl bg-white shadow-cute mx-auto flex items-center justify-center text-4xl mb-6 animate-wiggle">
+          🎀
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-black text-brand-dark tracking-tight mb-4">
+          あなたの「好き」を、<br>
+          アプリにしてみよう！
+        </h2>
+        <p class="text-base sm:text-lg text-brand-sub mb-8 max-w-xl mx-auto">
+          「かわいい！」「これ作りたい！」というワクワクがあれば準備完了。<br>
+          AIの仲間たちと一緒に、今日からクリエイターになろう！
+        </p>
+
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+          <button onclick="openModal()" class="bubble-btn-pink w-full sm:w-auto bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white text-lg font-bold px-10 py-4 rounded-2xl shadow-pill-pink flex items-center justify-center gap-3 transition">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span>無料ではじめる（登録1分）</span>
+          </button>
+        </div>
+
+        <p class="text-xs text-brand-sub mt-4 font-medium">
+          ※ クレジットカード登録不要・すぐにお試しいただけます
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-brand-lavenderLight py-12">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-lavender to-brand-pink flex items-center justify-center text-white shadow-sm">
+            <i class="fa-solid fa-ribbon"></i>
+          </div>
+          <div>
+            <span class="font-display font-bold text-xl text-brand-lavenderDark">Minapp <span class="text-brand-pink">girls</span></span>
+            <span class="text-xs text-brand-sub ml-2">みんアプGirls</span>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-6 text-xs text-brand-sub font-medium">
+          <a href="#" class="hover:text-brand-lavenderDark">利用規約</a>
+          <a href="#" class="hover:text-brand-lavenderDark">プライバシーポリシー</a>
+          <a href="#" class="hover:text-brand-lavenderDark">保護者の方へ</a>
+          <a href="#" class="hover:text-brand-lavenderDark">コミュニティガイドライン</a>
+          <a href="#" class="hover:text-brand-lavenderDark">お問い合わせ</a>
+        </div>
+
+        <p class="text-xs text-brand-sub/70">
+          &copy; 2026 Minapp Girls. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Dialog (No browser alert) -->
+  <div id="signup-modal" class="fixed inset-0 bg-neutral-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-[32px] p-6 sm:p-8 max-w-md w-full shadow-2xl border-4 border-brand-pinkLight transform scale-95 transition-transform duration-300 relative">
+      
+      <!-- Close Button -->
+      <button onclick="closeModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-500 flex items-center justify-center transition">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Mascot inside Modal -->
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 mx-auto rounded-full bg-brand-pinkLight flex items-center justify-center text-3xl mb-3 shadow-inner">
+          🐶
+        </div>
+        <h3 class="text-2xl font-black text-brand-dark">みんアプGirlsへようこそ！</h3>
+        <p class="text-xs text-brand-sub mt-1">ニックネームを入力して、すぐ始めよう✨</p>
+      </div>
+
+      <form onsubmit="handleModalSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-brand-dark mb-1">あなたのニックネーム</label>
+          <div class="relative">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-pink">🌸</span>
+            <input type="text" id="user-nickname" placeholder="例: ここあ, さくら" required class="w-full pl-10 pr-4 py-3 rounded-2xl border-2 border-brand-lavenderLight focus:border-brand-pink focus:outline-none text-sm text-brand-dark font-bold">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-brand-dark mb-1">学年 / 年代（任意）</label>
+          <select class="w-full px-4 py-3 rounded-2xl border-2 border-brand-lavenderLight focus:border-brand-pink focus:outline-none text-sm text-brand-dark font-medium bg-white">
+            <option>小学生</option>
+            <option>中学生</option>
+            <option>高校生</option>
+            <option>おとな</option>
+          </select>
+        </div>
+
+        <button type="submit" class="bubble-btn-pink w-full bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white py-3.5 rounded-2xl font-bold shadow-pill-pink transition flex items-center justify-center gap-2 text-base mt-2">
+          <span>アプリスタジオをひらく！</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <!-- Welcome Message Box inside Modal -->
+      <div id="modal-success-msg" class="hidden mt-4 p-4 rounded-2xl bg-brand-mintLight text-teal-800 text-xs text-center font-bold border border-teal-200">
+        🎉 登録準備ができました！スタジオを読み込んでいます...
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simulator Interactive State
+    const canvasEl = document.getElementById('sim-app-canvas');
+    const titleEl = document.getElementById('sim-app-title');
+    const descEl = document.getElementById('sim-app-desc');
+    const tagEl = document.getElementById('sim-app-tag');
+    const mascotBoxEl = document.getElementById('sim-mascot-box');
+    const subTextEl = document.getElementById('sim-sub-text');
+    const extraWidgetEl = document.getElementById('sim-extra-widget');
+    const mainBtnEl = document.getElementById('sim-main-btn');
+    const aiStatusBadge = document.getElementById('ai-status-badge');
+    const aiResponseText = document.getElementById('ai-response-text');
+    const sparkleOverlay = document.getElementById('sparkle-overlay');
+
+    function triggerSparkle() {
+      sparkleOverlay.classList.remove('opacity-0');
+      sparkleOverlay.classList.add('opacity-100');
+      setTimeout(() => {
+        sparkleOverlay.classList.remove('opacity-100');
+        sparkleOverlay.classList.add('opacity-0');
+      }, 700);
+    }
+
+    function applyPrompt(type) {
+      aiStatusBadge.innerText = '改造中...✨';
+      aiStatusBadge.className = 'text-[10px] bg-brand-pink text-white px-2 py-0.5 rounded-full font-bold animate-pulse';
+
+      triggerSparkle();
+
+      // Highlight active button
+      document.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.classList.remove('border-brand-pink', 'bg-brand-pinkLight/40');
+      });
+
+      if (type === 'pink') {
+        document.getElementById('btn-pink').classList.add('border-brand-pink', 'bg-brand-pinkLight/40');
+        
+        canvasEl.className = 'flex-1 rounded-[28px] bg-gradient-to-b from-pink-100 via-rose-50 to-white p-4 flex flex-col justify-between transition-all duration-500 overflow-hidden relative border border-pink-200';
+        titleEl.innerText = 'いちごみるくダイアリー 🍓';
+        descEl.innerText = 'ピンク色にカスタマイズされたよ！';
+        tagEl.innerText = 'Strawberry Pink';
+        tagEl.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-pink text-white';
+        mascotBoxEl.innerHTML = '🍓';
+        subTextEl.innerText = '「あまくて可愛い色に変身！」';
+        mainBtnEl.className = 'w-full py-2.5 rounded-xl bg-gradient-to-r from-brand-pink to-brand-pinkDark text-white font-bold text-xs shadow-md transition-all';
+        
+        aiResponseText.innerText = '「了解！全体をいちごみるくパステルピンクに塗り替えたよ！ふんわり可愛くなったね〜♪」';
+      } 
+      else if (type === 'heart') {
+        document.getElementById('btn-heart').classList.add('border-brand-pink', 'bg-brand-pinkLight/40');
+        
+        extraWidgetEl.classList.remove('hidden');
+        titleEl.innerText = 'ハートいっぱいアプリ 💕';
+        tagEl.innerText = 'Heart Added';
+        mascotBoxEl.innerHTML = '💖';
+        mascotBoxEl.classList.add('animate-wiggle');
+        subTextEl.innerText = '「ハートボタンでみんなからリアクション！」';
+        
+        aiResponseText.innerText = '「ハートのいいねウィジェットを追加したよ！押すたびにハートが飛ぶように仕掛けたよ♪」';
+      }
+      else if (type === 'mascot') {
+        document.getElementById('btn-mascot').classList.add('border-brand-pink', 'bg-brand-pinkLight/40');
+        
+        titleEl.innerText = '柴犬のこむぎちゃん 🐶';
+        descEl.innerText = '元気いっぱいに跳ねています！';
+        tagEl.innerText = 'Minapp Shiba';
+        tagEl.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-400 text-white';
+        mascotBoxEl.innerHTML = '🐶';
+        mascotBoxEl.classList.add('animate-bounce');
+        subTextEl.innerText = '「わんわん！呼んでくれてありがとう！」';
+        mainBtnEl.innerText = 'おやつをあげる 🦴';
+        mainBtnEl.className = 'w-full py-2.5 rounded-xl bg-amber-400 hover:bg-amber-500 text-white font-bold text-xs shadow-md transition-all';
+
+        aiResponseText.innerText = '「マスコットのこむぎちゃん（柴犬）を呼び出したよ！ピョンピョン跳ねて喜んでるみたい！」';
+      }
+      else if (type === 'cat') {
+        document.getElementById('btn-cat').classList.add('border-brand-pink', 'bg-brand-pinkLight/40');
+        
+        canvasEl.className = 'flex-1 rounded-[28px] bg-gradient-to-b from-amber-50 via-orange-50 to-white p-4 flex flex-col justify-between transition-all duration-500 overflow-hidden relative border border-amber-200';
+        titleEl.innerText = 'Kitten Cafe オーダー ☕';
+        descEl.innerText = '猫ちゃんカフェの特製メニュー';
+        tagEl.innerText = 'Cat Cafe Menu';
+        tagEl.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-orange-400 text-white';
+        mascotBoxEl.innerHTML = '🐱';
+        mascotBoxEl.className = 'w-24 h-24 mx-auto rounded-2xl bg-white shadow-sm border border-orange-200 flex items-center justify-center text-4xl transform';
+        subTextEl.innerText = '「ねこパフェ & カプチーノはいかが？」';
+        mainBtnEl.innerText = '注文する (にゃーん)';
+        mainBtnEl.className = 'w-full py-2.5 rounded-xl bg-gradient-to-r from-orange-400 to-amber-500 text-white font-bold text-xs shadow-md transition-all';
+        extraWidgetEl.classList.add('hidden');
+
+        aiResponseText.innerText = '「カフェアプリに大変身！メニューもねこちゃんテーマに書き換えておいたよ〜！」';
+      }
+
+      setTimeout(() => {
+        aiStatusBadge.innerText = '完了！✨';
+        aiStatusBadge.className = 'text-[10px] bg-brand-mint text-teal-900 px-2 py-0.5 rounded-full font-bold';
+      }, 500);
+    }
+
+    function resetSimulator() {
+      document.querySelectorAll('.sim-btn').forEach(btn => {
+        btn.classList.remove('border-brand-pink', 'bg-brand-pinkLight/40');
+      });
+      canvasEl.className = 'flex-1 rounded-[28px] bg-gradient-to-b from-purple-50 via-pink-50 to-white p-4 flex flex-col justify-between transition-all duration-500 overflow-hidden relative border border-white/60';
+      titleEl.innerText = 'きょうのできごと 💭';
+      descEl.innerText = '毎日のかわいい瞬間をメモしよう';
+      tagEl.innerText = 'My Diary';
+      tagEl.className = 'text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-brand-lavender text-white';
+      mascotBoxEl.className = 'w-24 h-24 mx-auto rounded-2xl bg-white/90 shadow-sm border border-purple-100 flex items-center justify-center text-4xl transform transition-transform duration-300';
+      mascotBoxEl.innerHTML = '📝';
+      subTextEl.innerText = '「まだノートはまっしろです」';
+      mainBtnEl.innerText = 'きろくを追加する';
+      mainBtnEl.className = 'w-full py-2.5 rounded-xl bg-brand-lavender text-white font-bold text-xs shadow-md transition-all';
+      extraWidgetEl.classList.add('hidden');
+      aiStatusBadge.innerText = '待機中';
+      aiStatusBadge.className = 'text-[10px] bg-white px-2 py-0.5 rounded-full text-brand-sub font-semibold';
+      aiResponseText.innerText = '「上のボタンを押してみてね！あなたのアイデアに合わせて、右側のアプリを一緒に改造するよ〜！」';
+    }
+
+    // FAQ Accordion Toggle
+    function toggleFaq(index) {
+      const ans = document.getElementById(`faq-ans-${index}`);
+      const icon = document.getElementById(`faq-icon-${index}`);
+      if (ans.classList.contains('hidden')) {
+        ans.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        ans.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // Modal Controls
+    const modal = document.getElementById('signup-modal');
+    function openModal() {
+      modal.classList.remove('hidden');
+      setTimeout(() => {
+        modal.classList.remove('opacity-0');
+        modal.querySelector('div').classList.remove('scale-95');
+        modal.querySelector('div').classList.add('scale-100');
+      }, 10);
+    }
+
+    function closeModal() {
+      modal.classList.add('opacity-0');
+      modal.querySelector('div').classList.remove('scale-100');
+      modal.querySelector('div').classList.add('scale-95');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    }
+
+    // Modal submit handler
+    function handleModalSubmit(e) {
+      e.preventDefault();
+      const nickname = document.getElementById('user-nickname').value;
+      const successBox = document.getElementById('modal-success-msg');
+      successBox.innerText = `🎉 ようこそ、${nickname}ちゃん！スタジオへ案内中...`;
+      successBox.classList.remove('hidden');
+      setTimeout(() => {
+        closeModal();
+        successBox.classList.add('hidden');
+      }, 1800);
+    }
+  </script>
+</body>
+</html>
