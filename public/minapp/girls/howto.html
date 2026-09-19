@@ -219,6 +219,19 @@
       font-weight:800;
       text-align:center;
     }
+    .step-single-demo{
+      display:flex;
+      justify-content:center;
+      margin-top:18px;
+    }
+    .step-single-demo img{
+      display:block;
+      width:min(460px,100%);
+      max-height:72vh;
+      object-fit:contain;
+      border-radius:18px;
+      box-shadow:0 10px 30px rgba(94,64,83,.12);
+    }
     .step-modal-actions{
       display:flex;
       flex-wrap:wrap;
@@ -298,27 +311,27 @@
       </div>
 
       <div class="lesson-grid">
-        <button class="lesson-card lesson-card-button" type="button" id="step1-open" aria-haspopup="dialog" aria-controls="step1-modal" aria-label="ステップ1 まずアプリで遊んでみよう">
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step1-modal" aria-haspopup="dialog" aria-controls="step1-modal" aria-label="ステップ1 まずアプリで遊んでみよう">
           <img src="assets/01-play-app.png" alt="1 まずアプリで遊んでみよう。育成ゲームやカラオケからスタート">
         </button>
-        <a class="lesson-card" href="apps.html" aria-label="ステップ2 改造したいアプリを選ぼう">
-          <img src="assets/02-choose-app.png" alt="2 改造したいアプリを選ぼう。ここを変えたいを見つけよう">
-        </a>
-        <a class="lesson-card" href="customize.html" aria-label="ステップ3 元のアプリを手に入れよう">
-          <img src="assets/03-get-source.png" alt="3 元のアプリを手に入れよう。ZIPをダウンロードしてindex.htmlを開く">
-        </a>
-        <a class="lesson-card" href="customize.html" aria-label="ステップ4 AIに改造をお願いしよう">
-          <img src="assets/04-customize-with-ai.png" alt="4 AIに改造をお願いしよう。色や機能の変更をAIに相談">
-        </a>
-        <a class="lesson-card" href="https://minapp.cloxs.jp/girls.html" aria-label="ステップ5 Girlsにアプリを追加しよう">
-          <img src="assets/05-add-to-girls.png" alt="5 Girlsにアプリを追加しよう。HTMLまたはZIPをアップロード">
-        </a>
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step2-modal" aria-haspopup="dialog" aria-controls="step2-modal" aria-label="ステップ2 アレンジしたいところを見つけよう">
+          <img src="assets/02-choose-app.png" alt="2 アレンジしたいアプリを選ぼう。ここを変えたいを見つけよう">
+        </button>
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step3-modal" aria-haspopup="dialog" aria-controls="step3-modal" aria-label="ステップ3 編集画面をひらこう">
+          <img src="assets/03-get-source.png" alt="3 編集画面をひらこう。アプリ詳細からアプリを編集をタップ">
+        </button>
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step4-modal" aria-haspopup="dialog" aria-controls="step4-modal" aria-label="ステップ4 AIにアレンジをお願いしよう">
+          <img src="assets/04-customize-with-ai.png" alt="4 AIにアレンジをお願いしよう。色や機能の変更をAIに相談">
+        </button>
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step5-modal" aria-haspopup="dialog" aria-controls="step5-modal" aria-label="ステップ5 Girlsで変更を公開しよう">
+          <img src="assets/05-add-to-girls.png" alt="5 Girlsで変更を公開しよう。アレンジした内容を公開して反映">
+        </button>
         <a class="lesson-card" href="https://minapp.cloxs.jp/girls.html" aria-label="ステップ6 グループのみんなで遊ぼう">
           <img src="assets/06-play-with-group.png" alt="6 グループのみんなで遊ぼう。友だちといっしょに作品を楽しもう">
         </a>
       </div>
 
-      <p class="lesson-note">カードを押すと、ステップ1は遊び方を表示し、ほかのステップは関連ページへ進みます。</p>
+      <p class="lesson-note">カードを押すと、ステップごとのやり方を画像で見られます。ステップ6ではGirlsポータルへ進みます。</p>
     </section>
   </main>
 
@@ -346,33 +359,93 @@
     </section>
   </div>
 
+  <div class="step-modal" id="step2-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step2-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 2</p>
+      <h2 class="step-modal-title" id="step2-modal-title">アレンジしたいところを見つけよう</h2>
+      <div class="step-single-demo">
+        <img src="assets/steps/step2-unnamed.png" alt="みんあぷっちを見ながら、色や背景、ゲームのやさしさなど変えたいところを見つける例">
+      </div>
+    </section>
+  </div>
+
+  <div class="step-modal" id="step3-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step3-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 3</p>
+      <h2 class="step-modal-title" id="step3-modal-title">編集画面をひらこう</h2>
+      <div class="step-single-demo">
+        <img src="assets/steps/step3-unnamed.png" alt="アプリ詳細からアプリを編集をタップして編集画面を開く案内">
+      </div>
+    </section>
+  </div>
+
+  <div class="step-modal" id="step4-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step4-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 4</p>
+      <h2 class="step-modal-title" id="step4-modal-title">AIにアレンジをお願いしよう</h2>
+      <div class="step-single-demo">
+        <img src="assets/steps/step4-unnamed.png" alt="やりたいことをそのままAIに伝えて、アプリのアレンジをお願いする例">
+      </div>
+    </section>
+  </div>
+
+  <div class="step-modal" id="step5-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step5-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 5</p>
+      <h2 class="step-modal-title" id="step5-modal-title">Girlsで変更を公開しよう</h2>
+      <div class="step-single-demo">
+        <img src="assets/steps/step5-unnamed.png" alt="アレンジした内容をGirlsで公開して反映する案内">
+      </div>
+    </section>
+  </div>
+
   <footer>© CLOXS LLC / みんアプ Girls</footer>
   <script>
     (() => {
-      const trigger = document.getElementById('step1-open');
-      const modal = document.getElementById('step1-modal');
-      const closeButton = modal.querySelector('.step-modal-close');
-      const closers = modal.querySelectorAll('[data-modal-close]');
       let previousFocus = null;
-
-      const openModal = () => {
-        previousFocus = document.activeElement;
-        modal.hidden = false;
-        document.body.style.overflow = 'hidden';
-        closeButton.focus();
-      };
+      let activeModal = null;
 
       const closeModal = () => {
-        if (modal.hidden) return;
-        modal.hidden = true;
+        if (!activeModal) return;
+        activeModal.hidden = true;
         document.body.style.overflow = '';
+        activeModal = null;
         if (previousFocus instanceof HTMLElement) previousFocus.focus();
       };
 
-      trigger.addEventListener('click', openModal);
-      closers.forEach((element) => element.addEventListener('click', closeModal));
+      document.querySelectorAll('[data-modal-target]').forEach((trigger) => {
+        trigger.addEventListener('click', () => {
+          const modalId = trigger.getAttribute('data-modal-target');
+          const modal = document.getElementById(modalId);
+          if (!modal) throw new Error(`Modal not found: ${modalId}`);
+
+          previousFocus = document.activeElement;
+          activeModal = modal;
+          modal.hidden = false;
+          document.body.style.overflow = 'hidden';
+
+          const closeButton = modal.querySelector('.step-modal-close');
+          if (!(closeButton instanceof HTMLButtonElement)) {
+            throw new Error(`Close button not found: ${modalId}`);
+          }
+          closeButton.focus();
+        });
+      });
+
+      document.querySelectorAll('[data-modal-close]').forEach((element) => {
+        element.addEventListener('click', closeModal);
+      });
+
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && !modal.hidden) closeModal();
+        if (event.key === 'Escape') closeModal();
       });
     })();
   </script>
