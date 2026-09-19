@@ -262,6 +262,41 @@
       background:#fff;
       color:#806b75;
     }
+    .step-modal-nav{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:18px;
+    }
+    .step-modal-nav-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      padding:10px 18px;
+      border:1px solid #e1c8d4;
+      border-radius:999px;
+      background:#fff;
+      color:#806b75;
+      font:inherit;
+      font-size:13px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform .14s ease,box-shadow .14s ease;
+    }
+    .step-modal-nav-button:hover,
+    .step-modal-nav-button:focus-visible{
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(101,71,91,.11);
+      outline:3px solid rgba(213,151,180,.18);
+      outline-offset:2px;
+    }
+    .step-modal-nav-button.next{
+      background:#f4c7d8;
+      border-color:#dcaac0;
+      color:#674b5a;
+    }
+    .step-modal-nav-spacer{display:block}
     @media(max-width:860px){
       .lesson-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .lesson-heading{grid-template-columns:1fr}.lesson-progress{width:min(260px,100%)}
@@ -326,12 +361,12 @@
         <button class="lesson-card lesson-card-button" type="button" data-modal-target="step5-modal" aria-haspopup="dialog" aria-controls="step5-modal" aria-label="ステップ5 Girlsで変更を公開しよう">
           <img src="assets/05-add-to-girls.png" alt="5 Girlsで変更を公開しよう。アレンジした内容を公開して反映">
         </button>
-        <a class="lesson-card" href="https://minapp.cloxs.jp/girls.html" aria-label="ステップ6 グループのみんなで遊ぼう">
+        <button class="lesson-card lesson-card-button" type="button" data-modal-target="step6-modal" aria-haspopup="dialog" aria-controls="step6-modal" aria-label="ステップ6 グループのみんなで遊ぼう">
           <img src="assets/06-play-with-group.png" alt="6 グループのみんなで遊ぼう。友だちといっしょに作品を楽しもう">
-        </a>
+        </button>
       </div>
 
-      <p class="lesson-note">カードを押すと、ステップごとのやり方を画像で見られます。ステップ6ではGirlsポータルへ進みます。</p>
+      <p class="lesson-note">カードを押すと、ステップごとのやり方を画像で見られます。モーダルの「前へ」「次へ」で順番に進めます。</p>
     </section>
   </main>
 
@@ -356,6 +391,10 @@
         <a class="step-modal-link" href="apps.html">遊べるアプリを見る ♡</a>
         <button class="step-modal-dismiss" type="button" data-modal-close>閉じる</button>
       </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <span class="step-modal-nav-spacer" aria-hidden="true"></span>
+        <button class="step-modal-nav-button next" type="button" data-step-modal="step2-modal">次へ →</button>
+      </div>
     </section>
   </div>
 
@@ -367,6 +406,10 @@
       <h2 class="step-modal-title" id="step2-modal-title">アレンジしたいところを見つけよう</h2>
       <div class="step-single-demo">
         <img src="assets/steps/step2-unnamed.png" alt="みんあぷっちを見ながら、色や背景、ゲームのやさしさなど変えたいところを見つける例">
+      </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <button class="step-modal-nav-button" type="button" data-step-modal="step1-modal">← 前へ</button>
+        <button class="step-modal-nav-button next" type="button" data-step-modal="step3-modal">次へ →</button>
       </div>
     </section>
   </div>
@@ -380,6 +423,10 @@
       <div class="step-single-demo">
         <img src="assets/steps/step3-unnamed.png" alt="アプリ詳細からアプリを編集をタップして編集画面を開く案内">
       </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <button class="step-modal-nav-button" type="button" data-step-modal="step2-modal">← 前へ</button>
+        <button class="step-modal-nav-button next" type="button" data-step-modal="step4-modal">次へ →</button>
+      </div>
     </section>
   </div>
 
@@ -391,6 +438,10 @@
       <h2 class="step-modal-title" id="step4-modal-title">AIにアレンジをお願いしよう</h2>
       <div class="step-single-demo">
         <img src="assets/steps/step4-unnamed.png" alt="やりたいことをそのままAIに伝えて、アプリのアレンジをお願いする例">
+      </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <button class="step-modal-nav-button" type="button" data-step-modal="step3-modal">← 前へ</button>
+        <button class="step-modal-nav-button next" type="button" data-step-modal="step5-modal">次へ →</button>
       </div>
     </section>
   </div>
@@ -404,6 +455,30 @@
       <div class="step-single-demo">
         <img src="assets/steps/step5-unnamed.png" alt="アレンジした内容をGirlsで公開して反映する案内">
       </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <button class="step-modal-nav-button" type="button" data-step-modal="step4-modal">← 前へ</button>
+        <button class="step-modal-nav-button next" type="button" data-step-modal="step6-modal">次へ →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="step-modal" id="step6-modal" hidden>
+    <div class="step-modal-backdrop" data-modal-close aria-hidden="true"></div>
+    <section class="step-modal-panel" role="dialog" aria-modal="true" aria-labelledby="step6-modal-title">
+      <button class="step-modal-close" type="button" data-modal-close aria-label="閉じる">×</button>
+      <p class="step-modal-kicker">STEP 6</p>
+      <h2 class="step-modal-title" id="step6-modal-title">グループのみんなで遊ぼう！</h2>
+      <div class="step-single-demo">
+        <img src="assets/steps/step6-unnamed.png" alt="公開したアプリをグループのみんなで楽しめることを案内する画像">
+      </div>
+      <div class="step-modal-actions">
+        <a class="step-modal-link" href="https://minapp.cloxs.jp/girls.html">Girlsをひらく</a>
+        <button class="step-modal-dismiss" type="button" data-modal-close>閉じる</button>
+      </div>
+      <div class="step-modal-nav" aria-label="ステップ移動">
+        <button class="step-modal-nav-button" type="button" data-step-modal="step5-modal">← 前へ</button>
+        <span class="step-modal-nav-spacer" aria-hidden="true"></span>
+      </div>
     </section>
   </div>
 
@@ -413,30 +488,51 @@
       let previousFocus = null;
       let activeModal = null;
 
+      const showModal = (modal) => {
+        if (!(modal instanceof HTMLElement) || !modal.classList.contains('step-modal')) {
+          throw new Error('A valid step modal is required.');
+        }
+        if (activeModal && activeModal !== modal) {
+          activeModal.hidden = true;
+        }
+        activeModal = modal;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+
+        const closeButton = modal.querySelector('.step-modal-close');
+        if (!(closeButton instanceof HTMLButtonElement)) {
+          throw new Error(`Close button not found: ${modal.id}`);
+        }
+        closeButton.focus();
+      };
+
       const closeModal = () => {
         if (!activeModal) return;
         activeModal.hidden = true;
-        document.body.style.overflow = '';
         activeModal = null;
+        document.body.style.overflow = '';
         if (previousFocus instanceof HTMLElement) previousFocus.focus();
       };
 
       document.querySelectorAll('[data-modal-target]').forEach((trigger) => {
         trigger.addEventListener('click', () => {
           const modalId = trigger.getAttribute('data-modal-target');
+          if (!modalId) throw new Error('Modal target is missing.');
           const modal = document.getElementById(modalId);
           if (!modal) throw new Error(`Modal not found: ${modalId}`);
 
           previousFocus = document.activeElement;
-          activeModal = modal;
-          modal.hidden = false;
-          document.body.style.overflow = 'hidden';
+          showModal(modal);
+        });
+      });
 
-          const closeButton = modal.querySelector('.step-modal-close');
-          if (!(closeButton instanceof HTMLButtonElement)) {
-            throw new Error(`Close button not found: ${modalId}`);
-          }
-          closeButton.focus();
+      document.querySelectorAll('[data-step-modal]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const modalId = button.getAttribute('data-step-modal');
+          if (!modalId) throw new Error('Step modal target is missing.');
+          const modal = document.getElementById(modalId);
+          if (!modal) throw new Error(`Step modal not found: ${modalId}`);
+          showModal(modal);
         });
       });
 
