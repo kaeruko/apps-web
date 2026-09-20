@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minapp girls - ノベルゲームの作り方ガイド</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Zen Maru Gothic & M PLUS Rounded 1c -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            maru: ['"Zen Maru Gothic"', '"M PLUS Rounded 1c"', 'sans-serif'],
+          },
+          colors: {
+            pastel: {
+              lavender: '#E8DCFC',
+              lavenderDark: '#8F7AC8',
+              pink: '#FFD6E8',
+              pinkDark: '#E86A9E',
+              yellow: '#FFF5C2',
+              cream: '#FFFDF7',
+              mint: '#D8F3DC',
+              mintDark: '#52B788',
+              blue: '#D3EAFF',
+              brown: '#6B544D',
+              subtext: '#8A7A75',
+            }
+          },
+          boxShadow: {
+            'cute': '0 8px 24px -4px rgba(180, 140, 200, 0.18)',
+            'bubble': '0 6px 0 #D3BEEF, 0 10px 20px rgba(160, 120, 200, 0.2)',
+            'bubble-pressed': '0 2px 0 #D3BEEF, 0 4px 10px rgba(160, 120, 200, 0.2)',
+            'card': '0 12px 30px rgba(220, 190, 230, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Zen Maru Gothic', 'M PLUS Rounded 1c', sans-serif;
+      background: linear-gradient(180deg, #FFF0F5 0%, #FFF9EB 40%, #F5F0FF 80%, #FFF0F5 100%);
+      color: #634F49;
+    }
+    
+    /* パステルレース調の飾り線 */
+    .lace-border {
+      background-image: radial-gradient(circle at 10px 0, transparent 8px, #ffffff 9px);
+      background-size: 20px 20px;
+    }
+
+    /* ぷっくりボタン */
+    .pukuri-btn {
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 5px 0 rgba(140, 110, 180, 0.25), 0 8px 15px rgba(160, 120, 190, 0.2);
+    }
+    .pukuri-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 rgba(140, 110, 180, 0.25), 0 12px 20px rgba(160, 120, 190, 0.25);
+    }
+    .pukuri-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 rgba(140, 110, 180, 0.25), 0 4px 8px rgba(160, 120, 190, 0.2);
+    }
+
+    /* ふわふわ浮遊アニメーション */
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1.5deg); }
+    }
+    .floating-cute {
+      animation: float-slow 4s ease-in-out infinite;
+    }
+
+    /* キラキラ光るエフェクト */
+    @keyframes sparkle {
+      0%, 100% { opacity: 0.3; transform: scale(0.8); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .sparkle-dot {
+      animation: sparkle 2.5s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative overflow-x-hidden selection:bg-pastel-pink selection:text-pastel-pinkDark">
+
+  <!-- 背景デコレーション（星・ハート・雲） -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-60">
+    <div class="sparkle-dot absolute top-20 left-12 text-pastel-pink text-3xl">✨</div>
+    <div class="sparkle-dot absolute top-48 right-16 text-pastel-lavenderDark text-2xl" style="animation-delay: 0.8s;">🌸</div>
+    <div class="sparkle-dot absolute top-96 left-8 text-pastel-yellow text-4xl" style="animation-delay: 1.5s;">⭐</div>
+    <div class="sparkle-dot absolute bottom-40 right-24 text-pastel-pink text-3xl" style="animation-delay: 1.1s;">💖</div>
+    <div class="sparkle-dot absolute bottom-96 left-20 text-pastel-mintDark text-2xl" style="animation-delay: 2s;">🎀</div>
+  </div>
+
+  <!-- ナビゲーションバー -->
+  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b-2 border-pastel-pink/50 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <!-- ロゴ -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-pastel-lavender to-pastel-pink flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
+          <span class="text-2xl">📖</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-pastel-lavender text-pastel-lavenderDark">Minapp girls</span>
+            <span class="text-xs font-bold text-pastel-pinkDark">公式アカデミー</span>
+          </div>
+          <h1 class="text-lg sm:text-xl font-black tracking-tight text-pastel-brown drop-shadow-sm">
+            ノベルゲームのつくりかた
+          </h1>
+        </div>
+      </a>
+
+      <!-- デスクトップナビ -->
+      <nav class="hidden md:flex items-center gap-1 bg-pastel-cream/80 p-1.5 rounded-full border border-pastel-lavender/60">
+        <a href="#intro" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">はじめに</a>
+        <a href="#steps" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">6つの制作ステップ</a>
+        <a href="#editor" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">エディタ操作法</a>
+        <a href="#preview-try" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">ミニ体験</a>
+        <a href="#assets" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">素材とヒント</a>
+      </nav>
+
+      <!-- 右側ボタン -->
+      <div class="flex items-center gap-2">
+        <a href="#preview-try" class="pukuri-btn hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pastel-pink to-pastel-lavender text-pastel-brown font-extrabold text-sm rounded-full border-2 border-white">
+          <i data-lucide="play-circle" class="w-4 h-4 text-pastel-pinkDark"></i>
+          ためしに作る！
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- メインコンテンツ -->
+  <main class="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-8 pb-20 space-y-16">
+
+    <!-- 1. ヒーローセクション（ファーストビュー） -->
+    <section id="intro" class="bg-gradient-to-b from-white/90 to-pastel-cream/90 rounded-[2.5rem] p-6 sm:p-12 border-4 border-white shadow-card relative overflow-hidden text-center sm:text-left">
+      <!-- レース風上部装飾 -->
+      <div class="absolute -top-4 left-0 right-0 h-4 bg-pastel-pink/30 rounded-full blur-[2px]"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-2 bg-pastel-pink/40 border border-pastel-pink px-4 py-1.5 rounded-full text-pastel-pinkDark font-extrabold text-xs sm:text-sm">
+            <span class="animate-pulse">🎀</span> プログラミングの知識ゼロでも大丈夫！
+          </div>
+
+          <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black text-pastel-brown leading-[1.3] tracking-tight">
+            あなたの書いたストーリーが、<br class="hidden sm:block">
+            <span class="bg-gradient-to-r from-pastel-pinkDark via-purple-500 to-pastel-lavenderDark bg-clip-text text-transparent underline decoration-pastel-pink decoration-wavy">
+              そのままゲームになるよ！
+            </span>
+          </h2>
+
+          <p class="text-pastel-subtext text-base sm:text-lg leading-relaxed font-medium">
+            キャラクターのセリフ、ドキドキの選択肢、すてきな背景音楽。<br>
+            「Minapp girls」のノベルエディタを使えば、スマホやパソコンからパズルを組み立てるようにあなただけの物語ゲームが作れます。
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-4 justify-center sm:justify-start">
+            <a href="#steps" class="pukuri-btn inline-flex items-center gap-2 bg-pastel-lavenderDark text-white font-black text-base px-7 py-3.5 rounded-full shadow-bubble">
+              <i data-lucide="book-open" class="w-5 h-5"></i>
+              ステップを見てみる
+            </a>
+            <a href="#editor" class="pukuri-btn inline-flex items-center gap-2 bg-white text-pastel-brown font-black text-base px-6 py-3.5 rounded-full border-2 border-pastel-lavender">
+              <i data-lucide="sparkles" class="w-5 h-5 text-pastel-lavenderDark"></i>
+              エディタの画面を見る
+            </a>
+          </div>
+
+          <!-- 実績・ポイントタグ -->
+          <div class="pt-4 flex items-center justify-center sm:justify-start gap-4 text-xs font-bold text-pastel-subtext">
+            <span class="flex items-center gap-1">🌸 かんたん3分で1話完成</span>
+            <span class="flex items-center gap-1">🎨 可愛い素材使い放題</span>
+            <span class="flex items-center gap-1">👥 ひろばですぐシェア</span>
+          </div>
+        </div>
+
+        <!-- イラスト・グラフィック部 -->
+        <div class="lg:col-span-5 flex justify-center relative">
+          <div class="relative w-72 sm:w-80 h-72 sm:h-80 flex items-center justify-center">
+            <!-- ふわふわサークル背景 -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-pastel-pink/60 via-pastel-lavender/50 to-pastel-yellow/60 rounded-full filter blur-xl animate-pulse"></div>
+            
+            <!-- メインイラスト枠（カード型） -->
+            <div class="floating-cute relative bg-white p-5 rounded-[2rem] border-4 border-pastel-lavender shadow-xl w-full">
+              <div class="bg-pastel-cream rounded-2xl p-4 border border-pastel-pink/40 space-y-3">
+                <div class="flex items-center justify-between border-b border-pastel-pink/30 pb-2">
+                  <div class="flex items-center gap-2">
+                    <span class="text-2xl">🐶</span>
+                    <span class="text-xs font-black text-pastel-brown">制作中：『私の小さな星物語』</span>
+                  </div>
+                  <span class="text-[10px] bg-pastel-mint text-pastel-mintDark px-2 py-0.5 rounded-full font-bold">編集中</span>
+                </div>
+
+                <!-- 模擬シーン画面 -->
+                <div class="h-32 bg-gradient-to-br from-indigo-900 to-purple-800 rounded-xl relative overflow-hidden flex flex-col justify-end p-2 text-white">
+                  <div class="absolute top-2 left-2 text-xs opacity-75">✨ 放課後の屋上</div>
+                  <!-- キャラクターアイコン -->
+                  <div class="absolute bottom-6 right-3 text-4xl">👧</div>
+                  <!-- テキストウィンドウ -->
+                  <div class="bg-black/60 backdrop-blur-sm p-2 rounded-lg text-[11px] leading-tight border border-white/20">
+                    <span class="text-pastel-yellow font-bold">ユナ：</span>「あの星、昔ふたりで見つけたよね…！」
+                  </div>
+                </div>
+
+                <div class="flex justify-between items-center text-[11px] font-bold text-pastel-subtext pt-1">
+                  <span>選択肢：2つ設定済み</span>
+                  <span class="text-pastel-pinkDark">▶ プレビュー再生可能</span>
+                </div>
+              </div>
+
+              <!-- マスコットのバッジ -->
+              <div class="absolute -bottom-4 -right-2 bg-gradient-to-r from-pastel-pinkDark to-pastel-lavenderDark text-white text-xs font-black px-4 py-1.5 rounded-full shadow-md flex items-center gap-1">
+                <span>🐾</span> 柴犬ハニー監修！
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 全体像：ノベルゲーム完成までの6ステップ -->
+    <section id="steps" class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <div class="inline-block bg-pastel-lavender text-pastel-lavenderDark font-extrabold text-xs px-3.5 py-1 rounded-full">
+          かんたんロードマップ
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-black text-pastel-brown">
+          ノベルゲームができるまでの6つのステップ 🐾
+        </h3>
+        <p class="text-pastel-subtext text-sm sm:text-base font-medium">
+          思いついた物語を形にする順番を分かりやすくまとめました。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-pink/60 shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-pink/20 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-pink/50 flex items-center justify-center text-2xl shadow-inner">
+                📝
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-pastel-pink text-pastel-pinkDark">STEP 01</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">企画・テーマを決めよう</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              「どんな話にしたいか？」をメモ帳に書き出します。学園モノ？ファンタジー？短くて心に残る1シーンから始めるのが完成の秘訣！
+            </p>
+            <div class="pt-2 border-t border-pastel-pink/30 text-xs font-bold text-pastel-pinkDark flex items-center gap-1">
+              <span>💡 コツ：</span>まずは「登場人物2人」で考えよう
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-lavender/70 shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-lavender/30 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-lavender flex items-center justify-center text-2xl shadow-inner">
+                📖
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-pastel-lavender text-pastel-lavenderDark">STEP 02</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">シナリオ・セリフを書く</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              会話文と情景を描く「地の文」を分けます。ノベルエディタなら【話者名】と【セリフ】を入力するだけで自動でゲーム形式に！
+            </p>
+            <div class="pt-2 border-t border-pastel-lavender/40 text-xs font-bold text-pastel-lavenderDark flex items-center gap-1">
+              <span>💡 コツ：</span>1画面につき2〜3行が読みやすい
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-yellow shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-yellow/40 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-yellow flex items-center justify-center text-2xl shadow-inner">
+                🎨
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-[#E5B800]/20 text-[#9C7D00]">STEP 03</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">立ち絵と表情を用意</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              キャラクターの立ち絵画像を登録。「笑顔」「照れ顔」「びっくり顔」など差分があると、物語の感情が一気に伝わります。
+            </p>
+            <div class="pt-2 border-t border-pastel-yellow/60 text-xs font-bold text-[#8F7000] flex items-center gap-1">
+              <span>💡 コツ：</span>背景透過のPNG画像を使おう
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-mint shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-mint/30 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-mint flex items-center justify-center text-2xl shadow-inner">
+                🏞️
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-pastel-mint text-pastel-mintDark">STEP 04</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">背景＆BGMで世界観づくり</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              教室・図書室・夕焼けの帰り道など、シーンに合わせた背景を選択。穏やかなBGMや効果音を入れると臨場感がグッとアップ！
+            </p>
+            <div class="pt-2 border-t border-pastel-mint/50 text-xs font-bold text-pastel-mintDark flex items-center gap-1">
+              <span>💡 コツ：</span>シーン切替時はフェードを使うと自然
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-blue shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-blue/30 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-blue flex items-center justify-center text-2xl shadow-inner">
+                分岐
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-pastel-blue text-[#3A7CA5]">STEP 05</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">選択肢とエンディング分岐</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              「右の道に行く？」「左の道に行く？」プレイヤーが選べる選択肢を追加。選択に応じて違う結末（マルチエンド）を用意できます。
+            </p>
+            <div class="pt-2 border-t border-pastel-blue/50 text-xs font-bold text-[#3A7CA5] flex items-center gap-1">
+              <span>💡 コツ：</span>まずはハッピー・ノーマルの2択から
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="bg-white/95 rounded-3xl p-6 border-2 border-pastel-pinkDark/40 shadow-cute hover:-translate-y-1.5 transition duration-200 relative overflow-hidden group">
+          <div class="absolute top-0 right-0 w-24 h-24 bg-pastel-pinkDark/15 rounded-bl-[4rem] -z-0"></div>
+          <div class="relative z-10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-pastel-pinkDark/20 flex items-center justify-center text-2xl shadow-inner">
+                🚀
+              </span>
+              <span class="text-xs font-black px-2.5 py-1 rounded-full bg-pastel-pinkDark text-white">STEP 06</span>
+            </div>
+            <h4 class="text-lg font-black text-pastel-brown">テストプレイ＆ひろばで公開</h4>
+            <p class="text-xs sm:text-sm text-pastel-subtext leading-relaxed">
+              プレビュー機能で誤字や画像表示をチェック！完成したらワンクリックで「Minapp girls ひろば」に投稿して友達に遊んでもらおう！
+            </p>
+            <div class="pt-2 border-t border-pastel-pinkDark/20 text-xs font-bold text-pastel-pinkDark flex items-center gap-1">
+              <span>💡 コツ：</span>招待コードでグループ内だけに先行公開もOK
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. エディタ操作法ガイド（スクショ連動風） -->
+    <section id="editor" class="bg-white/90 rounded-[2.5rem] p-6 sm:p-10 border-4 border-pastel-lavender shadow-card space-y-8">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-pastel-lavender/50 pb-5">
+        <div>
+          <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-pastel-lavender text-pastel-lavenderDark">ツール解説</span>
+          <h3 class="text-2xl sm:text-3xl font-black text-pastel-brown mt-1">
+            Minapp「ノベルエディタ」の基本画面
+          </h3>
+          <p class="text-pastel-subtext text-xs sm:text-sm mt-1">
+            直感的で迷わない、3つの主要エリアの使い方を覚えましょう！
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs bg-pastel-yellow px-3 py-1.5 rounded-full font-bold text-pastel-brown flex items-center gap-1">
+            <span>✨</span> 自動保存機能つき
+          </span>
+        </div>
+      </div>
+
+      <!-- 操作画面の3分割グリッド解説 -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- エリア 1: シーン一覧 -->
+        <div class="bg-pastel-cream rounded-2xl p-5 border-2 border-pastel-pink/40 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-pastel-pink text-pastel-pinkDark font-black flex items-center justify-center text-sm">1</span>
+            <h4 class="font-black text-pastel-brown text-base">シーン一覧リスト</h4>
+          </div>
+          
+          <div class="bg-white rounded-xl p-3 border border-pastel-pink/40 space-y-2 shadow-sm text-xs">
+            <div class="p-2 bg-pastel-lavender/30 rounded-lg font-bold flex items-center justify-between">
+              <span>🐰 シーン1: 出会いの放課後</span>
+              <span class="text-pastel-lavenderDark">✎ 編集</span>
+            </div>
+            <div class="p-2 bg-white rounded-lg border border-gray-100 font-bold flex items-center justify-between opacity-80">
+              <span>🐻 シーン2: 秘密の図書室</span>
+              <span class="text-gray-400">✎ 編集</span>
+            </div>
+            <div class="p-2 bg-white rounded-lg border border-gray-100 font-bold flex items-center justify-between opacity-80">
+              <span>🐱 シーン3: 文化祭の夜</span>
+              <span class="text-gray-400">✎ 編集</span>
+            </div>
+          </div>
+
+          <p class="text-xs text-pastel-subtext leading-relaxed">
+            物語を章やシーンごとに分割して管理できます。ドラッグ＆ドロップで順番の入れ替えもかんたんに行えます。
+          </p>
+        </div>
+
+        <!-- エリア 2: セリフ・演出エディタ -->
+        <div class="bg-pastel-cream rounded-2xl p-5 border-2 border-pastel-lavender/60 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-pastel-lavender text-pastel-lavenderDark font-black flex items-center justify-center text-sm">2</span>
+            <h4 class="font-black text-pastel-brown text-base">セリフ＆コマンド入力</h4>
+          </div>
+          
+          <div class="bg-white rounded-xl p-3 border border-pastel-lavender/50 space-y-2 shadow-sm text-xs font-mono">
+            <div class="bg-gray-50 p-2 rounded border border-gray-200">
+              <span class="text-purple-600 font-bold">[背景]</span> 夕暮れの教室<br>
+              <span class="text-pink-600 font-bold">[立ち絵]</span> アリス (困り顔)<br>
+              <span class="text-blue-600 font-bold">アリス:</span>「もう帰っちゃうの？」<br>
+              <span class="text-amber-600 font-bold">[選択肢]</span> 一緒に帰る / 宿題をする
+            </div>
+          </div>
+
+          <p class="text-xs text-pastel-subtext leading-relaxed">
+            ノーコードで選択できるドロップダウンと、キーボードでスラスラ書けるテキスト入力の両方に対応しています。
+          </p>
+        </div>
+
+        <!-- エリア 3: リアルタイムプレビュー -->
+        <div class="bg-pastel-cream rounded-2xl p-5 border-2 border-pastel-mint space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-pastel-mint text-pastel-mintDark font-black flex items-center justify-center text-sm">3</span>
+            <h4 class="font-black text-pastel-brown text-base">即時ためし読み</h4>
+          </div>
+          
+          <div class="bg-white rounded-xl p-3 border border-pastel-mint/60 space-y-2 shadow-sm flex flex-col items-center justify-center text-center py-5">
+            <div class="w-12 h-12 rounded-full bg-pastel-mint/40 flex items-center justify-center text-pastel-mintDark mb-1">
+              <i data-lucide="play" class="w-6 h-6 fill-current"></i>
+            </div>
+            <span class="text-xs font-black text-pastel-brown">ワンタップでプレビュー起動</span>
+            <span class="text-[10px] text-gray-400">スマホ実機サイズで動作確認可能</span>
+          </div>
+
+          <p class="text-xs text-pastel-subtext leading-relaxed">
+            書いたその場で「文字のスピード」や「立ち絵の出るタイミング」をプレイヤー目線でチェックできます。
+          </p>
+        </div>
+
+      </div>
+
+      <!-- 高度な編集（コード/ZIP入出力）の案内 -->
+      <div class="bg-gradient-to-r from-pastel-pink/20 to-pastel-lavender/30 rounded-2xl p-5 border border-pastel-lavender flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4 text-center sm:text-left">
+          <div class="text-3xl">📦</div>
+          <div>
+            <h5 class="font-black text-pastel-brown text-sm sm:text-base">こだわり派向け：コードエディタ＆ZIPインポート</h5>
+            <p class="text-xs text-pastel-subtext mt-0.5">
+              手元のパソコンで一括編集したJSON/スクリプトをZIPでアップロードしたり、現在のプロジェクトを丸ごとバックアップできます。
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-3 py-1.5 bg-white rounded-full border border-pastel-lavender text-xs font-bold text-pastel-brown flex items-center gap-1.5 shadow-sm">
+            <span>🎁</span> ZIPでDL/UP対応
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. インタラクティブミニ体験：ブラウザ上で動く演出シミュレータ -->
+    <section id="preview-try" class="bg-gradient-to-br from-[#FAF5FF] via-white to-[#FFF0F5] rounded-[2.5rem] p-6 sm:p-10 border-4 border-pastel-pink shadow-card space-y-6">
+      <div class="text-center max-w-xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-1.5 bg-pastel-pink text-pastel-pinkDark text-xs font-black px-3.5 py-1 rounded-full">
+          <span>🎮</span> その場で試せる！
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-black text-pastel-brown">
+          ノベルゲーム演出を体験してみよう
+        </h3>
+        <p class="text-xs sm:text-sm text-pastel-subtext">
+          背景やキャラクターの表情、セリフを変えるとどんな風に見えるか試してみてね！
+        </p>
+      </div>
+
+      <!-- シミュレータ本体 -->
+      <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 bg-white p-4 sm:p-6 rounded-3xl border-2 border-pastel-lavender/70 shadow-sm">
+        
+        <!-- 左：スマホ画面モック -->
+        <div class="md:col-span-7 flex justify-center">
+          <div class="w-full max-w-xs aspect-[9/16] rounded-[2rem] border-4 border-[#3a3545] p-2 bg-[#2a2634] shadow-2xl relative flex flex-col overflow-hidden">
+            <!-- カメラ穴 -->
+            <div class="w-20 h-3.5 bg-[#3a3545] rounded-full mx-auto mb-1 shrink-0"></div>
+            
+            <!-- ゲーム画面エリア -->
+            <div id="sim-screen" class="flex-1 rounded-2xl relative overflow-hidden bg-cover bg-center transition-all duration-500 flex flex-col justify-end p-3" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&auto=format&fit=crop');">
+              
+              <!-- 立ち絵キャラクター -->
+              <div id="sim-chara" class="absolute bottom-16 left-1/2 -translate-x-1/2 transition-all duration-300 text-7xl select-none filter drop-shadow-lg">
+                🐰
+              </div>
+
+              <!-- メッセージウィンドウ -->
+              <div class="relative z-10 bg-white/90 backdrop-blur-md rounded-2xl p-3 border-2 border-pastel-pink shadow-lg">
+                <div class="flex items-center justify-between mb-1">
+                  <span id="sim-speaker" class="text-xs font-black text-pastel-pinkDark px-2 py-0.5 rounded-full bg-pastel-pink/40">
+                    ハニー
+                  </span>
+                  <span class="text-[9px] text-gray-400 font-bold">NEXT ▶</span>
+                </div>
+                <p id="sim-dialogue" class="text-xs font-bold text-pastel-brown min-h-[2.5rem] leading-relaxed">
+                  「放課後、一緒に星空を見に行かない？約束だよ！」
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- 右：コントローラー -->
+        <div class="md:col-span-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-4">
+            <h4 class="text-sm font-black text-pastel-brown border-b pb-2 flex items-center gap-1.5">
+              <i data-lucide="sliders" class="w-4 h-4 text-pastel-lavenderDark"></i>
+              パラメータを変更する
+            </h4>
+
+            <!-- 背景切り替え -->
+            <div>
+              <label class="block text-xs font-bold text-pastel-subtext mb-1">背景シーン</label>
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <button onclick="changeBackground('star')" class="bg-pastel-cream border border-pastel-lavender hover:bg-pastel-lavender/30 py-1.5 px-2 rounded-xl font-bold text-pastel-brown transition">
+                  🌌 星空の夜
+                </button>
+                <button onclick="changeBackground('sunset')" class="bg-pastel-cream border border-pastel-lavender hover:bg-pastel-lavender/30 py-1.5 px-2 rounded-xl font-bold text-pastel-brown transition">
+                  🌇 放課後の夕暮れ
+                </button>
+                <button onclick="changeBackground('room')" class="bg-pastel-cream border border-pastel-lavender hover:bg-pastel-lavender/30 py-1.5 px-2 rounded-xl font-bold text-pastel-brown transition">
+                  🛋️ パステル部屋
+                </button>
+                <button onclick="changeBackground('school')" class="bg-pastel-cream border border-pastel-lavender hover:bg-pastel-lavender/30 py-1.5 px-2 rounded-xl font-bold text-pastel-brown transition">
+                  🏫 教室
+                </button>
+              </div>
+            </div>
+
+            <!-- キャラクター切り替え -->
+            <div>
+              <label class="block text-xs font-bold text-pastel-subtext mb-1">登場キャラクター</label>
+              <div class="grid grid-cols-3 gap-2 text-xs text-center">
+                <button onclick="changeChara('🐰', 'ハニー', '「放課後、一緒に星空を見に行かない？約束だよ！」')" class="bg-pastel-pink/30 border border-pastel-pink py-2 rounded-xl font-bold hover:scale-105 transition">
+                  <div class="text-xl">🐰</div>
+                  <div class="text-[11px] font-bold text-pastel-brown">ハニー</div>
+                </button>
+                <button onclick="changeChara('🐶', 'しばまる', '「わーい！今日のおやつはプリンだワン！」')" class="bg-pastel-yellow/50 border border-pastel-yellow py-2 rounded-xl font-bold hover:scale-105 transition">
+                  <div class="text-xl">🐶</div>
+                  <div class="text-[11px] font-bold text-pastel-brown">しばまる</div>
+                </button>
+                <button onclick="changeChara('🐱', 'みっくす', '「ふふっ、何か楽しいこと企んでるでしょ？」')" class="bg-pastel-lavender/50 border border-pastel-lavender py-2 rounded-xl font-bold hover:scale-105 transition">
+                  <div class="text-xl">🐱</div>
+                  <div class="text-[11px] font-bold text-pastel-brown">みっくす</div>
+                </button>
+              </div>
+            </div>
+
+            <!-- セリフの直接入力 -->
+            <div>
+              <label class="block text-xs font-bold text-pastel-subtext mb-1">セリフを自由に入力</label>
+              <div class="flex gap-2">
+                <input id="custom-text-input" type="text" placeholder="セリフを入力してね" class="flex-1 text-xs border border-pastel-lavender rounded-xl px-3 py-2 bg-pastel-cream focus:outline-none focus:ring-2 focus:ring-pastel-pink">
+                <button onclick="applyCustomText()" class="pukuri-btn bg-pastel-lavenderDark text-white text-xs font-bold px-3 py-2 rounded-xl shrink-0">
+                  反映
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-pastel-yellow/40 p-3 rounded-2xl border border-pastel-yellow text-[11px] text-pastel-brown">
+            💡 実際のエディタでも、これと同じ感覚で直感的に配置・セリフ作成ができます！
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. よくある質問 (Q&A) -->
+    <section class="space-y-6">
+      <div class="text-center max-w-xl mx-auto space-y-1">
+        <h3 class="text-2xl font-black text-pastel-brown">
+          よくある質問 (Q&A) 💭
+        </h3>
+        <p class="text-pastel-subtext text-xs sm:text-sm">
+          はじめてノベルゲームを作る方から寄せられる疑問にお答えします。
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4">
+        
+        <details class="bg-white rounded-2xl p-4 border border-pastel-lavender/60 shadow-sm group">
+          <summary class="font-bold text-pastel-brown cursor-pointer flex items-center justify-between text-sm sm:text-base select-none">
+            <span class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-pastel-pink text-pastel-pinkDark text-xs font-black flex items-center justify-center">Q</span>
+              絵が描けなくても作れますか？
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-3 pl-8 text-xs sm:text-sm text-pastel-subtext leading-relaxed border-t border-gray-100 pt-2">
+            はい、もちろん作れます！Minapp girlsには、最初からたくさんの可愛いパステルイラストや背景素材（教室、公園、カフェなど）が登録されています。素材をドラッグ＆ドロップで選ぶだけでゲームを彩ることができます。
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl p-4 border border-pastel-lavender/60 shadow-sm group">
+          <summary class="font-bold text-pastel-brown cursor-pointer flex items-center justify-between text-sm sm:text-base select-none">
+            <span class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-pastel-pink text-pastel-pinkDark text-xs font-black flex items-center justify-center">Q</span>
+              スマートフォンだけで完成させられますか？
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-3 pl-8 text-xs sm:text-sm text-pastel-subtext leading-relaxed border-t border-gray-100 pt-2">
+            すべての機能をスマートフォン（iPhone / Android）のブラウザやアプリから利用できます。移動中のスキマ時間に通学電車でセリフを書き足すことも簡単です。
+          </div>
+        </details>
+
+        <details class="bg-white rounded-2xl p-4 border border-pastel-lavender/60 shadow-sm group">
+          <summary class="font-bold text-pastel-brown cursor-pointer flex items-center justify-between text-sm sm:text-base select-none">
+            <span class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-pastel-pink text-pastel-pinkDark text-xs font-black flex items-center justify-center">Q</span>
+              作ったゲームは誰に見せられますか？
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <div class="mt-3 pl-8 text-xs sm:text-sm text-pastel-subtext leading-relaxed border-t border-gray-100 pt-2">
+            「全体に公開」して全国のユーザーに遊んでもらうこともできますし、「招待コード」を使って仲良しのグループ・友達の間だけで限定公開して遊ぶこともできます！
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- 6. 制作スタートCTA（呼びかけエリア） -->
+    <section class="bg-gradient-to-r from-pastel-pink via-pastel-lavender to-pastel-yellow rounded-[2.5rem] p-8 sm:p-12 text-center relative overflow-hidden shadow-card border-4 border-white">
+      <div class="relative z-10 max-w-xl mx-auto space-y-4">
+        <span class="text-4xl animate-bounce inline-block">🌸</span>
+        <h3 class="text-2xl sm:text-3xl font-black text-pastel-brown">
+          さあ、あなただけの物語をはじめよう！
+        </h3>
+        <p class="text-xs sm:text-sm font-bold text-pastel-brown/80 leading-relaxed">
+          アイデアが浮かんだら、今すぐエディタを開いてみましょう。<br>
+          最初の1行を書き始めるだけで、あなたの世界が動き出します。
+        </p>
+        <div class="pt-2">
+          <button class="pukuri-btn bg-white text-pastel-brown font-black text-base sm:text-lg px-8 py-4 rounded-full border-2 border-pastel-pink shadow-bubble flex items-center gap-2 mx-auto">
+            <span>✨</span> ノベルエディタを開く
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-white/90 border-t-2 border-pastel-pink/40 py-10 relative z-10 text-center space-y-4">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">🐱</span>
+        <span class="font-black text-pastel-brown text-sm">Minapp girls ノベルアカデミー</span>
+      </div>
+      <div class="flex items-center gap-6 text-xs font-bold text-pastel-subtext">
+        <a href="#" class="hover:text-pastel-pinkDark transition">グループひろば</a>
+        <a href="#" class="hover:text-pastel-pinkDark transition">作品一覧</a>
+        <a href="#" class="hover:text-pastel-pinkDark transition">素材ライブラリ</a>
+        <a href="#" class="hover:text-pastel-pinkDark transition">利用規約</a>
+      </div>
+    </div>
+    <div class="text-[11px] font-bold text-gray-400">
+      © Minapp girls All rights reserved.
+    </div>
+  </footer>
+
+  <!-- スクリプト：Lucide初期化 & ミニ体験の操作ロジック -->
+  <script>
+    // Lucideアイコンの初期化
+    lucide.createIcons();
+
+    // シミュレータの背景切り替え
+    function changeBackground(type) {
+      const screen = document.getElementById('sim-screen');
+      if (type === 'star') {
+        screen.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1519681393784-d120267933ba?w=600&auto=format&fit=crop')";
+      } else if (type === 'sunset') {
+        screen.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop')";
+      } else if (type === 'room') {
+        screen.style.backgroundImage = "linear-gradient(rgba(255,240,245,0.4), rgba(255,240,245,0.4)), url('https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop')";
+      } else if (type === 'school') {
+        screen.style.backgroundImage = "linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&auto=format&fit=crop')";
+      }
+    }
+
+    // シミュレータのキャラクター＆初期セリフ切り替え
+    function changeChara(emoji, name, defaultQuote) {
+      const chara = document.getElementById('sim-chara');
+      const speaker = document.getElementById('sim-speaker');
+      const dialogue = document.getElementById('sim-dialogue');
+      
+      // ふわっとした切り替えアニメーション
+      chara.style.transform = 'translate(-50%, 20px) scale(0.8)';
+      chara.style.opacity = '0';
+      
+      setTimeout(() => {
+        chara.innerText = emoji;
+        speaker.innerText = name;
+        dialogue.innerText = defaultQuote;
+        chara.style.transform = 'translate(-50%, 0) scale(1)';
+        chara.style.opacity = '1';
+      }, 150);
+    }
+
+    // ユーザー自由入力のセリフ反映
+    function applyCustomText() {
+      const input = document.getElementById('custom-text-input');
+      const dialogue = document.getElementById('sim-dialogue');
+      if (input.value.trim() !== '') {
+        dialogue.innerText = `「${input.value.trim()}」`;
+        input.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
