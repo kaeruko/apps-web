@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <meta name="description" content="みんアプ Girlsのノベルゲーム作成機能を紹介します。セリフ、選択肢、背景、キャラクターを組み合わせて物語を作れます。">
+  <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="login-theme.css">
+  <title>ノベルゲームをつくろう | みんアプ Girls</title>
+</head>
+<body>
+  <header class="girls-header">
+    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ">
+      <span class="girls-brand-icon" aria-hidden="true"></span>
+      <span>みんアプ <em>Girls</em></span>
+    </a>
+    <nav class="girls-nav" aria-label="メインメニュー">
+      <a class="girls-nav-link" href="index.html">ホーム</a>
+      <a class="girls-nav-link" href="howto.html">使い方</a>
+      <a class="girls-nav-link active" href="create.html">つくれるもの</a>
+      <a class="girls-nav-link" href="apps.html">遊べるアプリ</a>
+      <a class="girls-login-button" href="https://minapp.cloxs.jp/girls.html">ログイン</a>
+    </nav>
+  </header>
+  <div class="lace-strip" aria-hidden="true"></div>
+
+  <main class="page-main">
+    <div class="wrap">
+      <section class="content-card novel-intro">
+        <div class="novel-intro-copy">
+          <span class="novel-badge">📖 ノベルゲーム</span>
+          <h1>自分で考えた物語を、<br>遊べるゲームにしよう。</h1>
+          <p>セリフを書いて、選択肢を作って、背景やキャラクターを選ぶだけ。選んだ答えによって違うシーンへ進む物語も作れます。</p>
+
+          <div class="novel-quick-list">
+            <div class="novel-quick-card">
+              <strong>💬 セリフを書く</strong>
+              <p>キャラクターに好きな言葉を話させたり、ナレーションを書いたりできます。</p>
+            </div>
+            <div class="novel-quick-card">
+              <strong>⑂ 選択肢をつくる</strong>
+              <p>「屋上へ行く」「今日は帰る」のように、物語の進み方を分けられます。</p>
+            </div>
+            <div class="novel-quick-card">
+              <strong>🖼 背景・キャラを入れる</strong>
+              <p>教室や屋上の背景、キャラクターの立ち絵をシーンに表示できます。</p>
+            </div>
+            <div class="novel-quick-card">
+              <strong>▷ ためし読みする</strong>
+              <p>作った物語を実際に遊んで確認してから、みんなに公開できます。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="creator-shot" data-shot="assets/novel-editor-scene.png">
+          <div class="creator-shot-placeholder">
+            <span aria-hidden="true">📱</span>
+            <strong>ノベルエディタのスクリーンショット</strong>
+            <small>あとからこのファイルを置くと自動で画像に切り替わります</small>
+            <code>assets/novel-editor-scene.png</code>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-card novel-section">
+        <h2>選択肢で、お話を分岐できるよ</h2>
+        <div class="story-flow" aria-label="物語の分岐例">
+          <div class="story-node">放課後の教室</div>
+          <div class="story-branches">
+            <div class="story-leaf">屋上へ行く</div>
+            <div class="story-leaf">今日は帰る</div>
+          </div>
+          <div class="story-branches">
+            <div class="story-leaf">写真を撮る</div>
+            <div class="story-leaf">となりに座る</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-card novel-section">
+        <h2>画面を見ながら作れる</h2>
+        <div class="novel-shots">
+          <div class="creator-shot" data-shot="assets/novel-editor-events.png">
+            <div class="creator-shot-placeholder">
+              <span aria-hidden="true">✏️</span>
+              <strong>セリフ・選択肢の編集画面</strong>
+              <small>差し込み予定</small>
+              <code>assets/novel-editor-events.png</code>
+            </div>
+          </div>
+          <div class="creator-shot" data-shot="assets/novel-editor-preview.png">
+            <div class="creator-shot-placeholder">
+              <span aria-hidden="true">♡</span>
+              <strong>ためし読み画面</strong>
+              <small>差し込み予定</small>
+              <code>assets/novel-editor-preview.png</code>
+            </div>
+          </div>
+        </div>
+        <div class="novel-actions">
+          <a class="primary" href="https://minapp.cloxs.jp/girls.html">みんアプ Girlsで作ってみる ♡</a>
+          <a class="secondary" href="create.html">つくれるもの一覧へ</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>© CLOXS LLC / みんアプ Girls</footer>
+
+  <script>
+    (() => {
+      'use strict';
+      document.querySelectorAll('[data-shot]').forEach((box) => {
+        const src = box.dataset.shot;
+        if (!src) throw new Error('data-shot is required');
+        const placeholder = box.querySelector('.creator-shot-placeholder');
+        if (!(placeholder instanceof HTMLElement)) {
+          throw new Error(`Screenshot placeholder is missing for ${src}`);
+        }
+        const image = new Image();
+        image.alt = placeholder.querySelector('strong')?.textContent || 'ノベルゲームの画面';
+        image.onload = () => box.replaceChildren(image);
+        image.onerror = () => {};
+        image.src = src;
+      });
+    })();
+  </script>
+</body>
+</html>
