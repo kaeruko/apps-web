@@ -19,7 +19,15 @@
     <nav class="girls-nav" aria-label="メインメニュー">
       <a class="girls-nav-link active" href="index.html">ホーム</a>
       <a class="girls-nav-link" href="howto.html">使い方</a>
-      <a class="girls-nav-link" href="create.html">つくれるもの</a>
+      <details class="girls-nav-menu">
+        <summary class="girls-nav-link">つくれるもの <span aria-hidden="true">⌄</span></summary>
+        <div class="girls-nav-dropdown">
+          <a class="girls-nav-dropdown-item" href="novel.html"><span aria-hidden="true">📖</span><span><strong>ノベルゲーム</strong><small>物語を作る</small></span></a>
+          <span class="girls-nav-dropdown-item disabled" aria-disabled="true"><span aria-hidden="true">❓</span><span><strong>クイズ</strong><small>近日追加</small></span></span>
+          <span class="girls-nav-dropdown-item disabled" aria-disabled="true"><span aria-hidden="true">🎨</span><span><strong>絵本</strong><small>近日追加</small></span></span>
+          <a class="girls-nav-dropdown-all" href="create.html">つくれるもの一覧 →</a>
+        </div>
+      </details>
       <a class="girls-nav-link" href="apps.html">遊べるアプリ</a>
       <a class="girls-login-button" href="https://minapp.cloxs.jp/girls.html">ログイン</a>
     </nav>
