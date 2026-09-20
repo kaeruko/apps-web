@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minapp girls - ノベルゲームの作り方ガイド</title>
+  <link rel="stylesheet" href="site.css">
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Zen Maru Gothic & M PLUS Rounded 1c -->
@@ -101,43 +102,29 @@
     <div class="sparkle-dot absolute bottom-96 left-20 text-pastel-mintDark text-2xl" style="animation-delay: 2s;">🎀</div>
   </div>
 
-  <!-- ナビゲーションバー -->
-  <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b-2 border-pastel-pink/50 shadow-sm">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-      <!-- ロゴ -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-pastel-lavender to-pastel-pink flex items-center justify-center shadow-inner group-hover:scale-105 transition-transform">
-          <span class="text-2xl">📖</span>
+  <!-- みんアプ Girls 共通ヘッダー -->
+  <header class="girls-header">
+    <a class="girls-brand" href="index.html" aria-label="みんアプ Girls トップ">
+      <span class="girls-brand-icon" aria-hidden="true"></span>
+      <span>みんアプ <em>Girls</em></span>
+    </a>
+    <nav class="girls-nav" aria-label="メインメニュー">
+      <a class="girls-nav-link" href="index.html">ホーム</a>
+      <a class="girls-nav-link" href="howto.html">使い方</a>
+      <details class="girls-nav-menu">
+        <summary class="girls-nav-link active">つくれるもの <span aria-hidden="true">⌄</span></summary>
+        <div class="girls-nav-dropdown">
+          <a class="girls-nav-dropdown-item" href="novel.html"><span aria-hidden="true">📖</span><span><strong>ノベルゲーム</strong><small>物語を作る</small></span></a>
+          <span class="girls-nav-dropdown-item disabled" aria-disabled="true"><span aria-hidden="true">❓</span><span><strong>クイズ</strong><small>近日追加</small></span></span>
+          <span class="girls-nav-dropdown-item disabled" aria-disabled="true"><span aria-hidden="true">🎨</span><span><strong>絵本</strong><small>近日追加</small></span></span>
+          <a class="girls-nav-dropdown-all" href="create.html">つくれるもの一覧 →</a>
         </div>
-        <div>
-          <div class="flex items-center gap-1.5">
-            <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-pastel-lavender text-pastel-lavenderDark">Minapp girls</span>
-            <span class="text-xs font-bold text-pastel-pinkDark">公式アカデミー</span>
-          </div>
-          <h1 class="text-lg sm:text-xl font-black tracking-tight text-pastel-brown drop-shadow-sm">
-            ノベルゲームのつくりかた
-          </h1>
-        </div>
-      </a>
-
-      <!-- デスクトップナビ -->
-      <nav class="hidden md:flex items-center gap-1 bg-pastel-cream/80 p-1.5 rounded-full border border-pastel-lavender/60">
-        <a href="#intro" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">はじめに</a>
-        <a href="#steps" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">6つの制作ステップ</a>
-        <a href="#editor" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">エディタ操作法</a>
-        <a href="#preview-try" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">ミニ体験</a>
-        <a href="#assets" class="px-4 py-2 rounded-full text-sm font-bold text-pastel-brown hover:bg-white hover:text-pastel-lavenderDark transition">素材とヒント</a>
-      </nav>
-
-      <!-- 右側ボタン -->
-      <div class="flex items-center gap-2">
-        <a href="#preview-try" class="pukuri-btn hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pastel-pink to-pastel-lavender text-pastel-brown font-extrabold text-sm rounded-full border-2 border-white">
-          <i data-lucide="play-circle" class="w-4 h-4 text-pastel-pinkDark"></i>
-          ためしに作る！
-        </a>
-      </div>
-    </div>
+      </details>
+      <a class="girls-nav-link" href="apps.html">遊べるアプリ</a>
+      <a class="girls-login-button" href="https://minapp.cloxs.jp/girls.html">ログイン</a>
+    </nav>
   </header>
+  <div class="lace-strip" aria-hidden="true"></div>
 
   <!-- メインコンテンツ -->
   <main class="relative z-10 flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 pt-8 pb-20 space-y-16">
