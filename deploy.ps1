@@ -33,6 +33,11 @@ if (-not (Test-Path -LiteralPath $publicDirectory -PathType Container)) {
     throw "Deploy source directory not found: $publicDirectory"
 }
 
+$girlsIndex = Join-Path $publicDirectory "minapp\girls\index.html"
+if (-not (Test-Path -LiteralPath $girlsIndex -PathType Leaf)) {
+    throw "Girls index file not found: $girlsIndex"
+}
+
 Assert-AwsAccount
 
 aws s3 sync $publicDirectory "s3://$Bucket/" `
@@ -44,6 +49,24 @@ aws s3 sync $publicDirectory "s3://$Bucket/" `
 
 if ($LASTEXITCODE -ne 0) {
     throw "S3 sync failed with exit code $LASTEXITCODE"
+}
+
+# CloudFront uses the S3 REST object key directly. A request for /minapp/girls/
+# therefore needs an object whose key is exactly "minapp/girls/".
+# Keep the clean canonical URL working by publishing the same HTML there.
+Assert-AwsAccount
+
+aws s3api put-object `
+    --bucket $Bucket `
+    --key "minapp/girls/" `
+    --body $girlsIndex `
+    --content-type "text/html; charset=utf-8" `
+    --server-side-encryption AES256 `
+    --profile $Profile `
+    --no-cli-pager | Out-Null
+
+if ($LASTEXITCODE -ne 0) {
+    throw "Girls trailing-slash alias upload failed with exit code $LASTEXITCODE"
 }
 
 # Re-check immediately before the next AWS mutation.
