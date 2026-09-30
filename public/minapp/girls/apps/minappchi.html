@@ -4,12 +4,305 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="icon" href="../favicon.ico" sizes="any">
-  <meta name="description" content="みんアプ Girlsで遊べる育成ゲーム『みんあぷっち』の紹介ページです。">
+  <meta name="description" content="みんアプ Girlsで遊べる育成ゲーム「みんあぷっち」。小さないきものを育てながら、見た目や育ち方を自分好みにアレンジできます。">
   <title>みんあぷっち | みんアプ Girls</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="../login-theme.css">
+  <style>
+    .minappchi-page {
+      --mc-pink: #f4c9d9;
+      --mc-pink-deep: #bd6f90;
+      --mc-lavender: #ddd0ef;
+      --mc-purple: #745b9e;
+      --mc-cream: #fffaf5;
+      --mc-ink: #604943;
+      --mc-muted: #8c756e;
+      --mc-line: #eadde7;
+    }
+
+    .minappchi-page .hero {
+      padding-bottom: 18px;
+    }
+
+    .minappchi-page .hero-copy {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .minappchi-page .hero h1 {
+      margin-bottom: 10px;
+    }
+
+    .minappchi-page .hero-catch {
+      margin: 0;
+      color: var(--mc-purple);
+      font-size: clamp(1.1rem, 3.2vw, 1.55rem);
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .minappchi-page .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, .9fr);
+      gap: 26px;
+      align-items: center;
+      margin: 18px 0 24px;
+    }
+
+    .minappchi-page .hero-text {
+      text-align: left;
+    }
+
+    .minappchi-page .hero-text .lead {
+      margin: 12px 0 0;
+    }
+
+    .minappchi-page .ss-placeholder {
+      display: grid;
+      min-height: 250px;
+      place-items: center;
+      padding: 24px;
+      border: 2px dashed #d8c3d4;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,247,251,.92)),
+        repeating-linear-gradient(45deg, #fff, #fff 12px, #faf4f8 12px, #faf4f8 24px);
+      color: #9a8190;
+      text-align: center;
+      font-size: .82rem;
+      font-weight: 900;
+      line-height: 1.6;
+    }
+
+    .minappchi-page .ss-placeholder small {
+      display: block;
+      margin-top: 7px;
+      color: #b39fab;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .minappchi-page .section-title {
+      margin: 0 0 8px;
+      color: #675568;
+      font-size: clamp(1.55rem, 4vw, 2rem);
+      text-align: center;
+    }
+
+    .minappchi-page .section-intro {
+      max-width: 680px;
+      margin: 0 auto 22px;
+      color: var(--mc-muted);
+      font-size: .9rem;
+      font-weight: 700;
+      line-height: 1.85;
+      text-align: center;
+    }
+
+    .minappchi-page .play-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .minappchi-page .play-step {
+      padding: 20px;
+      border: 1px solid #efdee8;
+      border-radius: 22px;
+      background: #fff9fb;
+      text-align: center;
+    }
+
+    .minappchi-page .play-step-icon {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 12px;
+      place-items: center;
+      border-radius: 17px;
+      background: linear-gradient(145deg, #ffe8ef, #f0e8fb);
+      font-size: 25px;
+    }
+
+    .minappchi-page .play-step strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--mc-purple);
+      font-size: .95rem;
+    }
+
+    .minappchi-page .play-step p {
+      margin: 0;
+      color: var(--mc-muted);
+      font-size: .8rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .minappchi-page .growth-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .minappchi-page .growth-heading {
+      padding: 30px 28px 12px;
+    }
+
+    .minappchi-page .growth-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      padding: 16px 28px 30px;
+    }
+
+    .minappchi-page .growth-item {
+      overflow: hidden;
+      border: 1px solid var(--mc-line);
+      border-radius: 24px;
+      background: #fff;
+    }
+
+    .minappchi-page .growth-item .ss-placeholder {
+      min-height: 220px;
+      border: 0;
+      border-bottom: 1px dashed #dfceda;
+      border-radius: 0;
+      background:
+        linear-gradient(145deg, rgba(255,248,251,.96), rgba(250,247,255,.96)),
+        repeating-linear-gradient(45deg, #fff, #fff 12px, #faf4f8 12px, #faf4f8 24px);
+    }
+
+    .minappchi-page .growth-copy {
+      padding: 18px 19px 20px;
+    }
+
+    .minappchi-page .growth-tag {
+      display: inline-flex;
+      margin-bottom: 8px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #f6edf8;
+      color: #8c6aa2;
+      font-size: .67rem;
+      font-weight: 900;
+    }
+
+    .minappchi-page .growth-copy h3 {
+      margin: 0 0 6px;
+      color: var(--mc-ink);
+      font-size: 1.05rem;
+    }
+
+    .minappchi-page .growth-copy p {
+      margin: 0;
+      color: var(--mc-muted);
+      font-size: .79rem;
+      font-weight: 700;
+      line-height: 1.7;
+    }
+
+    .minappchi-page .arrange-card {
+      background: linear-gradient(145deg, rgba(255,255,255,.97), rgba(251,246,255,.97));
+    }
+
+    .minappchi-page .prompt-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      margin: 20px 0 6px;
+    }
+
+    .minappchi-page .prompt-chip {
+      padding: 10px 14px;
+      border: 1px solid #ead8e7;
+      border-radius: 999px;
+      background: #fff;
+      color: #745b9e;
+      font-size: .78rem;
+      font-weight: 900;
+    }
+
+    .minappchi-page .change-list {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .minappchi-page .change-item {
+      padding: 15px 12px;
+      border-radius: 18px;
+      background: #fff7fa;
+      color: #7a6871;
+      text-align: center;
+      font-size: .76rem;
+      font-weight: 900;
+    }
+
+    .minappchi-page .final-card {
+      padding: 34px 28px;
+      background:
+        radial-gradient(circle at 15% 25%, rgba(255,220,232,.65), transparent 28%),
+        radial-gradient(circle at 85% 70%, rgba(222,209,243,.65), transparent 30%),
+        rgba(255,255,255,.97);
+      text-align: center;
+    }
+
+    .minappchi-page .final-card h2 {
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+    }
+
+    .minappchi-page .final-card p {
+      max-width: 580px;
+      margin: 0 auto;
+      color: var(--mc-muted);
+      font-size: .88rem;
+      font-weight: 700;
+      line-height: 1.85;
+    }
+
+    .minappchi-page .final-card .actions {
+      justify-content: center;
+    }
+
+    @media (max-width: 760px) {
+      .minappchi-page .hero-grid,
+      .minappchi-page .growth-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .minappchi-page .hero-text {
+        text-align: center;
+      }
+
+      .minappchi-page .hero-text .lead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .minappchi-page .play-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .minappchi-page .change-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .minappchi-page .growth-heading,
+      .minappchi-page .growth-grid {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .minappchi-page .ss-placeholder {
+        min-height: 210px;
+      }
+    }
+  </style>
 </head>
-<body>
+<body class="minappchi-page">
   <header class="girls-header">
     <a class="brand" href="../index.html"><span class="brand-icon" aria-hidden="true"></span><span>みんアプ Girls</span></a>
     <a class="back" href="../apps.html">← アプリ一覧へ</a>
@@ -18,35 +311,128 @@
 
   <main class="wrap">
     <section class="hero">
-      <span class="badge">育成ゲーム ♡</span>
-      <h1>みんあぷっち</h1>
-      <p class="lead">たまごから小さなキャラクターを育てて遊ぶ、シンプルな育成アプリ。まず遊んでみて、気に入ったら見た目や育ち方をAIといっしょに改造してみよう。</p>
-    </section>
+      <div class="hero-copy">
+        <span class="badge">育成ゲーム ♡</span>
+        <h1>みんあぷっち</h1>
+        <p class="hero-catch">育てて、ながめて、ちょっと変える。</p>
+      </div>
 
-    <section class="card preview">
-      <div class="app-icon" aria-hidden="true">🥚</div>
-      <div>
-        <h2>どんなアプリ？</h2>
-        <ul class="feature-list">
-          <li>たまごからキャラクターを育てて遊べます。</li>
-          <li>お部屋の中でキャラクターの変化を楽しめます。</li>
-          <li>元アプリは1つの <code>index.html</code> なので、AIへ渡して改造しやすい作りです。</li>
-        </ul>
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="lead">たまごから生まれた小さないきものを、少しずつお世話して育てるシンプルな育成ゲームです。毎日ちょっとだけ様子を見ながら、どんな子に育つのかを楽しめます。</p>
+        </div>
+        <div class="ss-placeholder">
+          SS：みんあぷっち 通常画面
+          <small>ここに実際のアプリ画面を入れる</small>
+        </div>
       </div>
     </section>
 
     <section class="card">
-      <h2>こんな改造がおすすめ ♡</h2>
-      <div class="ideas">
-        <article class="idea"><strong>キャラを変える</strong><p>犬、猫、うさぎ、推しカラーのキャラなど、自分の好きな見た目に。</p></article>
-        <article class="idea"><strong>お部屋を変える</strong><p>夜のお部屋、学校、カフェ、お花畑など、背景を好きな世界観に。</p></article>
-        <article class="idea"><strong>育ち方を変える</strong><p>成長条件やセリフ、遊び方をAIに相談して追加してみよう。</p></article>
+      <h2 class="section-title">どんなアプリ？</h2>
+      <p class="section-intro">むずかしい操作はありません。ちょっとお世話して、変化を見守るだけ。</p>
+
+      <div class="play-steps">
+        <article class="play-step">
+          <div class="play-step-icon" aria-hidden="true">🍪</div>
+          <strong>おやつをあげる</strong>
+          <p>気が向いたときに、ちょっとだけお世話。</p>
+        </article>
+        <article class="play-step">
+          <div class="play-step-icon" aria-hidden="true">👀</div>
+          <strong>様子をながめる</strong>
+          <p>その日の表情や、小さな変化を楽しみます。</p>
+        </article>
+        <article class="play-step">
+          <div class="play-step-icon" aria-hidden="true">🌱</div>
+          <strong>育っていく</strong>
+          <p>お世話を続けると、少しずつ姿が変わっていきます。</p>
+        </article>
       </div>
+    </section>
+
+    <section class="card growth-card">
+      <div class="growth-heading">
+        <h2 class="section-title">どんな子に育つかな？</h2>
+        <p class="section-intro">見た目や育ち方は、あとから自分好みにアレンジできます。下はアレンジ例です。</p>
+      </div>
+
+      <div class="growth-grid">
+        <article class="growth-item">
+          <div class="ss-placeholder">
+            SS：最初のすがた
+            <small>通常のキャラクター画面</small>
+          </div>
+          <div class="growth-copy">
+            <span class="growth-tag">BASIC</span>
+            <h3>最初のすがた</h3>
+            <p>まずは小さくてシンプルな姿からスタート。</p>
+          </div>
+        </article>
+
+        <article class="growth-item">
+          <div class="ss-placeholder">
+            SS：ねむねむ型
+            <small>あとでスクリーンショットを差し替え</small>
+          </div>
+          <div class="growth-copy">
+            <span class="growth-tag">ARRANGE 01</span>
+            <h3>ねむねむ型</h3>
+            <p>いつも少し眠そう。夜になるとさらにうとうと。</p>
+          </div>
+        </article>
+
+        <article class="growth-item">
+          <div class="ss-placeholder">
+            SS：おしゃれ型
+            <small>あとでスクリーンショットを差し替え</small>
+          </div>
+          <div class="growth-copy">
+            <span class="growth-tag">ARRANGE 02</span>
+            <h3>おしゃれ型</h3>
+            <p>リボンや小物をつけて、ちょっとおめかし。</p>
+          </div>
+        </article>
+
+        <article class="growth-item">
+          <div class="ss-placeholder">
+            SS：もふもふ型
+            <small>あとでスクリーンショットを差し替え</small>
+          </div>
+          <div class="growth-copy">
+            <span class="growth-tag">ARRANGE 03</span>
+            <h3>もふもふ型</h3>
+            <p>ふわふわ感を増やして、自分好みの姿に。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card arrange-card">
+      <h2 class="section-title">AIといっしょなら、育ち方もつくれる。</h2>
+      <p class="section-intro">「こうなったらいいな」をそのまま相談して、見た目や動き、セリフまで少しずつ変えていけます。</p>
+
+      <div class="prompt-list" aria-label="アレンジ例">
+        <span class="prompt-chip">「もっともふもふにしたい」</span>
+        <span class="prompt-chip">「夜になると眠そうにして」</span>
+        <span class="prompt-chip">「リボンをつけたい」</span>
+      </div>
+
+      <div class="change-list">
+        <div class="change-item">見た目</div>
+        <div class="change-item">お部屋・背景</div>
+        <div class="change-item">セリフ・名前</div>
+        <div class="change-item">育ち方・遊び方</div>
+      </div>
+    </section>
+
+    <section class="card final-card">
+      <h2>あなたなら、どんな子に育てる？</h2>
+      <p>まずはそのまま遊んでみて、気になったところをひとつだけ変えてみよう。小さなアレンジから、自分だけのみんあぷっちができていきます。</p>
       <div class="actions">
-        <a class="button" href="https://minapp.cloxs.jp/girls.html">Girlsにログイン</a>
+        <a class="button" href="https://minapp.cloxs.jp/girls.html">みんアプ Girlsでつくってみる</a>
         <a class="button secondary" href="https://github.com/kaeruko/minapp_apps/tree/main/minappchi">元アプリを見る</a>
       </div>
-      <p class="note">元アプリのタイトルは「みんあぷっち」。現在のソースでは、たまごやキャラクターを表示する育成画面が1つのHTMLにまとまっています。</p>
     </section>
   </main>
 
