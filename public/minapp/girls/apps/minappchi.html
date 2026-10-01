@@ -82,6 +82,34 @@
       font-weight: 700;
     }
 
+    .minappchi-page .hero-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      padding: 10px;
+      border: 3px solid #fff;
+      border-radius: 26px;
+      background: rgba(255,255,255,.74);
+      box-shadow: 0 10px 26px rgba(113,87,119,.14);
+    }
+
+    .minappchi-page .hero-shot,
+    .minappchi-page .growth-shot {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      background: #f8f4f7;
+    }
+
+    .minappchi-page .hero-shot {
+      border-radius: 14px;
+    }
+
+    .minappchi-page .growth-shot {
+      border-bottom: 1px solid var(--mc-line);
+    }
+
     .minappchi-page .section-title {
       margin: 0 0 8px;
       color: #675568;
@@ -321,9 +349,11 @@
         <div class="hero-text">
           <p class="lead">たまごから生まれた小さないきものを、少しずつお世話して育てるシンプルな育成ゲームです。毎日ちょっとだけ様子を見ながら、どんな子に育つのかを楽しめます。</p>
         </div>
-        <div class="ss-placeholder">
-          SS：みんあぷっち 通常画面
-          <small>ここに実際のアプリ画面を入れる</small>
+        <div class="hero-gallery" aria-label="みんあぷっちの成長アレンジ例">
+          <img class="hero-shot" src="assets/minappchi-round.png" alt="まるまり型のみんあぷっち">
+          <img class="hero-shot" src="assets/minappchi-sleepy.png" alt="ねむねむ型のみんあぷっち">
+          <img class="hero-shot" src="assets/minappchi-fashion.png" alt="おしゃれ型のみんあぷっち">
+          <img class="hero-shot" src="assets/minappchi-droopy.png" alt="たれみみ型のみんあぷっち">
         </div>
       </div>
     </section>
@@ -359,48 +389,36 @@
 
       <div class="growth-grid">
         <article class="growth-item">
-          <div class="ss-placeholder">
-            SS：最初のすがた
-            <small>通常のキャラクター画面</small>
-          </div>
+          <img class="growth-shot" src="assets/minappchi-round.png" alt="まるまり型のみんあぷっち">
           <div class="growth-copy">
-            <span class="growth-tag">BASIC</span>
-            <h3>最初のすがた</h3>
-            <p>まずは小さくてシンプルな姿からスタート。</p>
+            <span class="growth-tag">ARRANGE 01</span>
+            <h3>まるまり型</h3>
+            <p>ころんと丸いシルエット。ちょっとのんびりした雰囲気に。</p>
           </div>
         </article>
 
         <article class="growth-item">
-          <div class="ss-placeholder">
-            SS：ねむねむ型
-            <small>あとでスクリーンショットを差し替え</small>
-          </div>
+          <img class="growth-shot" src="assets/minappchi-sleepy.png" alt="ねむねむ型のみんあぷっち">
           <div class="growth-copy">
-            <span class="growth-tag">ARRANGE 01</span>
+            <span class="growth-tag">ARRANGE 02</span>
             <h3>ねむねむ型</h3>
             <p>いつも少し眠そう。夜になるとさらにうとうと。</p>
           </div>
         </article>
 
         <article class="growth-item">
-          <div class="ss-placeholder">
-            SS：おしゃれ型
-            <small>あとでスクリーンショットを差し替え</small>
-          </div>
+          <img class="growth-shot" src="assets/minappchi-fashion.png" alt="おしゃれ型のみんあぷっち">
           <div class="growth-copy">
-            <span class="growth-tag">ARRANGE 02</span>
+            <span class="growth-tag">ARRANGE 03</span>
             <h3>おしゃれ型</h3>
             <p>リボンや小物をつけて、ちょっとおめかし。</p>
           </div>
         </article>
 
         <article class="growth-item">
-          <div class="ss-placeholder">
-            SS：たれみみ型
-            <small>あとでスクリーンショットを差し替え</small>
-          </div>
+          <img class="growth-shot" src="assets/minappchi-droopy.png" alt="たれみみ型のみんあぷっち">
           <div class="growth-copy">
-            <span class="growth-tag">ARRANGE 03</span>
+            <span class="growth-tag">ARRANGE 04</span>
             <h3>たれみみ型</h3>
             <p>おみみをふわんと垂らして、ちょっと違う表情に。</p>
           </div>
@@ -413,7 +431,7 @@
       <p class="section-intro">「こうなったらいいな」をそのまま相談して、見た目や動き、セリフまで少しずつ変えていけます。</p>
 
       <div class="prompt-list" aria-label="アレンジ例">
-        <span class="prompt-chip">「もっともふもふにしたい」</span>
+        <span class="prompt-chip">「もっとまるくしたい」</span>
         <span class="prompt-chip">「夜になると眠そうにして」</span>
         <span class="prompt-chip">「リボンをつけたい」</span>
       </div>
