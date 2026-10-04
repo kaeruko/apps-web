@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="都営でGOの使い方。都営交通中心のルート検索、乗車中案内、一本で行ける場所探し、みんなでおでかけの使い方を画面例つきで案内します。">
+  <link rel="canonical" href="https://cloxs.jp/toeigo/manual.html">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <meta property="og:title" content="都営でGO｜使い方">
+  <meta property="og:description" content="都営でGOの主な機能を、画面例つきでわかりやすく案内します。">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:url" content="https://cloxs.jp/toeigo/manual.html">
+  <meta property="og:image" content="https://cloxs.jp/toeigo/assets/logo.png">
+  <title>都営でGO｜使い方</title>
+  <style>
+    :root{
+      --ink:#15171c;
+      --muted:#626874;
+      --line:#e7e8ed;
+      --panel:#f7f8fb;
+      --blue:#087cff;
+      --blue-soft:#eaf4ff;
+      --green:#45b354;
+      --green-soft:#ebf8ee;
+      --orange:#ff9a20;
+      --orange-soft:#fff4e3;
+      --max:1040px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--ink);background:#fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;
+      line-height:1.75;-webkit-font-smoothing:antialiased;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
+    .wrap{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+    .nav{
+      position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);
+      backdrop-filter:blur(18px);border-bottom:1px solid var(--line);
+    }
+    .nav-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;text-decoration:none}
+    .brand img{height:62px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:12px;font-size:14px}
+    .nav-links a{text-decoration:none;font-weight:750;color:#4f5661}
+    .nav-links .back{
+      min-height:40px;padding:0 16px;border:1px solid #cfd3db;border-radius:999px;
+      display:inline-flex;align-items:center;background:#fff;color:var(--ink);
+    }
+    .hero{
+      padding:72px 0 62px;
+      background:
+        radial-gradient(circle at 10% 10%,rgba(8,124,255,.12),transparent 30%),
+        radial-gradient(circle at 88% 22%,rgba(69,179,84,.12),transparent 28%),
+        linear-gradient(180deg,#fff 0,#fbfcff 100%);
+    }
+    .eyebrow{
+      display:inline-flex;padding:7px 13px;border-radius:999px;
+      background:var(--green-soft);color:#27843a;font-size:13px;font-weight:900;
+    }
+    h1{font-size:clamp(40px,6vw,62px);line-height:1.13;letter-spacing:-.045em;margin:18px 0 16px}
+    .hero p{max-width:760px;margin:0;color:#4c535f;font-size:18px}
+    .note{
+      margin-top:26px;padding:16px 18px;border:1px solid #dce1e8;border-radius:16px;
+      background:rgba(255,255,255,.9);color:#59616d;font-size:14px;
+    }
+    .toc{padding:42px 0 18px}
+    .toc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .toc a{
+      display:block;padding:18px;border:1px solid var(--line);border-radius:18px;
+      text-decoration:none;background:#fff;font-weight:850;
+    }
+    .toc a span{display:block;margin-top:4px;color:var(--muted);font-size:12px;font-weight:600}
+    section.guide{padding:72px 0;border-top:1px solid #f0f1f4}
+    .section-head{max-width:780px;margin-bottom:34px}
+    .kicker{font-size:12px;font-weight:900;letter-spacing:.09em;color:var(--blue)}
+    h2{font-size:clamp(30px,4vw,44px);line-height:1.25;letter-spacing:-.03em;margin:8px 0 12px}
+    .lead{margin:0;color:var(--muted);font-size:17px}
+    .steps{counter-reset:step;display:grid;gap:12px;margin:24px 0 30px}
+    .step{
+      counter-increment:step;position:relative;padding:18px 18px 18px 58px;
+      border:1px solid var(--line);border-radius:18px;background:#fff;
+    }
+    .step::before{
+      content:counter(step);position:absolute;left:18px;top:18px;width:28px;height:28px;
+      display:grid;place-items:center;border-radius:999px;background:var(--blue);color:#fff;
+      font-weight:900;font-size:13px;
+    }
+    .step strong{display:block;margin-bottom:3px}
+    .step p{margin:0;color:var(--muted);font-size:14px}
+    .screens{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:26px}
+    .screens.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+    figure{
+      margin:0;padding:18px;border-radius:22px;border:1px solid var(--line);
+      background:var(--panel);display:flex;flex-direction:column;align-items:center;
+    }
+    figure img{
+      width:min(100%,300px);border-radius:18px;border:1px solid #dfe2e8;
+      box-shadow:0 12px 30px rgba(33,43,62,.10);
+    }
+    figcaption{width:100%;margin-top:12px;color:var(--muted);font-size:13px;text-align:center}
+    .callout{
+      margin-top:28px;padding:20px;border-radius:18px;background:var(--blue-soft);
+      border:1px solid #cfe4ff;color:#3e4d61;
+    }
+    .callout.green{background:var(--green-soft);border-color:#cfe9d4}
+    .callout.orange{background:var(--orange-soft);border-color:#ffe0b4}
+    .callout strong{color:var(--ink)}
+    .support{background:var(--panel)}
+    .support-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .support-card{padding:20px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+    .support-card h3{margin:0 0 8px;font-size:18px}
+    .support-card p{margin:0;color:var(--muted);font-size:14px}
+    .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .button{
+      min-height:48px;padding:0 20px;border-radius:999px;display:inline-flex;
+      align-items:center;justify-content:center;text-decoration:none;font-weight:850;
+    }
+    .button.primary{background:var(--blue);color:#fff}
+    .button.secondary{border:1px solid #cfd3db;background:#fff}
+    footer{padding:30px 0 42px;border-top:1px solid var(--line);font-size:12px;color:#7a808a}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .footer-links{display:flex;gap:14px;flex-wrap:wrap}
+    .footer-links a{text-decoration:none}
+    @media(max-width:820px){
+      .toc-grid{grid-template-columns:repeat(2,1fr)}
+      .screens.three{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      .wrap{width:min(calc(100% - 28px),var(--max))}
+      .nav-inner{min-height:64px}
+      .brand img{height:54px}
+      .nav-links a:not(.back){display:none}
+      .hero{padding:52px 0 44px}
+      .hero p{font-size:16px}
+      .toc-grid,.screens,.screens.three,.support-grid{grid-template-columns:1fr}
+      section.guide{padding:58px 0}
+      .buttons .button{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="toeigo.html" aria-label="都営でGO トップ"><img src="assets/toeigo_logo.png" alt="都営でGO"></a>
+      <nav class="nav-links" aria-label="使い方ページ">
+        <a href="#route">ルート検索</a>
+        <a href="#ride">乗車中</a>
+        <a href="#group">みんなでおでかけ</a>
+        <a class="back" href="toeigo.html">アプリ紹介へ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">都営でGO かんたんマニュアル</span>
+        <h1>使い方</h1>
+        <p>都営交通中心のルート検索から、乗車中の案内、行き先探し、同行者とのおでかけ共有まで。主な機能を画面例といっしょに紹介します。</p>
+        <div class="note">画面や文言はアプリのアップデートによって変更される場合があります。交通機関の運行情報や制度の利用条件は、東京都交通局などの公式情報もあわせてご確認ください。</div>
+      </div>
+    </section>
+
+    <div class="toc">
+      <div class="wrap toc-grid">
+        <a href="#route">🧭 ルートを探す<span>都営地下鉄・バス / 都営バスのみ</span></a>
+        <a href="#ride">🚌 乗車中の案内<span>次の停留所・降車タイミング</span></a>
+        <a href="#discover">📍 行き先を見つける<span>乗り換えなしで行ける場所</span></a>
+        <a href="#group">👥 みんなでおでかけ<span>参加コード・しおり・予定共有</span></a>
+      </div>
+    </div>
+
+    <section class="guide" id="route">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">ROUTE SEARCH</div>
+          <h2>都営交通中心のルートを探す</h2>
+          <p class="lead">出発地と目的地を指定し、使いたい交通手段に合わせてルートを検索します。</p>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>出発地と目的地を入力</strong><p>現在地を出発地にすることもできます。出発日時も必要に応じて変更できます。</p></div>
+          <div class="step"><strong>交通手段を選ぶ</strong><p>「都営地下鉄・バス」または「都営バスのみ」を選びます。</p></div>
+          <div class="step"><strong>ルートを比較する</strong><p>所要時間、乗換回数、徒歩距離、待ち時間などを見ながら候補を選びます。</p></div>
+          <div class="step"><strong>詳細を開いて出発</strong><p>徒歩・乗車・乗換の順番や地図を確認して、おでかけを始めます。</p></div>
+        </div>
+        <div class="screens">
+          <figure><img src="assets/screenshots/route-search-live.png" alt="都営でGOのルート検索画面" loading="lazy"><figcaption>出発地・目的地と交通手段を指定して検索</figcaption></figure>
+          <figure><img src="assets/screenshots/route-overview-live.png" alt="都営でGOのルート概要画面" loading="lazy"><figcaption>移動の流れを確認してルートを選択</figcaption></figure>
+        </div>
+        <div class="callout"><strong>シルバーパスや無料乗車券を使うときにも。</strong> JR・私鉄を含む一般的な経路ではなく、都営交通を中心に移動したい日に使いやすい検索を目指しています。</div>
+      </div>
+    </section>
+
+    <section class="guide" id="ride">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">ON THE RIDE</div>
+          <h2>乗ってからも、次がわかる</h2>
+          <p class="lead">乗車中は、次の停留所や降りるタイミングを確認できます。</p>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>ルートの案内を開く</strong><p>選んだ経路に沿って、徒歩・乗車・乗換など現在の移動を確認します。</p></div>
+          <div class="step"><strong>次の停留所を確認</strong><p>バス乗車中は、次の停留所や残りの停車回数を表示します。</p></div>
+          <div class="step"><strong>「次降ります」を目印にする</strong><p>降車が近づいたら、大きな表示で降りるタイミングを確認できます。</p></div>
+        </div>
+        <div class="screens">
+          <figure><img src="assets/screenshots/ride-next-stop.png" alt="次降りますを表示する乗車中画面" loading="lazy"><figcaption>降りるタイミングを大きく表示</figcaption></figure>
+          <figure><img src="assets/screenshots/bus-stops.png" alt="バス停留所一覧画面" loading="lazy"><figcaption>停留所の並びも確認できます</figcaption></figure>
+        </div>
+        <div class="callout orange"><strong>安全を優先してください。</strong> 歩行中や乗降時は画面を見続けず、周囲の状況や交通事業者の案内を優先してください。</div>
+      </div>
+    </section>
+
+    <section class="guide" id="discover">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">DISCOVER</div>
+          <h2>「どこへ行こう？」から探す</h2>
+          <p class="lead">目的地が決まっていないときは、現在地の近くから乗り換えなしで行ける場所を探せます。</p>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>画面下部の「みつける」を開く</strong><p>現在地付近の駅やバス停を起点に、行き先候補を探します。</p></div>
+          <div class="step"><strong>一本で行ける場所を見る</strong><p>乗り換えなしで行ける駅・バス停から、気になる場所を選びます。</p></div>
+          <div class="step"><strong>周辺のようすを確認する</strong><p>写真や周辺情報を見て、行ってみたい場所を選び、そのまま経路検索につなげられます。</p></div>
+        </div>
+        <div class="screens">
+          <figure><img src="assets/screenshots/one-ride-discovery.png" alt="一本で行ける場所を探す画面" loading="lazy"><figcaption>乗り換えなしで行ける場所を一覧から探す</figcaption></figure>
+          <figure><img src="assets/screenshots/nearby-detail.png" alt="駅やバス停の周辺詳細画面" loading="lazy"><figcaption>周辺写真や特徴を見て行き先を選ぶ</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide" id="group">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">GROUP TRIP</div>
+          <h2>みんなでおでかけ</h2>
+          <p class="lead">同行者と同じ予定を共有し、集合から到着まで「次に何をするか」をそろえて確認できます。</p>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>おでかけの予定を作る</strong><p>集合、徒歩、乗車、到着など、その日の予定をひとつのしおりにまとめます。</p></div>
+          <div class="step"><strong>参加コードを共有する</strong><p>おでかけには参加コードが表示されます。同行者は同じしおりを確認できます。</p></div>
+          <div class="step"><strong>みんなで進行状況を確認する</strong><p>集合場所や次の予定を見ながら、同じ行程に沿って移動します。</p></div>
+          <div class="step"><strong>必要に応じて予定を調整する</strong><p>予定の追加や時間の調整を行い、その日の外出に合わせてしおりを更新できます。</p></div>
+        </div>
+        <div class="screens three">
+          <figure><img src="assets/screenshots/trip-guide.png" alt="おでかけのしおり画面" loading="lazy"><figcaption>おでかけの予定をひとつに</figcaption></figure>
+          <figure><img src="assets/screenshots/group-meeting.png" alt="みんなでおでかけの集合画面" loading="lazy"><figcaption>集合や進行状況を確認</figcaption></figure>
+          <figure><img src="assets/screenshots/trip-edit.png" alt="おでかけ予定の編集画面" loading="lazy"><figcaption>必要に応じて予定を調整</figcaption></figure>
+        </div>
+        <div class="callout green"><strong>こんな使い方を想定しています。</strong> 友人同士のおでかけ、家族との外出、福祉施設などでのグループ外出で、参加者と支援者が同じ行程を確認したいときに利用できます。</div>
+      </div>
+    </section>
+
+    <section class="guide support" id="support">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">SUPPORT</div>
+          <h2>困ったときは</h2>
+          <p class="lead">うまく動かない場合は、まず端末の設定とアプリの状態をご確認ください。</p>
+        </div>
+        <div class="support-grid">
+          <div class="support-card"><h3>位置情報が取得できない</h3><p>端末の位置情報サービスが有効で、「都営でGO」に位置情報の利用が許可されているか確認してください。</p></div>
+          <div class="support-card"><h3>ルートや時刻が実際と異なる</h3><p>運休・遅延・臨時変更などがあります。最新の運行情報は東京都交通局などの公式情報も確認してください。</p></div>
+          <div class="support-card"><h3>表示や動作に問題がある</h3><p>アプリを終了して再起動し、利用可能な最新版へ更新してください。解決しない場合は不具合をご連絡ください。</p></div>
+          <div class="support-card"><h3>制度の対象・利用条件を確認したい</h3><p>シルバーパスや無料乗車券などの条件は変更される場合があります。制度そのものについては公式情報をご確認ください。</p></div>
+        </div>
+        <div class="buttons">
+          <a class="button primary" href="/contact.html?service=%E9%83%BD%E5%96%B6%E3%81%A7GO&category=%E4%B8%8D%E5%85%B7%E5%90%88%E3%83%BB%E8%A6%81%E6%9C%9B">不具合・要望を送る</a>
+          <a class="button secondary" href="toeigo.html#official">公式情報を確認する</a>
+          <a class="button secondary" href="toeigo.html">アプリ紹介へ戻る</a>
+        </div>
+        <div class="note">本アプリは個人が開発・提供する非公式アプリです。東京都、東京都交通局、東京都福祉局その他の行政機関による公式アプリではありません。</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <div>© 都営でGO</div>
+      <div class="footer-links">
+        <a href="toeigo.html">アプリ紹介</a>
+        <a href="../toeigo_privacy.html">プライバシーポリシー</a>
+        <span>非公式アプリ / 東京都・東京都交通局等とは関係ありません。</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
