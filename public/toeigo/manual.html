@@ -103,6 +103,21 @@
       box-shadow:0 12px 30px rgba(33,43,62,.10);
     }
     figcaption{width:100%;margin-top:12px;color:var(--muted);font-size:13px;text-align:center}
+    figure img.zoomable{cursor:zoom-in;transition:transform .16s ease,box-shadow .16s ease}
+    figure img.zoomable:hover{transform:translateY(-2px);box-shadow:0 16px 38px rgba(33,43,62,.16)}
+    figure img.zoomable:focus-visible{outline:3px solid rgba(8,124,255,.38);outline-offset:4px}
+    .lightbox{
+      width:min(94vw,980px);max-height:94vh;margin:auto;padding:52px 18px 18px;
+      border:0;border-radius:24px;background:#111;color:#fff;
+      box-shadow:0 28px 90px rgba(0,0,0,.45);overflow:auto;
+    }
+    .lightbox::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(6px)}
+    .lightbox img{max-width:100%;max-height:78vh;width:auto;height:auto;margin:0 auto;border-radius:16px;object-fit:contain}
+    .lightbox-caption{margin:12px 0 0;text-align:center;font-size:13px;color:#d7d9de}
+    .lightbox-close{
+      position:absolute;top:12px;right:14px;width:34px;height:34px;border:0;border-radius:999px;
+      background:#2b2d33;color:#fff;font-size:24px;line-height:1;cursor:pointer;
+    }
     .callout{
       margin-top:28px;padding:20px;border-radius:18px;background:var(--blue-soft);
       border:1px solid #cfe4ff;color:#3e4d61;
@@ -210,7 +225,9 @@
         </div>
         <div class="screens">
           <figure><img src="assets/screenshots/ride-next-stop.png" alt="次降りますを表示する乗車中画面" loading="lazy"><figcaption>降りるタイミングを大きく表示</figcaption></figure>
-          <figure><img src="assets/screenshots/bus-stops.png" alt="バス停留所一覧画面" loading="lazy"><figcaption>停留所の並びも確認できます</figcaption></figure>
+          <figure><img src="assets/screenshots/trip-navigation-live.png" alt="乗車中のナビゲーション画面" loading="lazy"><figcaption>現在の移動と次の行動を確認</figcaption></figure>
+          <figure><img src="assets/screenshots/bus-leg-detail-live.png" alt="バス区間の詳細画面" loading="lazy"><figcaption>乗車区間や停留所の流れを確認</figcaption></figure>
+          <figure><img src="assets/screenshots/stop-map-live.png" alt="停留所マップ画面" loading="lazy"><figcaption>停留所の位置を地図で確認</figcaption></figure>
         </div>
         <div class="callout orange"><strong>安全を優先してください。</strong> 歩行中や乗降時は画面を見続けず、周囲の状況や交通事業者の案内を優先してください。</div>
       </div>
@@ -248,10 +265,11 @@
           <div class="step"><strong>みんなで進行状況を確認する</strong><p>集合場所や次の予定を見ながら、同じ行程に沿って移動します。</p></div>
           <div class="step"><strong>必要に応じて予定を調整する</strong><p>予定の追加や時間の調整を行い、その日の外出に合わせてしおりを更新できます。</p></div>
         </div>
-        <div class="screens three">
-          <figure><img src="assets/screenshots/trip-guide.png" alt="おでかけのしおり画面" loading="lazy"><figcaption>おでかけの予定をひとつに</figcaption></figure>
-          <figure><img src="assets/screenshots/group-meeting.png" alt="みんなでおでかけの集合画面" loading="lazy"><figcaption>集合や進行状況を確認</figcaption></figure>
-          <figure><img src="assets/screenshots/trip-edit.png" alt="おでかけ予定の編集画面" loading="lazy"><figcaption>必要に応じて予定を調整</figcaption></figure>
+        <div class="screens">
+          <figure><img src="assets/screenshots/group-outing-overview-live.png" alt="みんなでおでかけの概要画面" loading="lazy"><figcaption>おでかけ全体と集合場所を確認</figcaption></figure>
+          <figure><img src="assets/screenshots/group-outing-timeline-live.png" alt="みんなでおでかけのタイムライン画面" loading="lazy"><figcaption>その日の流れと進行状況を確認</figcaption></figure>
+          <figure><img src="assets/screenshots/group-outing-guide-live.png" alt="おでかけのしおり画面" loading="lazy"><figcaption>同行者と同じしおりを確認</figcaption></figure>
+          <figure><img src="assets/screenshots/group-outing-edit-live.png" alt="おでかけ予定の編集画面" loading="lazy"><figcaption>必要に応じて予定を調整</figcaption></figure>
         </div>
         <div class="callout green"><strong>こんな使い方を想定しています。</strong> 友人同士のおでかけ、家族との外出、福祉施設などでのグループ外出で、参加者と支援者が同じ行程を確認したいときに利用できます。</div>
       </div>
@@ -290,5 +308,53 @@
       </div>
     </div>
   </footer>
+
+  <dialog class="lightbox" id="screenshot-lightbox" aria-label="スクリーンショット拡大表示">
+    <button class="lightbox-close" type="button" aria-label="閉じる">×</button>
+    <img id="lightbox-image" src="" alt="">
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </dialog>
+
+  <script>
+    (() => {
+      const lightbox = document.getElementById('screenshot-lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const closeButton = lightbox.querySelector('.lightbox-close');
+      const screenshots = document.querySelectorAll('figure img');
+
+      const openLightbox = (thumbnail) => {
+        lightboxImage.src = thumbnail.currentSrc || thumbnail.src;
+        lightboxImage.alt = thumbnail.alt;
+        const caption = thumbnail.closest('figure')?.querySelector('figcaption');
+        lightboxCaption.textContent = caption?.textContent || thumbnail.alt;
+        lightbox.showModal();
+      };
+
+      screenshots.forEach((thumbnail) => {
+        thumbnail.classList.add('zoomable');
+        thumbnail.tabIndex = 0;
+        thumbnail.setAttribute('role', 'button');
+        thumbnail.setAttribute('aria-label', `${thumbnail.alt}を拡大表示`);
+        thumbnail.addEventListener('click', () => openLightbox(thumbnail));
+        thumbnail.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openLightbox(thumbnail);
+          }
+        });
+      });
+
+      closeButton.addEventListener('click', () => lightbox.close());
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) lightbox.close();
+      });
+      lightbox.addEventListener('close', () => {
+        lightboxImage.src = '';
+        lightboxImage.alt = '';
+        lightboxCaption.textContent = '';
+      });
+    })();
+  </script>
 </body>
 </html>
