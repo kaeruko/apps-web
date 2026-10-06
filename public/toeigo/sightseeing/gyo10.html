@@ -23,9 +23,8 @@
     body{margin:0;background:#fff;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Noto Sans",sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
     img{display:block;max-width:100%}a{color:inherit}.wrap{width:min(calc(100% - 36px),var(--max));margin-inline:auto}
     .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(231,235,240,.92);backdrop-filter:blur(16px)}
-    .nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;display:flex;align-items:center;gap:11px;flex:0 0 auto}
-    .brand-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(145deg,#0a9b77,#1177e6);display:grid;place-items:center;box-shadow:0 7px 18px rgba(17,119,230,.18);font-size:23px}
-    .brand-copy{line-height:1.05}.brand-copy strong{display:block;font-size:18px;letter-spacing:-.02em}.brand-copy span{display:block;color:var(--muted);font-size:12px;font-weight:750;margin-top:4px}
+    .nav-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;display:flex;align-items:center;flex:0 0 auto}
+    .brand-logo{display:block;height:50px;width:auto;object-fit:contain}
     .nav-links{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:750;color:#475467}.nav-links a{text-decoration:none}.nav-links a:hover{color:var(--ink)}
     .app-menu{position:relative;flex:0 0 auto}
     .get-app{text-decoration:none;color:#fff;background:var(--orange);border:0;border-radius:999px;padding:12px 18px;font:inherit;font-weight:850;box-shadow:0 8px 20px rgba(255,107,26,.24);white-space:nowrap;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
@@ -61,12 +60,12 @@
     .app-section{padding:56px 0 70px}.app-banner{overflow:hidden;border-radius:24px;border:1px solid #dbe8f3;box-shadow:var(--shadow);background:#e8f6ff}.app-banner img{width:100%;height:auto}.store-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px}.store{text-decoration:none;min-height:48px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;font-weight:850}.store.ios{background:#111827;color:#fff}.store.android{background:#fff;color:#111827;border:1px solid #cfd6df}.app-footnote{text-align:center;color:var(--muted);font-size:12px;margin-top:10px}
     footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#7c8797;font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.disclaimer{max-width:760px}
     @media(max-width:900px){.nav-links{display:none}.hero-panel{min-height:610px}.hero-copy{padding:54px 34px;max-width:600px}.spot.shimbashi,.spot.ginza,.spot.tsukiji,.spot.bay,.route-map,.spot.skytree{grid-column:span 6}.practical-grid{grid-template-columns:1fr 1fr}.info-card.help{grid-column:1/-1}}
-    @media(max-width:640px){.wrap{width:min(calc(100% - 24px),var(--max))}.nav-inner{min-height:68px}.brand-mark{width:36px;height:36px;border-radius:11px;font-size:19px}.brand-copy strong{font-size:15px}.brand-copy span{font-size:10px}.get-app{padding:10px 14px;font-size:13px}.hero{padding-top:14px}.hero-panel{min-height:590px;border-radius:22px}.hero-panel::after{background:linear-gradient(180deg,rgba(4,17,31,.32) 0%,rgba(4,17,31,.78) 58%,rgba(4,17,31,.93) 100%)}.hero-photo{object-position:63% center}.hero-copy{position:absolute;left:0;right:0;bottom:0;padding:32px 22px}h1{font-size:clamp(39px,12.6vw,55px)}.hero-lead{font-size:16px}section{padding:48px 0}.section-head{display:block}.route-badge{display:inline-block;margin-top:15px}.highlights{grid-template-columns:1fr}.spot.shimbashi,.spot.ginza,.spot.tsukiji,.spot.bay,.route-map,.spot.skytree{grid-column:auto}.spot{min-height:300px}.route-map{min-height:340px}.practical-grid{grid-template-columns:1fr}.info-card.help{grid-column:auto}.app-section{padding-top:38px}.app-banner{border-radius:18px}.app-banner img{width:170%;max-width:none;margin-left:-7%}.store{width:100%}}
+    @media(max-width:640px){.wrap{width:min(calc(100% - 24px),var(--max))}.nav-inner{min-height:68px}.brand-logo{height:42px}.get-app{padding:10px 14px;font-size:13px}.hero{padding-top:14px}.hero-panel{min-height:590px;border-radius:22px}.hero-panel::after{background:linear-gradient(180deg,rgba(4,17,31,.32) 0%,rgba(4,17,31,.78) 58%,rgba(4,17,31,.93) 100%)}.hero-photo{object-position:63% center}.hero-copy{position:absolute;left:0;right:0;bottom:0;padding:32px 22px}h1{font-size:clamp(39px,12.6vw,55px)}.hero-lead{font-size:16px}section{padding:48px 0}.section-head{display:block}.route-badge{display:inline-block;margin-top:15px}.highlights{grid-template-columns:1fr}.spot.shimbashi,.spot.ginza,.spot.tsukiji,.spot.bay,.route-map,.spot.skytree{grid-column:auto}.spot{min-height:300px}.route-map{min-height:340px}.practical-grid{grid-template-columns:1fr}.info-card.help{grid-column:auto}.app-section{padding-top:38px}.app-banner{border-radius:18px}.app-banner img{width:170%;max-width:none;margin-left:-7%}.store{width:100%}}
   </style>
 </head>
 <body>
   <header class="nav"><div class="wrap nav-inner">
-    <a class="brand" href="#top" aria-label="Explore Tokyo by Toei GO Tokyo"><span class="brand-mark" aria-hidden="true">🚌</span><span class="brand-copy"><strong>EXPLORE TOKYO</strong><span>by Toei GO Tokyo</span></span></a>
+    <a class="brand" href="#top" aria-label="Toei GO Tokyo"><img class="brand-logo" src="../assets/toeigo_logo_en.png" alt="Toei GO Tokyo"></a>
     <nav class="nav-links" aria-label="Page navigation"><a href="#route">Route</a><a href="#how-to-ride">How to Ride</a><a href="#passes">Passes</a><a href="#official">Official Help</a></nav>
     <div class="app-menu">
       <button class="get-app" id="header-app-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="header-app-dropdown">Get the App →</button>
@@ -74,7 +73,7 @@
         <a href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener noreferrer">
           <span class="app-platform"><span>iOS</span><small>App Store</small></span><span class="app-arrow">↗</span>
         </a>
-        <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener noreferrer">
+        <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=en&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
           <span class="app-platform"><span>Android</span><small>Google Play</small></span><span class="app-arrow">↗</span>
         </a>
       </div>
@@ -110,7 +109,7 @@
 
     <section class="app-section" id="app"><div class="wrap">
       <div class="app-banner"><img src="../assets/siteseeing/%E6%9D%B1%E4%BA%AC%E3%82%92%E5%B7%A1%E3%82%8B%E3%83%90%E3%82%B9%E6%97%85%E3%80%81Toei%20GO%20Tokyo.png" alt="Discover more Tokyo bus journeys with Toei GO Tokyo" loading="lazy"></div>
-      <div class="store-row" aria-label="Download Toei GO Tokyo"><a class="store ios" href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener noreferrer">Get on the App Store</a><a class="store android" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener noreferrer">Get it on Google Play</a></div>
+      <div class="store-row" aria-label="Download Toei GO Tokyo"><a class="store ios" href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener noreferrer">Get on the App Store</a><a class="store android" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=en&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">Get it on Google Play</a></div>
       <p class="app-footnote">Toei GO Tokyo is an independent travel app. It is not an official app of the Tokyo Metropolitan Government or Tokyo Metropolitan Bureau of Transportation.</p>
     </div></section>
   </main>
