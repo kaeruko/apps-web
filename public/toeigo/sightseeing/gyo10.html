@@ -30,13 +30,14 @@
     .get-app{text-decoration:none;color:#fff;background:var(--orange);border:0;border-radius:999px;padding:12px 18px;font:inherit;font-weight:850;box-shadow:0 8px 20px rgba(255,107,26,.24);white-space:nowrap;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
     .get-app:hover{transform:translateY(-1px);box-shadow:0 11px 25px rgba(255,107,26,.28)}
     .get-app:focus-visible{outline:4px solid rgba(17,119,230,.24);outline-offset:3px}
-    .app-dropdown{position:absolute;top:calc(100% + 10px);right:0;z-index:80;min-width:238px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 45px rgba(16,42,67,.16)}
+    .app-dropdown{position:absolute;top:calc(100% + 8px);right:0;z-index:80;width:236px;padding:0;background:#fff;border:1px solid #d9dde5;border-radius:10px;box-shadow:0 12px 28px rgba(16,24,40,.20);overflow:hidden}
     .app-dropdown[hidden]{display:none}
-    .app-dropdown a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 13px;border-radius:11px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:800}
-    .app-dropdown a:hover,.app-dropdown a:focus-visible{background:#f5f7fa;outline:none}
-    .app-dropdown small{display:block;color:var(--muted);font-size:11px;font-weight:650;margin-top:2px}
-    .app-platform{display:flex;flex-direction:column}
-    .app-arrow{color:var(--muted);font-size:16px}
+    .app-dropdown a{display:flex;align-items:center;gap:12px;min-height:58px;padding:10px 14px;text-decoration:none;color:#222b35;font-size:14px;font-weight:750;background:#fff}
+    .app-dropdown a+a{border-top:1px solid #e4e7ec}
+    .app-dropdown a:hover,.app-dropdown a:focus-visible{background:#f7f8fa;outline:none}
+    .store-menu-icon{width:31px;height:31px;display:grid;place-items:center;flex:0 0 auto}
+    .store-menu-icon svg{display:block;width:31px;height:31px}
+    .app-platform{display:block;line-height:1.25}
     main{overflow:hidden}.hero{padding:26px 0 34px}.hero-panel{position:relative;min-height:560px;overflow:hidden;border-radius:30px;background:#0a2340;box-shadow:var(--shadow);isolation:isolate}
     .hero-panel::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,17,31,.88) 0%,rgba(4,17,31,.72) 36%,rgba(4,17,31,.18) 68%,rgba(4,17,31,.06) 100%);pointer-events:none}
     .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 43%}.hero-copy{position:relative;z-index:2;padding:64px 58px;max-width:680px;color:#fff}
@@ -77,10 +78,24 @@
       <button class="get-app" id="header-app-trigger" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="header-app-dropdown">Get the App →</button>
       <div class="app-dropdown" id="header-app-dropdown" hidden>
         <a href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener noreferrer">
-          <span class="app-platform"><span>iOS</span><small>App Store</small></span><span class="app-arrow">↗</span>
+          <span class="store-menu-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <rect x="1" y="1" width="30" height="30" rx="7" fill="#1684f8"/>
+              <path d="M10.2 22.4h11.6M12.2 20.7l4.2-8.1M19.8 20.7l-4.2-8.1M9.2 19h13.6" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="app-platform">Download for iOS</span>
         </a>
         <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=en&amp;utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
-          <span class="app-platform"><span>Android</span><small>Google Play</small></span><span class="app-arrow">↗</span>
+          <span class="store-menu-icon" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <path d="M5 4.8v22.4L18.8 16 5 4.8z" fill="#34a853"/>
+              <path d="M5 4.8L21.4 13.5 18.8 16 5 4.8z" fill="#4285f4"/>
+              <path d="M5 27.2L21.4 18.5 18.8 16 5 27.2z" fill="#fbbc04"/>
+              <path d="M21.4 13.5L27.2 16l-5.8 2.5-2.6-2.5 2.6-2.5z" fill="#ea4335"/>
+            </svg>
+          </span>
+          <span class="app-platform">Download for Android</span>
         </a>
       </div>
     </div>
