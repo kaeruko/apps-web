@@ -171,6 +171,259 @@
       .why-grid{grid-template-columns:1fr}.pass-highlight{grid-template-columns:1fr}.pass-points{flex-wrap:wrap}
       .app-section{padding-top:8px}.app-banner{border-radius:18px}.app-banner img{width:170%;max-width:none;margin-left:-7%}.store-row{bottom:7%;gap:8px}.store{min-height:40px;padding:0 13px;font-size:12px}
     }
+
+    @page{
+      size:A4 portrait;
+      margin:6mm;
+    }
+    @media print{
+      html,body{
+        width:auto;
+        min-width:0;
+        background:#fff;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+      }
+      body{
+        font-size:8pt;
+        line-height:1.35;
+      }
+      .wrap{
+        width:100%;
+        max-width:none;
+        margin-inline:0;
+      }
+      .nav{
+        position:static;
+        border-bottom:0;
+        background:#fff;
+        backdrop-filter:none;
+      }
+      .nav-inner{
+        min-height:11mm;
+        padding:0;
+      }
+      .brand-logo{
+        height:9mm;
+      }
+      .nav-links,
+      .app-menu{
+        display:none !important;
+      }
+      main{
+        overflow:visible;
+      }
+
+      .hero{
+        padding:0 0 2.5mm;
+      }
+      .hero-panel{
+        min-height:52mm;
+        height:52mm;
+        border-radius:5mm;
+        box-shadow:none;
+        break-inside:avoid;
+      }
+      .hero-grid{
+        grid-template-columns:1.15fr .72fr .8fr;
+      }
+      .hero-shot:nth-child(1),
+      .hero-shot:nth-child(2),
+      .hero-shot:nth-child(3){
+        display:block;
+      }
+      .hero-panel::after{
+        background:linear-gradient(90deg,rgba(5,18,32,.90) 0%,rgba(5,18,32,.62) 44%,rgba(5,18,32,.10) 74%);
+      }
+      .hero-copy{
+        position:relative;
+        max-width:118mm;
+        padding:8mm 9mm;
+      }
+      .hero-copy h1{
+        margin:0 0 2.5mm;
+        font-size:23pt;
+        line-height:1;
+        letter-spacing:-.045em;
+      }
+      .hero-copy p{
+        max-width:108mm;
+        font-size:8.5pt;
+        line-height:1.35;
+      }
+      .hero-pills{
+        gap:1.5mm;
+        margin-top:3mm;
+      }
+      .hero-pill{
+        min-height:6mm;
+        padding:0 2.5mm;
+        font-size:7pt;
+      }
+
+      section{
+        padding:0;
+      }
+      #collection{
+        padding:0 0 2.5mm;
+      }
+      .route-grid{
+        grid-template-columns:repeat(3,minmax(0,1fr));
+        gap:2.5mm;
+      }
+      .route-card,
+      .route-card.to08{
+        grid-column:auto;
+        border-radius:4mm;
+        box-shadow:none;
+        break-inside:avoid;
+      }
+      .route-photo{
+        aspect-ratio:auto;
+        height:31mm;
+      }
+      .route-code{
+        top:2mm;
+        left:2mm;
+        padding:1.2mm 2mm;
+        font-size:6.5pt;
+        box-shadow:none;
+      }
+      .route-body{
+        padding:2.5mm;
+        gap:1.5mm;
+      }
+      .route-body h3{
+        font-size:11pt;
+        line-height:1.08;
+      }
+      .route-body p{
+        font-size:7pt;
+        line-height:1.3;
+      }
+      .route-path{
+        gap:1.2mm;
+        padding:1.5mm 1.8mm;
+        border-radius:2.5mm;
+        font-size:6.5pt;
+        line-height:1.25;
+      }
+      .pin{
+        width:1.8mm;
+        height:1.8mm;
+        margin-top:.8mm;
+      }
+      .route-actions{
+        display:none !important;
+      }
+
+      .why{
+        padding:2.5mm 0;
+        background:linear-gradient(180deg,#fffaf5,#f7fbfb);
+        break-inside:avoid;
+      }
+      .section-title{
+        gap:2mm;
+        margin-bottom:2mm;
+      }
+      .section-title::before{
+        width:6mm;
+        height:.8mm;
+      }
+      .section-title h2{
+        font-size:14pt;
+        line-height:1.05;
+      }
+      .why-grid{
+        grid-template-columns:1fr 1fr;
+        gap:2.5mm;
+      }
+      .benefit-card,
+      .pass-card{
+        border-radius:4mm;
+        box-shadow:none;
+        padding:3mm;
+      }
+      .benefits{
+        gap:1.4mm;
+      }
+      .benefit{
+        gap:2mm;
+        padding:1.8mm 2mm;
+        border-radius:2.5mm;
+        font-size:7pt;
+      }
+      .benefit-icon{
+        width:5mm;
+        font-size:9pt;
+      }
+      .pass-card h3{
+        margin:0 0 2mm;
+        font-size:11pt;
+      }
+      .pass-highlight{
+        grid-template-columns:1fr auto;
+        gap:2mm;
+        padding:2.5mm;
+        border-radius:3mm;
+      }
+      .pass-price small{
+        font-size:6.5pt;
+      }
+      .pass-price strong{
+        font-size:22pt;
+      }
+      .pass-points{
+        gap:2mm;
+        font-size:6.5pt;
+      }
+      .official-button{
+        display:none !important;
+      }
+
+      .app-section{
+        padding:2.5mm 0 2mm;
+        break-inside:avoid;
+      }
+      .app-banner{
+        border-radius:4mm;
+        box-shadow:none;
+      }
+      .app-banner img{
+        width:100%;
+        max-height:38mm;
+        object-fit:contain;
+      }
+      .store-row{
+        display:none !important;
+      }
+      .app-footnote{
+        margin:1.5mm 0 0;
+        font-size:6pt;
+        line-height:1.25;
+      }
+
+      footer{
+        padding:2mm 0 0;
+        font-size:6pt;
+        line-height:1.25;
+        break-inside:avoid;
+      }
+      .footer-inner{
+        gap:2mm;
+        flex-wrap:nowrap;
+        align-items:flex-start;
+      }
+      .disclaimer{
+        max-width:none;
+        flex:1 1 auto;
+      }
+
+      a[href]::after{
+        content:none !important;
+      }
+    }
+
   </style>
 </head>
 <body>
