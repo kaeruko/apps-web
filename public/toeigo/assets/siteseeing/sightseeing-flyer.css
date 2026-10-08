@@ -1,5 +1,6 @@
 /* A4 portrait flyer system. The regular LP is unchanged. */
 @page{size:A4 portrait;margin:0}
+body.sightseeing-refresh .qr-panel{display:none}
 body.sightseeing-refresh .flyer-icon,
 body.sightseeing-refresh .hero-title-flyer,
 body.sightseeing-refresh .flyer-promo-title{display:none}
