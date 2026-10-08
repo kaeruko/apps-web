@@ -426,6 +426,20 @@
 
   </style>
   <link rel="stylesheet" href="../../assets/siteseeing/sightseeing-refresh.css">
+  <link rel="stylesheet" href="../../assets/siteseeing/sightseeing-flyer.css">
+  <script>
+    (() => {
+      'use strict';
+      const mode = new URLSearchParams(window.location.search).get('mode');
+      if (mode !== null && mode !== 'flyer') throw new Error('Unsupported sightseeing page mode: ' + mode);
+      if (mode === 'flyer') {
+        document.documentElement.classList.add('flyer-mode');
+        const robots = document.querySelector('meta[name="robots"]');
+        if (!robots) throw new Error('SEO robots meta tag is missing.');
+        robots.setAttribute('content', 'noindex,follow');
+      }
+    })();
+  </script>
 </head>
 <body class="sightseeing-refresh sightseeing-collection sightseeing-preserve-banner">
   <header class="nav">
@@ -556,13 +570,21 @@
           <div class="app-promo-copy">
             <span class="lp-promo-kicker">Tokyo Toei GO</span>
             <strong class="lp-promo-title">搭巴士探索東京，<br>更輕鬆、更自在。</strong>
+            <strong class="flyer-promo-title">使用 Tokyo Toei GO<br>探索更多東京巴士旅程</strong>
             <p>快速查找巴士路線、站牌與周邊景點。</p>
             <div class="app-promo-links" aria-label="下載 App">
               <a href="https://apps.apple.com/tw/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer"><span class="app-store-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7" fill="#1684f8"/><path d="M10.2 22.4h11.6M12.2 20.7l4.2-8.1M19.8 20.7l-4.2-8.1M9.2 19h13.6" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="app-store-label">從 App Store<br>下載</span></a>
               <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer"><span class="app-store-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 4.8v22.4L18.8 16 5 4.8z" fill="#34a853"/><path d="M5 4.8L21.4 13.5 18.8 16 5 4.8z" fill="#4285f4"/><path d="M5 27.2L21.4 18.5 18.8 16 5 27.2z" fill="#fbbc04"/><path d="M21.4 13.5L27.2 16l-5.8 2.5-2.6-2.5 2.6-2.5z" fill="#ea4335"/></svg></span><span class="app-store-label">從 Google Play<br>下載</span></a>
             </div>
           </div>
-        </div>
+        <div class="qr-panel" aria-label="掃碼下載 App">
+              <div class="qr-heading">掃碼下載 App</div>
+              <div class="qr-codes">
+                <a class="qr-item" href="https://apps.apple.com/tw/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer"><canvas id="qr-ios" role="img" aria-label="iOS App Store QR"></canvas><span>iOS</span></a>
+                <a class="qr-item" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=zh-TW" target="_blank" rel="noopener noreferrer"><canvas id="qr-android" role="img" aria-label="Android Google Play QR"></canvas><span>Android</span></a>
+              </div>
+            </div>
+          </div>
           <img class="flyer-banner-original" src="../../assets/siteseeing/%E6%9D%B1%E4%BA%AC%E3%82%92%E5%B7%A1%E3%82%8B%E3%83%90%E3%82%B9%E6%97%85%E3%80%81Toei%20GO%20Tokyo.png" alt="用 Toei GO Tokyo 探索更多東京巴士旅程" loading="lazy" decoding="async">
           <div class="store-row" aria-label="下載 Toei GO Tokyo">
             <a class="store ios" href="https://apps.apple.com/tw/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer">前往 App Store 下載</a>
@@ -610,5 +632,6 @@
       });
     })();
   </script>
+  <script src="../../assets/siteseeing/sightseeing-qr-localized.js"></script>
 </body>
 </html>
