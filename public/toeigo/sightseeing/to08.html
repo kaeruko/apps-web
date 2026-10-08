@@ -105,8 +105,9 @@
     @media(max-width:900px){.nav-links{display:none}.hero-panel{min-height:610px}.hero-copy{padding:54px 34px;max-width:600px}.spot.nippori,.spot.asakusa,.spot.skytree,.spot.kinshicho,.route-map,.spot.local{grid-column:span 6}.practical-grid{grid-template-columns:1fr 1fr}.info-card.help{grid-column:1/-1}}
     @media(max-width:640px){.wrap{width:min(calc(100% - 24px),var(--max))}.nav-inner{min-height:68px}.brand-logo{height:42px}.get-app{padding:10px 14px;font-size:13px}.hero{padding-top:14px}.hero-panel{min-height:590px;border-radius:22px}.hero-panel::after{background:linear-gradient(180deg,rgba(4,17,31,.28) 0%,rgba(4,17,31,.78) 58%,rgba(4,17,31,.93) 100%)}.hero-photo{object-position:58% center}.hero-copy{position:absolute;left:0;right:0;bottom:0;padding:32px 22px}h1{font-size:clamp(39px,12.6vw,55px)}.hero-lead{font-size:16px}section{padding:48px 0}.section-head{display:block}.route-header{align-items:flex-start;gap:12px}.route-title-row{align-items:flex-start;gap:10px}.route-title-accent{width:22px;height:4px;margin-top:10px}.route-title-inline{font-size:clamp(22px,7vw,30px);line-height:1.08}.route-chip{min-height:34px;padding:0 12px;font-size:12px}.route-subcopy{margin-left:32px;font-size:14px}.highlights{grid-template-columns:1fr}.spot.nippori,.spot.asakusa,.spot.skytree,.spot.kinshicho,.route-map,.spot.local{grid-column:auto}.spot{min-height:300px}.route-map{min-height:340px}.practical-grid{grid-template-columns:1fr}.info-card.help{grid-column:auto}.app-section{padding-top:38px}.app-banner{border-radius:18px}.app-banner img{width:170%;max-width:none;margin-left:-7%}.store-row{bottom:7%;gap:8px}.seo-guide{font-size:12px}.more-card{align-items:flex-start;flex-direction:column}.more-actions{width:100%}.more-link{flex:1 1 auto}.store{min-height:40px;padding:0 13px;font-size:12px}}
   </style>
+  <link rel="stylesheet" href="../assets/siteseeing/sightseeing-refresh.css">
 </head>
-<body>
+<body class="sightseeing-refresh sightseeing-route">
   <header class="nav"><div class="wrap nav-inner">
     <a class="brand" href="./index.html" aria-label="Toei GO Tokyo sightseeing collection"><img class="brand-logo" src="../assets/toeigo_logo_en.png" alt="Toei GO Tokyo"></a>
     <nav class="nav-links" aria-label="Page navigation"><a href="./index.html">Home</a><a href="./index.html#collection">Collection</a><a href="#route">This Route</a><a href="#how-to-ride">How to Ride</a><a href="#passes">Passes</a><a href="#official">Official Help</a></nav>
@@ -202,7 +203,18 @@
 
     <section class="app-section" id="app"><div class="wrap">
       <div class="app-banner">
-        <img src="../assets/siteseeing/%E6%9D%B1%E4%BA%AC%E3%82%92%E5%B7%A1%E3%82%8B%E3%83%90%E3%82%B9%E6%97%85%E3%80%81Toei%20GO%20Tokyo.png" alt="Discover more Tokyo bus journeys with Toei GO Tokyo" loading="lazy" decoding="async">
+        <div class="app-visual">
+          <img class="app-hero-img" src="../assets/siteseeing/Tokyo_Toei_GO_banner_1960x320.png" alt="Tokyo Toei GO app and Tokyo skyline" loading="lazy" decoding="async">
+          <div class="app-promo-copy">
+            <span class="lp-promo-kicker">Tokyo Toei GO</span>
+            <strong class="lp-promo-title">Discover more of Tokyo<br>by bus.</strong>
+            <p>Find routes, bus stops, and nearby places in one app.</p>
+            <div class="app-promo-links" aria-label="Download the app">
+              <a href="https://apps.apple.com/us/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer"><span class="app-store-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="1" y="1" width="30" height="30" rx="7" fill="#1684f8"/><path d="M10.2 22.4h11.6M12.2 20.7l4.2-8.1M19.8 20.7l-4.2-8.1M9.2 19h13.6" stroke="#fff" stroke-width="2.1" stroke-linecap="round"/></svg></span><span class="app-store-label">Download on the<br>App Store</span></a>
+              <a href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=en" target="_blank" rel="noopener noreferrer"><span class="app-store-symbol"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 4.8v22.4L18.8 16 5 4.8z" fill="#34a853"/><path d="M5 4.8L21.4 13.5 18.8 16 5 4.8z" fill="#4285f4"/><path d="M5 27.2L21.4 18.5 18.8 16 5 27.2z" fill="#fbbc04"/><path d="M21.4 13.5L27.2 16l-5.8 2.5-2.6-2.5 2.6-2.5z" fill="#ea4335"/></svg></span><span class="app-store-label">Get it on<br>Google Play</span></a>
+            </div>
+          </div>
+        </div>
         <div class="store-row" aria-label="Download Toei GO Tokyo">
           <a class="store ios" href="https://apps.apple.com/us/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer">Get on the App Store</a>
           <a class="store android" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=en" target="_blank" rel="noopener noreferrer">Get it on Google Play</a>
