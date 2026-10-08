@@ -104,6 +104,62 @@
     footer{border-top:1px solid var(--line);padding:28px 0 38px;color:#7c8797;font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.disclaimer{max-width:760px}
     @media(max-width:900px){.nav-links{display:none}.hero-panel{min-height:610px}.hero-copy{padding:54px 34px;max-width:600px}.spot.nippori,.spot.asakusa,.spot.skytree,.spot.kinshicho,.route-map,.spot.local{grid-column:span 6}.practical-grid{grid-template-columns:1fr 1fr}.info-card.help{grid-column:1/-1}}
     @media(max-width:640px){.wrap{width:min(calc(100% - 24px),var(--max))}.nav-inner{min-height:68px}.brand-logo{height:42px}.get-app{padding:10px 14px;font-size:13px}.hero{padding-top:14px}.hero-panel{min-height:590px;border-radius:22px}.hero-panel::after{background:linear-gradient(180deg,rgba(4,17,31,.28) 0%,rgba(4,17,31,.78) 58%,rgba(4,17,31,.93) 100%)}.hero-photo{object-position:58% center}.hero-copy{position:absolute;left:0;right:0;bottom:0;padding:32px 22px}h1{font-size:clamp(39px,12.6vw,55px)}.hero-lead{font-size:16px}section{padding:48px 0}.section-head{display:block}.route-header{align-items:flex-start;gap:12px}.route-title-row{align-items:flex-start;gap:10px}.route-title-accent{width:22px;height:4px;margin-top:10px}.route-title-inline{font-size:clamp(22px,7vw,30px);line-height:1.08}.route-chip{min-height:34px;padding:0 12px;font-size:12px}.route-subcopy{margin-left:32px;font-size:14px}.highlights{grid-template-columns:1fr}.spot.nippori,.spot.asakusa,.spot.skytree,.spot.kinshicho,.route-map,.spot.local{grid-column:auto}.spot{min-height:300px}.route-map{min-height:340px}.practical-grid{grid-template-columns:1fr}.info-card.help{grid-column:auto}.app-section{padding-top:38px}.app-banner{border-radius:18px}.app-banner img{width:170%;max-width:none;margin-left:-7%}.store-row{bottom:7%;gap:8px}.seo-guide{font-size:12px}.more-card{align-items:flex-start;flex-direction:column}.more-actions{width:100%}.more-link{flex:1 1 auto}.store{min-height:40px;padding:0 13px;font-size:12px}}
+
+    /* Flyer-inspired sightseeing cards and a QR-enabled panoramic app banner. */
+    .hero{padding:22px 0 28px}
+    .hero-panel{min-height:475px;border-radius:22px}
+    .hero-copy{padding:54px 48px}
+    .hero-copy h1{font-size:clamp(42px,5.3vw,66px)}
+    section{padding:48px 0}
+    .route-header{margin-bottom:12px}
+    .highlights{gap:14px}
+    .spot{min-height:0;border-radius:16px;display:flex;flex-direction:column;background:#fff}
+    .spot.photo{color:var(--ink)}
+    .spot.photo::after{display:none}
+    .spot.photo img{position:relative;inset:auto;width:100%;height:186px;flex:0 0 auto;object-fit:cover}
+    .spot .spot-content{position:relative;inset:auto;padding:16px 17px 18px;flex:1}
+    .spot .spot-no{position:absolute;top:-173px;left:12px;margin:0;box-shadow:0 3px 10px rgba(0,0,0,.16)}
+    .spot h3{font-size:21px;line-height:1.16;color:#172330}
+    .spot p{margin-top:6px;color:#536174;font-size:13px;line-height:1.5}
+    .route-map{min-height:0;border-radius:16px;background:linear-gradient(180deg,#f0faff,#fff)}
+    .route-map svg{max-height:280px}
+    .practical{background:#f8fafc}
+    .info-card{border-radius:17px;padding:20px}
+    .info-card.ride{background:#fff2e7}
+    .info-card.pass{background:#e9faf3}
+    .info-card.help{background:#edf6fe}
+    .app-section{padding:35px 0 54px}
+    .app-banner{border-radius:18px;overflow:hidden}
+    .app-visual{position:relative;overflow:hidden}
+    .app-visual .app-hero-img{display:block;width:100%;height:auto;margin:0}
+    .qr-panel{position:absolute;top:7%;left:51%;z-index:2;padding:10px 12px 8px;border-radius:16px;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.85);box-shadow:0 8px 24px rgba(16,24,40,.20)}
+    .qr-heading{text-align:center;color:#173f57;font-weight:900;font-size:12px;margin:0 0 5px}
+    .qr-codes{display:flex;gap:10px}
+    .qr-item{display:flex;flex-direction:column;align-items:center;gap:3px;color:#173f57;text-decoration:none;font-size:12px;font-weight:900}
+    .qr-item canvas{width:94px;height:94px;display:block;background:#fff;image-rendering:pixelated}
+    .qr-item:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+    .store-row{position:relative;inset:auto;left:auto;bottom:auto;transform:none;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:12px;background:rgba(255,255,255,.96)}
+    @media(max-width:900px){
+      .hero-panel{min-height:500px}
+      .hero-copy{padding:48px 34px}
+      .qr-panel{left:auto;right:5%;top:7%}
+      .qr-item canvas{width:80px;height:80px}
+    }
+    @media(max-width:640px){
+      .hero-panel{min-height:525px}
+      .hero-copy{position:absolute;left:0;right:0;bottom:0;padding:30px 22px}
+      .hero-copy h1{font-size:clamp(37px,11.3vw,53px)}
+      .spot.photo img{height:195px}
+      .spot .spot-no{top:-181px}
+      .app-visual{height:315px}
+      .app-visual .app-hero-img{width:100%;max-width:none;height:100%;object-fit:cover;object-position:25% center;margin:0}
+      .qr-panel{top:auto;right:12px;left:12px;bottom:12px;display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;transform:none}
+      .qr-heading{max-width:90px;font-size:12px;line-height:1.3;margin:0}
+      .qr-codes{gap:8px}
+      .qr-item{font-size:11px}
+      .qr-item canvas{width:79px;height:79px}
+      .store-row{position:relative;left:auto;bottom:auto;transform:none;gap:8px;padding:12px}
+    }
   </style>
 </head>
 <body>
@@ -202,7 +258,22 @@
 
     <section class="app-section" id="app"><div class="wrap">
       <div class="app-banner">
-        <img src="../../assets/siteseeing/%E6%9D%B1%E4%BA%AC%E3%82%92%E5%B7%A1%E3%82%8B%E3%83%90%E3%82%B9%E6%97%85%E3%80%81Toei%20GO%20Tokyo.png" alt="Toei GO Tokyo로 더 많은 도쿄 버스 여행을 만나보세요" loading="lazy" decoding="async">
+        <div class="app-visual">
+          <img class="app-hero-img" src="../../assets/siteseeing/Tokyo_Toei_GO_banner_1960x320.png" alt="도쿄 스카이트리와 강변, Toei GO Tokyo 앱 화면" loading="lazy" decoding="async">
+          <div class="qr-panel" aria-label="Toei GO Tokyo 다운로드 QR 코드">
+            <div class="qr-heading">QR 코드로 앱 다운로드</div>
+            <div class="qr-codes">
+              <a class="qr-item" href="https://apps.apple.com/kr/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer" aria-label="iOS App Store 다운로드">
+                <canvas id="qr-ios" role="img" aria-label="iOS App Store로 연결되는 QR 코드"></canvas>
+                <span>iOS</span>
+              </a>
+              <a class="qr-item" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=ko" target="_blank" rel="noopener noreferrer" aria-label="Android Google Play 다운로드">
+                <canvas id="qr-android" role="img" aria-label="Google Play로 연결되는 QR 코드"></canvas>
+                <span>Android</span>
+              </a>
+            </div>
+          </div>
+        </div>
         <div class="store-row" aria-label="Toei GO Tokyo 다운로드">
           <a class="store ios" href="https://apps.apple.com/kr/app/toei-go-tokyo/id6804165349" target="_blank" rel="noopener noreferrer">App Store에서 받기</a>
           <a class="store android" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo&amp;hl=ko" target="_blank" rel="noopener noreferrer">Google Play에서 받기</a>
@@ -237,5 +308,6 @@
       });
     })();
   </script>
+  <script src="../../assets/siteseeing/to08-qr-ko.js"></script>
 </body>
 </html>
