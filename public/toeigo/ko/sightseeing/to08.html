@@ -22,6 +22,20 @@
   <meta name="twitter:description" content="도에이 버스 TO-08으로 즐기는 도쿄 동부 관광: 닛포리 → 아사쿠사 → 도쿄 스카이트리 일대 → 긴시초.">
   <meta name="twitter:image" content="https://cloxs.jp/toeigo/assets/siteseeing/to08/webp/to08_asakusa_01.webp">
   <meta name="robots" content="index,follow,max-image-preview:large">
+  <script>
+    (() => {
+      const mode = new URLSearchParams(window.location.search).get('mode');
+      if (mode !== null && mode !== 'flyer') {
+        throw new Error('Unsupported sightseeing page mode: ' + mode);
+      }
+      if (mode === 'flyer') {
+        document.documentElement.classList.add('flyer-mode');
+        const robots = document.querySelector('meta[name="robots"]');
+        if (!robots) throw new Error('SEO robots meta tag is missing.');
+        robots.setAttribute('content', 'noindex,follow');
+      }
+    })();
+  </script>
   <meta property="og:site_name" content="Toei GO Tokyo">
   <title>TO-08 도에이 버스: 닛포리에서 아사쿠사·도쿄 스카이트리를 지나 긴시초까지 | 도쿄 관광</title>
 
@@ -160,6 +174,85 @@
       .qr-item canvas{width:98px;height:98px}
       .store-row{position:relative;left:auto;bottom:auto;transform:none;gap:8px;padding:12px}
     }
+
+    /* One source for the LP and the printable flyer: ?mode=flyer. */
+    html:not(.flyer-mode) .qr-panel{display:none!important}
+    @page{size:A4 portrait;margin:6mm}
+    html.flyer-mode{background:#e9eef4}
+    html.flyer-mode body{width:min(100%,210mm);min-height:297mm;margin:16px auto;padding:6mm;background:#fff;box-shadow:0 8px 35px rgba(16,24,40,.15);font-size:8pt;line-height:1.3}
+    html.flyer-mode .wrap{width:100%;max-width:none;margin:0}
+    html.flyer-mode .nav{position:static;border:0;background:#fff;backdrop-filter:none}
+    html.flyer-mode .nav-inner{min-height:10mm;padding:0}
+    html.flyer-mode .brand-logo{height:9mm}
+    html.flyer-mode .nav-links,html.flyer-mode .app-menu,html.flyer-mode .seo-guide,html.flyer-mode .more-journeys,html.flyer-mode .store-row{display:none!important}
+    html.flyer-mode a{pointer-events:none;text-decoration:none;cursor:default}
+    html.flyer-mode main{overflow:visible}
+    html.flyer-mode section{padding:0}
+    html.flyer-mode .hero{margin-bottom:3mm}
+    html.flyer-mode .hero-panel{height:45mm;min-height:0;border-radius:4mm;box-shadow:none}
+    html.flyer-mode .hero-panel::after{background:linear-gradient(90deg,rgba(4,17,31,.90),rgba(4,17,31,.62) 47%,rgba(4,17,31,.06) 90%)}
+    html.flyer-mode .hero-photo{object-position:center 48%}
+    html.flyer-mode .hero-copy{position:relative;left:auto;right:auto;bottom:auto;padding:6mm 7mm;max-width:120mm}
+    html.flyer-mode .hero-copy h1{margin:0 0 2mm;max-width:104mm;font-size:23pt;line-height:1;letter-spacing:-.04em}
+    html.flyer-mode .hero-lead{max-width:103mm;font-size:8.5pt;line-height:1.3}
+    html.flyer-mode .hero-meta{margin-top:2mm;gap:1mm}
+    html.flyer-mode .pill{min-height:5.5mm;padding:0 2.5mm;font-size:8pt}
+    html.flyer-mode .hero-note{margin-top:1mm;max-width:103mm;font-size:5.8pt;line-height:1.2}
+    html.flyer-mode .route-header{gap:2mm;margin-bottom:2mm;flex-wrap:nowrap}
+    html.flyer-mode .route-title-row{gap:2mm}
+    html.flyer-mode .route-title-accent{width:6mm;height:.8mm;margin:0}
+    html.flyer-mode .route-title-inline{font-size:15pt;line-height:1.08}
+    html.flyer-mode .route-chip{min-height:5mm;padding:0 2mm;font-size:6.5pt}
+    html.flyer-mode .route-subcopy{display:none}
+    html.flyer-mode .highlights{grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5mm}
+    html.flyer-mode .spot.nippori,html.flyer-mode .spot.asakusa,html.flyer-mode .spot.skytree,html.flyer-mode .spot.kinshicho,html.flyer-mode .spot.local,html.flyer-mode .route-map{grid-column:auto}
+    html.flyer-mode .spot{min-height:0;border-radius:3mm;box-shadow:none;break-inside:avoid}
+    html.flyer-mode .spot.photo img{position:relative;inset:auto;width:100%;height:25mm;object-fit:cover}
+    html.flyer-mode .spot .spot-content{position:relative;inset:auto;padding:2mm 2.3mm 2mm}
+    html.flyer-mode .spot .spot-no{top:-22.5mm;left:1.5mm;width:5.5mm;height:5.5mm;font-size:7.5pt;margin:0}
+    html.flyer-mode .spot h3{font-size:10pt;line-height:1.12}
+    html.flyer-mode .spot p{margin-top:1mm;font-size:7pt;line-height:1.24}
+    html.flyer-mode .route-map{min-height:0;padding:1.5mm;border-radius:3mm;box-shadow:none;break-inside:avoid}
+    html.flyer-mode .route-map svg{max-height:31mm}
+    html.flyer-mode .route-caption{margin:0;font-size:5.5pt;line-height:1.1}
+    html.flyer-mode .practical{margin-top:3mm;background:#fff}
+    html.flyer-mode .section-head{display:block;margin-bottom:1.7mm}
+    html.flyer-mode .section-kicker,html.flyer-mode .section-copy{display:none}
+    html.flyer-mode .section-head h2{margin:0;font-size:14pt;line-height:1.1}
+    html.flyer-mode .practical-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5mm}
+    html.flyer-mode .info-card,html.flyer-mode .info-card.help{grid-column:auto;border-radius:3mm;padding:2.5mm;box-shadow:none;break-inside:avoid}
+    html.flyer-mode .info-title{gap:1.5mm;margin-bottom:1.5mm}
+    html.flyer-mode .info-icon{width:6mm;height:6mm;border-radius:50%;font-size:10pt}
+    html.flyer-mode .info-title h3{font-size:10pt;line-height:1.1}
+    html.flyer-mode .ride-steps{gap:.8mm}
+    html.flyer-mode .ride-step{gap:1.4mm;padding:1mm 1.2mm;font-size:7pt;line-height:1.15;border-radius:1.8mm}
+    html.flyer-mode .ride-step b{width:4mm;height:4mm;flex:0 0 4mm;font-size:6pt}
+    html.flyer-mode .info-card p{margin:0 0 1mm;font-size:7pt;line-height:1.22}
+    html.flyer-mode .pass-price{margin:1mm 0;padding:2mm;border-radius:2mm}
+    html.flyer-mode .pass-price small{font-size:7pt}
+    html.flyer-mode .pass-price strong{font-size:20pt}
+    html.flyer-mode .official-link{gap:1mm;margin-top:1mm;padding:1mm 1.5mm;border-radius:2mm;font-size:7pt;line-height:1.2}
+    html.flyer-mode .official-link span:last-child{display:none}
+    html.flyer-mode .small-note{margin-top:1mm!important;font-size:5.7pt!important;line-height:1.2}
+    html.flyer-mode .app-section{margin-top:3mm}
+    html.flyer-mode .app-banner{border-radius:3mm;box-shadow:none}
+    html.flyer-mode .app-visual{height:31mm;overflow:hidden}
+    html.flyer-mode .app-visual .app-hero-img{width:100%;max-width:none;height:100%;object-fit:cover;object-position:center;margin:0}
+    html.flyer-mode .qr-panel{top:50%;right:4mm;bottom:auto;left:auto;transform:translateY(-50%);padding:1mm 2mm;border-radius:2.5mm;box-shadow:none}
+    html.flyer-mode .qr-heading{margin:0 0 1mm;font-size:6.5pt;line-height:1.1}
+    html.flyer-mode .qr-codes{gap:2mm}
+    html.flyer-mode .qr-item{gap:.4mm;font-size:6pt}
+    html.flyer-mode .qr-item canvas{width:20mm;height:20mm}
+    html.flyer-mode .app-footnote{margin:1mm 0 0;font-size:5.5pt;line-height:1.2}
+    html.flyer-mode footer{margin-top:2mm;border:0;padding:1mm 0 0;font-size:5.8pt;line-height:1.2;break-inside:avoid}
+    html.flyer-mode .footer-inner{flex-wrap:nowrap;gap:2mm}
+    html.flyer-mode .disclaimer{max-width:none;flex:1 1 auto}
+    @media print{
+      html.flyer-mode{background:#fff}
+      html.flyer-mode body{width:100%;min-height:0;margin:0;padding:0;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      html.flyer-mode .spot,html.flyer-mode .route-map,html.flyer-mode .practical-grid,html.flyer-mode .app-section{break-inside:avoid}
+      html.flyer-mode a[href]::after{content:none!important}
+    }
   </style>
 </head>
 <body>
@@ -294,6 +387,13 @@
       const closeDropdown = () => { dropdown.hidden = true; trigger.setAttribute('aria-expanded', 'false'); };
       const openDropdown = () => { dropdown.hidden = false; trigger.setAttribute('aria-expanded', 'true'); };
 
+      if (document.documentElement.classList.contains('flyer-mode')) {
+        for (const link of document.querySelectorAll('a[href]')) {
+          link.removeAttribute('href');
+          link.removeAttribute('target');
+          link.removeAttribute('rel');
+        }
+      }
       trigger.addEventListener('click', (event) => {
         event.stopPropagation();
         dropdown.hidden ? openDropdown() : closeDropdown();
