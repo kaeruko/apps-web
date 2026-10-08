@@ -1,5 +1,7 @@
 (() => {
   'use strict';
+  // QR codes are only needed on the printable flyer, not on the LP.
+  if (!document.documentElement.classList.contains('flyer-mode')) return;
   // Store URLs represented by precomputed QR modules, including quiet zones.
   const codes = {
     'qr-ios': [
