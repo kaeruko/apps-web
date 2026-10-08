@@ -176,6 +176,8 @@
       .store-row{position:relative;left:auto;bottom:auto;transform:none;gap:8px;padding:12px}
     }
 
+    /* Original website remains unchanged; extracted icons are for the A4 flyer only. */
+    .flyer-icon{display:none}
     /* One source for the LP and the printable flyer: ?mode=flyer. */
     html:not(.flyer-mode) .qr-panel{display:none!important}
     @page{size:A4 portrait;margin:0}
@@ -223,16 +225,24 @@
     html.flyer-mode .practical-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5mm}
     html.flyer-mode .info-card,html.flyer-mode .info-card.help{grid-column:auto;border-radius:3mm;padding:2.5mm;box-shadow:none;break-inside:avoid}
     html.flyer-mode .info-title{gap:1.5mm;margin-bottom:1.5mm}
-    html.flyer-mode .info-icon{width:6mm;height:6mm;border-radius:50%;font-size:10pt}
+    html.flyer-mode .info-icon{width:7mm;height:7mm;background:none;border-radius:0;font-size:10pt;flex:0 0 7mm}
+    html.flyer-mode .info-icon .icon-fallback{display:none}
+    html.flyer-mode .flyer-icon{display:block;object-fit:contain;width:100%;height:100%;flex:0 0 auto}
+    html.flyer-mode .info-icon .flyer-icon{width:7mm;height:7mm}
     html.flyer-mode .info-title h3{font-size:10pt;line-height:1.1}
     html.flyer-mode .ride-steps{gap:.8mm}
-    html.flyer-mode .ride-step{gap:1.4mm;padding:1mm 1.2mm;font-size:7pt;line-height:1.15;border-radius:1.8mm}
-    html.flyer-mode .ride-step b{width:4mm;height:4mm;flex:0 0 4mm;font-size:6pt}
+    html.flyer-mode .ride-step{gap:.85mm;height:6.1mm;padding:.65mm .85mm;font-size:6.5pt;line-height:1.15;border-radius:1.8mm;white-space:nowrap}
+    html.flyer-mode .ride-step b{width:4.7mm;height:4.7mm;flex:0 0 4.7mm;background:none}
+    html.flyer-mode .ride-step b .step-text-fallback{display:none}
+    html.flyer-mode .ride-step .step-illustration{width:4.7mm;height:4.7mm}
+    html.flyer-mode .ride-step .step-number-image{width:4.7mm;height:4.7mm}
     html.flyer-mode .info-card p{margin:0 0 1mm;font-size:7pt;line-height:1.22}
-    html.flyer-mode .pass-price{margin:1mm 0;padding:2mm;border-radius:2mm}
+    html.flyer-mode .pass-price{position:relative;margin:1mm 0;padding:2mm;border-radius:2mm}
+    html.flyer-mode .pass-price .pass-bus-illustration{position:absolute;right:2.5mm;top:50%;transform:translateY(-50%);width:9mm;height:9mm}
     html.flyer-mode .pass-price small{font-size:7pt}
     html.flyer-mode .pass-price strong{font-size:20pt}
-    html.flyer-mode .official-link{gap:1mm;margin-top:1mm;padding:1mm 1.5mm;border-radius:2mm;font-size:7pt;line-height:1.2}
+    html.flyer-mode .official-link{gap:1.5mm;margin-top:1mm;padding:1mm 1.5mm;border-radius:2mm;font-size:7pt;line-height:1.2}
+    html.flyer-mode .official-link .ticket-illustration{width:4.7mm;height:4.7mm}
     html.flyer-mode .official-link span:last-child{display:none}
     html.flyer-mode .small-note{margin-top:1mm!important;font-size:5.7pt!important;line-height:1.2}
     html.flyer-mode .app-section{margin-top:3mm}
@@ -349,8 +359,8 @@
     <section class="practical" id="how-to-ride"><div class="wrap">
       <div class="section-head"><div><div class="section-kicker">도에이 버스가 처음이신가요?</div><h2>타기 전에 알아두면 좋은 정보입니다.</h2><p class="section-copy">아래 기본 정보는 도쿄 23구 내 도에이 버스에 적용됩니다. 최신 정보는 공식 링크에서 확인하세요.</p></div></div>
       <div class="practical-grid">
-        <article class="info-card ride"><div class="info-title"><span class="info-icon" aria-hidden="true">🚌</span><h3>이용 방법</h3></div><div class="ride-steps"><div class="ride-step"><b>1</b><span>앞문으로 탑승</span></div><div class="ride-step"><b>2</b><span>IC카드를 태그하거나 요금 결제</span></div><div class="ride-step"><b>3</b><span>내릴 정류장 전에 하차 버튼 누르기</span></div><div class="ride-step"><b>4</b><span>뒷문으로 하차</span></div></div></article>
-        <article class="info-card pass" id="passes"><div class="info-title"><span class="info-icon" aria-hidden="true">¥</span><h3>도에이 버스 1일 승차권</h3></div><p>하루 동안 도쿄 23구 내 도에이 버스를 무제한 이용할 수 있습니다(고토 01 제외).</p><div class="pass-price"><small>성인</small><strong>¥500</strong></div><a class="official-link" href="https://www.kotsu.metro.tokyo.jp/bus/fare/otoku_bus_oneday.html" target="_blank" rel="noopener noreferrer"><span>1일 승차권 공식 정보</span><span>↗</span></a><p class="small-note">구매 방법은 변경될 수 있습니다. 최신 내용은 도쿄도 교통국에서 확인하세요.</p></article>
+        <article class="info-card ride"><div class="info-title"><span class="info-icon" aria-hidden="true"><span class="icon-fallback">🚌</span><img class="flyer-icon " src="../../assets/siteseeing/icons/bus_badge_orange.png" alt="" decoding="async"></span><h3>이용 방법</h3></div><div class="ride-steps"><div class="ride-step"><b><span class="step-text-fallback">1</span><img class="flyer-icon step-number-image" src="../../assets/siteseeing/icons/step_1.png" alt="" decoding="async"></b><img class="flyer-icon step-illustration" src="../../assets/siteseeing/icons/bus_front_small.png" alt="" decoding="async"><span>앞문으로 탑승</span></div><div class="ride-step"><b><span class="step-text-fallback">2</span><img class="flyer-icon step-number-image" src="../../assets/siteseeing/icons/step_2.png" alt="" decoding="async"></b><img class="flyer-icon step-illustration" src="../../assets/siteseeing/icons/ic_card_tap.png" alt="" decoding="async"><span>IC카드를 태그하거나 요금 결제</span></div><div class="ride-step"><b><span class="step-text-fallback">3</span><img class="flyer-icon step-number-image" src="../../assets/siteseeing/icons/step_3.png" alt="" decoding="async"></b><img class="flyer-icon step-illustration" src="../../assets/siteseeing/icons/stop_button_tap.png" alt="" decoding="async"><span>내릴 정류장 전에 하차 버튼 누르기</span></div><div class="ride-step"><b><span class="step-text-fallback">4</span><img class="flyer-icon step-number-image" src="../../assets/siteseeing/icons/step_4.png" alt="" decoding="async"></b><img class="flyer-icon step-illustration" src="../../assets/siteseeing/icons/walking_person.png" alt="" decoding="async"><span>뒷문으로 하차</span></div></div></article>
+        <article class="info-card pass" id="passes"><div class="info-title"><span class="info-icon" aria-hidden="true"><span class="icon-fallback">¥</span><img class="flyer-icon " src="../../assets/siteseeing/icons/pass_badge_green.png" alt="" decoding="async"></span><h3>도에이 버스 1일 승차권</h3></div><p>하루 동안 도쿄 23구 내 도에이 버스를 무제한 이용할 수 있습니다(고토 01 제외).</p><div class="pass-price"><small>성인</small><strong>¥500</strong><img class="flyer-icon pass-bus-illustration" src="../../assets/siteseeing/icons/bus_front_large.png" alt="" decoding="async"></div><a class="official-link" href="https://www.kotsu.metro.tokyo.jp/bus/fare/otoku_bus_oneday.html" target="_blank" rel="noopener noreferrer"><img class="flyer-icon ticket-illustration" src="../../assets/siteseeing/icons/ticket_outline.png" alt="" decoding="async"><span>1일 승차권 공식 정보</span><span>↗</span></a><p class="small-note">구매 방법은 변경될 수 있습니다. 최신 내용은 도쿄도 교통국에서 확인하세요.</p></article>
         <article class="info-card help" id="official"><div class="info-title"><span class="info-icon" aria-hidden="true">i</span><h3>공식 정보</h3></div><a class="official-link" href="https://www.kotsu.metro.tokyo.jp/eng/guides/bus/" target="_blank" rel="noopener noreferrer"><span>공식 버스 가이드</span><span>↗</span></a><a class="official-link" href="https://www.kotsu.metro.tokyo.jp/eng/tickets/index.html" target="_blank" rel="noopener noreferrer"><span>공식 승차권 정보</span><span>↗</span></a><a class="official-link" href="https://tobus.jp/sp/bsys?ln=en" target="_blank" rel="noopener noreferrer"><span>도에이 버스 Navi(영어)</span><span>↗</span></a><p class="small-note">시간표, 노선 변경 및 운행 정보는 반드시 공식 서비스를 통해 확인하세요.</p></article>
       </div>
     </div></section>
