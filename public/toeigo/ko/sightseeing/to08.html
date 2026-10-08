@@ -97,6 +97,7 @@
     .hero-panel::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(4,17,31,.88) 0%,rgba(4,17,31,.70) 36%,rgba(4,17,31,.15) 70%,rgba(4,17,31,.04) 100%);pointer-events:none}
     .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%}.hero-copy{position:relative;z-index:2;padding:64px 58px;max-width:690px;color:#fff}
     h1{margin:18px 0;font-size:clamp(44px,6vw,74px);line-height:.98;letter-spacing:-.055em;text-transform:uppercase;max-width:650px}.hero-lead{font-size:clamp(17px,1.8vw,21px);max-width:610px;color:rgba(255,255,255,.92);margin:0}
+    .hero-title-flyer,.hero-lead-flyer{display:none}
     .hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 14px;border-radius:999px;font-weight:850;font-size:14px;background:#fff;color:var(--ink)}.pill.orange{background:var(--orange);color:#fff}.hero-note{margin:15px 0 0;font-size:12px;color:rgba(255,255,255,.7)}
     section{padding:62px 0}.section-head{display:flex;justify-content:space-between;gap:26px;align-items:flex-end;margin-bottom:28px}.section-kicker{color:var(--orange);font-size:13px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
     h2{font-size:clamp(31px,4.3vw,50px);line-height:1.08;letter-spacing:-.04em;margin:7px 0 0}.section-copy{color:var(--muted);max-width:650px;margin:11px 0 0}
@@ -196,10 +197,12 @@
     html.flyer-mode .hero-panel::after{background:linear-gradient(90deg,rgba(4,17,31,.90),rgba(4,17,31,.62) 47%,rgba(4,17,31,.06) 90%)}
     html.flyer-mode .hero-photo{object-position:center 48%}
     html.flyer-mode .hero-copy{position:relative;left:auto;right:auto;bottom:auto;padding:6mm 7mm;max-width:120mm}
-    html.flyer-mode .hero-copy h1{margin:0 0 2mm;max-width:104mm;font-size:23pt;line-height:1;letter-spacing:-.04em}
-    html.flyer-mode .hero-lead{max-width:103mm;font-size:8.5pt;line-height:1.3}
-    html.flyer-mode .hero-meta{margin-top:2mm;gap:1mm}
-    html.flyer-mode .pill{min-height:5.5mm;padding:0 2.5mm;font-size:8pt}
+    html.flyer-mode .hero-copy h1{margin:0 0 2.5mm;max-width:115mm;font-size:32pt;line-height:1.03;letter-spacing:-.045em}
+    html.flyer-mode .hero-title-standard,html.flyer-mode .hero-lead-standard{display:none}
+    html.flyer-mode .hero-title-flyer,html.flyer-mode .hero-lead-flyer{display:block}
+    html.flyer-mode .hero-lead{max-width:111mm;font-size:9.5pt;line-height:1.32}
+    html.flyer-mode .hero-meta{margin-top:3mm;gap:1mm}
+    html.flyer-mode .pill{min-height:7.5mm;padding:0 4mm;font-size:10.5pt}
     html.flyer-mode .hero-note{margin-top:1mm;max-width:103mm;font-size:5.8pt;line-height:1.2}
     html.flyer-mode .route-header{gap:2mm;margin-bottom:2mm;flex-wrap:nowrap}
     html.flyer-mode .route-title-row{gap:2mm}
@@ -294,7 +297,12 @@
   <main id="top">
     <section class="hero"><div class="wrap"><div class="hero-panel">
       <img class="hero-photo" src="../../assets/siteseeing/to08/webp/to08_asakusa_09.webp" alt="TO-08 버스 여행 중 바라본 아사쿠사" fetchpriority="high">
-      <div class="hero-copy"><h1>버스로 만나는 도쿄의 옛 정취.</h1><p class="hero-lead">닛포리에서 아사쿠사와 도쿄 스카이트리 일대를 지나 긴시초까지, 거리의 눈높이로 도쿄 동부를 여행해 보세요.</p><div class="hero-meta"><span class="pill orange">1회 승차 ¥210</span></div><p class="hero-note">도쿄 23구 내 일반 도에이 버스의 성인 균일 요금입니다. 최신 운행 정보는 공식 안내를 확인하세요.</p></div>
+      <div class="hero-copy">
+        <h1><span class="hero-title-standard">버스로 만나는 도쿄의 옛 정취.</span><span class="hero-title-flyer">도쿄의 옛 정취를<br>발견하다.<br>TO-08 버스 여행</span></h1>
+        <p class="hero-lead"><span class="hero-lead-standard">닛포리에서 아사쿠사와 도쿄 스카이트리 일대를 지나 긴시초까지, 거리의 눈높이로 도쿄 동부를 여행해 보세요.</span><span class="hero-lead-flyer">닛포리에서 아사쿠사, 스카이트리를 거쳐 긴시초까지.<br>거리의 눈높이로 만나는 도쿄 동부.</span></p>
+        <div class="hero-meta"><span class="pill orange">1회 승차 ¥210</span></div>
+        <p class="hero-note">도쿄 23구 내 일반 도에이 버스의 성인 균일 요금입니다. 최신 운행 정보는 공식 안내를 확인하세요.</p>
+      </div>
     </div></div></section>
 
     <section id="route"><div class="wrap">
