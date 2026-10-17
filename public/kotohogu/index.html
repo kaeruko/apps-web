@@ -72,8 +72,8 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .step{position:relative;background:#fffbf4;border:2px solid #edcfae;border-radius:26px;padding:22px 20px 24px;box-shadow:0 10px 0 #e8cbb0}
 .step-number{display:block;letter-spacing:.15em;color:#b65965;font-size:.8rem;font-weight:900}
-.step-visual{position:relative;display:grid;place-items:center;height:300px;padding:15px 22px;background:radial-gradient(circle,#ffdfd2,#fff3da);border-radius:18px;margin:16px auto}
-.step-visual img{height:100%;width:100%;object-fit:contain;filter:drop-shadow(0 7px 7px #673e2b18)}
+.step-visual{position:relative;display:flex;align-items:center;justify-content:center;height:clamp(400px,44vw,520px);padding:16px 12px;background:radial-gradient(circle,#ffdfd2,#fff3da);border-radius:18px;margin:16px auto}
+.step-visual img{display:block;width:auto;height:100%;max-width:100%;max-height:100%;object-fit:contain;filter:drop-shadow(0 7px 7px #673e2b18)}
 .step h3{font-size:1.22rem;margin:18px 0 5px;line-height:1.5}
 .step p{margin:0;font-size:.92rem;color:var(--ink-soft)}
 .step-arrow{position:absolute;right:-31px;top:45%;font-size:2rem;z-index:2;color:#cf8451;text-shadow:2px 2px #fff;font-weight:900}
@@ -147,7 +147,7 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 .section{padding:66px 0}
 .section-heading{margin-bottom:30px}
 .steps{grid-template-columns:1fr;gap:26px;max-width:420px;margin:auto}
-.step{padding:20px}.step-visual{height:280px}.step-arrow{right:calc(50% - 15px);top:auto;bottom:-33px;transform:rotate(90deg)}
+.step{padding:20px}.step-visual{height:440px}.step-arrow{right:calc(50% - 15px);top:auto;bottom:-33px;transform:rotate(90deg)}
 .town-cards{gap:8px}.town-card{border-width:3px}.town-card img{height:205px}.town-card figcaption{font-size:.64rem}
 .residents{gap:18px;margin-top:35px}.resident img{width:93px;height:93px}
 .reason-layout{grid-template-columns:1fr;gap:15px}.reason-copy{text-align:center}.reason-copy p{margin-inline:auto}
@@ -203,21 +203,21 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
    <div class="steps">
     <article class="step">
      <span class="step-number">STEP 01</span>
-     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_192058.webp" alt="ミッションを選んで「できた！」を押す画面" width="420" height="650"></div>
+     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_192058.webp" alt="ミッションを選んで「できた！」を押す画面" width="460" height="1023"></div>
      <h3>ちいさな一歩を見つけよう</h3>
      <p>筋力を使った。外に出た。誰かと話した。食事を整えた。趣味を楽しんだ。そんな日常がミッションに。</p>
      <span class="step-arrow" aria-hidden="true">➜</span>
     </article>
     <article class="step">
      <span class="step-number">STEP 02</span>
-     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_191657.webp" alt="達成すると住民たちが拍手してお祝いする画面" width="420" height="650"></div>
+     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_191657.webp" alt="達成すると住民たちが拍手してお祝いする画面" width="460" height="1023"></div>
      <h3>「できた！」をお祝い！</h3>
      <p>ボタンを押すと、まちの仲間たちが拍手と紙吹雪で祝福。「ことほぎ」が増えていきます。</p>
      <span class="step-arrow" aria-hidden="true">➜</span>
     </article>
     <article class="step">
      <span class="step-number">STEP 03</span>
-     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_192122.webp" alt="まちの風景を見るゲーム画面" width="420" height="650"></div>
+     <div class="step-visual"><img loading="lazy" src="./assets/screenshots/Screenshot_20261017_192122.webp" alt="まちの風景を見るゲーム画面" width="460" height="1023"></div>
      <h3>まちと仲間が広がる</h3>
      <p>ことほぎを重ねると、少しずつまちが広がり、新しい住民との出会いも。お話しする楽しみもあります。</p>
     </article>
