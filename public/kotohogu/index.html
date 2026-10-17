@@ -48,7 +48,10 @@ a:focus-visible,summary:focus-visible{outline:3px solid #397e83;outline-offset:5
 .hero:before{left:-220px;top:-170px}.hero:after{right:-260px;bottom:-200px}
 .hero-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:clamp(15px,3vw,52px);min-height:605px;padding-block:76px 70px}
 .kicker{color:var(--rose-dark);font-size:.88rem;letter-spacing:.14em;font-weight:900}
-.hero h1{max-width:680px;font-size:clamp(2.5rem,4.9vw,4.25rem);line-height:1.4;letter-spacing:-.06em;margin:18px 0 24px;font-weight:900;text-shadow:2px 3px #fff8}
+.hero h1{max-width:680px;font-size:clamp(2rem,3.55vw,3.4rem);line-height:1.33;letter-spacing:-.06em;margin:18px 0 24px;font-weight:900;text-shadow:2px 3px #fff8}
+.hero-title-line{display:block;white-space:nowrap}
+.hero-title-impact{display:block;width:fit-content;max-width:100%;font-size:1.54em;line-height:1.21;letter-spacing:.045em;color:#bf4268;text-shadow:3px 4px 0 #ffe0e7,1px 1px 0 #fff;white-space:nowrap}
+.hero-title-end{font-size:.95em}
 .hero-lead{font-size:clamp(1rem,1.7vw,1.15rem);font-weight:800;line-height:2.05;margin:0 0 26px}
 .hero-tag{display:inline-block;font-size:1.3rem;font-weight:900;color:var(--rose-dark);background:#fffcf3df;border:1px solid #f4b4c3;border-radius:999px;padding:9px 22px;transform:rotate(-1.5deg);margin-bottom:22px}
 .hero-note{display:block;margin-top:20px;font-size:.82rem;color:var(--ink-soft)}
@@ -125,7 +128,7 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 @keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-10px) rotate(-4deg)}}
 @media(max-width:920px){
 .site-nav{gap:11px;font-size:.78rem}.nav-cta{padding-inline:11px}
-.hero-layout{gap:12px}.hero h1{font-size:clamp(2.2rem,4.8vw,3.4rem)}
+.hero-layout{gap:12px}.hero h1{font-size:clamp(2rem,3.55vw,3.4rem)}
 .hero-scene{height:390px}.hero-art{min-height:410px}
 .town-layout{grid-template-columns:1fr;gap:22px}.town-copy{text-align:center}.town-copy p{margin-inline:auto}
 }
@@ -136,7 +139,7 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 .mobile-menu nav{position:absolute;top:51px;right:0;z-index:30;width:206px;background:#fffdfa;border:1px solid #e3c7ad;border-radius:18px;padding:12px;box-shadow:0 15px 25px #53372424}
 .mobile-menu nav a{display:block;padding:9px 10px;text-decoration:none;font-weight:800}
 .hero-layout{grid-template-columns:1fr;text-align:center;padding-block:57px 45px;gap:8px}
-.hero h1{margin:13px auto 18px;font-size:clamp(2.05rem,8vw,3.35rem)}
+.hero h1{margin:13px auto 18px;font-size:clamp(2rem,7.7vw,3.05rem)}
 .hero-lead{font-size:.96rem}.hero-tag{font-size:1.02rem}
 .hero-note{font-size:.73rem}
 .hero-art{min-height:390px;width:100%;max-width:390px;margin-inline:auto}
@@ -179,7 +182,7 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
   <div class="wrap hero-layout">
    <div class="hero-copy">
     <span class="kicker">🌸 あなたの「できた！」を、ことほごう。</span>
-    <h1 id="hero-title">セルフケアって、<br>社会貢献じゃないですか。</h1>
+    <h1 id="hero-title"><span class="hero-title-line">セルフケアって、</span><strong class="hero-title-impact">社会貢献</strong><span class="hero-title-line hero-title-end">じゃないですか。</span></h1>
     <p class="hero-lead">筋トレも、お散歩も、誰かとのおしゃべりも。<br>今日の「できた！」を、まちのみんなが祝福します。</p>
     <p class="hero-tag">筋トレをして、ほめられよう。</p>
     <div><a class="button" href="#how">コトホグの世界をのぞく <span aria-hidden="true">→</span></a></div>
