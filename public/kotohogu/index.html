@@ -1,85 +1,315 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff4e6">
-  <meta name="description" content="ことほぐは、日々の小さな『できた』を記録し、かわいい住民たちと祝う習慣づくりアプリです。">
-  <link rel="canonical" href="https://cloxs.jp/kotohogu/index.html">
-  <title>ことほぐ | 小さなできたを、みんなでことほぐ。</title>
-  <style>
-    :root{color-scheme:light;--ink:#5c3b2f;--muted:#77675e;--pink:#f7bbc4;--line:#eed8c8;--paper:#fffdf9;--cream:#fff5e8}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;color:var(--ink);background:#fff9f1;line-height:1.8}
-    a{color:#964f54;text-underline-offset:3px}
-    .wrap{max-width:920px;margin:0 auto;padding:0 24px}
-    header{background:var(--paper);border-bottom:1px solid var(--line)}
-    .header-inner{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-size:1.5rem;font-weight:800;letter-spacing:.09em;text-decoration:none;color:var(--ink)}
-    .links{display:flex;flex-wrap:wrap;gap:16px;font-size:.9rem}
-    .hero{text-align:center;background:radial-gradient(ellipse at top,#ffe8ef 0%,#fff2e6 55%,#fff9f1 100%);padding:70px 20px 62px}
-    .flower{font-size:2.3rem;letter-spacing:.3em;line-height:1.5}
-    h1{font-size:clamp(2.3rem,8vw,4rem);margin:6px 0 12px;letter-spacing:.1em;line-height:1.25}
-    .tagline{font-size:clamp(1.15rem,4vw,1.55rem);font-weight:700;margin:0 0 24px}
-    .lead{max-width:580px;margin:0 auto;font-size:1.02rem}
-    main{padding:44px 0 60px}
-    h2{text-align:center;font-size:1.55rem;margin:0 0 28px}
-    .features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    .feature{padding:26px 20px;background:var(--paper);border:1px solid var(--line);border-radius:22px;box-shadow:0 8px 22px rgba(98,59,38,.045)}
-    .feature-icon{font-size:2.1rem;line-height:1.4}
-    h3{margin:12px 0 8px;font-size:1.1rem}
-    .feature p{margin:0;color:var(--muted);font-size:.95rem}
-    .note{margin:38px 0 0;padding:20px 24px;background:var(--cream);border-radius:16px;color:var(--muted);text-align:center}
-    footer{border-top:1px solid var(--line);background:var(--paper);padding:26px 0;text-align:center;font-size:.92rem;color:var(--muted)}
-    footer nav{display:flex;flex-wrap:wrap;justify-content:center;gap:12px 24px;margin-bottom:12px}
-    @media(max-width:680px){.features{grid-template-columns:1fr}.hero{padding:56px 20px}.header-inner{align-items:flex-start;flex-direction:column;padding-top:16px;padding-bottom:16px}.flower{font-size:1.7rem}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff1e5">
+<meta name="description" content="コトホグは、筋トレ・お散歩・おしゃべりなど日々のセルフケアを、まちの仲間が祝福してくれる介護予防ゲーム。今日の「できた！」をもっとほめよう。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="コトホグ | セルフケアって、社会貢献じゃないですか。">
+<meta property="og:description" content="筋トレも、お散歩も、おしゃべりも。今日の「できた！」をまちのみんなが祝福します。">
+<meta property="og:url" content="https://cloxs.jp/kotohogu/index.html">
+<meta property="og:image" content="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/icon/icon.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://cloxs.jp/kotohogu/index.html">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/icon/icon.png">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<title>コトホグ | セルフケアを、社会貢献に。</title>
+<style>
+:root{color-scheme:light;--ink:#63392e;--ink-soft:#82594d;--rose:#db6384;--rose-dark:#b93c62;--paper:#fffaf2;--cream:#fff1dd;--line:#ebd4bc;--gold:#e2b45f;--wood:#8d5134;--blue:#dbf4f1}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.85}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-underline-offset:4px}
+button,a,summary{-webkit-tap-highlight-color:transparent}
+a:focus-visible,summary:focus-visible{outline:3px solid #397e83;outline-offset:5px;border-radius:5px}
+.wrap{width:min(1120px,calc(100% - 44px));margin-inline:auto}
+.skip{position:absolute;top:-60px;left:10px;z-index:50;background:#fff;padding:10px 20px}
+.skip:focus{top:10px}
+.site-header{position:relative;z-index:20;background:rgba(255,251,245,.97);box-shadow:0 2px 18px #70432b17;border-bottom:1px solid #eddbc8}
+.header-layout{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:82px}
+.logo{display:flex;gap:10px;align-items:center;text-decoration:none;flex-shrink:0}
+.logo-mark{width:46px;height:46px;object-fit:contain}
+.logo-text{font-size:1.65rem;font-weight:900;letter-spacing:.13em;line-height:1.1}
+.logo-sub{display:block;font-size:.64rem;letter-spacing:.13em;color:#a85458;font-weight:800}
+.site-nav{display:flex;align-items:center;gap:clamp(12px,2vw,27px);font-weight:800;font-size:.9rem}
+.site-nav a{text-decoration:none}
+.site-nav a:hover,.footer-links a:hover{color:var(--rose-dark)}
+.nav-cta,.button{display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:50px;border-radius:999px;padding:10px 24px;border:2px solid #fff6;text-decoration:none;color:#fff;background:linear-gradient(140deg,#ec86a0,#d9557b);box-shadow:0 6px 0 #af4962,0 10px 22px #8a416021;font-weight:900;text-align:center;transition:transform .18s,box-shadow .18s}
+.button:hover,.nav-cta:hover{transform:translateY(-3px);box-shadow:0 9px 0 #af4962,0 14px 22px #8a416032;color:#fff}
+.button:active,.nav-cta:active{transform:translateY(3px);box-shadow:0 2px 0 #af4962}
+.nav-cta{min-height:42px;box-shadow:none;padding:7px 18px;font-size:.85rem}
+.nav-cta:hover{box-shadow:none}
+.mobile-menu{display:none}
+.hero{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(110deg,#fff4ee 7%,#ffe8ee 49%,#ddf2f8 100%);border-bottom:8px solid #f9d9d7}
+.hero:before,.hero:after{content:"";pointer-events:none;position:absolute;z-index:-1;width:430px;height:430px;border-radius:50%;background:radial-gradient(circle,#ffb7c3b8,transparent 68%);filter:blur(10px)}
+.hero:before{left:-220px;top:-170px}.hero:after{right:-260px;bottom:-200px}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:clamp(15px,3vw,52px);min-height:605px;padding-block:76px 70px}
+.kicker{color:var(--rose-dark);font-size:.88rem;letter-spacing:.14em;font-weight:900}
+.hero h1{max-width:680px;font-size:clamp(2.5rem,4.9vw,4.25rem);line-height:1.4;letter-spacing:-.06em;margin:18px 0 24px;font-weight:900;text-shadow:2px 3px #fff8}
+.hero-lead{font-size:clamp(1rem,1.7vw,1.15rem);font-weight:800;line-height:2.05;margin:0 0 26px}
+.hero-tag{display:inline-block;font-size:1.3rem;font-weight:900;color:var(--rose-dark);background:#fffcf3df;border:1px solid #f4b4c3;border-radius:999px;padding:9px 22px;transform:rotate(-1.5deg);margin-bottom:22px}
+.hero-note{display:block;margin-top:20px;font-size:.82rem;color:var(--ink-soft)}
+.hero-art{min-height:480px;position:relative;display:grid;place-items:center}
+.hero-scene{position:relative;width:min(100%,460px);height:460px;border:9px solid #fff8ed;border-radius:50% 50% 36% 36%;background:linear-gradient(#d6f1ff9e,#f5bec189),url("https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/kotohogu/town_background_001.jpg") center 27%/cover;box-shadow:0 12px 0 #dfb89d,0 20px 60px #9361533d;overflow:hidden}
+.hero-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,#f8d1ba44)}
+.hero-mascot{position:absolute;width:min(66%,315px);bottom:-15px;left:-15px;filter:drop-shadow(0 12px 6px #66391e30);transform:rotate(-6deg);animation:float 4s ease-in-out infinite}
+.hero-phone{position:absolute;right:-6px;bottom:-33px;width:clamp(142px,42%,198px);transform:rotate(9deg);background:#332622;padding:8px;border:3px solid #584134;border-radius:27px;box-shadow:0 12px 26px #55352768}
+.hero-phone img{border-radius:20px;aspect-ratio:9/18.7;object-fit:cover;object-position:top}
+.hello{position:absolute;top:35px;right:-4px;padding:7px 15px;background:#fffdf4;border:2px solid #e8b5a4;border-radius:22px;box-shadow:0 5px #ead6c2;transform:rotate(7deg);font-weight:900;color:#a35356}
+.petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.petal{position:absolute;width:16px;height:16px;border-radius:14px 0 14px 0;background:#f49cafaa;transform:rotate(30deg)}
+.petal:nth-child(1){top:12%;left:8%}.petal:nth-child(2){top:52%;left:41%;width:11px}.petal:nth-child(3){top:20%;right:14%}.petal:nth-child(4){bottom:14%;right:24%;width:12px}.petal:nth-child(5){bottom:19%;left:4%;width:8px}
+.section{padding:96px 0}
+.section-soft{background:#fff0e6}
+.section-heading{text-align:center;max-width:850px;margin:0 auto 46px}
+.eyebrow{display:inline-block;letter-spacing:.13em;color:var(--rose-dark);font-size:.78rem;font-weight:900;margin:0 0 8px}
+h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;margin:0 0 14px;font-weight:900}
+.section-heading>p:last-child{margin:0;font-size:1.02rem}
+.wood-label{display:inline-block;background:linear-gradient(180deg,#b7794b,#824729);color:#fff8e8;border:4px solid #f5db9a;outline:2px solid #8b5337;border-radius:14px;padding:3px 24px;transform:rotate(-2deg);box-shadow:0 6px 0 #d8b18b;letter-spacing:.07em;font-weight:900;margin-bottom:20px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.step{position:relative;background:#fffbf4;border:2px solid #edcfae;border-radius:26px;padding:22px 20px 24px;box-shadow:0 10px 0 #e8cbb0}
+.step-number{display:block;letter-spacing:.15em;color:#b65965;font-size:.8rem;font-weight:900}
+.step-visual{position:relative;display:grid;place-items:center;height:300px;padding:15px 22px;background:radial-gradient(circle,#ffdfd2,#fff3da);border-radius:18px;margin:16px auto}
+.step-visual img{height:100%;width:100%;object-fit:contain;filter:drop-shadow(0 7px 7px #673e2b18)}
+.step h3{font-size:1.22rem;margin:18px 0 5px;line-height:1.5}
+.step p{margin:0;font-size:.92rem;color:var(--ink-soft)}
+.step-arrow{position:absolute;right:-31px;top:45%;font-size:2rem;z-index:2;color:#cf8451;text-shadow:2px 2px #fff;font-weight:900}
+.ribbon{margin:62px auto 0;text-align:center;max-width:800px;padding:21px 24px;border-radius:16px;background:#ffedf0;border:1px solid #f6cbd5;font-weight:800;font-size:1.08rem}
+.town-section{background:linear-gradient(180deg,#fffaf2 0%,#fff4e8 95%);overflow:hidden}
+.town-layout{display:grid;grid-template-columns:.82fr 1.18fr;gap:52px;align-items:center}
+.town-copy p{font-size:1rem;max-width:460px}
+.town-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end}
+.town-card{min-width:0;background:#fffdf6;border:6px solid #fff;outline:1px solid #e2c2a4;border-radius:18px;overflow:hidden;box-shadow:0 10px 25px #77534425;transform:rotate(-3deg)}
+.town-card:nth-child(2){transform:translateY(-16px) rotate(3deg)}
+.town-card:nth-child(3){transform:rotate(-2deg)}
+.town-card img{width:100%;height:275px;object-fit:cover;object-position:center 35%}
+.town-card figcaption{background:#ffeddb;padding:10px 4px;text-align:center;font-weight:900;font-size:.81rem}
+.residents{display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:clamp(18px,5vw,60px);padding-top:42px;margin-top:64px;border-top:2px dashed #e5b5a2}
+.resident{margin:0;text-align:center}
+.resident img{height:125px;width:125px;object-fit:contain;filter:drop-shadow(0 7px 3px #87562c1e)}
+.resident figcaption{font-weight:800;font-size:.82rem;margin-top:5px}
+.residents-note{text-align:center;font-weight:800;margin-top:22px;color:#96565d}
+.reason{background:linear-gradient(180deg,#fff8f1,#fff0e9)}
+.reason-layout{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center}
+.reason-copy p{max-width:480px}
+.data-card{background:#fffdfa;border:2px solid #eccfb3;border-radius:28px;padding:34px 30px;box-shadow:0 12px 0 #eecfbc}
+.data-kicker{font-weight:900;color:#a15360;font-size:.88rem}
+.data-figure{font-size:clamp(2.8rem,6vw,4.8rem);line-height:1.25;color:#c94d73;font-weight:900;letter-spacing:-.04em;white-space:nowrap;margin:12px 0}
+.data-figure small{font-size:.45em;color:#a15360}
+.data-card strong{font-size:1.05rem}
+.data-card>p{font-size:.84rem;color:#806156;line-height:1.7}
+.research-note{margin:28px auto 0;max-width:1000px;padding:18px 22px;border-left:4px solid #cf8f9b;background:#fffdf9;border-radius:0 12px 12px 0;font-size:.86rem;color:#67564d;line-height:1.85}
+.research-note a{color:#944257}
+.promise{background:#fff9ef;text-align:center}
+.promise-mascot{width:100px;margin:0 auto 18px}
+.promise h2{font-size:clamp(1.7rem,3vw,2.55rem)}
+.promise p{max-width:620px;margin:16px auto 0}
+.faq{background:#fff1e6}
+.faq-list{max-width:850px;margin:auto;display:grid;gap:12px}
+.faq-list details{background:#fffdfa;border:1px solid #eacbb2;border-radius:14px;padding:15px 20px}
+.faq-list summary{cursor:pointer;font-weight:900;padding:4px 0}
+.faq-list details p{margin:10px 0 3px;color:#755b50;font-size:.94rem}
+.final-cta{position:relative;overflow:hidden;background:linear-gradient(180deg,#e9f5f1,#f9dfdf);text-align:center;padding:94px 20px 105px}
+.final-cta:before{content:"";position:absolute;inset:0;opacity:.22;background:url("https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/kotohogu/town_background_001.jpg") center 47%/cover}
+.final-content{position:relative;z-index:1}
+.final-cta h2{font-size:clamp(2.5rem,5vw,4rem);margin-bottom:2px}
+.final-cta p{font-weight:800}
+.final-cta .button{margin-top:12px}
+.final-badge{display:inline-block;margin-top:28px;padding:6px 18px;border:1px solid #deabb2;border-radius:99px;background:#fffaf5e8;font-size:.8rem;font-weight:900}
+.site-footer{padding:34px 0 40px;text-align:center;background:#fffaf4;border-top:1px solid #e6c6bb}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 28px;margin-bottom:14px;font-size:.85rem;font-weight:800}
+.site-footer p{margin:0;color:#8c7061;font-size:.76rem}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-10px) rotate(-4deg)}}
+@media(max-width:920px){
+.site-nav{gap:11px;font-size:.78rem}.nav-cta{padding-inline:11px}
+.hero-layout{gap:12px}.hero h1{font-size:clamp(2.2rem,4.8vw,3.4rem)}
+.hero-scene{height:390px}.hero-art{min-height:410px}
+.town-layout{grid-template-columns:1fr;gap:22px}.town-copy{text-align:center}.town-copy p{margin-inline:auto}
+}
+@media(max-width:700px){
+.wrap{width:min(100% - 32px,540px)}
+.header-layout{min-height:68px}.logo-mark{width:37px;height:37px}.logo-text{font-size:1.3rem}.logo-sub{font-size:.53rem}
+.site-nav{display:none}.mobile-menu{display:block;position:relative}.mobile-menu summary{list-style:none;font-weight:900;border:1px solid #eab7b6;border-radius:99px;padding:6px 15px;cursor:pointer;background:#fff4ea}.mobile-menu summary::-webkit-details-marker{display:none}
+.mobile-menu nav{position:absolute;top:51px;right:0;z-index:30;width:206px;background:#fffdfa;border:1px solid #e3c7ad;border-radius:18px;padding:12px;box-shadow:0 15px 25px #53372424}
+.mobile-menu nav a{display:block;padding:9px 10px;text-decoration:none;font-weight:800}
+.hero-layout{grid-template-columns:1fr;text-align:center;padding-block:57px 45px;gap:8px}
+.hero h1{margin:13px auto 18px;font-size:clamp(2.05rem,8vw,3.35rem)}
+.hero-lead{font-size:.96rem}.hero-tag{font-size:1.02rem}
+.hero-note{font-size:.73rem}
+.hero-art{min-height:390px;width:100%;max-width:390px;margin-inline:auto}
+.hero-scene{height:345px;width:340px;max-width:93%}
+.hero-mascot{width:210px;left:-5px;bottom:3px}
+.hero-phone{width:145px;bottom:5px;right:0}
+.hello{top:26px;right:5px;font-size:.8rem}
+.section{padding:66px 0}
+.section-heading{margin-bottom:30px}
+.steps{grid-template-columns:1fr;gap:26px;max-width:420px;margin:auto}
+.step{padding:20px}.step-visual{height:280px}.step-arrow{right:calc(50% - 15px);top:auto;bottom:-33px;transform:rotate(90deg)}
+.town-cards{gap:8px}.town-card{border-width:3px}.town-card img{height:205px}.town-card figcaption{font-size:.64rem}
+.residents{gap:18px;margin-top:35px}.resident img{width:93px;height:93px}
+.reason-layout{grid-template-columns:1fr;gap:15px}.reason-copy{text-align:center}.reason-copy p{margin-inline:auto}
+.data-card{padding:24px}.data-figure{font-size:3.3rem}
+}
+@media(max-width:380px){.hero-art{min-height:340px}.hero-scene{height:310px}.hero-mascot{width:185px}.hero-phone{width:130px}.town-card img{height:174px}.data-figure{font-size:2.7rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
 </head>
 <body>
-  <header><div class="wrap header-inner">
-    <a class="brand" href="./index.html">🌸 ことほぐ</a>
-    <nav class="links" aria-label="ヘッダーナビゲーション">
-      <a href="./privacy.html">プライバシーポリシー</a>
-      <a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ</a>
-    </nav>
-  </div></header>
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="flower" aria-hidden="true">🌸 🐾 🌸</div>
-    <h1 id="hero-title">ことほぐ</h1>
-    <p class="tagline">小さなできたを、みんなでことほぐ。</p>
-    <p class="lead">少し歩いた。誰かと話した。好きなことを楽しんだ。<br>
-    そんな日々の「できた」を記録すると、ことほぎのまちの住民たちが、あなたを祝ってくれます。</p>
-  </section>
-  <main class="wrap">
-    <section aria-labelledby="features-title">
-      <h2 id="features-title">ことほぐでできること</h2>
-      <div class="features">
-        <article class="feature">
-          <div class="feature-icon" aria-hidden="true">📜</div>
-          <h3>ミッションに挑戦</h3>
-          <p>運動、外出、人との会話、趣味など、暮らしの中の小さな行動を自分のペースで。</p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon" aria-hidden="true">🎉</div>
-          <h3>「できた！」を記録</h3>
-          <p>達成した日を振り返れます。住民たちの拍手とお祝いも楽しみのひとつ。</p>
-        </article>
-        <article class="feature">
-          <div class="feature-icon" aria-hidden="true">🏡</div>
-          <h3>まちと住民を楽しむ</h3>
-          <p>ことほぎを重ねて住民と出会い、少しずつ広がるまちをのんびり歩こう。</p>
-        </article>
-      </div>
-    </section>
-    <p class="note">がんばれない日があっても大丈夫。連続記録を競わず、できたことを大切にするアプリです。<br>アプリの詳しい紹介は、これから少しずつ充実させていきます。</p>
-  </main>
-  <footer><div class="wrap">
-    <nav aria-label="フッターナビゲーション">
-      <a href="./privacy.html">プライバシーポリシー</a>
-      <a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ・サポート</a>
-      <a href="https://cloxs.jp/">運営会社</a>
-    </nav>
-    <div>&copy; 2026 CLOXS LLC</div>
-  </div></footer>
-</body>
-</html>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header">
+ <div class="wrap header-layout">
+  <a href="./index.html" class="logo" aria-label="コトホグ トップ">
+   <img class="logo-mark" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/013_kotohogisu/idle_front_01.png" alt="" width="46" height="46">
+   <span><span class="logo-text">コトホグ</span><span class="logo-sub">セルフケアを、社会貢献に。</span></span>
+  </a>
+  <nav class="site-nav" aria-label="ページ内メニュー">
+   <a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a class="nav-cta" href="#start">アプリについて</a>
+  </nav>
+  <details class="mobile-menu"><summary>メニュー</summary>
+   <nav aria-label="モバイルメニュー"><a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a href="#start">アプリについて</a></nav>
+  </details>
+ </div>
+</header>
+<main id="main">
+ <section class="hero" aria-labelledby="hero-title">
+  <div class="petals" aria-hidden="true"><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i><i class="petal"></i></div>
+  <div class="wrap hero-layout">
+   <div class="hero-copy">
+    <span class="kicker">🌸 あなたの「できた！」を、ことほごう。</span>
+    <h1 id="hero-title">セルフケアって、<br>社会貢献じゃないですか。</h1>
+    <p class="hero-lead">筋トレも、お散歩も、誰かとのおしゃべりも。<br>今日の「できた！」を、まちのみんなが祝福します。</p>
+    <p class="hero-tag">筋トレをして、ほめられよう。</p>
+    <div><a class="button" href="#how">コトホグの世界をのぞく <span aria-hidden="true">→</span></a></div>
+    <span class="hero-note">みんなで健康、みんなで介護予防。<br>できることから、自分のペースで。</span>
+   </div>
+   <div class="hero-art" aria-label="桜のまちとコトホギス">
+    <div class="hero-scene" aria-hidden="true"></div>
+    <img class="hero-mascot" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/013_kotohogisu/clap_front_01.png" alt="羽を広げて喜ぶ、まちの案内役コトホギス" width="288" height="288" fetchpriority="high">
+    <div class="hero-phone"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/docs/screenshots/home-town-background.jpg" alt="コトホグのアプリ画面。桜のまちのホーム" width="414" height="900"></div>
+    <span class="hello" aria-hidden="true">やったね！ 🌸</span>
+   </div>
+  </div>
+ </section>
+ <section class="section section-soft" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+   <div class="section-heading">
+    <span class="wood-label">コトホグってどんなアプリ？</span>
+    <h2 id="how-title">いつもの行動が、今日のミッション。</h2>
+    <p>運動量の細かい入力は必要ありません。できたことを、ぽんっと教えてね。</p>
+   </div>
+   <div class="steps">
+    <article class="step">
+     <span class="step-number">STEP 01</span>
+     <div class="step-visual"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/docs/screenshots/missions-board.jpg" alt="ミッションを選んで「できた！」を押す画面" width="420" height="650"></div>
+     <h3>ちいさな一歩を見つけよう</h3>
+     <p>筋力を使った。外に出た。誰かと話した。食事を整えた。趣味を楽しんだ。そんな日常がミッションに。</p>
+     <span class="step-arrow" aria-hidden="true">➜</span>
+    </article>
+    <article class="step">
+     <span class="step-number">STEP 02</span>
+     <div class="step-visual"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/docs/screenshots/celebration-japanese.jpg" alt="達成すると住民たちが拍手してお祝いする画面" width="420" height="650"></div>
+     <h3>「できた！」をお祝い！</h3>
+     <p>ボタンを押すと、まちの仲間たちが拍手と紙吹雪で祝福。「ことほぎ」が増えていきます。</p>
+     <span class="step-arrow" aria-hidden="true">➜</span>
+    </article>
+    <article class="step">
+     <span class="step-number">STEP 03</span>
+     <div class="step-visual"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/docs/screenshots/town.jpg" alt="まちの風景を見るゲーム画面" width="420" height="650"></div>
+     <h3>まちと仲間が広がる</h3>
+     <p>ことほぎを重ねると、少しずつまちが広がり、新しい住民との出会いも。お話しする楽しみもあります。</p>
+    </article>
+   </div>
+   <p class="ribbon">🌸 自分を大切にすることは、もっとほめられていい。🌸</p>
+  </div>
+ </section>
+ <section class="section town-section" id="town" aria-labelledby="town-title">
+  <div class="wrap">
+   <div class="town-layout">
+    <div class="town-copy">
+     <p class="eyebrow">A TOWN FULL OF THANKS</p>
+     <h2 id="town-title">ほめられて、まちが育って、仲間が増える。</h2>
+     <p>コトホグには、かわいい住民たちが暮らす小さなまちがあります。公園を歩いたり、商店街を訪ねたり。新しい住民を迎えたら、話しかけてみよう。</p>
+     <p>まちの仲間たちが、あなたの毎日の「できた！」を楽しみにしています。</p>
+    </div>
+    <div class="town-cards" aria-label="コトホグのまち">
+     <figure class="town-card"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/kotohogu/town_background_001.jpg" alt="桜が咲く中央ひろば" width="240" height="350"><figcaption>中央ひろば</figcaption></figure>
+     <figure class="town-card"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/kotohogu/park_background_001.png" alt="緑豊かなふれあい公園" width="240" height="350"><figcaption>ふれあい公園</figcaption></figure>
+     <figure class="town-card"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/kotohogu/street_background_001.png" alt="お店が並ぶことほぎ商店街" width="240" height="350"><figcaption>ことほぎ商店街</figcaption></figure>
+    </div>
+   </div>
+   <div class="residents" aria-label="まちの住民たち">
+    <figure class="resident"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/013_kotohogisu/idle_front_01.png" alt="コトホギス" width="125" height="125"><figcaption>コトホギス</figcaption></figure>
+    <figure class="resident"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/002_usagi/idle_front_01.png" alt="うさぎの住民" width="125" height="125"><figcaption>うさぎさん</figcaption></figure>
+    <figure class="resident"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/003_penguin/idle_front_01.png" alt="ペンギンの住民" width="125" height="125"><figcaption>ペンギンさん</figcaption></figure>
+    <figure class="resident"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/004_neko/idle_front_01.png" alt="ねこの住民" width="125" height="125"><figcaption>ねこさん</figcaption></figure>
+    <figure class="resident"><img loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/005_risu/idle_front_01.png" alt="りすの住民" width="125" height="125"><figcaption>りすさん</figcaption></figure>
+   </div>
+   <p class="residents-note">住民はこれだけじゃないよ。まちで会えるのを楽しみにしていてね！</p>
+  </div>
+ </section>
+ <section class="section reason" id="reason" aria-labelledby="reason-title">
+  <div class="wrap">
+   <div class="reason-layout">
+    <div class="reason-copy">
+     <p class="eyebrow">WHY SELF-CARE MATTERS</p>
+     <h2 id="reason-title">セルフケアは、自分にも、未来の社会にも。</h2>
+     <p>筋力を保つこと、外に出て歩くこと、人とつながること。毎日のセルフケアは、将来の生活する力を支える大切な行動です。</p>
+     <p>自分のための小さな行動が、未来の誰かにとってもうれしいことかもしれない。だからコトホグは、できたことを思いきり祝福します。</p>
+    </div>
+    <aside class="data-card" aria-label="研究参考の費用差">
+     <span class="data-kicker">研究データから考える、セルフケアの社会的な意味</span>
+     <div class="data-figure"><small>年間約</small>81,000<small>円</small></div>
+     <strong>医療・介護費の集団間の差（仮の参考試算）</strong>
+     <p>運動教室への参加や外出頻度の違いを調べた国内2研究の結果を、便宜的に年換算して足し合わせた数字です。</p>
+     <a href="#research-notes">数字の根拠をくわしく見る ↓</a>
+    </aside>
+   </div>
+   <div class="research-note" id="research-notes">
+    <strong>数字について：</strong> 年間約81,000円は、別々の国内観察研究における集団間の費用差を年換算・合算した仮のシナリオ値です。個々の人がセルフケアで節約できる金額でも、1回のミッションの効果でも、税金・公費の削減額でもありません。研究対象・条件・期間が異なり、合算の妥当性や因果関係は検証されていません。<br>
+    医療費：<a href="https://doi.org/10.1155/2016/7530105" target="_blank" rel="noopener noreferrer">Yoshizawa et al. (2016)</a> の参加群と比較群の年間平均差640.4米ドル（論文採用レート108円／ドルで69,163円）。介護費：<a href="https://doi.org/10.3390/ijerph18095004" target="_blank" rel="noopener noreferrer">Hirai et al. (2021)</a> の外出頻度の異なる群の59か月累積差600米ドル（論文採用レート100円／ドルを年換算して約12,203円）。両者を合算し千円単位に丸めています。
+   </div>
+  </div>
+ </section>
+ <section class="section promise" aria-labelledby="promise-title">
+  <div class="wrap">
+   <img class="promise-mascot" loading="lazy" src="https://raw.githubusercontent.com/kaeruko/kotohogu/db2bd2db5771e6d2edefcb8e5e21c37626da340c/assets/characters/013_kotohogisu/idle_front_01.png" alt="" width="100" height="100">
+   <p class="eyebrow">EVERY LITTLE STEP COUNTS</p>
+   <h2 id="promise-title">「できなかった」より、<br>今日の「できた！」を。</h2>
+   <p>できなかった日は減点しません。連続記録を競う必要もありません。体調や暮らしに合わせて、できることを自分のペースで。</p>
+   <p>介護や支援が必要になることは、失敗ではありません。どんな人にも、その人のペースがあります。</p>
+  </div>
+ </section>
+ <section class="section faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap">
+   <div class="section-heading"><p class="eyebrow">Q &amp; A</p><h2 id="faq-title">よくある質問</h2></div>
+   <div class="faq-list">
+    <details><summary>どんなミッションがありますか？</summary><p>筋力を使う、歩く、人と話す、食事を整える、趣味や学びを楽しむなど。デイリー・ウィークリー・マンスリーのミッションがあり、できたことを自己申告で記録します。</p></details>
+    <details><summary>毎日がんばらないといけませんか？</summary><p>いいえ。休んだことで減点されたり、まちが衰退したりはしません。自分にできたことだけを祝うアプリです。</p></details>
+    <details><summary>年間約81,000円の差は、どんな意味ですか？</summary><p>異なる2研究の集団間費用差を便宜的に足した仮の参考値です。自分のミッション達成によって、その金額が節約できたという意味ではありません。<a href="#research-notes">研究の説明を見る</a></p></details>
+    <details><summary>このアプリを使えば介護を予防できますか？</summary><p>介護予防につながる日常行動のきっかけを作るアプリですが、病気や要介護状態の予防を保証するものではありません。</p></details>
+   </div>
+  </div>
+ </section>
+ <section class="final-cta" id="start" aria-labelledby="start-title">
+  <div class="final-content">
+   <p class="eyebrow">🌸 今日の「できた！」を、ことほごう 🌸</p>
+   <h2 id="start-title">コトホグ</h2>
+   <p>セルフケアを、社会貢献に。</p>
+   <p>ほめられて、まちが育つ。小さな介護予防ゲーム。</p>
+   <a class="button" href="https://github.com/kaeruko/kotohogu" target="_blank" rel="noopener noreferrer">アプリの開発状況を見る <span aria-hidden="true">↗</span></a>
+   <div><span class="final-badge">ストア公開の案内は準備中です</span></div>
+  </div>
+ </section>
+</main>
+<footer class="site-footer"><div class="wrap">
+ <nav class="footer-links" aria-label="フッターリンク">
+  <a href="./privacy.html">プライバシーポリシー</a>
+  <a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ</a>
+  <a href="https://cloxs.jp/">運営会社</a>
+ </nav>
+ <p>© 2026 CLOXS LLC　｜　コトホグ</p>
+</div></footer>
+</body></html>
