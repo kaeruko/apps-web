@@ -21,6 +21,24 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y --no-install-recommends librsvg2-bin fonts-noto-cjk
+      - name: Fetch the exact official artwork
+        run: |
+          curl --fail --location --silent --show-error --max-time 90 \
+            https://raw.githubusercontent.com/kaeruko/kotohogu/main/assets/kotohogu/town_background_001.jpg \
+            -o public/kotohogu/assets/feature-town.jpg
+          curl --fail --location --silent --show-error --max-time 90 \
+            https://raw.githubusercontent.com/kaeruko/kotohogu/main/assets/characters/013_kotohogisu/clap_front_01.png \
+            -o public/kotohogu/assets/feature-mascot.png
+          python3 - <<'PY'
+          from pathlib import Path
+          base = Path('public/kotohogu/assets')
+          town = (base / 'feature-town.jpg').read_bytes()
+          mascot = (base / 'feature-mascot.png').read_bytes()
+          screenshot = (base / 'screenshots/Screenshot_20261017_194738.png').read_bytes()
+          assert town.startswith(b'\xff\xd8\xff'), 'Official town art is not JPEG'
+          assert mascot.startswith(b'\x89PNG\r\n\x1a\n'), 'Official mascot is not PNG'
+          assert screenshot.startswith(b'\x89PNG\r\n\x1a\n'), 'App screenshot is not PNG'
+          PY
       - name: Render exact 1024x500 PNG
         run: |
           rsvg-convert -f png -w 1024 -h 500 \
