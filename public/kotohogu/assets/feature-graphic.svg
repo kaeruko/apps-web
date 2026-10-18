@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1024" height="500" viewBox="0 0 1024 500" role="img" aria-label="コトホグ。ほめられて、まちが育つ。セルフケアを、社会貢献に。">
+<title>コトホグ Google Play フィーチャーグラフィック 1024×500</title>
+<!-- Source images are downloaded and validated by .github/workflows/kotohogu-feature-graphic.yml. -->
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="0">
+    <stop stop-color="#fff8f0" offset="0"/>
+    <stop stop-color="#ffe5eb" offset="1"/>
+  </linearGradient>
+  <radialGradient id="glow"><stop stop-color="#ffc0cb" stop-opacity=".7"/><stop offset="1" stop-color="#ffc0cb" stop-opacity="0"/></radialGradient>
+  <filter id="cardShadow" x="-25%" y="-25%" width="150%" height="160%"><feGaussianBlur in="SourceAlpha" stdDeviation="10"/><feOffset dy="10"/><feComponentTransfer><feFuncA type="linear" slope=".17"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="phoneShadow" x="-25%" y="-20%" width="160%" height="150%"><feGaussianBlur in="SourceAlpha" stdDeviation="7"/><feOffset dy="9"/><feComponentTransfer><feFuncA type="linear" slope=".33"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="mascotShadow" x="-25%" y="-25%" width="150%" height="170%"><feGaussianBlur in="SourceAlpha" stdDeviation="7"/><feOffset dy="8"/><feComponentTransfer><feFuncA type="linear" slope=".20"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <clipPath id="sceneClip"><rect x="652" y="39" width="334" height="419" rx="80"/></clipPath>
+  <clipPath id="screenClip"><rect x="9" y="13" width="160" height="365" rx="17"/></clipPath>
+  <g id="flower" opacity=".75" fill="#e990a9"><ellipse cx="0" cy="-7" rx="5" ry="7"/><ellipse cx="7" cy="-2" rx="5" ry="7" transform="rotate(65 7 -2)"/><ellipse cx="4" cy="6" rx="5" ry="7" transform="rotate(135 4 6)"/><ellipse cx="-4" cy="6" rx="5" ry="7" transform="rotate(225 -4 6)"/><ellipse cx="-7" cy="-2" rx="5" ry="7" transform="rotate(295 -7 -2)"/><circle r="3" fill="#f7dd90"/></g>
+</defs>
+<rect width="1024" height="500" fill="url(#bg)"/>
+<ellipse cx="785" cy="82" rx="265" ry="290" fill="url(#glow)"/>
+<ellipse cx="954" cy="475" rx="270" ry="190" fill="#d9f0ec" opacity=".44"/>
+<ellipse cx="-85" cy="490" rx="220" ry="150" fill="#ffe0ca" opacity=".45"/>
+
+<!-- Official town background -->
+<rect x="642" y="30" width="354" height="440" rx="89" fill="#fffaf4" filter="url(#cardShadow)"/>
+<image x="652" y="39" width="334" height="419" preserveAspectRatio="xMidYMid slice"
+  xlink:href="feature-town.jpg" clip-path="url(#sceneClip)"/>
+<rect x="652" y="39" width="334" height="419" rx="80" fill="#ffd5dc" opacity=".06"/>
+<rect x="648" y="35" width="342" height="427" rx="84" fill="none" stroke="#fff9ef" stroke-width="9"/>
+
+<!-- Current, real in-app screen -->
+<g transform="translate(787 59) rotate(7 89 194)" filter="url(#phoneShadow)">
+  <rect x="0" y="0" width="178" height="388" rx="25" fill="#392723" stroke="#735447" stroke-width="3"/>
+  <image x="9" y="13" width="160" height="365" preserveAspectRatio="xMidYMid slice"
+    xlink:href="screenshots/Screenshot_20261017_194738.png" clip-path="url(#screenClip)"/>
+  <rect x="65" y="13" width="49" height="5" rx="3" fill="#392723"/>
+</g>
+
+<!-- Official celebratory Kotohogisu sprite -->
+<image x="586" y="262" width="230" height="230" preserveAspectRatio="xMidYMid meet"
+  xlink:href="feature-mascot.png" filter="url(#mascotShadow)"/>
+
+<use xlink:href="#flower" transform="translate(39 42) rotate(20)" opacity=".55"/>
+<use xlink:href="#flower" transform="translate(534 54) scale(.65)" opacity=".5"/>
+<use xlink:href="#flower" transform="translate(599 107) rotate(10)" opacity=".65"/>
+<use xlink:href="#flower" transform="translate(976 33) rotate(17)" opacity=".85"/>
+<use xlink:href="#flower" transform="translate(576 442) rotate(24)" opacity=".6"/>
+
+<!-- High contrast, readable Japanese copy, matching the public LP -->
+<g font-family="'Noto Sans CJK JP','Noto Sans JP',sans-serif">
+  <text x="67" y="91" font-size="18" font-weight="900" letter-spacing=".4" fill="#a14d5b">今日の「できた！」を、ことほごう。</text>
+  <text x="70" y="204" font-size="85" font-weight="900" fill="#fffaf6" stroke="#fffaf6" stroke-width="8" stroke-linejoin="round">コトホグ</text>
+  <text x="65" y="198" font-size="85" font-weight="900" fill="#63392e">コトホグ</text>
+  <text x="68" y="295" font-size="29" font-weight="900" fill="#c14268">ほめられて、まちが育つ。</text>
+  <text x="69" y="346" font-size="19" fill="#63392e">筋トレも、お散歩も、おしゃべりも。</text>
+  <text x="69" y="380" font-size="19" fill="#63392e">まちの仲間が「できた！」を祝福。</text>
+  <rect x="66" y="416" width="314" height="47" rx="24" fill="#fff9f2" stroke="#e7a4ac" stroke-width="2"/>
+  <text x="86" y="447" font-size="19" font-weight="900" fill="#a04459">セルフケアを、社会貢献に。</text>
+</g>
+</svg>
