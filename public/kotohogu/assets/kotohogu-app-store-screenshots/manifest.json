@@ -1,0 +1,72 @@
+{
+  "note": "Simulator screenshots of the actual Kotohogu Flutter screens with example mission progress. Not an actual player's data.",
+  "runtime": "com.apple.CoreSimulator.SimRuntime.iOS-26-5",
+  "devices": {
+    "iphone_dynamic_island_medium": {
+      "model": "iPhone 16 Pro",
+      "files": [
+        {
+          "page": "home",
+          "file": "01_home.jpg",
+          "width": 1206,
+          "height": 2622,
+          "bytes": 913217
+        },
+        {
+          "page": "missions",
+          "file": "02_missions.jpg",
+          "width": 1206,
+          "height": 2622,
+          "bytes": 854925
+        },
+        {
+          "page": "town",
+          "file": "03_town.jpg",
+          "width": 1206,
+          "height": 2622,
+          "bytes": 846361
+        },
+        {
+          "page": "history",
+          "file": "04_history.jpg",
+          "width": 1206,
+          "height": 2622,
+          "bytes": 549900
+        }
+      ]
+    },
+    "ipad_13_inch": {
+      "model": "iPad Pro 13-inch (M4) (16GB)",
+      "files": [
+        {
+          "page": "home",
+          "file": "01_home.jpg",
+          "width": 2064,
+          "height": 2752,
+          "bytes": 1031001
+        },
+        {
+          "page": "missions",
+          "file": "02_missions.jpg",
+          "width": 2064,
+          "height": 2752,
+          "bytes": 1028455
+        },
+        {
+          "page": "town",
+          "file": "03_town.jpg",
+          "width": 2064,
+          "height": 2752,
+          "bytes": 989579
+        },
+        {
+          "page": "history",
+          "file": "04_history.jpg",
+          "width": 2064,
+          "height": 2752,
+          "bytes": 515038
+        }
+      ]
+    }
+  }
+}
