@@ -30,6 +30,12 @@ if [[ ! -f "$GIRLS_INDEX" ]]; then
   exit 1
 fi
 
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "Python 3 is required to index Kotohogu manga images" >&2
+  exit 1
+fi
+python3 "$SCRIPT_DIR/scripts/build_kotohogu_manga.py"
+
 assert_aws_account
 
 echo "==> S3へアップロード中..."

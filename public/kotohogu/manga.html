@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff1e5">
+<meta name="description" content="ことほぎのまちの住民たちのまんがを読むページ。家族のこと、お店のこと、ちょっとした毎日のこと。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="ことほぎのまちのまんが | コトホグ">
+<meta property="og:description" content="まちのみんなの、ちいさなお話。まんがでのぞく、ことほぎの世界。">
+<meta property="og:url" content="https://cloxs.jp/kotohogu/manga.html">
+<meta property="og:image" content="https://cloxs.jp/kotohogu/assets/feature-graphic.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cloxs.jp/kotohogu/manga.html">
+<title>まちのまんが | コトホグ</title>
+<style>
+:root{color-scheme:light;--ink:#63392e;--soft:#82594d;--rose:#db6384;--rose-dark:#b93c62;--paper:#fffaf2;--line:#ebd4bc}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hiragino Maru Gothic ProN","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;line-height:1.8}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:3px solid #397e83;outline-offset:4px;border-radius:5px}
+.wrap{width:min(1080px,calc(100% - 36px));margin-inline:auto}
+.skip{position:absolute;top:-80px;left:12px;padding:10px 20px;background:#fff;z-index:10}.skip:focus{top:10px}
+.site-header{background:#fffbf5;border-bottom:1px solid #eddbc8;box-shadow:0 2px 18px #70432b17}
+.header-layout{display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:79px}
+.logo{display:flex;gap:10px;align-items:center;text-decoration:none}.logo img{width:44px;height:44px;object-fit:contain}
+.logo-text{font-size:1.55rem;font-weight:900;letter-spacing:.13em;line-height:1.1}.logo-sub{display:block;color:#a85458;font-size:.65rem;font-weight:800;letter-spacing:.1em}
+.site-nav{display:flex;align-items:center;gap:24px;font-size:.9rem;font-weight:800}.site-nav a{text-decoration:none}.site-nav a:hover{color:var(--rose-dark)}.site-nav .active{color:var(--rose-dark);text-decoration:underline;text-underline-offset:7px;text-decoration-thickness:2px}
+.hero{text-align:center;padding:66px 0 67px;background:linear-gradient(120deg,#fff4e9,#ffe7ef 55%,#e2f3ee);border-bottom:7px solid #f9d9d7}
+.eyebrow{color:var(--rose-dark);font-size:.8rem;font-weight:900;letter-spacing:.15em}.hero h1{font-size:clamp(2.2rem,4.5vw,3.55rem);margin:12px 0;letter-spacing:-.04em;line-height:1.4}.hero h1 strong{color:#bd4969}.hero p{max-width:650px;margin:0 auto;color:var(--soft);font-weight:700}
+.main-content{min-height:320px;padding:58px 0 80px}.stories-heading{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 26px}
+.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start}
+.story{min-width:0;background:#fffdfa;border:1px solid #e7cbb2;border-radius:24px;overflow:hidden;box-shadow:0 7px 0 #f1dccc}
+.story[open]{grid-column:1 / -1;max-width:850px;width:100%;justify-self:center}
+.story summary{list-style:none;cursor:pointer;display:flex;gap:17px;align-items:center;padding:16px}
+.story summary::-webkit-details-marker{display:none}
+.story summary::marker{content:""}
+.story summary:hover{background:#fff5ec}
+.story-cover{display:block;flex:0 0 140px;width:140px;height:180px;overflow:hidden;border-radius:16px;background:linear-gradient(140deg,#ffe7db,#eaf3ed)}
+.story-cover img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.story-caption{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+.story-caption strong{font-size:1.26rem;line-height:1.45}
+.story-caption small{color:#9e536b;font-weight:800;font-size:.84rem}
+.story-cta{display:inline-block;padding:4px 15px;background:#ffe3e9;color:#ad4162;border-radius:30px;font-size:.8rem;font-weight:900}
+.story[open] .story-cta{background:#e7f4ee;color:#397f67}
+.story-pages{display:grid;gap:20px;padding:26px 23px 30px;background:#fff6f1;border-top:1px dashed #eac6c9}
+.story-page{margin:0 auto;max-width:760px;width:100%}
+.story-page img{width:100%;height:auto;background:white;box-shadow:0 5px 20px #7655411b}
+.story-page figcaption{text-align:center;color:#8b6d62;font-size:.78rem;font-weight:700;padding:8px}
+.empty{border:1px solid var(--line);border-radius:24px;padding:50px 20px;background:#fffdfa;color:var(--soft);text-align:center}
+.outro{text-align:center;background:linear-gradient(145deg,#fff0e5,#eaf5f2);padding:65px 20px 72px}
+.outro h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:6px 0 12px}.outro p{margin:0 auto 18px;max-width:620px}
+.button{display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:9px 25px;border:2px solid #fff6;border-radius:99px;background:linear-gradient(140deg,#ec86a0,#d9557b);color:#fff;text-decoration:none;font-weight:900;box-shadow:0 5px 0 #af4962}
+.footer{text-align:center;border-top:1px solid #e6c6bb;background:#fffaf4;padding:30px 0 35px}
+.links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;margin-bottom:14px;font-size:.85rem;font-weight:800}.footer p{margin:0;color:#8c7061;font-size:.76rem}
+@media(max-width:760px){.stories{grid-template-columns:1fr}.header-layout{min-height:70px}.logo img{width:38px;height:38px}.logo-text{font-size:1.25rem}.logo-sub{font-size:.54rem}.site-nav{gap:14px;font-size:.8rem}.hero{padding:51px 0}.story[open]{grid-column:auto}.story-cover{flex-basis:105px;width:105px;height:132px}.story summary{gap:14px}.story-caption strong{font-size:1.12rem}.story-pages{padding:12px;gap:13px}}
+@media(max-width:360px){.site-nav a:first-child{display:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="site-header"><div class="wrap header-layout">
+<a class="logo" href="./index.html" aria-label="コトホグ トップ"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/013_kotohogisu/idle_front_01.png" alt="" width="44" height="44"><span><span class="logo-text">コトホグ</span><span class="logo-sub">セルフケアを、社会貢献に。</span></span></a>
+<nav class="site-nav" aria-label="ページメニュー"><a href="./index.html">アプリ紹介</a><a href="./characters.html">住民紹介</a><a class="active" href="./manga.html" aria-current="page">まんが</a></nav>
+</div></header>
+<main id="main">
+<section class="hero"><div class="wrap"><span class="eyebrow">STORIES FROM KOTOHOGU</span><h1>ことほぎのまちの<br><strong>まんが。</strong></h1><p>家族のこと、お店のこと、ちょっとした毎日のこと。<br>まちのみんなの物語を、まんがでのぞいてみよう。</p></div></section>
+<div class="wrap main-content">
+<h2 class="stories-heading">まちのおはなし 🌸</h2>
+<div class="stories" id="stories">
+<!-- MANGA_INDEX_START -->
+<details class="story" id="manga-001"><summary><span class="story-cover"><img loading="lazy" src="./manga/3797a3e8-2022-4613-8d87-7f033bab1804.png" alt="" width="140" height="180"></span><span class="story-caption"><strong>まちのおはなし その1</strong><small>読み切りまんが</small><span class="story-cta">まんがを読む ↓</span></span></summary><div class="story-pages"><figure class="story-page"><img loading="lazy" src="./manga/3797a3e8-2022-4613-8d87-7f033bab1804.png" alt="まちのおはなし その1・1ページ目"><figcaption>1 / 1</figcaption></figure></div></details>
+<!-- MANGA_INDEX_END -->
+</div>
+</div>
+<section class="outro"><h2>お話のつづきは、ことほぎのまちで。</h2><p>まちの仲間たちは、アプリでもあなたに話しかけてくれます。</p><a class="button" href="./characters.html">住民紹介を見る →</a></section>
+</main>
+<footer class="footer"><div class="wrap"><nav class="links" aria-label="フッターリンク"><a href="./index.html">アプリ紹介</a><a href="./characters.html">住民紹介</a><a href="./manga.html" aria-current="page">まんが</a><a href="./privacy.html">プライバシーポリシー</a><a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ</a></nav><p>© 2026 CLOXS LLC　｜　コトホグ</p></div></footer>
+</body></html>

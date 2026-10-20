@@ -38,6 +38,15 @@ if (-not (Test-Path -LiteralPath $girlsIndex -PathType Leaf)) {
     throw "Girls index file not found: $girlsIndex"
 }
 
+$mangaGenerator = Join-Path $PSScriptRoot "scripts\build_kotohogu_manga.py"
+if (-not (Test-Path -LiteralPath $mangaGenerator -PathType Leaf)) {
+    throw "Manga index generator not found: $mangaGenerator"
+}
+& python $mangaGenerator
+if ($LASTEXITCODE -ne 0) {
+    throw "Kotohogu manga index generation failed with exit code $LASTEXITCODE"
+}
+
 Assert-AwsAccount
 
 aws s3 sync $publicDirectory "s3://$Bucket/" `
