@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fff1e5">
-<meta name="description" content="介護予防ゲーム「コトホグ」の住民紹介。子育て中のおよめさん、ケーキ屋さん、町のお医者さんなど、個性豊かな仲間たち。">
+<meta name="description" content="介護予防ゲーム「コトホグ」の住民紹介。ランダムに出会える住民と、とんこ・かえる・おやすみくん・つやこの物語。「ゆうぐれおやすみクラブ」もご紹介。">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
 <meta property="og:title" content="ことほぎのまちの住民たち | コトホグ">
-<meta property="og:description" content="ことほぎのまちのやさしいおかあさん。子育てに毎日ばたばた、でも実は数字に強い……？ まちの仲間たちをご紹介。">
+<meta property="og:description" content="今日のピックアップは誰かな？ 物語が進む4人の住民と、ゆうぐれおやすみクラブをご紹介。">
 <meta property="og:url" content="https://cloxs.jp/kotohogu/characters.html">
 <meta property="og:image" content="https://cloxs.jp/kotohogu/assets/feature-graphic.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -66,6 +66,28 @@ img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offs
 .manga-promo p{margin:0;color:#82594d;font-size:.9rem}
 .manga-promo>a{white-space:nowrap;padding:12px 22px;border-radius:99px;background:#cb5c7a;color:white;text-decoration:none;font-weight:900}
 .manga-promo>a:hover{background:#b54567}
+
+/* Featured resident rotates on each visit; event stories stay available below. */
+.story-section{margin:67px 0 54px}
+.story-intro{margin:0 0 29px}
+.story-intro h2{font-size:clamp(1.7rem,3vw,2.4rem);margin:5px 0 9px;line-height:1.5}
+.story-intro p{color:var(--muted);margin:0;font-size:.98rem}
+.story-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+.story-cards .card{min-height:175px}
+.club-section{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);min-height:370px;margin:65px 0 80px;background:#fffdfb;border:1px solid #d3c6dc;border-radius:30px;overflow:hidden;box-shadow:0 10px 0 #e4deeb}
+.club-visual{position:relative;min-height:345px;overflow:hidden;background:radial-gradient(circle at 56% 15%,#6376a0,#34466f 58%,#242b55)}
+.club-visual:after{content:"";position:absolute;inset:auto 0 0;height:27%;background:linear-gradient(180deg,#3a496c00,#213b50c9);pointer-events:none}
+.club-moon{position:absolute;right:18%;top:15px;font-size:90px;color:#fff1ae;transform:rotate(-17deg);text-shadow:0 0 20px #fff8ae55}
+.club-spark{position:absolute;color:#ffe6b5;font-size:23px}.star-1{left:20%;top:18%}.star-2{left:44%;top:10%}.star-3{right:10%;top:42%}
+.club-visual img{position:absolute;bottom:30px;width:38%;max-width:205px;filter:drop-shadow(0 9px 7px #171b335a);z-index:1}
+.club-oyasumi{left:15%;transform:rotate(-2deg)}.club-frog{right:11%;transform:rotate(2deg)}
+.club-copy{align-self:center;padding:clamp(22px,4vw,43px)}
+.club-kicker{color:#8b599c;font-size:.8rem;font-weight:900;letter-spacing:.09em}
+.club-copy h2{font-size:clamp(1.9rem,3.2vw,2.75rem);line-height:1.36;margin:10px 0 22px;color:#564578}
+.club-copy p{margin:0 0 15px}.club-quote{color:#654b82;font-weight:900;background:#f4eff9;border-radius:14px;padding:12px 16px}
+.club-copy .club-note{font-size:.82rem;color:#776781;margin:16px 0 0}
+@media(max-width:850px){.club-section{grid-template-columns:1fr}.club-visual{min-height:260px}.club-visual img{max-width:170px}.story-cards{grid-template-columns:1fr}}
+@media(max-width:560px){.story-section{margin:45px 0}.club-section{margin:48px 0 65px}.club-visual{min-height:235px}.club-visual img{bottom:5px;width:35%;max-width:148px}}
 </style>
 </head>
 <body>
@@ -75,9 +97,9 @@ img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offs
 <nav class="site-nav" aria-label="サイトナビゲーション"><a href="./index.html">アプリ紹介</a><a class="active" href="#neighbors" aria-current="page">住民紹介</a><a href="./manga.html">まんが</a><a class="pill-link" href="./index.html#town">まちをのぞく</a></nav>
 </div></header>
 <main id="main">
-<section class="hero" aria-labelledby="page-title"><div class="wrap"><span class="eyebrow">MEET THE NEIGHBORS</span><h1 id="page-title">ことほぎのまちの<br><em>住民たち。</em></h1><p>お店を開く人も、お休みしている人も。<br>家族と暮らす人も、好きなことに夢中な人も。<br>ここには、いろんな毎日があるんです。</p><div class="petals" aria-hidden="true">✿ ✦ ✿ ✦ ✿</div></div></section>
+<section class="hero" aria-labelledby="page-title"><div class="wrap"><span class="eyebrow">MEET THE NEIGHBORS</span><h1 id="page-title">ことほぎのまちの<br><em>住民たち。</em></h1><p>お店を開く人も、お休みしている人も。<br>今日のピックアップは、だれかな？<br>まちで始まる、小さなおはなしものぞいてみよう。</p><div class="petals" aria-hidden="true">✿ ✦ ✿ ✦ ✿</div></div></section>
 <div class="wrap" id="neighbors">
-<section class="feature-shell" aria-label="ピックアップの住民"><article class="feature" id="002_usagi">
+<section class="feature-shell" aria-label="今回のピックアップ住民"><article class="feature" id="002_usagi">
 <div class="feature-art"><span class="mark">PICK UP ✿</span><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/002_usagi/idle_front_01.png" alt="ピンクのお洋服を着たおよめさん" width="300" height="300" fetchpriority="high"></div>
 <div class="feature-copy"><span class="eyebrow">ことほぎのまちの、やさしいおかあさん</span><h2>およめさん <small>🐰</small></h2>
 <p>小さな子どもとの暮らしは、まだまだ慣れないこともいっぱい。家事に育児に毎日ばたばたしながら、夫のケーキ屋さんもときどきお手伝い。<br><strong>おっとりしているけれど、実は数字に強い……？</strong></p>
@@ -85,37 +107,57 @@ img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offs
 <ul class="keywords" aria-label="およめさんのキーワード"><li>やさしいおかあさん</li><li>家事と子育て</li><li>数字に強い…？</li></ul></div>
 </article></section>
 <aside class="manga-promo" aria-label="まちのまんが"><div><span>✿　まちの小さなおはなし　✿</span><h2>住民たちの毎日を、<br>まんがでも。</h2><p>紹介だけではわからない、あんなことやこんなこと。<br>ちょっとのぞいてみませんか？</p></div><a href="./manga.html">まんがを読む →</a></aside>
-<div class="gallery"><section class="group" aria-labelledby="group-1">
-<div class="group-head"><span aria-hidden="true">✿</span><div><h2 id="group-1">商店街とおしごとの仲間</h2><p>お店を開く人、まちをつくる人。仕事にもいろんな物語。</p></div></div>
-<div class="cards"><article class="card" id="047_patisie"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/047_patisie/idle_front_01.png" alt="パティシエのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">ケーキ屋さん</span><h3>パティシエ</h3><p>商店街に念願のケーキ屋さんをオープン！ ケーキ作りは得意だけど、経営はまだ勉強中。</p></div></article>
-<article class="card" id="048_advicer"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/048_advicer/idle_front_01.png" alt="しんだんしのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">経営相談員</span><h3>しんだんし</h3><p>夢の話も、お金の話も。商店街の商売を支える、数字に強くて聞き上手な中小企業診断士。</p></div></article>
-<article class="card" id="041_pig_middle"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/041_pig_middle/idle_front_01.png" alt="とんこのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">マルシェ出店中</span><h3>とんこ</h3><p>ハーブのお茶をマルシェで販売中。いつか小さな自分のお店を……と、一杯ずつ試行錯誤。</p></div></article>
-<article class="card" id="035_beaty"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/035_beaty/idle_front_01.png" alt="つやこのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">美容室のオーナー</span><h3>つやこ</h3><p>桜の美容室を切り盛りするおしゃれの達人。年齢を重ねた自分らしさも素敵に楽しむ。</p></div></article>
-<article class="card" id="031_kimono_fox"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/031_kimono_fox/idle_front_01.png" alt="きものぎつねのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">美容室の看板娘</span><h3>きものぎつね</h3><p>着物が大好きな桜の美容室の看板娘。今日も笑顔で、お客さんをお迎え。</p></div></article>
-<article class="card" id="009_chef"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/009_chef/idle_front_01.png" alt="シェフのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">シェフ</span><h3>シェフ</h3><p>おいしいものが大好きなねこのシェフ。旬の味も、食卓の小さな工夫もおまかせにゃ。</p></div></article>
-<article class="card" id="006_kuma"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/006_kuma/idle_front_01.png" alt="だいくさんのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">だいくさん</span><h3>だいくさん</h3><p>壊れたベンチをそっと直してくれる、無口な職人さん。誰かの暮らしが始まるのがうれしい。</p></div></article>
-<article class="card" id="032_miner"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/032_miner/idle_front_01.png" alt="もぐたのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">まちづくり</span><h3>もぐた</h3><p>道や公園をつくる元気な職人さん。まちが育つと、うれしくてたまらないもぐ！</p></div></article>
-<article class="card" id="005_risu"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/005_risu/idle_front_01.png" alt="ドライバーのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">配達屋さん</span><h3>ドライバー</h3><p>まちのおうちも道もよく知る新人配達員。寄り道で花を見つけるのが得意。</p></div></article></div></section>
-<section class="group" aria-labelledby="group-2">
-<div class="group-head"><span aria-hidden="true">✿</span><div><h2 id="group-2">暮らしをいっしょに歩く仲間</h2><p>働く日も、休む日も。それぞれの暮らしを、それぞれのペースで。</p></div></div>
-<div class="cards"><article class="card" id="004_neko"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/004_neko/idle_front_01.png" alt="せんせいのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">かかりつけ医</span><h3>せんせい</h3><p>長年まちを見守る先生。患者さんには「休んでね」と言うのに、自分はちょっと働きすぎ？</p></div></article>
-<article class="card" id="028_caregiver"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/028_caregiver/idle_front_01.png" alt="ぱんこ先生のキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">管理栄養士</span><h3>ぱんこ先生</h3><p>毎日の食事をいっしょに考えてくれる、ぱんこ先生。まずは今日のおいしい話から。</p></div></article>
-<article class="card" id="042_senior_dog"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/042_senior_dog/idle_front_01.png" alt="ごんすけのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">ご近所さん</span><h3>ごんすけ</h3><p>自分の歩幅でゆっくり歩くごんすけさん。木陰のベンチで立ち話をしよう。</p></div></article>
-<article class="card" id="007_hitsuji"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/007_hitsuji/idle_front_01.png" alt="めりぃのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">好奇心いっぱい</span><h3>めりぃ</h3><p>「年相応」ってなんでしょう？ いくつになっても新しいことを見つけたい、めりぃさん。</p></div></article>
-<article class="card" id="027_daydreamer"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/027_daydreamer/idle_front_01.png" alt="おやすみくんのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">おやすみ中</span><h3>おやすみくん</h3><p>お仕事もお勉強も、いまはおやすみ中。「なんにもしない」をしているんだもふ。</p></div></article>
-<article class="card" id="026_farmer"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/026_farmer/idle_front_01.png" alt="やすぞうのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">畑しごと</span><h3>やすぞう</h3><p>畑で土にふれるのが好きなやすぞうさん。季節の話になると、つい夢中になる。</p></div></article>
-<article class="card" id="029_office_worker"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/029_office_worker/idle_front_01.png" alt="かえるのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">会社員</span><h3>かえる</h3><p>まじめに働くかえるさん。仕事のドキドキやもやもやと、今日も少しずつ向き合う。</p></div></article>
-<article class="card" id="015_office_worker"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/015_office_worker/idle_front_01.png" alt="ぶちょうのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">会社のぶちょう</span><h3>ぶちょう</h3><p>気合も面倒見もたっぷり。でも人の話を最後まで聞くのは、まだちょっぴり練習中。</p></div></article></div></section>
-<section class="group" aria-labelledby="group-3">
-<div class="group-head"><span aria-hidden="true">✿</span><div><h2 id="group-3">好きなことに夢中な仲間</h2><p>おさんぽ、絵を描くこと、運動。好きなものもそれぞれ。</p></div></div>
-<div class="cards"><article class="card" id="001_shiba"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/001_shiba/idle_front_01.png" alt="しばいぬのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">まちの元気印</span><h3>しばいぬ</h3><p>おさんぽが大好き！ 小さな「できた！」も、しっぽを振ってお祝いしてくれる。</p></div></article>
-<article class="card" id="003_penguin"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/003_penguin/idle_front_01.png" alt="まちの案内係のキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">まちの案内係</span><h3>まちの案内係</h3><p>道案内はおまかせ！ と胸を張るけれど、まだ知らない場所もあるみたい。</p></div></article>
-<article class="card" id="036_mosa"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/036_mosa/idle_front_01.png" alt="モサエドのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">サムライ</span><h3>モサエド</h3><p>「拙者、猛者江戸でござる！」足腰の鍛錬が大好きな、ちょっぴり不思議なサムライ。</p></div></article>
-<article class="card" id="037_tora"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/037_tora/idle_front_01.png" alt="とらおのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">運動コーチ</span><h3>とらお</h3><p>元気いっぱいのとらおコーチ。でも大切なのは、がんばりすぎず自分のペース。</p></div></article>
-<article class="card" id="034_artist"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/034_artist/idle_front_01.png" alt="くまりんのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">絵描き</span><h3>くまりん</h3><p>描きたい絵と、喜んでもらえる絵。どちらも大事だから、くまりんは今日も悩みながら筆をとる。</p></div></article>
-<article class="card" id="038_lion_lady"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/038_lion_lady/idle_front_01.png" alt="リオコのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">劇団のひと</span><h3>リオコ</h3><p>舞台に立つ側から、演出する側へ。華やかなリオコさんには、まだ新しい物語がありそう。</p></div></article></div></section></div>
+<section class="story-section" id="story-characters" aria-labelledby="story-title">
+<div class="story-intro"><span class="eyebrow">STORIES IN TOWN</span><h2 id="story-title">おはなしが動き出す、まちの仲間。</h2><p>まちには、出会いや会話を重ねることで、小さなおはなしが始まる住民たちがいるよ。<br>いまはこの4人を紹介します。</p></div>
+<div class="cards story-cards"><article class="card story-card" id="041_pig_middle"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/041_pig_middle/idle_front_01.png" alt="とんこのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">マルシェ開店のおはなし</span><h3>とんこ</h3><p>ハーブを育て、お茶を淹れ、ついにマルシェへ。小さなお店を開くまでの、どきどきの物語。</p></div></article>
+<article class="card story-card" id="029_office_worker"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/029_office_worker/idle_front_01.png" alt="かえるのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">ゆうぐれおやすみクラブ</span><h3>かえる</h3><p>まじめなかえるさん。ある夕方、ひろばでのんびりしている子が気になって……。</p></div></article>
+<article class="card story-card" id="027_daydreamer"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/027_daydreamer/idle_front_01.png" alt="おやすみくんのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">ゆうぐれおやすみクラブ</span><h3>おやすみくん</h3><p>お仕事もお勉強もおやすみ中。夜のひろばで「なんにもしない」をしている、ふしぎな子。</p></div></article>
+<article class="card story-card" id="035_beaty"><div class="card-art"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/035_beaty/idle_front_01.png" alt="つやこのキャラクターイラスト" width="150" height="150" loading="lazy" decoding="async"></div><div class="card-copy"><span class="role">桜の美容室</span><h3>つやこ</h3><p>おしゃれを楽しむ美容室のオーナー。つやこさんと出会うと、まちに美容室が開くよ。</p></div></article></div>
+</section>
+<section class="club-section" id="oyasumi-club" aria-labelledby="club-title">
+<div class="club-visual" aria-hidden="true"><span class="club-moon">☾</span><span class="club-spark star-1">✦</span><span class="club-spark star-2">✧</span><span class="club-spark star-3">✦</span>
+<img class="club-oyasumi" src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/027_daydreamer/idle_front_01.png" alt=""><img class="club-frog" src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/029_office_worker/idle_front_01.png" alt=""></div>
+<div class="club-copy"><span class="club-kicker">夕暮れの中央ひろばで</span><h2 id="club-title">ゆうぐれ<br>おやすみクラブ</h2>
+<p>夕方6時から翌朝5時まで、まちのひろばに現れる、ちょっと不思議な集まり。</p>
+<p>はじまりは、おやすみくんの「なんにもしない」時間。そこに、かえるがやってきて……。夜を重ねるごとに、ふたりの距離が少しずつ変わっていきます。</p>
+<p class="club-quote">「なにをするかって？ なんにもしないをするもふ。」</p>
+<p class="club-note">※ おやすみくんと出会うと、夜の中央ひろばでおはなしが始まります。かえるとも出会うと、その先のおはなしが少しずつ進むよ。</p>
+</div></section>
 </div>
 <section class="outro" aria-labelledby="outro-title"><img src="https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/013_kotohogisu/idle_front_01.png" width="90" height="90" alt="" loading="lazy"><span class="eyebrow">SEE YOU IN TOWN!</span><h2 id="outro-title">まちで会えたら、<br>お話ししてみてね。</h2><p>住民たちは、毎日の小さな「できた！」をお祝いしてくれます。誰と出会うか、どんな会話になるかも楽しみのひとつ。</p><a class="button" href="./index.html">コトホグの紹介へもどる <span aria-hidden="true">→</span></a></section>
 </main>
 <footer class="footer"><div class="wrap"><nav class="footer-links" aria-label="フッターリンク"><a href="./index.html">コトホグについて</a><a href="./characters.html" aria-current="page">住民紹介</a><a href="./manga.html">まんが</a><a href="./privacy.html">プライバシーポリシー</a><a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ</a><a href="https://cloxs.jp/">運営会社</a></nav><p>© 2026 CLOXS LLC　｜　コトホグ</p></div></footer>
+<script type="application/json" id="spotlight-data">[{"id":"002_usagi","name":"およめさん","role":"ことほぎのまちの、やさしいおかあさん","description":"小さな子どもとの暮らしは、まだまだ慣れないこともいっぱい。家事に育児に毎日ばたばたしながら、夫のケーキ屋さんもときどきお手伝い。おっとりしているけれど、実は数字に強い……？","quote":"この子が大きくなったら、パートに出たほうがいいのかしら。それとも、お店を手伝ったほうがいいのかな。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/002_usagi/idle_front_01.png","tags":["やさしいおかあさん","家事と子育て","数字に強い…？"]},{"id":"047_patisie","name":"パティシエ","role":"ケーキ屋さん","description":"商店街に念願のケーキ屋さんをオープン！ ケーキ作りは得意だけど、経営はまだ勉強中。","quote":"商店街に自分の店を持てるなんて、まだ夢みたいだよ。でも、開店したら毎日の仕事が始まるんだね。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/047_patisie/idle_front_01.png","tags":["ケーキ屋さん","ことほぎのまち"]},{"id":"048_advicer","name":"しんだんし","role":"経営相談員","description":"夢の話も、お金の話も。商店街の商売を支える、数字に強くて聞き上手な中小企業診断士。","quote":"数字は叱ったりしませんよ。見てみると、次に考えることを教えてくれるんです。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/048_advicer/idle_front_01.png","tags":["経営相談員","ことほぎのまち"]},{"id":"031_kimono_fox","name":"きものぎつね","role":"美容室の看板娘","description":"着物が大好きな桜の美容室の看板娘。今日も笑顔で、お客さんをお迎え。","quote":"いらっしゃいませ♪ 桜の美容室へようこそ。今日はゆっくりしていってね。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/031_kimono_fox/idle_front_01.png","tags":["美容室の看板娘","ことほぎのまち"]},{"id":"009_chef","name":"シェフ","role":"シェフ","description":"おいしいものが大好きなねこのシェフ。旬の味も、食卓の小さな工夫もおまかせにゃ。","quote":"旬の食べものは、おいしくて、お財布にもやさしいことが多いんだにゃ！季節の味を楽しんでみようにゃ♪","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/009_chef/idle_front_01.png","tags":["シェフ","ことほぎのまち"]},{"id":"006_kuma","name":"だいくさん","role":"だいくさん","description":"壊れたベンチをそっと直してくれる、無口な職人さん。誰かの暮らしが始まるのがうれしい。","quote":"そこのベンチ、直しといたぞ。……いや、礼はいい。ぐらぐらしてるのが気になっただけだ。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/006_kuma/idle_front_01.png","tags":["だいくさん","ことほぎのまち"]},{"id":"032_miner","name":"もぐた","role":"まちづくり","description":"道や公園をつくる元気な職人さん。まちが育つと、うれしくてたまらないもぐ！","quote":"今日もまちをつくってきたもぐ！完成するのが楽しみだもぐ〜！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/032_miner/idle_front_01.png","tags":["まちづくり","ことほぎのまち"]},{"id":"005_risu","name":"ドライバー","role":"配達屋さん","description":"まちのおうちも道もよく知る新人配達員。寄り道で花を見つけるのが得意。","quote":"お庭のお花が咲くとね、同じ道でも違って見えるんだ。配達の楽しみのひとつだよ！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/005_risu/idle_front_01.png","tags":["配達屋さん","ことほぎのまち"]},{"id":"004_neko","name":"せんせい","role":"かかりつけ医","description":"長年まちを見守る先生。患者さんには「休んでね」と言うのに、自分はちょっと働きすぎ？","quote":"わたしが医者でも、あなたの人生に何が大切かは、あなたのほうがよく知っているんだよ。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/004_neko/idle_front_01.png","tags":["かかりつけ医","ことほぎのまち"]},{"id":"028_caregiver","name":"ぱんこ先生","role":"管理栄養士","description":"毎日の食事をいっしょに考えてくれる、ぱんこ先生。まずは今日のおいしい話から。","quote":"やあ、こんにちは。今日、おいしかったものはあった？","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/028_caregiver/idle_front_01.png","tags":["管理栄養士","ことほぎのまち"]},{"id":"042_senior_dog","name":"ごんすけ","role":"ご近所さん","description":"自分の歩幅でゆっくり歩くごんすけさん。木陰のベンチで立ち話をしよう。","quote":"おや、こんにちは。わしはごんすけ。今日はのんびりしていくかのう。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/042_senior_dog/idle_front_01.png","tags":["ご近所さん","ことほぎのまち"]},{"id":"007_hitsuji","name":"めりぃ","role":"好奇心いっぱい","description":"「年相応」ってなんでしょう？ いくつになっても新しいことを見つけたい、めりぃさん。","quote":"年相応って、よく言うでしょう？ でもわたし、自分の年齢の人が何をするものなのか、いまだによく知らないのよねぇ。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/007_hitsuji/idle_front_01.png","tags":["好奇心いっぱい","ことほぎのまち"]},{"id":"026_farmer","name":"やすぞう","role":"畑しごと","description":"畑で土にふれるのが好きなやすぞうさん。季節の話になると、つい夢中になる。","quote":"畑仕事もいい運動になるんじゃよ。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/026_farmer/idle_front_01.png","tags":["畑しごと","ことほぎのまち"]},{"id":"015_office_worker","name":"ぶちょう","role":"会社のぶちょう","description":"気合も面倒見もたっぷり。でも人の話を最後まで聞くのは、まだちょっぴり練習中。","quote":"よう！今日もやることが山ほどある。……まずはひとつずつ片づけるか！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/015_office_worker/idle_front_01.png","tags":["会社のぶちょう","ことほぎのまち"]},{"id":"001_shiba","name":"しばいぬ","role":"まちの元気印","description":"おさんぽが大好き！ 小さな「できた！」も、しっぽを振ってお祝いしてくれる。","quote":"わんわん！おさんぽだいすきわん！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/001_shiba/idle_front_01.png","tags":["まちの元気印","ことほぎのまち"]},{"id":"003_penguin","name":"まちの案内係","role":"まちの案内係","description":"道案内はおまかせ！ と胸を張るけれど、まだ知らない場所もあるみたい。","quote":"今日はどこにお出かけする？ ぼく、おすすめの場所を知ってるよ！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/003_penguin/idle_front_01.png","tags":["まちの案内係","ことほぎのまち"]},{"id":"036_mosa","name":"モサエド","role":"サムライ","description":"「拙者、猛者江戸でござる！」足腰の鍛錬が大好きな、ちょっぴり不思議なサムライ。","quote":"拙者は猛者江戸（モサエド）というサムライにござる。よろしく頼むでござる！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/036_mosa/idle_front_01.png","tags":["サムライ","ことほぎのまち"]},{"id":"037_tora","name":"とらお","role":"運動コーチ","description":"元気いっぱいのとらおコーチ。でも大切なのは、がんばりすぎず自分のペース。","quote":"よーし！とらおコーチだ！今日も自分のペースで体を動かそう！","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/037_tora/idle_front_01.png","tags":["運動コーチ","ことほぎのまち"]},{"id":"034_artist","name":"くまりん","role":"絵描き","description":"描きたい絵と、喜んでもらえる絵。どちらも大事だから、くまりんは今日も悩みながら筆をとる。","quote":"自分の描きたい絵と、みんなが喜んでくれる絵って、ちょっと違うんだよねぇ……。どっちを大事にしたらいいのかなぁ。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/034_artist/idle_front_01.png","tags":["絵描き","ことほぎのまち"]},{"id":"038_lion_lady","name":"リオコ","role":"劇団のひと","description":"舞台に立つ側から、演出する側へ。華やかなリオコさんには、まだ新しい物語がありそう。","quote":"あら、ごきげんよう。リオコよ。今日はどんな一日になるかしら。","img":"https://raw.githubusercontent.com/kaeruko/kotohogu/8966520a18cdeb6e705a05705046dd2aac925c51/assets/characters/038_lion_lady/idle_front_01.png","tags":["劇団のひと","ことほぎのまち"]}]</script>
+<script>
+"use strict";
+(function () {
+  const candidates = JSON.parse(document.getElementById("spotlight-data").textContent);
+  if (!Array.isArray(candidates) || candidates.length !== 20) {
+    throw new Error("Invalid Kotohogu character spotlight data");
+  }
+  const selected = candidates[Math.floor(Math.random() * candidates.length)];
+  const article = document.querySelector(".feature");
+  if (!article || !selected || !selected.id || !selected.img) {
+    throw new Error("Spotlight elements are missing");
+  }
+  article.id = selected.id;
+  const img = article.querySelector(".feature-art img");
+  img.src = selected.img;
+  img.alt = selected.name + "のキャラクターイラスト";
+  article.querySelector(".eyebrow").textContent = selected.role;
+  const heading = article.querySelector(".feature-copy h2");
+  heading.textContent = selected.name;
+  const text = article.querySelector(".feature-copy > p");
+  text.textContent = selected.description;
+  const quote = article.querySelector(".feature-copy blockquote");
+  quote.textContent = "「" + selected.quote + "」";
+  const tags = article.querySelector(".keywords");
+  tags.replaceChildren();
+  for (const label of selected.tags) {
+    const li = document.createElement("li");
+    li.textContent = label;
+    tags.appendChild(li);
+  }
+})();
+</script>
 </body></html>
