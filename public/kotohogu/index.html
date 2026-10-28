@@ -122,6 +122,16 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 .final-cta p{font-weight:800}
 .final-cta .button{margin-top:12px}
 .final-badge{display:inline-block;margin-top:28px;padding:6px 18px;border:1px solid #deabb2;border-radius:99px;background:#fffaf5e8;font-size:.8rem;font-weight:900}
+.store-intro{margin:18px 0 10px;font-size:.9rem;color:var(--ink-soft);font-weight:900}
+.store-links{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px}
+.store-links--center{justify-content:center;margin:24px auto 0}
+.store-link{display:inline-flex;min-width:195px;min-height:70px;flex-direction:column;justify-content:center;align-items:center;gap:1px;padding:11px 22px;border:2px solid #d8b4a6;border-radius:17px;background:#fffdfa;color:var(--ink);box-shadow:0 5px 0 #e8c4b1;text-decoration:none;text-align:center;transition:transform .18s,box-shadow .18s}
+.store-link:hover{transform:translateY(-2px);box-shadow:0 7px 0 #e8c4b1}
+.store-link:active{transform:translateY(2px);box-shadow:0 2px 0 #e8c4b1}
+.store-link small{display:block;font-size:.72rem;font-weight:800;line-height:1.4;color:var(--ink-soft)}
+.store-link strong{display:block;font-size:1.22rem;line-height:1.45;font-weight:900}
+.store-link--ios{border-color:#e5b5c4;background:#fff9fb}
+.store-link--android{border-color:#b3d3c4;background:#f8fffb}
 .site-footer{padding:34px 0 40px;text-align:center;background:#fffaf4;border-top:1px solid #e6c6bb}
 .footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 28px;margin-bottom:14px;font-size:.85rem;font-weight:800}
 .site-footer p{margin:0;color:#8c7061;font-size:.76rem}
@@ -142,6 +152,9 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
 .hero h1{margin:13px auto 18px;font-size:clamp(2rem,7.7vw,3.05rem)}
 .hero-lead{font-size:.96rem}.hero-tag{font-size:1.02rem}
 .hero-note{font-size:.73rem}
+.hero-store{max-width:390px;margin-inline:auto}
+.store-links{flex-direction:column}
+.store-link{width:100%}
 .hero-art{min-height:390px;width:100%;max-width:390px;margin-inline:auto}
 .hero-scene{height:345px;width:340px;max-width:93%}
 .hero-mascot{width:210px;left:-5px;bottom:3px}
@@ -169,10 +182,10 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
    <span><span class="logo-text">コトホグ</span><span class="logo-sub">セルフケアを、社会貢献に。</span></span>
   </a>
   <nav class="site-nav" aria-label="ページ内メニュー">
-   <a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="./characters.html">住民紹介</a><a href="./manga.html">まんが</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a class="nav-cta" href="#start">アプリについて</a>
+   <a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="./characters.html">住民紹介</a><a href="./manga.html">まんが</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a class="nav-cta" href="#start">無料ダウンロード</a>
   </nav>
   <details class="mobile-menu"><summary>メニュー</summary>
-   <nav aria-label="モバイルメニュー"><a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="./characters.html">住民紹介</a><a href="./manga.html">まんが</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a href="#start">アプリについて</a></nav>
+   <nav aria-label="モバイルメニュー"><a href="#how">どんなアプリ？</a><a href="#town">まちと仲間</a><a href="./characters.html">住民紹介</a><a href="./manga.html">まんが</a><a href="#reason">研究とデータ</a><a href="#faq">よくある質問</a><a href="#start">無料ダウンロード</a></nav>
   </details>
  </div>
 </header>
@@ -186,6 +199,13 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
     <p class="hero-lead">筋トレも、お散歩も、誰かとのおしゃべりも。<br>今日の「できた！」を、まちのみんなが祝福します。</p>
     <p class="hero-tag">筋トレをして、ほめられよう。<br />みんなで健康、介護予防。</p>
     <div><a class="button" href="#how">コトホグの世界をのぞく <span aria-hidden="true">→</span></a></div>
+    <div class="hero-store">
+     <p class="store-intro">🌸 iPhone・Androidで無料配信中！</p>
+     <div class="store-links" aria-label="アプリをダウンロード">
+      <a class="store-link store-link--ios" href="https://apps.apple.com/jp/app/%E3%82%B3%E3%83%88%E3%83%9B%E3%82%B0/id6823568467" target="_blank" rel="noopener noreferrer" aria-label="App Storeでコトホグをダウンロード（iPhone）"><small>iPhoneはこちら</small><strong>App Store ↗</strong></a>
+      <a class="store-link store-link--android" href="https://play.google.com/store/apps/details?id=jp.cloxs.kotohogu" target="_blank" rel="noopener noreferrer" aria-label="Google Playでコトホグをダウンロード（Android）"><small>Androidはこちら</small><strong>Google Play ↗</strong></a>
+     </div>
+    </div>
     <span class="hero-note">できることから、自分のペースで。</span>
    </div>
    <div class="hero-art" aria-label="桜のまちとコトホギス">
@@ -302,8 +322,11 @@ h2{font-size:clamp(1.7rem,3.6vw,2.85rem);letter-spacing:-.03em;line-height:1.5;m
    <h2 id="start-title">コトホグ</h2>
    <p>セルフケアを、社会貢献に。</p>
    <p>ほめられて、まちが育つ。小さな介護予防ゲーム。</p>
-   <a class="button" href="https://github.com/kaeruko/kotohogu" target="_blank" rel="noopener noreferrer">アプリの開発状況を見る <span aria-hidden="true">↗</span></a>
-   <div><span class="final-badge">ストア公開の案内は準備中です</span></div>
+   <div class="store-links store-links--center" aria-label="アプリをダウンロード">
+    <a class="store-link store-link--ios" href="https://apps.apple.com/jp/app/%E3%82%B3%E3%83%88%E3%83%9B%E3%82%B0/id6823568467" target="_blank" rel="noopener noreferrer" aria-label="App Storeでコトホグをダウンロード（iPhone）"><small>iPhoneはこちら</small><strong>App Store ↗</strong></a>
+    <a class="store-link store-link--android" href="https://play.google.com/store/apps/details?id=jp.cloxs.kotohogu" target="_blank" rel="noopener noreferrer" aria-label="Google Playでコトホグをダウンロード（Android）"><small>Androidはこちら</small><strong>Google Play ↗</strong></a>
+   </div>
+   <div><span class="final-badge">iPhone・Androidで無料配信中！</span></div>
   </div>
  </section>
 </main>
