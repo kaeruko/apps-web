@@ -37,6 +37,10 @@ $girlsIndex = Join-Path $publicDirectory "minapp\girls\index.html"
 if (-not (Test-Path -LiteralPath $girlsIndex -PathType Leaf)) {
     throw "Girls index file not found: $girlsIndex"
 }
+$koboIndex = Join-Path $publicDirectory "minapp\kobo\index.html"
+if (-not (Test-Path -LiteralPath $koboIndex -PathType Leaf)) {
+    throw "Kobo index file not found: $koboIndex"
+}
 
 $mangaGenerator = Join-Path $PSScriptRoot "scripts\build_kotohogu_manga.py"
 if (-not (Test-Path -LiteralPath $mangaGenerator -PathType Leaf)) {
@@ -76,6 +80,21 @@ aws s3api put-object `
 
 if ($LASTEXITCODE -ne 0) {
     throw "Girls trailing-slash alias upload failed with exit code $LASTEXITCODE"
+}
+
+Assert-AwsAccount
+
+aws s3api put-object `
+    --bucket $Bucket `
+    --key "minapp/kobo/" `
+    --body $koboIndex `
+    --content-type "text/html; charset=utf-8" `
+    --server-side-encryption AES256 `
+    --profile $Profile `
+    --no-cli-pager | Out-Null
+
+if ($LASTEXITCODE -ne 0) {
+    throw "Kobo trailing-slash alias upload failed with exit code $LASTEXITCODE"
 }
 
 # Re-check immediately before the next AWS mutation.
