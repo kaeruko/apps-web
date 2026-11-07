@@ -22,3 +22,5 @@ manga.html の掲載一覧を自動更新してからアップロードします
   python scripts/build_kotohogu_manga.py
 
 公開予定URL：https://cloxs.jp/kotohogu/manga.html
+
+閲覧ページでは画像を1枚ずつ表示し、「前へ」「次へ」で作品をまたいで読めます。

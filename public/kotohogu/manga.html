@@ -29,31 +29,29 @@ img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offs
 .hero{text-align:center;padding:66px 0 67px;background:linear-gradient(120deg,#fff4e9,#ffe7ef 55%,#e2f3ee);border-bottom:7px solid #f9d9d7}
 .eyebrow{color:var(--rose-dark);font-size:.8rem;font-weight:900;letter-spacing:.15em}.hero h1{font-size:clamp(2.2rem,4.5vw,3.55rem);margin:12px 0;letter-spacing:-.04em;line-height:1.4}.hero h1 strong{color:#bd4969}.hero p{max-width:650px;margin:0 auto;color:var(--soft);font-weight:700}
 .main-content{min-height:320px;padding:58px 0 80px}.stories-heading{font-size:clamp(1.4rem,3vw,2rem);margin:0 0 26px}
-.stories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;align-items:start}
-.story{min-width:0;background:#fffdfa;border:1px solid #e7cbb2;border-radius:24px;overflow:hidden;box-shadow:0 7px 0 #f1dccc}
-.story[open]{grid-column:1 / -1;max-width:850px;width:100%;justify-self:center}
-.story summary{list-style:none;cursor:pointer;display:flex;gap:17px;align-items:center;padding:16px}
-.story summary::-webkit-details-marker{display:none}
-.story summary::marker{content:""}
-.story summary:hover{background:#fff5ec}
-.story-cover{display:block;flex:0 0 140px;width:140px;height:180px;overflow:hidden;border-radius:16px;background:linear-gradient(140deg,#ffe7db,#eaf3ed)}
-.story-cover img{width:100%;height:100%;object-fit:cover;object-position:center top}
-.story-caption{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
-.story-caption strong{font-size:1.26rem;line-height:1.45}
-.story-caption small{color:#9e536b;font-weight:800;font-size:.84rem}
-.story-cta{display:inline-block;padding:4px 15px;background:#ffe3e9;color:#ad4162;border-radius:30px;font-size:.8rem;font-weight:900}
-.story[open] .story-cta{background:#e7f4ee;color:#397f67}
-.story-pages{display:grid;gap:20px;padding:26px 23px 30px;background:#fff6f1;border-top:1px dashed #eac6c9}
-.story-page{margin:0 auto;max-width:760px;width:100%}
-.story-page img{width:100%;height:auto;background:white;box-shadow:0 5px 20px #7655411b}
-.story-page figcaption{text-align:center;color:#8b6d62;font-size:.78rem;font-weight:700;padding:8px}
+.reader{max-width:850px;margin:0 auto;background:#fffdfa;border:1px solid #e7cbb2;border-radius:25px;padding:clamp(12px,2.5vw,27px);box-shadow:0 7px 0 #f1dccc}
+.reader-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.reader-toolbar label{font-size:.83rem;font-weight:800;color:var(--soft)}
+.story-picker{max-width:min(100%,340px);min-height:43px;border:1px solid #dcbca8;border-radius:12px;background:#fff8f1;color:var(--ink);padding:8px 14px;font:inherit;font-size:.91rem;font-weight:700}
+.story-picker:focus-visible,.reader-button:focus-visible{outline:3px solid #397e83;outline-offset:3px}
+.reader-slide[hidden],.reader-nav[hidden],.reader-toolbar[hidden]{display:none}
+.reader-slide{text-align:center}
+.reader-title{font-size:clamp(1.22rem,3.2vw,1.7rem);line-height:1.5;margin:8px 0 0}
+.reader-sub{margin:0 0 18px;font-size:.86rem;color:#9e536b;font-weight:800}
+.story-page{margin:0 auto;width:100%;max-width:760px}
+.story-page img{display:block;width:100%;height:auto;background:white;box-shadow:0 5px 20px #7655411b;border-radius:5px}
+.reader-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:23px}
+.reader-button{min-height:47px;padding:9px 20px;border:1px solid #d47f96;border-radius:99px;background:#ffe5ed;color:#973d5e;font:inherit;font-weight:900;cursor:pointer}
+.reader-button:hover:not(:disabled){background:#ffd2e0}
+.reader-button:disabled{opacity:.38;cursor:not-allowed}
+.reader-counter{font-weight:900;font-variant-numeric:tabular-nums;color:#865a50;text-align:center}
 .empty{border:1px solid var(--line);border-radius:24px;padding:50px 20px;background:#fffdfa;color:var(--soft);text-align:center}
 .outro{text-align:center;background:linear-gradient(145deg,#fff0e5,#eaf5f2);padding:65px 20px 72px}
 .outro h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:6px 0 12px}.outro p{margin:0 auto 18px;max-width:620px}
 .button{display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:9px 25px;border:2px solid #fff6;border-radius:99px;background:linear-gradient(140deg,#ec86a0,#d9557b);color:#fff;text-decoration:none;font-weight:900;box-shadow:0 5px 0 #af4962}
 .footer{text-align:center;border-top:1px solid #e6c6bb;background:#fffaf4;padding:30px 0 35px}
 .links{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 24px;margin-bottom:14px;font-size:.85rem;font-weight:800}.footer p{margin:0;color:#8c7061;font-size:.76rem}
-@media(max-width:760px){.stories{grid-template-columns:1fr}.header-layout{min-height:70px}.logo img{width:38px;height:38px}.logo-text{font-size:1.25rem}.logo-sub{font-size:.54rem}.site-nav{gap:14px;font-size:.8rem}.hero{padding:51px 0}.story[open]{grid-column:auto}.story-cover{flex-basis:105px;width:105px;height:132px}.story summary{gap:14px}.story-caption strong{font-size:1.12rem}.story-pages{padding:12px;gap:13px}}
+@media(max-width:760px){.header-layout{min-height:70px}.logo img{width:38px;height:38px}.logo-text{font-size:1.25rem}.logo-sub{font-size:.54rem}.site-nav{gap:14px;font-size:.8rem}.hero{padding:51px 0}.reader-toolbar{justify-content:center}.reader-nav{gap:5px}.reader-button{padding:9px 14px;min-height:43px;font-size:.85rem}}
 @media(max-width:360px){.site-nav a:first-child{display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
@@ -68,15 +66,111 @@ img{display:block;max-width:100%;height:auto}a{color:inherit;text-underline-offs
 <section class="hero"><div class="wrap"><span class="eyebrow">STORIES FROM KOTOHOGU</span><h1>ことほぎのまちの<br><strong>まんが。</strong></h1><p>家族のこと、お店のこと、ちょっとした毎日のこと。<br>まちのみんなの物語を、まんがでのぞいてみよう。</p></div></section>
 <div class="wrap main-content">
 <h2 class="stories-heading">まちのおはなし 🌸</h2>
-<div class="stories" id="stories">
+<section class="reader" id="reader" aria-label="まんがを読む">
+<div class="reader-toolbar" id="reader-toolbar"><label for="story-picker">お話を選ぶ</label><select class="story-picker" id="story-picker"></select></div>
+<div id="stories">
 <!-- MANGA_INDEX_START -->
-<details class="story" id="manga-001"><summary><span class="story-cover"><img loading="lazy" src="./manga/01_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="" width="140" height="180"></span><span class="story-caption"><strong>まちのおはなし その1</strong><small>読み切りまんが</small><span class="story-cta">まんがを読む ↓</span></span></summary><div class="story-pages"><figure class="story-page"><img loading="lazy" src="./manga/01_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="まちのおはなし その1・1ページ目"><figcaption>1 / 1</figcaption></figure></div></details>
-<details class="story" id="manga-002"><summary><span class="story-cover"><img loading="lazy" src="./manga/02_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="" width="140" height="180"></span><span class="story-caption"><strong>まちのおはなし その2</strong><small>読み切りまんが</small><span class="story-cta">まんがを読む ↓</span></span></summary><div class="story-pages"><figure class="story-page"><img loading="lazy" src="./manga/02_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="まちのおはなし その2・1ページ目"><figcaption>1 / 1</figcaption></figure></div></details>
-<details class="story" id="manga-003"><summary><span class="story-cover"><img loading="lazy" src="./manga/03_%E3%83%9E%E3%83%9E%E3%81%A8%E3%81%84%E3%82%8B%E3%81%A8%E5%AE%89%E5%BF%83%E3%81%99%E3%82%8B%E3%81%AE.png" alt="" width="140" height="180"></span><span class="story-caption"><strong>ママといると安心するの</strong><small>読み切りまんが</small><span class="story-cta">まんがを読む ↓</span></span></summary><div class="story-pages"><figure class="story-page"><img loading="lazy" src="./manga/03_%E3%83%9E%E3%83%9E%E3%81%A8%E3%81%84%E3%82%8B%E3%81%A8%E5%AE%89%E5%BF%83%E3%81%99%E3%82%8B%E3%81%AE.png" alt="ママといると安心するの・1ページ目"><figcaption>1 / 1</figcaption></figure></div></details>
+<article class="reader-slide" id="manga-001" data-story="1" data-page="1"><h3 class="reader-title">まちのおはなし その1</h3><p class="reader-sub">読み切りまんが</p><figure class="story-page"><img loading="eager" src="./manga/01_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="まちのおはなし その1・1ページ目"></figure></article>
+<article class="reader-slide" id="manga-002" data-story="2" data-page="1" hidden><h3 class="reader-title">まちのおはなし その2</h3><p class="reader-sub">読み切りまんが</p><figure class="story-page"><img loading="lazy" src="./manga/02_%E3%81%BE%E3%81%A1%E3%81%AE%E3%81%8A%E3%81%AF%E3%81%AA%E3%81%97.png" alt="まちのおはなし その2・1ページ目"></figure></article>
+<article class="reader-slide" id="manga-003" data-story="3" data-page="1" hidden><h3 class="reader-title">ママといると安心するの</h3><p class="reader-sub">読み切りまんが</p><figure class="story-page"><img loading="lazy" src="./manga/03_%E3%83%9E%E3%83%9E%E3%81%A8%E3%81%84%E3%82%8B%E3%81%A8%E5%AE%89%E5%BF%83%E3%81%99%E3%82%8B%E3%81%AE.png" alt="ママといると安心するの・1ページ目"></figure></article>
+<article class="reader-slide" id="manga-004" data-story="4" data-page="1" hidden><h3 class="reader-title">ぽむぽむクッキー</h3><p class="reader-sub">読み切りまんが</p><figure class="story-page"><img loading="lazy" src="./manga/04_pompom_cookie.png" alt="ぽむぽむクッキー・1ページ目"></figure></article>
 <!-- MANGA_INDEX_END -->
 </div>
+<nav class="reader-nav" id="reader-nav" aria-label="まんがのページ送り">
+<button class="reader-button" id="reader-prev" type="button">← 前へ</button>
+<span class="reader-counter" id="reader-counter" role="status" aria-live="polite">1 / 4</span>
+<button class="reader-button" id="reader-next" type="button">次へ →</button>
+</nav>
+</section>
 </div>
 <section class="outro"><h2>お話のつづきは、ことほぎのまちで。</h2><p>まちの仲間たちは、アプリでもあなたに話しかけてくれます。</p><a class="button" href="./characters.html">住民紹介を見る →</a></section>
 </main>
 <footer class="footer"><div class="wrap"><nav class="links" aria-label="フッターリンク"><a href="./index.html">アプリ紹介</a><a href="./characters.html">住民紹介</a><a href="./manga.html" aria-current="page">まんが</a><a href="./privacy.html">プライバシーポリシー</a><a href="../contact.html?service=%E3%81%93%E3%81%A8%E3%81%BB%E3%81%90">お問い合わせ</a></nav><p>© 2026 CLOXS LLC　｜　コトホグ</p></div></footer>
+<script>
+(() => {
+  "use strict";
+  const slides = Array.from(document.querySelectorAll("#stories .reader-slide"));
+  const reader = document.getElementById("reader");
+  const toolbar = document.getElementById("reader-toolbar");
+  const picker = document.getElementById("story-picker");
+  const nav = document.getElementById("reader-nav");
+  const prev = document.getElementById("reader-prev");
+  const next = document.getElementById("reader-next");
+  const counter = document.getElementById("reader-counter");
+  if (![reader, toolbar, picker, nav, prev, next, counter].every(Boolean)) {
+    throw new Error("Manga reader controls are missing");
+  }
+  if (slides.length === 0) {
+    toolbar.hidden = true;
+    nav.hidden = true;
+    return;
+  }
+
+  const positions = new Map();
+  const chapters = new Map();
+  slides.forEach((slide, index) => {
+    const id = slide.id;
+    const story = slide.dataset.story;
+    const page = Number(slide.dataset.page);
+    const heading = slide.querySelector(".reader-title");
+    if (!id || positions.has(id) || !story || !Number.isInteger(page) || page < 1 || !heading) {
+      throw new Error("Invalid manga reader page at index " + index);
+    }
+    positions.set(id, index);
+    if (!chapters.has(story)) {
+      if (page !== 1) throw new Error("Manga chapter does not start at page one: " + story);
+      chapters.set(story, index);
+      const option = document.createElement("option");
+      option.value = story;
+      option.textContent = heading.textContent;
+      picker.appendChild(option);
+    }
+  });
+
+  let current = 0;
+  function show(index, changeUrl = false) {
+    if (!Number.isInteger(index) || index < 0 || index >= slides.length) {
+      throw new RangeError("Invalid manga page: " + index);
+    }
+    slides[current].hidden = true;
+    slides[index].hidden = false;
+    current = index;
+    prev.disabled = index === 0;
+    next.disabled = index === slides.length - 1;
+    counter.textContent = (index + 1) + " / " + slides.length;
+    picker.value = slides[index].dataset.story;
+    if (changeUrl) {
+      history.pushState(null, "", "#" + slides[index].id);
+      reader.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start"
+      });
+    }
+  }
+  function locationIndex() {
+    const id = decodeURIComponent(location.hash.slice(1));
+    return positions.has(id) ? positions.get(id) : 0;
+  }
+  prev.addEventListener("click", () => show(current - 1, true));
+  next.addEventListener("click", () => show(current + 1, true));
+  picker.addEventListener("change", () => {
+    if (!chapters.has(picker.value)) throw new Error("Unknown manga chapter: " + picker.value);
+    show(chapters.get(picker.value), true);
+  });
+  window.addEventListener("popstate", () => show(locationIndex()));
+  window.addEventListener("hashchange", () => show(locationIndex()));
+  document.addEventListener("keydown", event => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.defaultPrevented ||
+        ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(document.activeElement.tagName)) return;
+    if (event.key === "ArrowLeft" && current > 0) {
+      event.preventDefault();
+      show(current - 1, true);
+    } else if (event.key === "ArrowRight" && current < slides.length - 1) {
+      event.preventDefault();
+      show(current + 1, true);
+    }
+  });
+  show(locationIndex());
+})();
+</script>
 </body></html>

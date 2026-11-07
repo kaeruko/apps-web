@@ -92,25 +92,28 @@ def find_stories():
 
 
 def story_html(title: str, pages: list[Path], number: int) -> str:
-    title_attr = html.escape(title, quote=True)
-    all_pages = []
-    for i, page in enumerate(pages, 1):
-        url = "./" + "/".join(quote(segment, safe="") for segment in page.relative_to(MANGA.parent).parts)
-        all_pages.append(
-            '<figure class="story-page"><img loading="lazy" src="' + url
-            + '" alt="' + title_attr + "・" + str(i)
-            + 'ページ目"><figcaption>' + str(i) + " / " + str(len(pages))
-            + "</figcaption></figure>"
+    """Render one image per reader page. The first page preserves each story's link."""
+    title_html = html.escape(title, quote=True)
+    blocks = []
+    for index, page in enumerate(pages, 1):
+        url = "./" + "/".join(
+            quote(segment, safe="")
+            for segment in page.relative_to(MANGA.parent).parts
         )
-    first_url = "./" + "/".join(quote(segment, safe="") for segment in pages[0].relative_to(MANGA.parent).parts)
-    sub = "読み切りまんが" if len(pages) == 1 else "全" + str(len(pages)) + "ページ"
-    return (
-        '<details class="story" id="manga-' + str(number).zfill(3) + '"><summary>'
-        '<span class="story-cover"><img loading="lazy" src="' + first_url + '" alt="" width="140" height="180"></span>'
-        '<span class="story-caption"><strong>' + title_attr + '</strong><small>' + sub
-        + '</small><span class="story-cta">まんがを読む ↓</span></span></summary>'
-        '<div class="story-pages">' + "\n".join(all_pages) + "</div></details>"
-    )
+        page_id = f"manga-{number:03d}" + (f"-page-{index:03d}" if index > 1 else "")
+        hidden = "" if number == 1 and index == 1 else " hidden"
+        loading = "eager" if number == 1 and index == 1 else "lazy"
+        subtitle = "読み切りまんが" if len(pages) == 1 else f"{index} / {len(pages)} ページ"
+        blocks.append(
+            f'<article class="reader-slide" id="{page_id}" '
+            f'data-story="{number}" data-page="{index}"{hidden}>'
+            f'<h3 class="reader-title">{title_html}</h3>'
+            f'<p class="reader-sub">{subtitle}</p>'
+            f'<figure class="story-page"><img loading="{loading}" '
+            f'src="{url}" alt="{title_html}・{index}ページ目"></figure>'
+            '</article>'
+        )
+    return "\n".join(blocks)
 
 
 def main():
