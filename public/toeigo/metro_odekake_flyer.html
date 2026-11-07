@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>都営でGO｜東京メトロでおでかけ</title>
+<style>
+:root {
+  --ink:#293c55; --muted:#52657b; --blue:#428af5; --mint:#19be90;
+  --paper:#fffdfa; --orange:#ffa00b; --outline:#e8edf2;
+}
+*{box-sizing:border-box}
+html,body{margin:0; padding:0}
+body{background:#eef2f4;font-family:"Noto Sans CJK JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:#237ed2}
+.sheet{width:210mm;min-height:297mm;height:297mm;margin:0 auto;background:var(--paper);overflow:hidden;position:relative;box-shadow:0 7px 26px #30465d18}
+.hero{height:72mm;background:linear-gradient(113deg,#d5fae9 1%,#e5f3ff 100%);border-bottom-left-radius:44% 7%;border-bottom-right-radius:44% 7%;padding:9mm 12mm 2mm;position:relative;overflow:hidden}
+.topline{display:flex;align-items:center;gap:11px;position:relative;z-index:3}
+.app-symbol{width:18mm;height:18mm;border:3px solid #fff;border-radius:5.8mm;background:#f5fffb;box-shadow:0 3px 0 #b4ebd4;display:grid;place-items:center;color:#08aa7b;flex:none}
+.app-symbol svg{width:70%;height:70%}
+.topline .eyebrow{color:#138a74;font-size:10.5pt;font-weight:800;letter-spacing:.02em}
+.brand{font-size:25pt;font-weight:950;letter-spacing:.015em;line-height:1.13;margin-top:2px}
+.brand span{color:#078e67}
+.hero h1{font-size:25pt;line-height:1.38;letter-spacing:.005em;font-weight:950;margin:8mm 0 2mm;position:relative;z-index:2;width:125mm}
+.hero h1 em{font-style:normal;color:#397ff2;background:linear-gradient(transparent 73%,#fff4a1 73%)}
+.hero .sub{font-size:12pt;font-weight:760;color:#4c627b;position:relative;z-index:2}
+.skyline{position:absolute;right:8mm;top:26mm;width:80mm;height:45mm;z-index:0}
+.train-illustration{position:absolute;right:11mm;top:36mm;width:70mm;height:33mm;z-index:1;filter:drop-shadow(2px 6px 4px #a4bac053)}
+.ticket-strip{position:relative;z-index:4;margin:-3mm 12mm 0;background:#fff;border:1px solid #dfe7f5;border-radius:6mm;box-shadow:0 2px 4px #607c9510;padding:3mm 5mm;display:flex;align-items:center;gap:5mm}
+.ticket-icon{background:#e7f5ff;color:#077abf;border-radius:4mm;padding:3mm;display:flex;align-items:center;justify-content:center;width:13mm;height:13mm;flex:none}
+.ticket-icon svg{width:10mm;height:10mm}
+.ticket-copy{flex:1;min-width:0}
+.ticket-kicker{color:#327db8;font-weight:900;font-size:10.5pt}
+.ticket-title{font-size:12.5pt;line-height:1.35;font-weight:950;margin-top:1mm}
+.ticket-price{background:#fff5d8;padding:1.6mm 3mm;border-radius:3mm;white-space:nowrap;text-align:center;font-size:8.8pt;color:#77501a;font-weight:740}
+.ticket-price strong{font-size:18pt;color:#e06d10}
+.ticket-price small{font-size:7.3pt;display:block;color:#836342}
+.section{padding-left:12mm;padding-right:12mm}
+.problems{padding-top:5mm}
+.pill-heading{display:table;background:var(--orange);padding:1.2mm 6mm 1.8mm;border-radius:30px;color:#fff;font-weight:880;letter-spacing:.08em;font-size:11pt;margin:0 auto -2mm;position:relative;z-index:2}
+.problem-grid{background:#fff;border:1px solid var(--outline);border-radius:7mm;min-height:25mm;padding:4mm 6mm 3mm;display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;box-shadow:0 2px 0 #e5ebf11a}
+.problem{display:flex;align-items:flex-start;gap:3mm;font-size:10.3pt;font-weight:720;line-height:1.7}
+.problem svg{width:7mm;height:7mm;flex:none;margin-top:1mm;color:#ff9a00}
+.problem b{color:#ec8913;background:linear-gradient(transparent 80%,#ffe2a9 80%)}
+.features{padding-top:5mm}
+.features h2{font-size:16pt;color:#3984f5;text-align:center;font-weight:950;margin:0 0 3mm;letter-spacing:.04em}
+.features h2 span{color:#16987b}
+.feature-card{height:25mm;display:flex;align-items:center;gap:4.2mm;background:#fff;border:1px solid #edf0f4;border-left:3mm solid var(--accent);border-radius:5.4mm;padding:3.2mm 4mm;margin-bottom:2.5mm;box-shadow:0 2px 1px #697e8409}
+.feature-icon{width:17mm;height:17mm;flex:none;border-radius:50%;background:var(--iconbg);display:grid;place-items:center;color:var(--accent)}
+.feature-icon svg{width:10mm;height:10mm}
+.feature-main{flex:1;min-width:0}
+.feature-title{font-weight:900;font-size:13pt;line-height:1.3;margin-bottom:1.2mm}
+.feature-text{font-size:9.5pt;line-height:1.55;color:var(--muted);font-weight:550}
+.feature-aside{width:42mm;flex:none}
+.scope-panel{background:#f9fbff;border:1px solid #e1e8f0;border-radius:4.5mm;padding:2.2mm 3mm;box-shadow:0 2px 3px #b4c7d02a;transform:rotate(1deg)}
+.scope-title{font-size:8.3pt;font-weight:900;margin-bottom:1.3mm}
+.scope-row{font-size:9pt;font-weight:800;display:flex;gap:1.5mm;align-items:center;line-height:1.57}
+.sq{width:3.4mm;height:3.4mm;border-radius:1mm;border:1px solid #a9b5c7;background:white;display:inline-flex;align-items:center;justify-content:center;color:white;font-size:8pt;line-height:1}
+.sq.on{background:#3287ff;border-color:#3287ff}
+.foot-chip{font-size:9pt;color:#2867ac;background:#ebf5ff;border-radius:15px;padding:3mm;text-align:center;font-weight:800}
+.feature-small-art{width:37mm;height:20mm}
+.green-note{margin-top:4mm;background:#ecfaf2;border-radius:7mm;min-height:18mm;display:flex;align-items:center;justify-content:center;gap:6mm;padding:3mm 7mm;text-align:center}
+.note-visual{color:#14b48c;flex:none}
+.note-visual svg{width:15mm;height:15mm}
+.green-note .lead{font-size:12.5pt;font-weight:940;line-height:1.45}
+.green-note .hint{font-size:9.3pt;color:#4d6871;margin-top:1mm;line-height:1.45}
+.footer{position:absolute;bottom:0;left:0;right:0;height:48mm;background:#f4f8fc;border-top:1px solid #e1e8f0;padding:5.5mm 12mm 3.5mm;display:flex;gap:6mm}
+.footer-left{flex:1;min-width:0}
+.footer-lead{font-size:15pt;font-weight:950;line-height:1.55}
+.free{display:inline-block;background:#19bc85;color:#fff;border-radius:50px;padding:1mm 3mm;font-size:9.5pt;vertical-align:1.5px;margin-right:2mm}
+.footer-intro{font-size:9pt;color:var(--muted);line-height:1.55;margin-top:3mm}
+.disclaimer{font-size:7.2pt;line-height:1.45;color:#66798e;margin-top:4mm}
+.footer-right{display:flex;gap:6mm;align-items:flex-start}
+.qr-block{text-align:center;min-width:25mm}
+.qr-label{font-size:9.4pt;font-weight:850;margin-bottom:2mm;white-space:nowrap}
+.qr-label span{font-size:8.5pt}
+.qr-img{width:25mm;height:25mm;background:white;padding:1mm;border-radius:3.2mm;box-shadow:0 0 0 1px #d8e3eb;image-rendering:pixelated}
+.source-line{position:absolute;left:12mm;right:12mm;bottom:1.6mm;text-align:center;color:#758596;font-size:6.6pt}
+@page{size:A4 portrait;margin:0}
+@media print{html,body{background:white}.sheet{margin:0;box-shadow:none;break-after:avoid}}
+@media screen and (max-width:800px){body{overflow-x:auto}.sheet{margin:0}}
+</style>
+</head>
+<body>
+<main class="sheet">
+  <header class="hero">
+    <div class="topline">
+      <div class="app-symbol" aria-hidden="true">
+        <svg viewBox="0 0 64 64" fill="none"><rect x="12" y="7" width="40" height="41" rx="9" fill="currentColor"/><rect x="18" y="15" width="28" height="17" rx="3" fill="white"/><circle cx="22" cy="41" r="3.5" fill="white"/><circle cx="42" cy="41" r="3.5" fill="white"/><path d="m19 49-5 9m31-9 5 9" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+      <div><div class="eyebrow">都営・東京メトロ対応の無料ルート検索アプリ</div><div class="brand">都営で<span>GO</span></div></div>
+    </div>
+    <h1>東京メトロで、<br><em>週末をもっと自由に。</em></h1>
+    <div class="sub">乗り放題きっぷを使う日の、ルート探しに。</div>
+    <svg class="skyline" viewBox="0 0 420 220" fill="none" aria-hidden="true">
+      <path d="M0 196V141h36v-33h27v38h20V99h25v97h39V126h26v70h38V89h34v107h31v-57h28v57h43v-86h26v86h34v-40h23v40" fill="#b7ddfa" opacity=".75"/>
+      <path d="M58 188 84 73l25 115M84 73 83 19M64 123h40M56 156h54" stroke="#ed837e" stroke-width="7" stroke-linejoin="round"/><path d="M65 168h38M73 137h22" stroke="#ed837e" stroke-width="5"/>
+      <path d="M325 197V61l-8-10h16l-8 10m-9 10h18m-26 17h35m-39 10h43m-33-30h25M325 51V14" stroke="#7bbbe9" stroke-width="7"/><path d="M311 99 293 197h64l-18-98" stroke="#7bbbe9" stroke-width="7"/>
+      <ellipse cx="150" cy="187" rx="31" ry="18" fill="#a2e2b2"/><ellipse cx="181" cy="190" rx="22" ry="12" fill="#b6e6b7"/><ellipse cx="375" cy="190" rx="36" ry="18" fill="#a2e2b2"/>
+      <path d="M286 38c-12-10-16-7-22-1-20-13-31-5-34 5m121 6c10-10 17-9 26-2 18-9 25-3 30 3" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+    </svg>
+    <svg class="train-illustration" viewBox="0 0 390 180" fill="none" aria-hidden="true">
+      <path d="M48 44c5-24 28-37 55-37h167c28 0 47 14 49 42l7 78c2 18-8 28-27 29H94c-23 0-42-11-45-30Z" fill="#fff" stroke="#acc8d2" stroke-width="6"/>
+      <path d="M75 50c0-15 13-22 30-22h160c15 0 29 9 31 23l4 42H72Z" fill="#355879"/>
+      <path d="M69 102h236l-1 21H72Z" fill="#41a6e8"/>
+      <path d="M98 28v64M268 28v64" stroke="#b7d7e9" stroke-width="5"/><path d="M84 130h15m176 0h15" stroke="#e8c46c" stroke-width="8" stroke-linecap="round"/>
+      <path d="M121 158v12m150-12v12" stroke="#627588" stroke-width="10"/><path d="M60 178h260" stroke="#b3c3c6" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="351" cy="48" r="10" fill="#ffd97f"/><path d="m350 26 1-10m18 20 10-6m-28 36 3 10" stroke="#ffd169" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+  </header>
+
+  <section class="ticket-strip" aria-label="東京メトロ28時間券のご案内">
+    <div class="ticket-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16v4a2 2 0 0 0 0 4v4H4v-4a2 2 0 0 0 0-4V6Z"/><path d="M12 7v10" stroke-dasharray="2 2"/></svg></div>
+    <div class="ticket-copy"><div class="ticket-kicker">2026年11月7日から期間限定・土日祝の対象日に発売</div><div class="ticket-title">東京メトロ全9路線が <span style="color:#317fec">28時間乗り放題</span>！</div></div>
+    <div class="ticket-price"><small>土日祝限定東京メトロ28時間券（QR）</small>大人 <strong>700円</strong><br>小児 350円</div>
+  </section>
+
+  <section class="problems section">
+    <div class="pill-heading">こんなときに便利！</div>
+    <div class="problem-grid">
+      <div class="problem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18v14H3zM8 5v14m8-14v14M3 10h18"/></svg><div>乗り放題きっぷを使うから、<b>東京メトロだけ</b>で行けるルートを探したい。</div></div>
+      <div class="problem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-8 7-13a7 7 0 0 0-14 0c0 5 7 13 7 13Z"/><circle cx="12" cy="9" r="2"/></svg><div>初めての場所だから、<b>乗り換えや徒歩時間</b>も確かめてから出かけたい。</div></div>
+    </div>
+  </section>
+
+  <section class="features section">
+    <h2>「都営でGO」で、<span>おでかけがもっと楽しく！</span></h2>
+    <article class="feature-card" style="--accent:#428af5;--iconbg:#edf5ff">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m16 16 5 5"/></svg></div>
+      <div class="feature-main"><div class="feature-title">東京メトロだけのルートを検索</div><div class="feature-text">交通機関を選んで、目的地までの行き方を検索。<br>このきっぷなら「東京メトロ」にチェック！</div></div>
+      <div class="feature-aside scope-panel"><div class="scope-title">利用する交通機関</div><div class="scope-row"><span class="sq"></span> 都営バス</div><div class="scope-row"><span class="sq"></span> 都営地下鉄</div><div class="scope-row"><span class="sq on">✓</span> 東京メトロ</div></div>
+    </article>
+    <article class="feature-card" style="--accent:#15ba91;--iconbg:#eafaf4">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="17" r="2"/><path d="M7 5h3a3 3 0 0 1 3 3v2a3 3 0 0 0 3 3h1M5 7v4c0 2 2 3 4 3h2"/></svg></div>
+      <div class="feature-main"><div class="feature-title">乗り換えも、歩く時間もわかる</div><div class="feature-text">所要時間・乗換回数・徒歩距離をチェック。<br>出発前にルートを比較できるから安心。</div></div>
+      <div class="feature-aside foot-chip">乗換回数・徒歩距離も<br>見ながら選べる！</div>
+    </article>
+    <article class="feature-card" style="--accent:#f3a109;--iconbg:#fff8e9">
+      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6 9 3l6 3 6-3v15l-6 3-6-3-6 3zM9 3v15m6-12v15"/></svg></div>
+      <div class="feature-main"><div class="feature-title">行き先が決まっていなくても！</div><div class="feature-text">乗り換えなしで行ける駅や周辺スポット探しも。<br>週末のおでかけ先が見つかるかも。</div></div>
+      <div class="feature-aside foot-chip" style="background:#fff5dc;color:#a77909">東京の「行ってみたい」を<br>もっと発見！</div>
+    </article>
+  </section>
+
+  <section class="section">
+    <div class="green-note">
+      <div class="note-visual"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M10 14h28v19H10z"/><path d="M16 19h16M15 33l-5 9m28 0-5-9"/><circle cx="17" cy="28" r="1.5" fill="currentColor"/><circle cx="31" cy="28" r="1.5" fill="currentColor"/></svg></div>
+      <div><div class="lead">いつもの移動も、週末の東京さんぽも。</div><div class="hint">使いたい交通機関だけを選んで、おでかけをもっと自由に。</div></div>
+    </div>
+  </section>
+
+
+</main>
+</body>
+</html>
