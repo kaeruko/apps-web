@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="都営交通だけで、迷わずおでかけ。都営バス・都営地下鉄を中心に、ルート検索、乗車中案内、みんなでおでかけ、一本で行ける場所探しをサポートします。">
+  <meta name="description" content="交通機関を選んで、東京をおでかけ。都営バス・都営地下鉄・東京メトロを選んでルート検索。乗車中案内やおでかけ共有、行き先探しもサポートします。">
   <link rel="canonical" href="https://cloxs.jp/toeigo/toeigo.html">
   <link rel="icon" type="image/png" href="assets/logo.png">
-  <meta property="og:title" content="都営でGO｜都営交通だけで、迷わずおでかけ。">
-  <meta property="og:description" content="都営交通中心のルート検索から、乗車中の案内、グループのおでかけ、近場の行き先探しまで。">
+  <meta property="og:title" content="都営でGO｜交通機関を選んで、東京をおでかけ。">
+  <meta property="og:description" content="都営バス・都営地下鉄・東京メトロを選んでルート検索。乗車中案内やおでかけ共有も。">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="都営でGO">
@@ -16,10 +16,10 @@
   <meta property="og:image" content="https://cloxs.jp/toeigo/assets/logo.png">
   <meta property="og:image:alt" content="都営でGO">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="都営でGO｜都営交通だけで、迷わずおでかけ。">
-  <meta name="twitter:description" content="都営バス・都営地下鉄を中心に、ルート検索、乗車中案内、おでかけ共有、行き先探しをサポートする非公式アプリです。">
+  <meta name="twitter:title" content="都営でGO｜交通機関を選んで、東京をおでかけ。">
+  <meta name="twitter:description" content="都営バス・都営地下鉄・東京メトロを選んでルート検索。乗車中案内やおでかけ共有もできる非公式アプリです。">
   <meta name="twitter:image" content="https://cloxs.jp/toeigo/assets/logo.png">
-  <title>都営でGO｜都営交通だけで、迷わずおでかけ。</title>
+  <title>都営でGO｜交通機関を選んで、東京をおでかけ。</title>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -28,11 +28,11 @@
     "alternateName": "TOEI DE GO",
     "operatingSystem": "Android, iOS",
     "applicationCategory": "TravelApplication",
-    "description": "都営バス・都営地下鉄を中心に、ルート検索、乗車中案内、おでかけ共有、一本で行ける場所探しをサポートする非公式アプリです。",
+    "description": "都営バス・都営地下鉄・東京メトロを選んでルート検索。乗車中案内やおでかけ共有もできる非公式アプリです。",
     "url": "https://cloxs.jp/toeigo/toeigo.html",
     "downloadUrl": [
       "https://play.google.com/store/apps/details?id=jp.cloxs.toeigo",
-      "https://apps.apple.com/app/id6804165349"
+      "https://apps.apple.com/jp/app/id6804165349?l=ja"
     ],
     "image": "https://cloxs.jp/toeigo/assets/logo.png",
     "offers": {
@@ -187,6 +187,17 @@
     .screen.single{width:min(62%,340px)}
     .screen.small{width:min(39%,240px)}
     .screen img{width:100%}
+
+    .metro{background:linear-gradient(135deg,#eefaf5 0%,#eff6ff 100%)}
+    .metro-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .metro-card{background:#fff;border:1px solid #d7e7e5;border-radius:22px;padding:26px}
+    .metro-card h3{font-size:22px;line-height:1.4;margin:0 0 14px}
+    .metro-card p{color:var(--muted);font-size:15px}
+    .metro-options{display:grid;gap:12px;margin:18px 0;font-weight:800}
+    .metro-options div{padding:9px 13px;border-radius:10px;background:#eaf5ff}
+    .metro-options .disabled{background:#f5f5f7;color:#80858e}
+    .metro-notice{font-size:13px;color:#555e6b;margin-top:23px}
+    .metro-notice a{color:#0566d5}
     .discover{background:linear-gradient(180deg,#fbfcff 0,#fff 100%)}
     .mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .mini{border:1px solid var(--line);border-radius:22px;padding:22px;background:#fff}
@@ -258,7 +269,7 @@
       .feature + .feature{margin-top:84px}
       .gallery{grid-template-columns:repeat(3,1fr)}
       .audience-grid,.sources,.support-grid{grid-template-columns:1fr}
-      .mini-grid{grid-template-columns:1fr}
+      .mini-grid,.metro-grid{grid-template-columns:1fr}
     }
     @media (max-width:640px){
       .wrap{width:min(calc(100% - 28px),var(--max))}
@@ -290,11 +301,12 @@
       <a class="brand" href="#" aria-label="都営でGO"><img src="assets/toeigo_logo.png" alt="都営でGO"></a>
       <nav class="nav-links" aria-label="メインナビゲーション">
         <a href="#features">できること</a>
+        <a href="#metro">メトロ対応</a>
         <a href="manual.html">使い方</a>
         <a href="#discover">行き先探し</a>
         <a href="#support">サポート</a>
         <a href="#official">公式情報源</a>
-        <a class="nav-store ios" href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener">App Store</a>
+        <a class="nav-store ios" href="https://apps.apple.com/jp/app/id6804165349?l=ja" target="_blank" rel="noopener">App Store</a>
         <a class="nav-store play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Play</a>
       </nav>
     </div>
@@ -304,21 +316,22 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy-block">
-          <span class="eyebrow">🚌 都営交通中心のおでかけナビ</span>
-          <h1>都営交通だけで、<br>迷わずおでかけ。</h1>
+          <span class="eyebrow">🚇 東京メトロにも対応！</span>
+          <h1>使いたい交通機関を選んで、<br>東京をもっと自由に。</h1>
           <p class="hero-copy">
-            都営バス・都営地下鉄を中心に、JRや私鉄を使わないルートを探せるおでかけアプリ。
-            乗車中の案内、みんなでのおでかけ、近場の行き先探しまでサポートします。
+            都営バス・都営地下鉄・東京メトロから利用する交通機関を選んでルート検索。
+            東京メトロだけ、都営交通だけに絞った検索もできます。乗車中案内やおでかけ共有もサポートします。
           </p>
           <div class="hero-chips" aria-label="主な機能">
             <span class="hero-chip">🧭 ルート検索</span>
             <span class="hero-chip">🚌 都バス限定検索</span>
+            <span class="hero-chip">🚇 メトロだけでも検索</span>
             <span class="hero-chip">🚌 乗車中案内</span>
             <span class="hero-chip">👥 おでかけ共有</span>
             <span class="hero-chip">📍 行き先探し</span>
           </div>
           <div class="hero-actions">
-            <a class="store-button ios" href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
+            <a class="store-button ios" href="https://apps.apple.com/jp/app/id6804165349?l=ja" target="_blank" rel="noopener">App Storeで見る</a>
             <a class="store-button play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
           </div>
         </div>
@@ -327,6 +340,37 @@
           <div class="phone b"><img src="assets/screenshots/group-outing-overview-live.png" alt="グループおでかけの概要画面"></div>
           <div class="phone c"><img src="assets/screenshots/ride-next-stop.png" alt="乗車中に次降りますと大きく表示する画面"></div>
         </div>
+      </div>
+    </section>
+
+    <section id="metro" class="metro">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">TOKYO METRO</div>
+          <h2>東京メトロにも対応しました！</h2>
+          <p class="lead">都営バス・都営地下鉄・東京メトロをそれぞれ選択。お持ちの乗車券に合わせて、検索対象の交通機関を絞れます。</p>
+        </div>
+        <div class="metro-grid">
+          <div class="metro-card">
+            <h3>東京メトロだけを使う日</h3>
+            <p>「休日メトロ放題」など、東京メトロ線を利用したおでかけに。</p>
+            <div class="metro-options" aria-label="東京メトロだけの設定例">
+              <div class="disabled">□ 都営バス：OFF</div>
+              <div class="disabled">□ 都営地下鉄：OFF</div>
+              <div>☑ 東京メトロ：ON</div>
+            </div>
+          </div>
+          <div class="metro-card">
+            <h3>都営地下鉄＋東京メトロの日</h3>
+            <p>旅行者向け「Tokyo Subway Ticket」など、地下鉄2社を利用するおでかけに。</p>
+            <div class="metro-options" aria-label="都営地下鉄と東京メトロの設定例">
+              <div class="disabled">□ 都営バス：OFF</div>
+              <div>☑ 都営地下鉄：ON</div>
+              <div>☑ 東京メトロ：ON</div>
+            </div>
+          </div>
+        </div>
+        <p class="metro-notice">※ 上記は交通機関の設定例です。本アプリは乗車券の販売、適用資格・有効期限・運賃・ポイント還元の判定を行いません。Tokyo Subway Ticketは都営バス・JR線を対象に含みません。乗換経路には一部未対応の接続があるため、乗車券の条件や最新の交通情報は<a href="https://www.tokyometro.jp/tst/jp/index.html" target="_blank" rel="noopener">東京メトロの公式案内</a>もご確認ください。</p>
       </div>
     </section>
 
@@ -340,10 +384,11 @@
 
         <article class="feature">
           <div class="feature-copy">
-            <h3>都営交通中心のルートを見つける</h3>
-            <p>現在地や出発地から目的地までを検索。所要時間、乗換回数、徒歩距離、待ち時間、乗車区間を見ながら、都営交通を中心としたルートを選べます。</p>
+            <h3>使いたい交通機関でルートを探せる</h3>
+            <p>都営バス・都営地下鉄・東京メトロを個別に選択。現在地や出発地から、所要時間・乗換回数・徒歩距離などを確認しながらルートを探せます。</p>
             <div class="chips">
               <span class="chip">ルート候補を比較</span>
+              <span class="chip">交通機関を個別に選択</span>
               <span class="chip">地図で確認</span>
               <span class="chip">徒歩・待ち時間も表示</span>
             </div>
@@ -474,11 +519,11 @@
       <div class="wrap">
         <div class="section-head">
           <div class="kicker" style="color:#8ec8ff">FOR YOUR TRIP</div>
-          <h2>都営交通を使って出かけたい人へ。</h2>
-          <p class="lead">いつもの移動にも、ちょっと知らない場所へのおでかけにも。精神障害者都営交通乗車証や東京都シルバーパスなどを利用して、都営交通で移動したい方にも使いやすいナビを目指しています。</p>
+          <h2>都営交通も、東京メトロも。おでかけしたい人へ。</h2>
+          <p class="lead">いつもの移動にも、ちょっと知らない場所へのおでかけにも。都営交通の乗車券を使う方も、東京メトロで週末のおでかけを楽しむ方も、利用する交通機関を選んで検索できます。</p>
         </div>
         <div class="audience-grid">
-          <div class="audience-card"><strong>都営交通中心で移動したい</strong><p>JR・私鉄を使わない移動を考えたいときに。</p></div>
+          <div class="audience-card"><strong>乗車券に合わせて検索したい</strong><p>都営交通や東京メトロなど、使いたい交通機関に絞りたいときに。</p></div>
           <div class="audience-card"><strong>降りる場所が不安</strong><p>乗車中に、次に何をするか確認したいときに。</p></div>
           <div class="audience-card"><strong>同行者と予定を共有したい</strong><p>集合から到着まで、同じ行程を見ながら動きたいときに。</p></div>
         </div>
@@ -500,7 +545,7 @@
           </div>
           <div class="support-card">
             <h3>ルートや時刻が実際と異なる</h3>
-            <p>交通情報や時刻表は変更される場合があります。運休・遅延・臨時変更を含む最新情報は、東京都交通局などの公式情報もあわせてご確認ください。</p>
+            <p>交通情報や時刻表は変更される場合があります。運休・遅延・臨時変更を含む最新情報は、東京都交通局や東京メトロの公式情報もあわせてご確認ください。</p>
           </div>
           <div class="support-card">
             <h3>表示や動作に問題がある</h3>
@@ -530,8 +575,8 @@
         </div>
         <div class="notice">
           <h3>本アプリは非公式アプリです</h3>
-          <p>本アプリは個人が開発・提供する非公式アプリです。東京都、東京都交通局、東京都福祉局その他の行政機関を代表するものではなく、これらの機関による承認、提携、運営を受けているものではありません。</p>
-          <p>制度の対象者、利用条件、利用可能な交通機関などは変更される場合があります。精神障害者都営交通乗車証、東京都シルバーパス、都営交通無料乗車券などの最新かつ正確な情報は、以下の公式情報をご確認ください。</p>
+          <p>本アプリは個人が開発・提供する非公式アプリです。東京都・東京都交通局・東京メトロ等の公式アプリではなく、これらの機関や事業者との提携・承認・運営関係はありません。</p>
+          <p>制度の対象者、利用条件、利用可能な交通機関などは変更される場合があります。都営交通の乗車券やTokyo Subway Ticket、休日メトロ放題などは、それぞれの公式情報をご確認ください。</p>
           <div class="sources">
             <a class="source" href="https://www.fukushi.metro.tokyo.lg.jp/shougai/nichijo/jousyasyo" target="_blank" rel="noopener">
               精神障害者都営交通乗車証
@@ -545,6 +590,14 @@
               都営交通無料乗車券
               <small>東京都交通局 公式サイト ↗</small>
             </a>
+            <a class="source" href="https://www.tokyometro.jp/tst/jp/index.html" target="_blank" rel="noopener">
+              Tokyo Subway Ticket
+              <small>東京メトロ 公式サイト ↗</small>
+            </a>
+            <a class="source" href="https://www.tokyometro.jp/news/2023/216361.html" target="_blank" rel="noopener">
+              休日メトロ放題
+              <small>東京メトロ 公式サイト ↗</small>
+            </a>
           </div>
         </div>
       </div>
@@ -553,10 +606,10 @@
     <section class="final">
       <div class="wrap">
         <div class="kicker">TOEI DE GO</div>
-        <h2>都営交通で行ける東京を、<br>もっと見つけやすく。</h2>
+        <h2>使いたい交通機関で、<br>東京をもっと楽しもう。</h2>
         <p>検索から乗車中の案内、みんなでのおでかけ共有まで。都営でGOで、次のおでかけを始めてみませんか。</p>
         <div class="hero-actions" style="justify-content:center">
-          <a class="store-button ios" href="https://apps.apple.com/app/id6804165349" target="_blank" rel="noopener">App Storeで見る</a>
+          <a class="store-button ios" href="https://apps.apple.com/jp/app/id6804165349?l=ja" target="_blank" rel="noopener">App Storeで見る</a>
           <a class="store-button play" href="https://play.google.com/store/apps/details?id=jp.cloxs.toeigo" target="_blank" rel="noopener">Google Playで見る</a>
         </div>
       </div>
@@ -570,7 +623,7 @@
         <a href="manual.html">使い方</a>
         <a href="#support">サポート</a>
         <a href="../toeigo_privacy.html">プライバシーポリシー</a>
-        <span>非公式アプリ / 東京都・東京都交通局等とは関係ありません。</span>
+        <span>非公式アプリ / 東京都・東京都交通局・東京メトロ等とは関係ありません。</span>
       </div>
     </div>
   </footer>
